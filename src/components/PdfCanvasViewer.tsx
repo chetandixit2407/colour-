@@ -95,8 +95,8 @@ const PdfPage: React.FC<PdfPageProps> = ({ pageNum, doc, zoomLevel }) => {
   }, [pageNum, doc, zoomLevel]);
 
   return (
-    <div className="relative shadow-2xl rounded-xl overflow-hidden bg-white border border-slate-700/60 transition-all shrink-0">
-      <div className="absolute top-2 right-2 z-10 px-2.5 py-0.5 rounded-md bg-slate-950/85 backdrop-blur-xs text-[10px] font-mono text-slate-300 font-bold border border-slate-800 pointer-events-none">
+    <div className="relative shadow-xl rounded-xl overflow-hidden bg-white border border-black/10 transition-all shrink-0">
+      <div className="absolute top-2 right-2 z-10 px-2.5 py-0.5 rounded-md bg-white/90 backdrop-blur-md text-[10px] font-mono text-[#111111] font-bold border border-black/10 pointer-events-none shadow-xs">
         Page {pageNum} of {doc.numPages}
       </div>
       <canvas ref={canvasRef} className="block max-w-full h-auto" />
@@ -185,10 +185,10 @@ export const PdfCanvasViewer: React.FC<PdfCanvasViewerProps> = ({
 
   if (loading) {
     return (
-      <div className="flex-1 flex flex-col items-center justify-center p-12 text-center text-slate-400">
-        <RefreshCw className="w-8 h-8 animate-spin text-amber-400 mb-3" />
-        <p className="text-xs font-semibold text-slate-300">Opening PDF Document Pages...</p>
-        <p className="text-[11px] text-slate-500 mt-1">Direct high-fidelity canvas rendering</p>
+      <div className="flex-1 flex flex-col items-center justify-center p-12 text-center text-[#5F6368]">
+        <RefreshCw className="w-8 h-8 animate-spin text-[#9E8243] mb-3" />
+        <p className="text-xs font-semibold text-[#111111]">Opening PDF Document Pages...</p>
+        <p className="text-[11px] text-[#5F6368] mt-1">Direct high-fidelity canvas rendering</p>
       </div>
     );
   }
@@ -196,11 +196,11 @@ export const PdfCanvasViewer: React.FC<PdfCanvasViewerProps> = ({
   if (error) {
     return (
       <div className="w-full h-full flex flex-col items-center justify-center p-6 text-center">
-        <div className="p-8 bg-slate-900 rounded-2xl border border-slate-800 max-w-md shadow-2xl">
-          <AlertCircle className="w-8 h-8 text-rose-400 mx-auto mb-2" />
-          <h4 className="text-sm font-bold text-white mb-1">Document Preview Unavailable</h4>
-          <p className="text-xs text-slate-400 mb-4">{error}</p>
-          <p className="text-[11px] text-slate-500">
+        <div className="p-8 glass-panel bg-white/80 rounded-2xl border border-white/90 max-w-md shadow-xl text-center">
+          <AlertCircle className="w-8 h-8 text-rose-500 mx-auto mb-2" />
+          <h4 className="text-sm font-bold text-[#111111] mb-1">Document Preview Unavailable</h4>
+          <p className="text-xs text-[#5F6368] mb-4">{error}</p>
+          <p className="text-[11px] text-[#80868B]">
             Please use the Download button above to view this document in your local PDF viewer.
           </p>
         </div>

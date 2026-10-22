@@ -264,42 +264,42 @@ export const SecureDocumentViewerModal: React.FC<SecureDocumentViewerModalProps>
   }, [textContent, lowerFileName]);
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-md p-2 sm:p-4 overflow-hidden">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#FAF9F6]/75 backdrop-blur-xl p-2 sm:p-4 overflow-hidden">
       <div
         ref={containerRef}
-        className={`bg-slate-900 border border-slate-800 rounded-3xl w-full flex flex-col shadow-2xl overflow-hidden text-slate-100 transition-all ${
+        className={`glass-panel-elevated bg-white/75 border border-white/80 rounded-3xl w-full flex flex-col shadow-[0_24px_60px_rgba(0,0,0,0.08)] overflow-hidden text-[#111111] transition-all ${
           isFullscreen ? 'h-screen w-screen max-w-none rounded-none' : 'max-w-5xl h-[94vh]'
         }`}
       >
         {/* Top Control Bar */}
-        <div className="p-3 sm:p-4 border-b border-slate-800 bg-slate-950 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 shrink-0">
+        <div className="p-3 sm:p-4 border-b border-[#E5D2A0]/40 bg-white/65 backdrop-blur-md flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 shrink-0">
           {/* Document Title & Back */}
           <div className="flex items-center gap-3 min-w-0">
             <button
               onClick={onClose}
-              className="p-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-800 transition flex items-center gap-1.5 cursor-pointer text-xs font-semibold shrink-0"
+              className="p-2 rounded-xl bg-white/70 hover:bg-white/90 text-[#111111] border border-black/10 shadow-xs transition flex items-center gap-1.5 cursor-pointer text-xs font-semibold shrink-0"
               title="Return to Candidate Profile"
             >
               <ArrowLeft className="w-4 h-4" />
               <span className="hidden sm:inline">Back</span>
             </button>
 
-            <div className="w-9 h-9 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 shrink-0">
+            <div className="w-9 h-9 rounded-xl bg-[#D8BF85]/20 border border-[#D8BF85]/40 flex items-center justify-center text-[#9E8243] shrink-0">
               <FileText className="w-5 h-5" />
             </div>
 
             <div className="min-w-0">
               <div className="flex items-center gap-2">
-                <h2 className="text-sm sm:text-base font-bold text-white tracking-tight truncate">
+                <h2 className="text-sm sm:text-base font-bold text-[#111111] tracking-tight truncate">
                   {fileName}
                 </h2>
-                <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 shrink-0">
+                <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-200 shrink-0">
                   Secure Origin
                 </span>
               </div>
-              <p className="text-[11px] text-slate-400 truncate">
-                Candidate: <strong className="text-slate-200">{candidate.fullName}</strong> • Role:{' '}
-                <strong className="text-amber-300">{candidate.position}</strong>
+              <p className="text-[11px] text-[#5F6368] truncate">
+                Candidate: <strong className="text-[#111111]">{candidate.fullName}</strong> • Role:{' '}
+                <strong className="text-[#9E8243]">{candidate.position}</strong>
               </p>
             </div>
           </div>
@@ -308,18 +308,18 @@ export const SecureDocumentViewerModal: React.FC<SecureDocumentViewerModalProps>
           <div className="flex items-center justify-between sm:justify-end gap-1.5 sm:gap-2 shrink-0">
             {/* Zoom Controls for PDF and Images */}
             {(isPdf || isImage) && (
-              <div className="flex items-center bg-slate-900 border border-slate-800 rounded-xl px-1.5 py-1 text-xs">
+              <div className="flex items-center bg-white/70 border border-black/10 rounded-xl px-1.5 py-1 text-xs shadow-xs">
                 <button
                   onClick={handleZoomOut}
                   disabled={zoomLevel <= 50}
-                  className="p-1 text-slate-400 hover:text-white disabled:opacity-30 cursor-pointer rounded-lg hover:bg-slate-800"
+                  className="p-1 text-[#5F6368] hover:text-[#111111] disabled:opacity-30 cursor-pointer rounded-lg hover:bg-black/5"
                   title="Zoom Out (-)"
                 >
                   <ZoomOut className="w-4 h-4" />
                 </button>
                 <button
                   onClick={handleZoomReset}
-                  className="px-2 text-[11px] font-mono font-bold text-amber-300 hover:text-amber-200 cursor-pointer"
+                  className="px-2 text-[11px] font-mono font-bold text-[#9E8243] hover:text-[#7D6633] cursor-pointer"
                   title="Click to reset zoom (100%)"
                 >
                   {zoomLevel}%
@@ -327,14 +327,14 @@ export const SecureDocumentViewerModal: React.FC<SecureDocumentViewerModalProps>
                 <button
                   onClick={handleZoomIn}
                   disabled={zoomLevel >= 250}
-                  className="p-1 text-slate-400 hover:text-white disabled:opacity-30 cursor-pointer rounded-lg hover:bg-slate-800"
+                  className="p-1 text-[#5F6368] hover:text-[#111111] disabled:opacity-30 cursor-pointer rounded-lg hover:bg-black/5"
                   title="Zoom In (+)"
                 >
                   <ZoomIn className="w-4 h-4" />
                 </button>
                 <button
                   onClick={handleZoomReset}
-                  className="p-1 ml-1 text-slate-500 hover:text-slate-300 cursor-pointer rounded-lg hover:bg-slate-800"
+                  className="p-1 ml-1 text-[#5F6368] hover:text-[#111111] cursor-pointer rounded-lg hover:bg-black/5"
                   title="Reset Zoom"
                 >
                   <RotateCcw className="w-3.5 h-3.5" />
@@ -344,8 +344,8 @@ export const SecureDocumentViewerModal: React.FC<SecureDocumentViewerModalProps>
 
             {/* Page Counter Display for PDF */}
             {isPdf && totalPages > 1 && (
-              <div className="hidden md:flex items-center px-2.5 py-1.5 bg-slate-900 border border-slate-800 rounded-xl text-[11px] text-slate-400 font-mono">
-                Page <strong className="text-white mx-1">{currentPage}</strong> / {totalPages}
+              <div className="hidden md:flex items-center px-2.5 py-1.5 bg-white/70 border border-black/10 rounded-xl text-[11px] text-[#5F6368] font-mono shadow-xs">
+                Page <strong className="text-[#111111] mx-1">{currentPage}</strong> / {totalPages}
               </div>
             )}
 
@@ -353,10 +353,10 @@ export const SecureDocumentViewerModal: React.FC<SecureDocumentViewerModalProps>
             {isTextDoc && textContent && (
               <button
                 onClick={handleCopyText}
-                className="p-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-800 transition flex items-center gap-1 cursor-pointer text-xs"
+                className="p-2 rounded-xl bg-white/70 hover:bg-white/90 text-[#111111] border border-black/10 shadow-xs transition flex items-center gap-1 cursor-pointer text-xs"
                 title="Copy text content to clipboard"
               >
-                {copiedText ? <Check className="w-4 h-4 text-emerald-400" /> : <Copy className="w-4 h-4" />}
+                {copiedText ? <Check className="w-4 h-4 text-emerald-600" /> : <Copy className="w-4 h-4" />}
                 <span className="hidden sm:inline">{copiedText ? 'Copied' : 'Copy'}</span>
               </button>
             )}
@@ -364,7 +364,7 @@ export const SecureDocumentViewerModal: React.FC<SecureDocumentViewerModalProps>
             {/* Fullscreen Toggle */}
             <button
               onClick={handleToggleFullscreen}
-              className="p-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-800 transition cursor-pointer"
+              className="p-2 rounded-xl bg-white/70 hover:bg-white/90 text-[#111111] border border-black/10 shadow-xs transition cursor-pointer"
               title={isFullscreen ? 'Exit Fullscreen' : 'Fullscreen View'}
             >
               {isFullscreen ? <Minimize2 className="w-4 h-4" /> : <Maximize2 className="w-4 h-4" />}
@@ -373,7 +373,7 @@ export const SecureDocumentViewerModal: React.FC<SecureDocumentViewerModalProps>
             {/* Download Button */}
             <button
               onClick={handleDownload}
-              className="px-3 py-1.5 sm:px-4 sm:py-2 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 text-xs font-bold rounded-xl shadow-lg transition flex items-center gap-1.5 cursor-pointer shrink-0"
+              className="px-3 py-1.5 sm:px-4 sm:py-2 bg-gradient-to-r from-[#D8BF85] to-[#BFA15F] hover:from-[#E5D2A0] hover:to-[#CDB06E] text-[#111111] text-xs font-bold rounded-xl shadow-xs transition flex items-center gap-1.5 cursor-pointer shrink-0"
               title="Download original file"
             >
               <Download className="w-4 h-4" />
@@ -383,7 +383,7 @@ export const SecureDocumentViewerModal: React.FC<SecureDocumentViewerModalProps>
             {/* Close Cross */}
             <button
               onClick={onClose}
-              className="p-2 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800 transition cursor-pointer"
+              className="p-2 rounded-xl text-[#5F6368] hover:text-[#111111] hover:bg-black/5 transition cursor-pointer"
               title="Close Viewer"
             >
               <X className="w-5 h-5" />
@@ -392,60 +392,60 @@ export const SecureDocumentViewerModal: React.FC<SecureDocumentViewerModalProps>
         </div>
 
         {/* Security & Metadata Sub-header */}
-        <div className="px-4 py-2 bg-slate-950/70 border-b border-slate-800 text-xs flex flex-wrap items-center justify-between gap-3 text-slate-400 shrink-0">
+        <div className="px-4 py-2 bg-white/50 border-b border-[#E5D2A0]/30 text-xs flex flex-wrap items-center justify-between gap-3 text-[#5F6368] shrink-0">
           <div className="flex items-center gap-4 flex-wrap text-[11px]">
             <span className="flex items-center gap-1.5">
-              <Calendar className="w-3.5 h-3.5 text-amber-400" />
-              Uploaded: <strong className="text-slate-200">{formattedUpload.date}</strong>
+              <Calendar className="w-3.5 h-3.5 text-[#9E8243]" />
+              Uploaded: <strong className="text-[#111111]">{formattedUpload.date}</strong>
             </span>
             <span className="flex items-center gap-1.5">
-              <Clock className="w-3.5 h-3.5 text-amber-400" />
-              Time: <strong className="text-slate-200">{formattedUpload.time}</strong>
+              <Clock className="w-3.5 h-3.5 text-[#9E8243]" />
+              Time: <strong className="text-[#111111]">{formattedUpload.time}</strong>
             </span>
             <span>
-              Size: <strong className="text-slate-200">{fileSize}</strong>
+              Size: <strong className="text-[#111111]">{fileSize}</strong>
             </span>
             <span>
-              Format: <strong className="text-slate-200 uppercase">{formatLabel}</strong>
+              Format: <strong className="text-[#111111] uppercase">{formatLabel}</strong>
             </span>
           </div>
 
           <div className="flex items-center gap-3 text-[11px]">
-            <span className="flex items-center gap-1 text-emerald-400">
+            <span className="flex items-center gap-1 text-emerald-700">
               <ShieldCheck className="w-3.5 h-3.5" />
-              <span>Role: <strong className="text-amber-300">{currentRole}</strong></span>
+              <span>Role: <strong className="text-[#9E8243]">{currentRole}</strong></span>
             </span>
           </div>
         </div>
 
         {/* Document Canvas & Content Region */}
-        <div className="flex-1 min-h-0 w-full bg-slate-950 overflow-hidden relative flex flex-col items-stretch justify-start">
+        <div className="flex-1 min-h-0 w-full bg-[#FAF9F6]/50 overflow-hidden relative flex flex-col items-stretch justify-start">
           {loading ? (
             <div className="flex-1 flex flex-col items-center justify-center space-y-3 py-16">
-              <div className="w-10 h-10 border-3 border-amber-400 border-t-transparent rounded-full animate-spin" />
-              <p className="text-xs text-slate-300 font-medium">Opening Resume...</p>
-              <p className="text-[11px] text-slate-500">Decrypting & rendering in-app document pages</p>
+              <div className="w-10 h-10 border-3 border-[#9E8243] border-t-transparent rounded-full animate-spin" />
+              <p className="text-xs text-[#111111] font-medium">Opening Resume...</p>
+              <p className="text-[11px] text-[#5F6368]">Decrypting & rendering in-app document pages</p>
             </div>
           ) : loadError ? (
             <div className="flex-1 flex flex-col items-center justify-center p-8 text-center max-w-md my-auto mx-auto">
-              <div className="w-12 h-12 bg-amber-500/10 text-amber-400 border border-amber-500/30 rounded-2xl flex items-center justify-center mb-3">
+              <div className="w-12 h-12 bg-[#D8BF85]/20 text-[#9E8243] border border-[#D8BF85]/40 rounded-2xl flex items-center justify-center mb-3">
                 <FileText className="w-6 h-6" />
               </div>
-              <h3 className="text-base font-bold text-white mb-1">
+              <h3 className="text-base font-bold text-[#111111] mb-1">
                 Resume Document Unavailable
               </h3>
-              <p className="text-xs text-slate-400 mb-5 leading-relaxed">{loadError}</p>
+              <p className="text-xs text-[#5F6368] mb-5 leading-relaxed">{loadError}</p>
               <div className="flex items-center gap-3">
                 <button
                   onClick={onClose}
-                  className="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold rounded-xl transition cursor-pointer"
+                  className="px-4 py-2 bg-white/80 hover:bg-white text-[#111111] text-xs font-bold rounded-xl border border-black/10 transition cursor-pointer shadow-xs"
                 >
                   Close Viewer
                 </button>
                 {!loadError.toLowerCase().includes('not found') && (
                   <button
                     onClick={handleDownload}
-                    className="px-4 py-2 bg-amber-500 hover:bg-amber-400 text-slate-950 text-xs font-bold rounded-xl flex items-center gap-1.5 transition cursor-pointer"
+                    className="px-4 py-2 bg-gradient-to-r from-[#D8BF85] to-[#BFA15F] hover:from-[#E5D2A0] hover:to-[#CDB06E] text-[#111111] text-xs font-bold rounded-xl flex items-center gap-1.5 transition cursor-pointer shadow-xs"
                   >
                     <Download className="w-4 h-4" /> Download Raw Document
                   </button>
@@ -455,25 +455,25 @@ export const SecureDocumentViewerModal: React.FC<SecureDocumentViewerModalProps>
           ) : isTextDoc ? (
             /* TEXT / CSV IN-APP SCROLLABLE VIEWER */
             <div className="w-full h-full flex-1 min-h-0 overflow-y-auto overflow-x-auto p-4 sm:p-6 flex flex-col items-center">
-              <div className="w-full max-w-4xl bg-slate-900 border border-slate-800 rounded-2xl shadow-xl overflow-hidden my-auto">
-                <div className="p-3 bg-slate-950 border-b border-slate-800 flex items-center justify-between text-xs text-slate-400">
+              <div className="w-full max-w-4xl glass-panel bg-white/80 border border-white/90 rounded-2xl shadow-xl overflow-hidden my-auto">
+                <div className="p-3 bg-white/60 border-b border-[#E5D2A0]/40 flex items-center justify-between text-xs text-[#5F6368]">
                   <div className="flex items-center gap-2">
-                    <AlignLeft className="w-4 h-4 text-amber-400" />
-                    <span className="font-semibold text-white">{fileName}</span>
-                    <span className="px-2 py-0.5 rounded text-[10px] bg-slate-800 text-slate-300">
+                    <AlignLeft className="w-4 h-4 text-[#9E8243]" />
+                    <span className="font-semibold text-[#111111]">{fileName}</span>
+                    <span className="px-2 py-0.5 rounded text-[10px] bg-black/5 text-[#5F6368] font-medium border border-black/5">
                       {lowerFileName.endsWith('.csv') ? 'Tabular CSV View' : 'Plain Text'}
                     </span>
                   </div>
                   <span>{textContent ? `${textContent.split('\n').length} lines` : 'Reading content...'}</span>
                 </div>
 
-                <div className="p-4 overflow-x-auto max-h-[70vh] overflow-y-auto font-mono text-xs text-slate-200">
+                <div className="p-4 overflow-x-auto max-h-[70vh] overflow-y-auto font-mono text-xs text-[#111111]">
                   {parsedCsvRows && parsedCsvRows.length > 0 ? (
                     <table className="w-full border-collapse text-left">
                       <thead>
-                        <tr className="border-b border-slate-800 bg-slate-950/80 sticky top-0">
+                        <tr className="border-b border-[#E5D2A0]/40 bg-white/80 sticky top-0">
                           {parsedCsvRows[0].map((header, idx) => (
-                            <th key={idx} className="p-2.5 font-bold text-amber-300 text-[11px] uppercase tracking-wider">
+                            <th key={idx} className="p-2.5 font-bold text-[#9E8243] text-[11px] uppercase tracking-wider">
                               {header}
                             </th>
                           ))}
@@ -481,9 +481,9 @@ export const SecureDocumentViewerModal: React.FC<SecureDocumentViewerModalProps>
                       </thead>
                       <tbody>
                         {parsedCsvRows.slice(1).map((row, rIdx) => (
-                          <tr key={rIdx} className="border-b border-slate-800/60 hover:bg-slate-800/40">
+                          <tr key={rIdx} className="border-b border-black/5 hover:bg-black/[0.02]">
                             {row.map((cell, cIdx) => (
-                              <td key={cIdx} className="p-2 text-slate-300 text-xs">
+                              <td key={cIdx} className="p-2 text-[#2D3033] text-xs">
                                 {cell}
                               </td>
                             ))}
@@ -492,7 +492,7 @@ export const SecureDocumentViewerModal: React.FC<SecureDocumentViewerModalProps>
                       </tbody>
                     </table>
                   ) : (
-                    <pre className="whitespace-pre-wrap leading-relaxed font-mono select-text">
+                    <pre className="whitespace-pre-wrap leading-relaxed font-mono select-text text-[#2D3033]">
                       {textContent || 'No readable text content found in document.'}
                     </pre>
                   )}
@@ -502,45 +502,45 @@ export const SecureDocumentViewerModal: React.FC<SecureDocumentViewerModalProps>
           ) : isWordDoc ? (
             /* MICROSOFT WORD IN-APP PREVIEW CARD (SCROLLABLE ON ALL SCREENS) */
             <div className="w-full h-full flex-1 min-h-0 overflow-y-auto p-4 sm:p-6 flex flex-col items-center justify-center">
-              <div className="w-full max-w-2xl my-auto p-6 sm:p-8 bg-slate-900 border border-slate-800 rounded-3xl text-center space-y-5 shadow-2xl">
-                <div className="w-16 h-16 bg-blue-500/15 text-blue-400 border border-blue-500/30 rounded-2xl flex items-center justify-center mx-auto shadow-lg">
+              <div className="w-full max-w-2xl my-auto p-6 sm:p-8 glass-panel bg-white/80 border border-white/90 rounded-3xl text-center space-y-5 shadow-xl">
+                <div className="w-16 h-16 bg-blue-50 text-blue-600 border border-blue-200 rounded-2xl flex items-center justify-center mx-auto shadow-xs">
                   <FileCode className="w-8 h-8" />
                 </div>
 
                 <div>
-                  <span className="px-3 py-1 bg-blue-500/10 text-blue-300 border border-blue-500/30 rounded-full text-xs font-bold uppercase tracking-wider">
+                  <span className="px-3 py-1 bg-blue-50 text-blue-700 border border-blue-200 rounded-full text-xs font-bold uppercase tracking-wider">
                     Microsoft Word Document (.docx / .doc)
                   </span>
-                  <h3 className="text-lg font-bold text-white mt-2">{fileName}</h3>
-                  <p className="text-xs text-slate-400 mt-1">
-                    Candidate: <strong className="text-slate-200">{candidate.fullName}</strong> • Size: {fileSize}
+                  <h3 className="text-lg font-bold text-[#111111] mt-2">{fileName}</h3>
+                  <p className="text-xs text-[#5F6368] mt-1">
+                    Candidate: <strong className="text-[#111111]">{candidate.fullName}</strong> • Size: {fileSize}
                   </p>
                 </div>
 
-                <div className="p-4 bg-slate-950 border border-slate-800 rounded-2xl text-left text-xs space-y-3">
-                  <div className="flex items-center justify-between pb-2 border-b border-slate-800 text-[11px] text-slate-400">
-                    <span className="font-semibold text-white">Candidate Dossier Summary:</span>
-                    <span className="text-emerald-400 font-bold">Verified Storage</span>
+                <div className="p-4 bg-white/60 border border-[#E5D2A0]/40 rounded-2xl text-left text-xs space-y-3">
+                  <div className="flex items-center justify-between pb-2 border-b border-[#E5D2A0]/30 text-[11px] text-[#5F6368]">
+                    <span className="font-semibold text-[#111111]">Candidate Dossier Summary:</span>
+                    <span className="text-emerald-700 font-bold">Verified Storage</span>
                   </div>
                   <div className="grid grid-cols-2 gap-2 text-[11px]">
                     <div>
-                      <span className="text-slate-400 block text-[10px]">Applied Position:</span>
-                      <strong className="text-white">{candidate.position}</strong>
+                      <span className="text-[#5F6368] block text-[10px]">Applied Position:</span>
+                      <strong className="text-[#111111]">{candidate.position}</strong>
                     </div>
                     <div>
-                      <span className="text-slate-400 block text-[10px]">Years of Experience:</span>
-                      <strong className="text-white">{formatCandidateExperience(candidate.totalExperience)}</strong>
+                      <span className="text-[#5F6368] block text-[10px]">Years of Experience:</span>
+                      <strong className="text-[#111111]">{formatCandidateExperience(candidate.totalExperience)}</strong>
                     </div>
                     <div>
-                      <span className="text-slate-400 block text-[10px]">Current Organization:</span>
-                      <strong className="text-white">{candidate.currentCompany || 'N/A'}</strong>
+                      <span className="text-[#5F6368] block text-[10px]">Current Organization:</span>
+                      <strong className="text-[#111111]">{candidate.currentCompany || 'N/A'}</strong>
                     </div>
                     <div>
-                      <span className="text-slate-400 block text-[10px]">Highest Qualification:</span>
-                      <strong className="text-white">{candidate.qualification || 'Graduate'}</strong>
+                      <span className="text-[#5F6368] block text-[10px]">Highest Qualification:</span>
+                      <strong className="text-[#111111]">{candidate.qualification || 'Graduate'}</strong>
                     </div>
                   </div>
-                  <div className="pt-2 border-t border-slate-900 text-[11px] text-slate-400 italic">
+                  <div className="pt-2 border-t border-black/5 text-[11px] text-[#5F6368] italic">
                     Note: Word documents are preserved in their native binary format. You can download the original file to view full formatting, tables, and styles in MS Word or Google Docs.
                   </div>
                 </div>
@@ -548,7 +548,7 @@ export const SecureDocumentViewerModal: React.FC<SecureDocumentViewerModalProps>
                 <div className="flex flex-col sm:flex-row justify-center gap-3 pt-2">
                   <button
                     onClick={handleDownload}
-                    className="px-6 py-2.5 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-400 hover:to-blue-500 text-slate-950 text-xs font-bold rounded-xl shadow-lg transition flex items-center justify-center gap-2 cursor-pointer"
+                    className="px-6 py-2.5 bg-gradient-to-r from-[#D8BF85] to-[#BFA15F] hover:from-[#E5D2A0] hover:to-[#CDB06E] text-[#111111] text-xs font-bold rounded-xl shadow-xs transition flex items-center justify-center gap-2 cursor-pointer"
                   >
                     <Download className="w-4 h-4" />
                     <span>Download Original DOC/DOCX</span>
@@ -559,45 +559,45 @@ export const SecureDocumentViewerModal: React.FC<SecureDocumentViewerModalProps>
           ) : isExcelDoc ? (
             /* MICROSOFT EXCEL IN-APP PREVIEW CARD (SCROLLABLE ON ALL SCREENS) */
             <div className="w-full h-full flex-1 min-h-0 overflow-y-auto p-4 sm:p-6 flex flex-col items-center justify-center">
-              <div className="w-full max-w-2xl my-auto p-6 sm:p-8 bg-slate-900 border border-slate-800 rounded-3xl text-center space-y-5 shadow-2xl">
-                <div className="w-16 h-16 bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 rounded-2xl flex items-center justify-center mx-auto shadow-lg">
+              <div className="w-full max-w-2xl my-auto p-6 sm:p-8 glass-panel bg-white/80 border border-white/90 rounded-3xl text-center space-y-5 shadow-xl">
+                <div className="w-16 h-16 bg-emerald-50 text-emerald-600 border border-emerald-200 rounded-2xl flex items-center justify-center mx-auto shadow-xs">
                   <FileSpreadsheet className="w-8 h-8" />
                 </div>
 
                 <div>
-                  <span className="px-3 py-1 bg-emerald-500/10 text-emerald-300 border border-emerald-500/30 rounded-full text-xs font-bold uppercase tracking-wider">
+                  <span className="px-3 py-1 bg-emerald-50 text-emerald-700 border border-emerald-200 rounded-full text-xs font-bold uppercase tracking-wider">
                     Microsoft Excel Spreadsheet (.xlsx / .xls)
                   </span>
-                  <h3 className="text-lg font-bold text-white mt-2">{fileName}</h3>
-                  <p className="text-xs text-slate-400 mt-1">
-                    Candidate: <strong className="text-slate-200">{candidate.fullName}</strong> • Size: {fileSize}
+                  <h3 className="text-lg font-bold text-[#111111] mt-2">{fileName}</h3>
+                  <p className="text-xs text-[#5F6368] mt-1">
+                    Candidate: <strong className="text-[#111111]">{candidate.fullName}</strong> • Size: {fileSize}
                   </p>
                 </div>
 
-                <div className="p-4 bg-slate-950 border border-slate-800 rounded-2xl text-left text-xs space-y-3">
-                  <div className="flex items-center justify-between pb-2 border-b border-slate-800 text-[11px] text-slate-400">
-                    <span className="font-semibold text-white">Spreadsheet Data Record:</span>
-                    <span className="text-emerald-400 font-bold">Verified Storage</span>
+                <div className="p-4 bg-white/60 border border-[#E5D2A0]/40 rounded-2xl text-left text-xs space-y-3">
+                  <div className="flex items-center justify-between pb-2 border-b border-[#E5D2A0]/30 text-[11px] text-[#5F6368]">
+                    <span className="font-semibold text-[#111111]">Spreadsheet Data Record:</span>
+                    <span className="text-emerald-700 font-bold">Verified Storage</span>
                   </div>
                   <div className="grid grid-cols-2 gap-2 text-[11px]">
                     <div>
-                      <span className="text-slate-400 block text-[10px]">Candidate:</span>
-                      <strong className="text-white">{candidate.fullName}</strong>
+                      <span className="text-[#5F6368] block text-[10px]">Candidate:</span>
+                      <strong className="text-[#111111]">{candidate.fullName}</strong>
                     </div>
                     <div>
-                      <span className="text-slate-400 block text-[10px]">Applied Role:</span>
-                      <strong className="text-white">{candidate.position}</strong>
+                      <span className="text-[#5F6368] block text-[10px]">Applied Role:</span>
+                      <strong className="text-[#111111]">{candidate.position}</strong>
                     </div>
                     <div>
-                      <span className="text-slate-400 block text-[10px]">Uploaded Format:</span>
-                      <strong className="text-emerald-400">Microsoft Excel Workbook</strong>
+                      <span className="text-[#5F6368] block text-[10px]">Uploaded Format:</span>
+                      <strong className="text-emerald-700">Microsoft Excel Workbook</strong>
                     </div>
                     <div>
-                      <span className="text-slate-400 block text-[10px]">File Size:</span>
-                      <strong className="text-white">{fileSize}</strong>
+                      <span className="text-[#5F6368] block text-[10px]">File Size:</span>
+                      <strong className="text-[#111111]">{fileSize}</strong>
                     </div>
                   </div>
-                  <div className="pt-2 border-t border-slate-900 text-[11px] text-slate-400 italic">
+                  <div className="pt-2 border-t border-black/5 text-[11px] text-[#5F6368] italic">
                     Note: Excel workbooks are stored securely in original binary format. Download to open with MS Excel, LibreOffice Calc, or Google Sheets.
                   </div>
                 </div>
@@ -605,7 +605,7 @@ export const SecureDocumentViewerModal: React.FC<SecureDocumentViewerModalProps>
                 <div className="flex flex-col sm:flex-row justify-center gap-3 pt-2">
                   <button
                     onClick={handleDownload}
-                    className="px-6 py-2.5 bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-400 hover:to-emerald-500 text-slate-950 text-xs font-bold rounded-xl shadow-lg transition flex items-center justify-center gap-2 cursor-pointer"
+                    className="px-6 py-2.5 bg-gradient-to-r from-[#D8BF85] to-[#BFA15F] hover:from-[#E5D2A0] hover:to-[#CDB06E] text-[#111111] text-xs font-bold rounded-xl shadow-xs transition flex items-center justify-center gap-2 cursor-pointer"
                   >
                     <Download className="w-4 h-4" />
                     <span>Download Original Excel File</span>
@@ -616,45 +616,45 @@ export const SecureDocumentViewerModal: React.FC<SecureDocumentViewerModalProps>
           ) : isPowerPointDoc ? (
             /* MICROSOFT POWERPOINT IN-APP PREVIEW CARD (SCROLLABLE ON ALL SCREENS) */
             <div className="w-full h-full flex-1 min-h-0 overflow-y-auto p-4 sm:p-6 flex flex-col items-center justify-center">
-              <div className="w-full max-w-2xl my-auto p-6 sm:p-8 bg-slate-900 border border-slate-800 rounded-3xl text-center space-y-5 shadow-2xl">
-                <div className="w-16 h-16 bg-orange-500/15 text-orange-400 border border-orange-500/30 rounded-2xl flex items-center justify-center mx-auto shadow-lg">
+              <div className="w-full max-w-2xl my-auto p-6 sm:p-8 glass-panel bg-white/80 border border-white/90 rounded-3xl text-center space-y-5 shadow-xl">
+                <div className="w-16 h-16 bg-amber-50 text-[#9E8243] border border-[#E5D2A0] rounded-2xl flex items-center justify-center mx-auto shadow-xs">
                   <Presentation className="w-8 h-8" />
                 </div>
 
                 <div>
-                  <span className="px-3 py-1 bg-orange-500/10 text-orange-300 border border-orange-500/30 rounded-full text-xs font-bold uppercase tracking-wider">
+                  <span className="px-3 py-1 bg-amber-50 text-[#9E8243] border border-[#E5D2A0] rounded-full text-xs font-bold uppercase tracking-wider">
                     Microsoft PowerPoint Presentation (.pptx / .ppt)
                   </span>
-                  <h3 className="text-lg font-bold text-white mt-2">{fileName}</h3>
-                  <p className="text-xs text-slate-400 mt-1">
-                    Candidate: <strong className="text-slate-200">{candidate.fullName}</strong> • Size: {fileSize}
+                  <h3 className="text-lg font-bold text-[#111111] mt-2">{fileName}</h3>
+                  <p className="text-xs text-[#5F6368] mt-1">
+                    Candidate: <strong className="text-[#111111]">{candidate.fullName}</strong> • Size: {fileSize}
                   </p>
                 </div>
 
-                <div className="p-4 bg-slate-950 border border-slate-800 rounded-2xl text-left text-xs space-y-3">
-                  <div className="flex items-center justify-between pb-2 border-b border-slate-800 text-[11px] text-slate-400">
-                    <span className="font-semibold text-white">Presentation Portfolio:</span>
-                    <span className="text-emerald-400 font-bold">Verified Storage</span>
+                <div className="p-4 bg-white/60 border border-[#E5D2A0]/40 rounded-2xl text-left text-xs space-y-3">
+                  <div className="flex items-center justify-between pb-2 border-b border-[#E5D2A0]/30 text-[11px] text-[#5F6368]">
+                    <span className="font-semibold text-[#111111]">Presentation Portfolio:</span>
+                    <span className="text-emerald-700 font-bold">Verified Storage</span>
                   </div>
                   <div className="grid grid-cols-2 gap-2 text-[11px]">
                     <div>
-                      <span className="text-slate-400 block text-[10px]">Candidate:</span>
-                      <strong className="text-white">{candidate.fullName}</strong>
+                      <span className="text-[#5F6368] block text-[10px]">Candidate:</span>
+                      <strong className="text-[#111111]">{candidate.fullName}</strong>
                     </div>
                     <div>
-                      <span className="text-slate-400 block text-[10px]">Applied Role:</span>
-                      <strong className="text-white">{candidate.position}</strong>
+                      <span className="text-[#5F6368] block text-[10px]">Applied Role:</span>
+                      <strong className="text-[#111111]">{candidate.position}</strong>
                     </div>
                     <div>
-                      <span className="text-slate-400 block text-[10px]">Presentation Type:</span>
-                      <strong className="text-orange-400">MS PowerPoint Slides</strong>
+                      <span className="text-[#5F6368] block text-[10px]">Presentation Type:</span>
+                      <strong className="text-[#9E8243]">MS PowerPoint Slides</strong>
                     </div>
                     <div>
-                      <span className="text-slate-400 block text-[10px]">File Size:</span>
-                      <strong className="text-white">{fileSize}</strong>
+                      <span className="text-[#5F6368] block text-[10px]">File Size:</span>
+                      <strong className="text-[#111111]">{fileSize}</strong>
                     </div>
                   </div>
-                  <div className="pt-2 border-t border-slate-900 text-[11px] text-slate-400 italic">
+                  <div className="pt-2 border-t border-black/5 text-[11px] text-[#5F6368] italic">
                     Note: PowerPoint presentations are stored securely in original binary format. Download to open with MS PowerPoint, Apple Keynote, or Google Slides.
                   </div>
                 </div>
@@ -662,7 +662,7 @@ export const SecureDocumentViewerModal: React.FC<SecureDocumentViewerModalProps>
                 <div className="flex flex-col sm:flex-row justify-center gap-3 pt-2">
                   <button
                     onClick={handleDownload}
-                    className="px-6 py-2.5 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-400 hover:to-orange-500 text-slate-950 text-xs font-bold rounded-xl shadow-lg transition flex items-center justify-center gap-2 cursor-pointer"
+                    className="px-6 py-2.5 bg-gradient-to-r from-[#D8BF85] to-[#BFA15F] hover:from-[#E5D2A0] hover:to-[#CDB06E] text-[#111111] text-xs font-bold rounded-xl shadow-xs transition flex items-center justify-center gap-2 cursor-pointer"
                   >
                     <Download className="w-4 h-4" />
                     <span>Download Original Presentation</span>
@@ -684,7 +684,7 @@ export const SecureDocumentViewerModal: React.FC<SecureDocumentViewerModalProps>
                 <img
                   src={blobUrl}
                   alt={fileName}
-                  className="max-h-[78vh] max-w-full object-contain rounded-2xl border border-slate-800 shadow-2xl bg-slate-900"
+                  className="max-h-[78vh] max-w-full object-contain rounded-2xl border border-black/10 shadow-xl bg-white"
                 />
               </div>
             </div>
@@ -704,16 +704,16 @@ export const SecureDocumentViewerModal: React.FC<SecureDocumentViewerModalProps>
         </div>
 
         {/* Footer Summary Strip */}
-        <div className="p-3 bg-slate-950 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-slate-400 shrink-0">
+        <div className="p-3 bg-white/65 backdrop-blur-md border-t border-[#E5D2A0]/40 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-[#5F6368] shrink-0">
           <div className="flex items-center gap-2 text-[11px]">
-            <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
+            <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
             <span>Encrypted internal rendering &bull; Audited access logging enforced</span>
           </div>
 
           <div className="flex items-center gap-2">
             <button
               onClick={onClose}
-              className="px-4 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold text-xs border border-slate-700 transition cursor-pointer"
+              className="px-4 py-1.5 rounded-xl bg-white/80 hover:bg-white text-[#111111] font-semibold text-xs border border-black/10 shadow-xs transition cursor-pointer"
             >
               Close
             </button>

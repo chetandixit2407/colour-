@@ -115,24 +115,24 @@ export const VisitorArrivalTimeline: React.FC<VisitorArrivalTimelineProps> = ({
               <div
                 className={`w-2 h-2 rounded-full transition-all duration-300 ${
                   isCurrent
-                    ? 'bg-amber-400 ring-2 ring-amber-400/40 scale-125'
+                    ? 'bg-[#9E8243] ring-2 ring-[#D8BF85]/50 scale-125'
                     : isPassed
-                    ? 'bg-emerald-400'
-                    : 'bg-white/15'
+                    ? 'bg-emerald-600'
+                    : 'bg-black/15'
                 }`}
                 title={`${stg.label} ${isCurrent ? '(Current)' : isPassed ? '(Completed)' : ''}`}
               />
               {i < stages.length - 1 && (
                 <div
                   className={`w-2 h-[1px] ${
-                    isPassed ? 'bg-emerald-400/60' : 'bg-white/10'
+                    isPassed ? 'bg-emerald-600/60' : 'bg-black/10'
                   }`}
                 />
               )}
             </div>
           );
         })}
-        <span className="text-[10px] font-mono uppercase tracking-wider text-amber-300 ml-1.5">
+        <span className="text-[10px] font-mono uppercase tracking-wider text-[#9E8243] font-semibold ml-1.5">
           {stages[stageIndex]?.label || currentStage}
         </span>
       </div>
@@ -140,7 +140,7 @@ export const VisitorArrivalTimeline: React.FC<VisitorArrivalTimelineProps> = ({
   }
 
   return (
-    <div className="w-full glass-panel-subtle rounded-2xl p-3.5 border border-white/8 overflow-x-auto">
+    <div className="w-full glass-panel bg-white/60 backdrop-blur-md rounded-2xl p-3.5 border border-white/60 overflow-x-auto">
       <div className="flex items-center justify-between min-w-[500px] gap-2.5">
         {stages.map((stg, i) => {
           const Icon = stg.icon;
@@ -158,14 +158,14 @@ export const VisitorArrivalTimeline: React.FC<VisitorArrivalTimelineProps> = ({
                   }}
                   className={`w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 ${
                     isCurrent
-                      ? 'bg-amber-500 text-slate-950 font-bold ring-4 ring-amber-400/25 shadow-lg shadow-amber-500/25'
+                      ? 'bg-[#D8BF85] text-[#111111] font-bold ring-4 ring-[#D8BF85]/30 shadow-sm'
                       : isPassed
-                      ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/40'
-                      : 'bg-white/5 text-slate-500 border border-white/8'
+                      ? 'bg-emerald-500/15 text-emerald-700 border border-emerald-500/30'
+                      : 'bg-black/5 text-[#8C9199] border border-black/10'
                   }`}
                 >
                   {isPassed ? (
-                    <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+                    <CheckCircle2 className="w-4 h-4 text-emerald-700" />
                   ) : (
                     <Icon className="w-4 h-4" />
                   )}
@@ -175,10 +175,10 @@ export const VisitorArrivalTimeline: React.FC<VisitorArrivalTimelineProps> = ({
                 <span
                   className={`text-xs font-semibold tracking-tight text-center whitespace-nowrap ${
                     isCurrent
-                      ? 'text-amber-400 font-bold'
+                      ? 'text-[#9E8243] font-bold'
                       : isPassed
-                      ? 'text-slate-200'
-                      : 'text-slate-400'
+                      ? 'text-[#111111]'
+                      : 'text-[#8C9199]'
                   }`}
                 >
                   {stg.label}

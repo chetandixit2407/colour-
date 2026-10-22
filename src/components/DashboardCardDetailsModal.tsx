@@ -347,46 +347,40 @@ export const DashboardCardDetailsModal: React.FC<DashboardCardDetailsModalProps>
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           onClick={onClose}
-          className="fixed inset-0 bg-black/80 backdrop-blur-md"
+          className="fixed inset-0 bg-[#FAF9F6]/75 backdrop-blur-[16px]"
         />
 
-        {/* Modal Window Container — Premium 3D Solid Dark Slate Panel */}
+        {/* Modal Window Container — White Frosted Glass Panel */}
         <motion.div
           initial={{ opacity: 0, scale: 0.98, y: 8 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.98, y: 6 }}
           transition={{ duration: 0.28, ease: smoothEase }}
           onClick={(e) => e.stopPropagation()}
-          className="relative w-full max-w-3xl max-h-[92vh] sm:max-h-[88vh] flex flex-col bg-[#0B0F14] border border-[#252A32] rounded-2xl sm:rounded-3xl shadow-2xl text-[#F5F6F8] overflow-hidden z-10 min-w-0 max-w-full"
-          style={{
-            boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 255, 255, 0.1)',
-          }}
+          className="glass-panel-elevated relative w-full max-w-3xl max-h-[92vh] sm:max-h-[88vh] flex flex-col bg-white/60 backdrop-blur-[16px] border border-white/80 rounded-2xl sm:rounded-3xl shadow-2xl text-[#111111] overflow-hidden z-10 min-w-0 max-w-full"
         >
-          {/* Top Subtle Edge Highlight */}
-          <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-amber-400/30 to-transparent pointer-events-none" />
-
           {/* Header Bar */}
-          <div className="p-3.5 sm:p-5 border-b border-[#252A32] flex items-center justify-between gap-2.5 sm:gap-3 bg-[#11161F] min-w-0">
+          <div className="p-3.5 sm:p-5 border-b border-[#E5D2A0]/40 flex items-center justify-between gap-2.5 sm:gap-3 bg-white/40 min-w-0">
             <div className="flex items-center gap-2.5 sm:gap-3 min-w-0 flex-1">
-              <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl sm:rounded-2xl bg-[#1B2028] border border-[#252A32] flex items-center justify-center shrink-0 shadow-inner">
+              <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl sm:rounded-2xl bg-white/80 border border-[#E5D2A0]/50 flex items-center justify-center shrink-0 shadow-xs">
                 <IconComponent className={`w-4 h-4 sm:w-5 sm:h-5 ${accentColor}`} />
               </div>
               <div className="min-w-0 flex-1">
                 <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap">
-                  <h2 className="text-sm sm:text-base md:text-lg font-bold text-[#F5F6F8] tracking-tight truncate max-w-full">
+                  <h2 className="text-sm sm:text-base md:text-lg font-bold text-[#111111] tracking-tight truncate max-w-full">
                     {title}
                   </h2>
                   <span className={`px-2 sm:px-2.5 py-0.5 rounded-full text-[10px] sm:text-[11px] font-bold border font-mono shrink-0 ${badgeColor}`}>
                     {totalCount} {totalCount === 1 ? 'Record' : 'Records'}
                   </span>
                 </div>
-                <p className="text-[11px] sm:text-xs text-[#AEB7C4] mt-0.5 truncate">{subtitle}</p>
+                <p className="text-[11px] sm:text-xs text-[#3C4043] mt-0.5 truncate">{subtitle}</p>
               </div>
             </div>
 
             <button
               onClick={onClose}
-              className="p-1.5 sm:p-2 rounded-xl text-[#AEB7C4] hover:text-[#F5F6F8] hover:bg-[#1B2028] border border-[#252A32] transition cursor-pointer shrink-0"
+              className="p-1.5 sm:p-2 rounded-xl text-[#3C4043] hover:text-[#111111] hover:bg-white/80 border border-[#E5D2A0]/40 transition cursor-pointer shrink-0 shadow-xs"
               title="Close (Esc)"
             >
               <X className="w-4 h-4" />
@@ -394,21 +388,21 @@ export const DashboardCardDetailsModal: React.FC<DashboardCardDetailsModalProps>
           </div>
 
           {/* Search Strip */}
-          <div className="px-3.5 sm:px-5 py-2.5 border-b border-[#252A32] bg-[#0E131A] flex items-center justify-between gap-2.5 sm:gap-3 min-w-0">
+          <div className="px-3.5 sm:px-5 py-2.5 border-b border-[#E5D2A0]/35 bg-white/30 flex items-center justify-between gap-2.5 sm:gap-3 min-w-0">
             <div className="relative flex-1 min-w-0">
-              <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-[#AEB7C4] shrink-0" />
+              <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-[#5F6368] shrink-0" />
               <input
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search by name, room, position, or status..."
-                className="w-full pl-9 pr-3 py-1.5 bg-[#171D26] border border-[#252A32] rounded-xl text-xs text-[#F5F6F8] placeholder-[#AEB7C4]/60 focus:outline-none focus:border-amber-400 min-w-0"
+                className="w-full pl-9 pr-3 py-1.5 bg-white/70 border border-[#E5D2A0]/50 rounded-xl text-xs text-[#111111] placeholder-[#5F6368]/70 focus:outline-none focus:border-[#E5D2A0] min-w-0 shadow-xs"
               />
             </div>
             {searchQuery && (
               <button
                 onClick={() => setSearchQuery('')}
-                className="text-xs text-amber-400 hover:underline cursor-pointer shrink-0"
+                className="text-xs text-[#9E8243] hover:underline cursor-pointer shrink-0 font-semibold"
               >
                 Clear
               </button>
@@ -416,7 +410,7 @@ export const DashboardCardDetailsModal: React.FC<DashboardCardDetailsModalProps>
           </div>
 
           {/* Scrollable Records Container */}
-          <div className="flex-1 overflow-y-auto p-3 sm:p-5 space-y-3 bg-[#0B0F14] min-w-0">
+          <div className="flex-1 overflow-y-auto p-3 sm:p-5 space-y-3 bg-transparent min-w-0">
             {/* CANDIDATES RECORDS VIEW */}
             {recordType === 'candidates' && (
               <>

@@ -627,17 +627,17 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
         </div>
 
         {/* Tab Switcher with Clean More Menu */}
-        <div className="flex flex-wrap items-center bg-[#0B0F14] border border-[#252A32] rounded-2xl p-1 gap-1 relative z-30">
+        <div className="flex flex-wrap items-center glass-panel bg-white/70 border border-black/10 rounded-2xl p-1 gap-1 relative z-30 shadow-xs">
           {/* Primary Tab 1: Live Candidates */}
           <button
             onClick={() => setActiveTab('candidates')}
             className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition cursor-pointer flex items-center gap-1.5 ${
               activeTab === 'candidates'
-                ? 'bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 font-bold shadow-md'
-                : 'text-slate-400 hover:text-white'
+                ? 'bg-gradient-to-r from-[#D8BF85] to-[#BFA15F] text-[#111111] font-bold shadow-xs'
+                : 'text-[#5F6368] hover:text-[#111111] hover:bg-black/5'
             }`}
           >
-            <UserCheck className="w-3.5 h-3.5" />
+            <UserCheck className="w-3.5 h-3.5 text-[#9E8243]" />
             <span>Live Candidates ({candidates.length})</span>
           </button>
 
@@ -646,8 +646,8 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
             onClick={() => setActiveTab('users')}
             className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition cursor-pointer flex items-center gap-1.5 ${
               activeTab === 'users'
-                ? 'bg-purple-500 text-white font-bold shadow-sm'
-                : 'text-slate-400 hover:text-white'
+                ? 'bg-purple-100 text-purple-900 border border-purple-200 font-bold shadow-xs'
+                : 'text-[#5F6368] hover:text-[#111111] hover:bg-black/5'
             }`}
           >
             <Users className="w-3.5 h-3.5" />
@@ -659,11 +659,11 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
             onClick={() => setActiveTab('rooms')}
             className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition cursor-pointer flex items-center gap-1.5 ${
               activeTab === 'rooms'
-                ? 'bg-amber-500 text-slate-950 font-bold shadow-sm'
-                : 'text-slate-400 hover:text-white'
+                ? 'bg-gradient-to-r from-[#D8BF85] to-[#BFA15F] text-[#111111] font-bold shadow-xs'
+                : 'text-[#5F6368] hover:text-[#111111] hover:bg-black/5'
             }`}
           >
-            <DoorOpen className="w-3.5 h-3.5" />
+            <DoorOpen className="w-3.5 h-3.5 text-[#9E8243]" />
             <span>Rooms & Pantry Monitor ({rooms.length})</span>
           </button>
 
@@ -672,14 +672,14 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
             onClick={() => setActiveTab('tasks')}
             className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition cursor-pointer flex items-center gap-1.5 relative ${
               activeTab === 'tasks'
-                ? 'bg-amber-500 text-slate-950 font-bold shadow-sm'
-                : 'text-slate-400 hover:text-white'
+                ? 'bg-gradient-to-r from-[#D8BF85] to-[#BFA15F] text-[#111111] font-bold shadow-xs'
+                : 'text-[#5F6368] hover:text-[#111111] hover:bg-black/5'
             }`}
           >
-            <Sparkles className="w-3.5 h-3.5" />
+            <Sparkles className="w-3.5 h-3.5 text-[#9E8243]" />
             <span>Action Alerts & Tasks</span>
             {actionTasks.filter((t) => t.status === 'PENDING').length > 0 && (
-              <span className="px-1.5 py-0.2 rounded-full text-[10px] font-bold bg-amber-400 text-slate-950">
+              <span className="px-1.5 py-0.2 rounded-full text-[10px] font-bold bg-[#D8BF85] text-[#111111]">
                 {actionTasks.filter((t) => t.status === 'PENDING').length}
               </span>
             )}
@@ -708,10 +708,10 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                   aria-haspopup="true"
                   className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition cursor-pointer flex items-center gap-1.5 relative ${
                     isMoreActive
-                      ? 'bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 font-bold shadow-md'
+                      ? 'bg-gradient-to-r from-[#D8BF85] to-[#BFA15F] text-[#111111] font-bold shadow-xs'
                       : isMoreMenuOpen
-                      ? 'bg-white/15 text-white'
-                      : 'text-slate-400 hover:text-white hover:bg-white/5'
+                      ? 'bg-black/10 text-[#111111]'
+                      : 'text-[#5F6368] hover:text-[#111111] hover:bg-black/5'
                   }`}
                 >
                   <span>{isMoreActive ? `More: ${activeMoreLabel}` : 'More'}</span>
@@ -731,9 +731,9 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
             {isMoreMenuOpen && (
               <div
                 role="menu"
-                className="absolute right-0 top-full mt-2 w-64 bg-[#0B0B0D] border border-white/20 rounded-2xl shadow-2xl p-1.5 z-50 space-y-1 animate-in fade-in zoom-in-95 duration-150"
+                className="absolute right-0 top-full mt-2 w-64 glass-panel-elevated bg-white/95 backdrop-blur-xl border border-white/90 rounded-2xl shadow-xl p-1.5 z-50 space-y-1 text-[#111111] animate-in fade-in zoom-in-95 duration-150"
               >
-                <div className="text-[10px] font-bold text-white/50 px-2.5 py-1 uppercase tracking-wider">
+                <div className="text-[10px] font-bold text-[#5F6368] px-2.5 py-1 uppercase tracking-wider">
                   Additional Administration Tabs
                 </div>
 
@@ -746,12 +746,12 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                   }}
                   className={`w-full flex items-center justify-between px-2.5 py-2 rounded-xl text-xs font-semibold transition cursor-pointer text-left ${
                     activeTab === 'resets'
-                      ? 'bg-amber-500 text-slate-950 font-black'
-                      : 'text-white/80 hover:bg-white/10 hover:text-white'
+                      ? 'bg-gradient-to-r from-[#D8BF85] to-[#BFA15F] text-[#111111] font-bold shadow-xs'
+                      : 'text-[#111111] hover:bg-black/5'
                   }`}
                 >
                   <div className="flex items-center gap-2">
-                    <KeyRound className="w-3.5 h-3.5 text-amber-400" />
+                    <KeyRound className="w-3.5 h-3.5 text-[#9E8243]" />
                     <span>Reset Requests</span>
                   </div>
                   {pendingResetCount > 0 && (
@@ -770,12 +770,12 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                   }}
                   className={`w-full flex items-center justify-between px-2.5 py-2 rounded-xl text-xs font-semibold transition cursor-pointer text-left ${
                     activeTab === 'visibility'
-                      ? 'bg-amber-500 text-slate-950 font-black'
-                      : 'text-white/80 hover:bg-white/10 hover:text-white'
+                      ? 'bg-gradient-to-r from-[#D8BF85] to-[#BFA15F] text-[#111111] font-bold shadow-xs'
+                      : 'text-[#111111] hover:bg-black/5'
                   }`}
                 >
                   <div className="flex items-center gap-2">
-                    <Eye className="w-3.5 h-3.5 text-purple-400" />
+                    <Eye className="w-3.5 h-3.5 text-purple-600" />
                     <span>Role Visibility Matrix</span>
                   </div>
                 </button>
@@ -789,15 +789,15 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                   }}
                   className={`w-full flex items-center justify-between px-2.5 py-2 rounded-xl text-xs font-semibold transition cursor-pointer text-left ${
                     activeTab === 'audit'
-                      ? 'bg-amber-500 text-slate-950 font-black'
-                      : 'text-white/80 hover:bg-white/10 hover:text-white'
+                      ? 'bg-gradient-to-r from-[#D8BF85] to-[#BFA15F] text-[#111111] font-bold shadow-xs'
+                      : 'text-[#111111] hover:bg-black/5'
                   }`}
                 >
                   <div className="flex items-center gap-2">
-                    <Database className="w-3.5 h-3.5 text-blue-400" />
+                    <Database className="w-3.5 h-3.5 text-blue-600" />
                     <span>Audit Trail</span>
                   </div>
-                  <span className="text-[10px] opacity-75 font-mono">({auditLogs.length})</span>
+                  <span className="text-[10px] text-[#5F6368] font-mono">({auditLogs.length})</span>
                 </button>
 
                 {/* Secondary Tab: Workflow Rules */}
@@ -809,12 +809,12 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                   }}
                   className={`w-full flex items-center justify-between px-2.5 py-2 rounded-xl text-xs font-semibold transition cursor-pointer text-left ${
                     activeTab === 'settings'
-                      ? 'bg-amber-500 text-slate-950 font-black'
-                      : 'text-white/80 hover:bg-white/10 hover:text-white'
+                      ? 'bg-gradient-to-r from-[#D8BF85] to-[#BFA15F] text-[#111111] font-bold shadow-xs'
+                      : 'text-[#111111] hover:bg-black/5'
                   }`}
                 >
                   <div className="flex items-center gap-2">
-                    <Sliders className="w-3.5 h-3.5 text-emerald-400" />
+                    <Sliders className="w-3.5 h-3.5 text-emerald-600" />
                     <span>Workflow Rules</span>
                   </div>
                 </button>

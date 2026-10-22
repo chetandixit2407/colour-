@@ -75,21 +75,21 @@ export const ReceptionPhotoModal: React.FC<ReceptionPhotoModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 backdrop-blur-xs p-4 overflow-y-auto">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#FAF9F6]/75 backdrop-blur-xl p-4 overflow-y-auto">
       <div className="w-full max-w-md space-y-3">
         {uploadError && (
-          <div className="p-3 bg-rose-500/20 border border-rose-500/40 rounded-2xl text-rose-300 text-xs flex items-center gap-2">
-            <AlertCircle className="w-4 h-4 shrink-0 text-rose-400" />
+          <div className="p-3 bg-rose-50 border border-rose-200 rounded-2xl text-rose-700 text-xs flex items-center gap-2 shadow-xs">
+            <AlertCircle className="w-4 h-4 shrink-0 text-rose-600" />
             <span>{uploadError}</span>
           </div>
         )}
 
         {uploading ? (
-          <div className="bg-slate-900 border border-slate-800 rounded-3xl p-8 text-center space-y-4 shadow-2xl">
-            <RefreshCw className="w-8 h-8 text-cyan-400 animate-spin mx-auto" />
+          <div className="glass-panel-elevated bg-white/75 border border-white/80 rounded-3xl p-8 text-center space-y-4 shadow-[0_24px_60px_rgba(0,0,0,0.08)] text-[#111111]">
+            <RefreshCw className="w-8 h-8 text-[#9E8243] animate-spin mx-auto" />
             <div className="space-y-1">
-              <h3 className="text-base font-bold text-white">Saving Verified Photo to Database...</h3>
-              <p className="text-xs text-slate-400">Recording authoritative server timestamp & reception audit trail</p>
+              <h3 className="text-base font-bold text-[#111111]">Saving Verified Photo to Database...</h3>
+              <p className="text-xs text-[#5F6368]">Recording authoritative server timestamp & reception audit trail</p>
             </div>
           </div>
         ) : (

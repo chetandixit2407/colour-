@@ -151,28 +151,28 @@ export const PantryRealtimeMonitorModal: React.FC<PantryRealtimeMonitorModalProp
     currentUserRole === 'SENIOR_HR';
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#FAF9F6]/75 backdrop-blur-[16px]">
       <motion.div
         initial={{ opacity: 0, scale: 0.98, y: 8 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.98, y: 6 }}
         transition={{ duration: 0.3, ease: smoothEase }}
-        className="glass-panel-elevated rounded-3xl max-w-4xl w-full shadow-2xl border border-white/12 text-slate-100 max-h-[92vh] flex flex-col overflow-hidden"
+        className="glass-panel-elevated rounded-3xl max-w-4xl w-full shadow-2xl border border-white/80 bg-white/60 backdrop-blur-[16px] text-[#111111] max-h-[92vh] flex flex-col overflow-hidden"
       >
         {/* Header */}
-        <div className="p-5 sm:p-6 border-b border-white/8 flex items-center justify-between bg-white/[0.02]">
+        <div className="p-5 sm:p-6 border-b border-[#E5D2A0]/40 flex items-center justify-between bg-white/30">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-2xl bg-amber-500/20 text-amber-400 border border-amber-500/30 flex items-center justify-center shadow-md">
+            <div className="w-10 h-10 rounded-2xl bg-white/80 border border-[#E5D2A0]/50 text-[#9E8243] flex items-center justify-center shadow-xs">
               <Coffee className="w-5 h-5" />
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <h2 className="text-lg font-bold text-white tracking-tight">
+                <h2 className="text-lg font-bold text-[#111111] tracking-tight">
                   Pantry & Hospitality Real-Time Progress Monitor
                 </h2>
-                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" title="Live SSE sync active" />
+                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" title="Live SSE sync active" />
               </div>
-              <p className="text-[11px] text-slate-400">
+              <p className="text-[11px] text-[#3C4043]">
                 Authoritative multi-stage tracking &bull; Zero-refresh live stream &bull; Completion verification
               </p>
             </div>

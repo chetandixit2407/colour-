@@ -167,30 +167,30 @@ export const CreatePantryTaskModal: React.FC<CreatePantryTaskModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-2.5 sm:p-4 bg-black/85 backdrop-blur-md overflow-y-auto">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-2.5 sm:p-4 bg-[#FAF9F6]/75 backdrop-blur-[16px] overflow-y-auto">
       <motion.div
         initial={{ opacity: 0, scale: 0.98, y: 8 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.98, y: 6 }}
         transition={{ duration: 0.3, ease: smoothEase }}
-        className="glass-panel-elevated rounded-2xl sm:rounded-3xl p-4 sm:p-6 max-w-xl w-full shadow-2xl border border-white/12 text-slate-100 max-h-[92vh] overflow-y-auto space-y-4 sm:space-y-5"
+        className="glass-panel-elevated rounded-2xl sm:rounded-3xl p-4 sm:p-6 max-w-xl w-full shadow-2xl border border-white/80 bg-white/60 backdrop-blur-[16px] text-[#111111] max-h-[92vh] overflow-y-auto space-y-4 sm:space-y-5"
       >
         {/* Header */}
-        <div className="flex items-center justify-between pb-3 border-b border-white/8 shrink-0">
+        <div className="flex items-center justify-between pb-3 border-b border-[#E5D2A0]/40 shrink-0">
           <div className="flex items-center gap-3 min-w-0 pr-2">
-            <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-amber-500/20 to-amber-600/30 border border-amber-500/40 flex items-center justify-center text-amber-400 shadow-md shrink-0">
+            <div className="w-10 h-10 rounded-2xl bg-white/80 border border-[#E5D2A0]/50 flex items-center justify-center text-[#9E8243] shadow-xs shrink-0">
               <Coffee className="w-5 h-5" />
             </div>
             <div className="min-w-0">
-              <h2 className="text-base sm:text-lg font-bold text-white tracking-tight truncate">Create Pantry & Hospitality Task</h2>
-              <p className="text-[11px] text-slate-400 truncate">
+              <h2 className="text-base sm:text-lg font-bold text-[#111111] tracking-tight truncate">Create Pantry & Hospitality Task</h2>
+              <p className="text-[11px] text-[#3C4043] truncate">
                 Authorized dispatch &bull; Instant staff alert &bull; Real-time tracking
               </p>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="w-8 h-8 rounded-full bg-white/6 hover:bg-white/10 text-slate-400 hover:text-white flex items-center justify-center transition cursor-pointer shrink-0"
+            className="w-8 h-8 rounded-full bg-white/80 hover:bg-white text-[#3C4043] hover:text-[#111111] border border-[#E5D2A0]/40 flex items-center justify-center transition cursor-pointer shrink-0 shadow-xs"
           >
             <X className="w-4 h-4" />
           </button>

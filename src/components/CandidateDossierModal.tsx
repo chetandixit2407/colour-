@@ -74,18 +74,18 @@ export const CandidateDossierModal: React.FC<CandidateDossierModalProps> = ({
   // Strict privacy enforcement: Pantry role must never view candidate dossiers or personal profiles
   if (currentRole === 'PANTRY') {
     return (
-      <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md">
-        <div className="bg-[#141820] border border-rose-500/50 p-6 rounded-2xl max-w-md w-full text-center space-y-4 shadow-2xl">
-          <div className="w-12 h-12 rounded-full bg-rose-500/20 text-rose-400 flex items-center justify-center mx-auto">
+      <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#FAF9F6]/75 backdrop-blur-xl">
+        <div className="glass-panel-elevated bg-white/80 border border-rose-300/70 p-6 rounded-3xl max-w-md w-full text-center space-y-4 shadow-[0_24px_60px_rgba(0,0,0,0.08)]">
+          <div className="w-12 h-12 rounded-full bg-rose-50 border border-rose-200 text-rose-600 flex items-center justify-center mx-auto shadow-xs">
             <Lock className="w-6 h-6" />
           </div>
-          <h3 className="text-lg font-bold text-white tracking-tight">Access Prohibited</h3>
-          <p className="text-xs text-slate-300 leading-relaxed">
+          <h3 className="text-lg font-bold text-[#111111] tracking-tight">Access Prohibited</h3>
+          <p className="text-xs text-[#5F6368] leading-relaxed">
             Users with the Pantry role are strictly restricted to assigned hospitality tasks. Full candidate profiles, dossiers, and personal information are inaccessible.
           </p>
           <button
             onClick={onClose}
-            className="px-4 py-2 bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold rounded-xl text-xs transition cursor-pointer"
+            className="px-4 py-2 bg-gradient-to-r from-[#D8BF85] to-[#BFA15F] hover:from-[#E5D2A0] hover:to-[#CDB06E] text-[#111111] font-bold rounded-xl text-xs shadow-xs transition cursor-pointer"
           >
             Return to Pantry Tasks
           </button>
@@ -329,16 +329,16 @@ export const CandidateDossierModal: React.FC<CandidateDossierModalProps> = ({
   ];
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/35 backdrop-blur-md p-3 sm:p-4 overflow-y-auto">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#FAF9F6]/75 backdrop-blur-xl p-3 sm:p-4 overflow-y-auto">
       <motion.div
         initial={{ opacity: 0, scale: 0.98, y: 8 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.98, y: 6 }}
         transition={{ duration: 0.32, ease: smoothEase }}
-        className="glass-panel-elevated rounded-3xl max-w-4xl w-full max-h-[92vh] flex flex-col shadow-2xl border border-white/80 text-slate-800 overflow-hidden"
+        className="glass-panel-elevated bg-white/75 rounded-3xl max-w-4xl w-full max-h-[92vh] flex flex-col shadow-[0_24px_60px_rgba(0,0,0,0.08)] border border-white/80 text-[#111111] overflow-hidden"
       >
         {/* Top Header Bar */}
-        <div className="p-3.5 sm:p-5 border-b border-slate-200/70 flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-white/40 shrink-0">
+        <div className="p-3.5 sm:p-5 border-b border-[#E5D2A0]/30 flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-white/60 backdrop-blur-md shrink-0">
           <div className="flex items-center gap-3 sm:gap-3.5 min-w-0 flex-1">
             {/* Live photo or fallback avatar */}
             <div className="flex flex-col items-center shrink-0">

@@ -66,16 +66,16 @@
 
     /* Theme: Pure white #FFFFFF, Warm white #FAF9F6, Light champagne gold #E5D2A0, Dark black text #111111 */
     --bg-deep: #FAF9F6;
-    --bg-surface: rgba(255, 255, 255, 0.72);
-    --bg-elevated: rgba(255, 255, 255, 0.85);
+    --bg-surface: rgba(255, 255, 255, 0.58);
+    --bg-elevated: rgba(255, 255, 255, 0.65);
 
-    --glass-1: rgba(255, 255, 255, 0.72);
-    --glass-2: rgba(255, 255, 255, 0.72);
-    --glass-3: rgba(255, 255, 255, 0.85);
+    --glass-1: rgba(255, 255, 255, 0.52);
+    --glass-2: rgba(255, 255, 255, 0.58);
+    --glass-3: rgba(255, 255, 255, 0.65);
 
-    --border-warm-subtle: rgba(229, 210, 160, 0.35);
-    --border-warm-gold: rgba(229, 210, 160, 0.50);
-    --border-highlight: #E5D2A0;
+    --border-warm-subtle: rgba(255, 255, 255, 0.70);
+    --border-warm-gold: rgba(229, 210, 160, 0.35);
+    --border-highlight: rgba(255, 255, 255, 0.90);
 
     --text-primary: #111111;
     --text-secondary: #111111;
@@ -116,14 +116,14 @@
 }
 
 /* ========================================================
-   WCR / VAKU TRANSLUCENT WHITE JELLY-GLASS SYSTEM
+   WCR / VAKU TRANSLUCENT WHITE FROSTED-GLASS SYSTEM
    - Pure white #FFFFFF & Warm off-white #FAF9F6
-   - Translucent white jelly-glass: rgba(255, 255, 255, 0.72)
-   - Backdrop filter: blur(16px)
-   - Soft shadows & delicate light champagne gold borders (#E5D2A0)
-   - No dark navy, black panels, grey-filled cards or harsh overlays
-   - Dark black #111111 text everywhere
-   - White / light-gold buttons with dark text
+   - Translucent white frosted glass: rgba(255, 255, 255, 0.45-0.65)
+   - Backdrop filter: blur(16px) saturate(150%)
+   - Soft shadows & delicate white/champagne borders
+   - Soft visibility of underlying backdrops and watermark
+   - Dark black #111111 text everywhere for maximum contrast
+   - Translucent hover states with subtle lift & soft shadow
    ======================================================== */
 
 .card-dark,
@@ -139,24 +139,34 @@
 aside,
 header,
 [class*="bg-[#0B0B0D]"],
+[class*="bg-[#0B0F14]"],
 [class*="bg-[#0F141C]"],
+[class*="bg-[#11161F]"],
+[class*="bg-[#0E131A]"],
 [class*="bg-[#141820]"]:not(button):not(svg),
+[class*="bg-[#17191D]"],
+[class*="bg-[#171D26]"],
 [class*="bg-[#1A1D24]"],
+[class*="bg-[#1B2028]"],
+[class*="bg-[#1B212B]"],
 [class*="bg-[#1F242D]"],
+[class*="bg-[#202124]"]:not(button):not(svg),
 [class*="bg-slate-950"]:not(button):not(input),
 [class*="bg-slate-900"]:not(button):not(input):not(.fixed.inset-0),
 [class*="bg-zinc-950"],
 [class*="bg-zinc-900"],
+[class*="bg-neutral-900"],
+[class*="bg-neutral-950"],
 [role="menu"],
 .dropdown-menu {
-  background: rgba(255, 255, 255, 0.72) !important;
-  backdrop-filter: blur(16px) saturate(140%) !important;
-  -webkit-backdrop-filter: blur(16px) saturate(140%) !important;
+  background: rgba(255, 255, 255, 0.58) !important;
+  backdrop-filter: blur(16px) saturate(150%) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(150%) !important;
   color: #111111 !important;
-  border: 1px solid rgba(229, 210, 160, 0.50) !important;
-  box-shadow: 0 8px 30px 0 rgba(0, 0, 0, 0.04),
+  border: 1px solid rgba(255, 255, 255, 0.75) !important;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.04),
               inset 0 1px 1px 0 rgba(255, 255, 255, 0.95),
-              0 2px 6px -1px rgba(229, 210, 160, 0.15) !important;
+              0 2px 6px -1px rgba(229, 210, 160, 0.12) !important;
   border-radius: 1rem;
   position: relative;
   max-width: 100%;
@@ -170,7 +180,7 @@ header,
   will-change: transform, box-shadow;
 }
 
-/* Subtle champagne-gold hover highlights and gentle elevation only (NO black-to-white) */
+/* Subtle translucent hover highlights and gentle elevation only (remains translucent, NO black-to-white) */
 @media (hover: hover) and (pointer: fine) {
   .card-dark:hover,
   .dashboard-card:hover,
@@ -184,11 +194,11 @@ header,
   .glass-panel-subtle:hover,
   [title*="Click to view"]:hover {
     transform: translateY(-2px) !important;
-    background: rgba(255, 255, 255, 0.88) !important;
-    border-color: #E5D2A0 !important;
+    background: rgba(255, 255, 255, 0.68) !important;
+    border-color: rgba(229, 210, 160, 0.60) !important;
     box-shadow: 0 12px 36px 0 rgba(0, 0, 0, 0.06),
                 inset 0 1px 1px 0 rgba(255, 255, 255, 1),
-                0 4px 14px rgba(229, 210, 160, 0.25) !important;
+                0 4px 14px rgba(229, 210, 160, 0.20) !important;
     transition-delay: 0ms !important;
   }
 }
@@ -321,6 +331,9 @@ button[class*="bg-slate-950"]:hover {
 .card-inner,
 .inner-box,
 [class*="bg-[#25272B]"]:not(button):not(.btn-route-kimmi),
+[class*="bg-[#252B36]"],
+[class*="bg-[#2B3340]"],
+[class*="bg-[#343D4C]"],
 .dashboard-card div.bg-black\/30,
 .dashboard-card div.bg-black\/40,
 .dashboard-card div.bg-black\/20,
@@ -328,11 +341,12 @@ button[class*="bg-slate-950"]:hover {
 .card-dark div.bg-black\/30,
 .card-dark div.bg-black\/40,
 .card-dark div.bg-white\/5 {
-  background: rgba(255, 255, 255, 0.65) !important;
-  backdrop-filter: blur(14px) !important;
-  -webkit-backdrop-filter: blur(14px) !important;
-  border: 1px solid rgba(229, 210, 160, 0.40) !important;
+  background: rgba(255, 255, 255, 0.48) !important;
+  backdrop-filter: blur(14px) saturate(150%) !important;
+  -webkit-backdrop-filter: blur(14px) saturate(150%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.70) !important;
   color: #111111 !important;
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.02) !important;
   transition: background-color 200ms ease, border-color 200ms ease, color 200ms ease;
 }
 
@@ -492,9 +506,9 @@ select:focus {
 
 /* ========================================================
    MODALS, OPENED DETAIL VIEWS, DRAWERS & POPUPS
-   - Translucent white jelly-glass: rgba(255, 255, 255, 0.72)
-   - Backdrop filter: blur(16px)
-   - Delicate light champagne gold border (#E5D2A0)
+   - Translucent white frosted glass: rgba(255, 255, 255, 0.45-0.65)
+   - Backdrop filter: blur(16px) saturate(150%)
+   - Delicate white & light champagne borders
    - NO dark overlays: Light warm translucent backdrops!
    ======================================================== */
 
@@ -511,9 +525,9 @@ div.fixed.inset-0[class*="bg-slate-900"],
 div.fixed.inset-0[class*="bg-[#202124]"],
 div[class*="fixed inset-0"][class*="bg-black"],
 div[class*="fixed inset-0"][class*="bg-[#202124]"] {
-  background-color: rgba(250, 249, 246, 0.75) !important;
-  backdrop-filter: blur(16px) !important;
-  -webkit-backdrop-filter: blur(16px) !important;
+  background-color: rgba(250, 249, 246, 0.65) !important;
+  backdrop-filter: blur(16px) saturate(150%) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(150%) !important;
 }
 
 /* Modal and Dialog Containers */
@@ -522,12 +536,12 @@ div[class*="fixed inset-0"] div[class*="rounded-3xl"]:not([class*="w-9"]):not([c
 div[class*="fixed inset-0"] div[class*="rounded-2xl"][class*="shadow-"],
 [role="dialog"] > div,
 [role="dialog"] {
-  background: rgba(255, 255, 255, 0.72) !important;
-  backdrop-filter: blur(16px) !important;
-  -webkit-backdrop-filter: blur(16px) !important;
-  border: 1px solid rgba(229, 210, 160, 0.50) !important;
-  box-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.05),
-              inset 0 1px 1px 0 rgba(255, 255, 255, 0.95),
+  background: rgba(255, 255, 255, 0.62) !important;
+  backdrop-filter: blur(16px) saturate(150%) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(150%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.85) !important;
+  box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.08),
+              inset 0 1px 1px 0 rgba(255, 255, 255, 1),
               0 2px 8px rgba(229, 210, 160, 0.15) !important;
   color: #111111 !important;
 }
@@ -544,8 +558,8 @@ div[class*="fixed inset-0"] div[class*="bg-white/30"],
 .glass-panel-elevated > div.border-b,
 .modal-header,
 .modal-footer {
-  background: rgba(255, 255, 255, 0.65) !important;
-  border-color: rgba(229, 210, 160, 0.40) !important;
+  background: rgba(255, 255, 255, 0.48) !important;
+  border-color: rgba(229, 210, 160, 0.35) !important;
   color: #111111 !important;
 }
 

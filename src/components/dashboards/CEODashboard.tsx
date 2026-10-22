@@ -37,58 +37,58 @@ export const CEODashboard: React.FC<CEODashboardProps> = ({
   return (
     <div className="space-y-6">
       {/* Executive Banner */}
-      <div className="p-6 card-dark bg-[#0B0B0D] text-white rounded-3xl border border-white/10 shadow-xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+      <div className="p-6 glass-panel bg-white/65 text-[#111111] rounded-3xl border border-white/80 shadow-[0_12px_36px_rgba(0,0,0,0.04)] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div className="space-y-1">
           <div className="flex items-center gap-2">
-            <Award className="w-5 h-5 text-amber-400" />
-            <span className="text-xs font-bold uppercase tracking-widest text-amber-400 font-mono">
+            <Award className="w-5 h-5 text-[#9E8243]" />
+            <span className="text-xs font-bold uppercase tracking-widest text-[#9E8243] font-mono">
               White Collar Realty • Executive Suite
             </span>
           </div>
-          <h1 className="text-2xl font-black text-white tracking-tight">
+          <h1 className="text-2xl font-black text-[#111111] tracking-tight">
             Strategic Office Operations Overview
           </h1>
-          <p className="text-xs text-[#E0E0E0]">
+          <p className="text-xs text-[#5F6368]">
             Filtered executive briefing • High-level talent pipeline & facility performance.
           </p>
         </div>
 
         <div className="flex items-center gap-3">
-          <div className="px-4 py-2 bg-[#25272B] card-inner inner-box rounded-2xl border border-white/10 text-center">
-            <span className="text-[10px] uppercase font-bold text-[#BDBDBD] block font-mono">Offer Rate</span>
-            <span className="text-lg font-black text-emerald-400 tabular-nums">
+          <div className="px-4 py-2 bg-white/60 card-inner inner-box rounded-2xl border border-[#E5D2A0]/40 text-center shadow-xs">
+            <span className="text-[10px] uppercase font-bold text-[#5F6368] block font-mono">Offer Rate</span>
+            <span className="text-lg font-black text-emerald-600 tabular-nums">
               {candidates.length > 0 ? `${Math.round((offeredCount / Math.max(1, candidates.length)) * 100)}%` : '0%'}
             </span>
           </div>
         </div>
       </div>
 
-      {/* Strategic Metrics — All Black Cards */}
+      {/* Strategic Metrics — Translucent Frosted Glass Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
-        <div className="p-5 sm:p-6 card-dark bg-[#0B0B0D] text-white rounded-2xl border border-white/10 shadow-lg min-h-[140px] flex flex-col justify-between">
-          <span className="text-xs sm:text-sm text-[#E0E0E0] block font-semibold">Active Office Presence</span>
-          <p className="text-2xl sm:text-3xl font-black text-white mt-1 tabular-nums">{activeCandidates.length}</p>
-          <span className="text-xs text-amber-400 font-semibold font-mono">Candidates on premises</span>
+        <div className="p-5 sm:p-6 glass-panel bg-white/60 text-[#111111] rounded-2xl border border-white/80 shadow-xs min-h-[140px] flex flex-col justify-between">
+          <span className="text-xs sm:text-sm text-[#5F6368] block font-semibold">Active Office Presence</span>
+          <p className="text-2xl sm:text-3xl font-black text-[#111111] mt-1 tabular-nums">{activeCandidates.length}</p>
+          <span className="text-xs text-[#9E8243] font-semibold font-mono">Candidates on premises</span>
         </div>
 
-        <div className="p-5 sm:p-6 card-dark bg-[#0B0B0D] text-white rounded-2xl border border-white/10 shadow-lg min-h-[140px] flex flex-col justify-between">
-          <span className="text-xs sm:text-sm text-[#E0E0E0] block font-semibold">Interviews Live</span>
-          <p className="text-2xl sm:text-3xl font-black text-white mt-1 tabular-nums">{inSessionCount}</p>
-          <span className="text-xs text-[#BDBDBD] font-mono">Active evaluation rounds</span>
+        <div className="p-5 sm:p-6 glass-panel bg-white/60 text-[#111111] rounded-2xl border border-white/80 shadow-xs min-h-[140px] flex flex-col justify-between">
+          <span className="text-xs sm:text-sm text-[#5F6368] block font-semibold">Interviews Live</span>
+          <p className="text-2xl sm:text-3xl font-black text-[#111111] mt-1 tabular-nums">{inSessionCount}</p>
+          <span className="text-xs text-[#5F6368] font-mono">Active evaluation rounds</span>
         </div>
 
-        <div className="p-5 sm:p-6 card-dark bg-[#0B0B0D] text-white rounded-2xl border border-white/10 shadow-lg min-h-[140px] flex flex-col justify-between">
-          <span className="text-xs sm:text-sm text-[#E0E0E0] block font-semibold">Leadership Offers / Hires</span>
-          <p className="text-2xl sm:text-3xl font-black text-emerald-400 mt-1 tabular-nums">{offeredCount}</p>
-          <span className="text-xs text-emerald-400 font-semibold font-mono">Today's recommendations</span>
+        <div className="p-5 sm:p-6 glass-panel bg-white/60 text-[#111111] rounded-2xl border border-white/80 shadow-xs min-h-[140px] flex flex-col justify-between">
+          <span className="text-xs sm:text-sm text-[#5F6368] block font-semibold">Leadership Offers / Hires</span>
+          <p className="text-2xl sm:text-3xl font-black text-emerald-600 mt-1 tabular-nums">{offeredCount}</p>
+          <span className="text-xs text-emerald-600 font-semibold font-mono">Today's recommendations</span>
         </div>
 
-        <div className="p-5 sm:p-6 card-dark bg-[#0B0B0D] text-white rounded-2xl border border-white/10 shadow-lg min-h-[140px] flex flex-col justify-between">
-          <span className="text-xs sm:text-sm text-[#E0E0E0] block font-semibold">Executive Boardrooms</span>
-          <p className="text-2xl sm:text-3xl font-black text-white mt-1 tabular-nums">
+        <div className="p-5 sm:p-6 glass-panel bg-white/60 text-[#111111] rounded-2xl border border-white/80 shadow-xs min-h-[140px] flex flex-col justify-between">
+          <span className="text-xs sm:text-sm text-[#5F6368] block font-semibold">Executive Boardrooms</span>
+          <p className="text-2xl sm:text-3xl font-black text-[#111111] mt-1 tabular-nums">
             {rooms.filter((r) => r.type === 'EXECUTIVE_BOARDROOM').length}
           </p>
-          <span className="text-xs text-[#BDBDBD] font-mono">Executive meeting suites</span>
+          <span className="text-xs text-[#5F6368] font-mono">Executive meeting suites</span>
         </div>
       </div>
 
@@ -111,7 +111,7 @@ export const CEODashboard: React.FC<CEODashboardProps> = ({
             return (
               <div
                 key={cand.id}
-                className="card-dark bg-[#0B0B0D] text-white border border-white/10 p-5 rounded-2xl space-y-3 shadow-xl"
+                className="glass-panel bg-white/60 text-[#111111] border border-white/80 p-5 rounded-2xl space-y-3 shadow-xs hover:bg-white/70 transition-all duration-200"
               >
                 <div className="flex items-start justify-between gap-3">
                   <div className="flex items-center gap-3">
@@ -119,55 +119,55 @@ export const CEODashboard: React.FC<CEODashboardProps> = ({
                       <img
                         src={cand.livePhoto}
                         alt={cand.fullName}
-                        className="w-12 h-12 rounded-2xl object-cover border border-amber-500/80 shadow-md"
+                        className="w-12 h-12 rounded-2xl object-cover border border-[#D8BF85]/50 shadow-xs"
                       />
                     ) : (
-                      <div className="w-12 h-12 rounded-2xl flex items-center justify-center bg-white/5 border border-white/8 text-slate-300">
+                      <div className="w-12 h-12 rounded-2xl flex items-center justify-center bg-[#D8BF85]/15 border border-[#D8BF85]/30 text-[#9E8243]">
                         <Award className="w-6 h-6" />
                       </div>
                     )}
                     <div>
-                      <h3 className="text-base font-bold text-white">{cand.fullName}</h3>
-                      <p className="text-xs font-semibold text-amber-400">{cand.position}</p>
-                      <p className="text-[11px] text-[#E0E0E0]">{cand.department}</p>
+                      <h3 className="text-base font-bold text-[#111111]">{cand.fullName}</h3>
+                      <p className="text-xs font-semibold text-[#9E8243]">{cand.position}</p>
+                      <p className="text-[11px] text-[#5F6368]">{cand.department}</p>
                     </div>
                   </div>
 
-                  <span className="px-2.5 py-1 rounded-full text-[10px] font-bold font-mono bg-white/10 text-amber-300 border border-white/15">
+                  <span className="px-2.5 py-1 rounded-full text-[10px] font-bold font-mono bg-[#D8BF85]/20 text-[#9E8243] border border-[#D8BF85]/40">
                     {cand.status}
                   </span>
                 </div>
 
-                <div className="grid grid-cols-2 gap-2 text-xs p-3 rounded-xl bg-[#25272B] border border-white/10 text-[#E0E0E0] card-inner">
+                <div className="grid grid-cols-2 gap-2 text-xs p-3 rounded-xl bg-white/50 border border-[#E5D2A0]/30 text-[#2D3033] card-inner">
                   <div>
-                    <span className="block text-[10px] uppercase font-mono text-[#BDBDBD]">Experience</span>
-                    <strong className="text-white font-bold">{formatCandidateExperience(cand.totalExperience)}</strong>
+                    <span className="block text-[10px] uppercase font-mono text-[#5F6368]">Experience</span>
+                    <strong className="text-[#111111] font-bold">{formatCandidateExperience(cand.totalExperience)}</strong>
                   </div>
                   <div>
-                    <span className="block text-[10px] uppercase font-mono text-[#BDBDBD]">Location</span>
-                    <strong className="text-white font-bold truncate block">{formatCandidateLocation(cand.currentLocation)}</strong>
+                    <span className="block text-[10px] uppercase font-mono text-[#5F6368]">Location</span>
+                    <strong className="text-[#111111] font-bold truncate block">{formatCandidateLocation(cand.currentLocation)}</strong>
                   </div>
                   {intv && (
                     <>
                       <div>
-                        <span className="block text-[10px] uppercase font-mono text-[#BDBDBD]">Current Round</span>
-                        <strong className="text-white font-bold">{intv.roundName}</strong>
+                        <span className="block text-[10px] uppercase font-mono text-[#5F6368]">Current Round</span>
+                        <strong className="text-[#111111] font-bold">{intv.roundName}</strong>
                       </div>
                       <div>
-                        <span className="block text-[10px] uppercase font-mono text-[#BDBDBD]">Interviewer</span>
-                        <strong className="text-white font-bold">{intv.interviewerName}</strong>
+                        <span className="block text-[10px] uppercase font-mono text-[#5F6368]">Interviewer</span>
+                        <strong className="text-[#111111] font-bold">{intv.interviewerName}</strong>
                       </div>
                     </>
                   )}
                 </div>
 
                 <div className="flex flex-wrap sm:flex-nowrap items-center justify-between gap-2 pt-1">
-                  <span className="text-[11px] text-[#E0E0E0] truncate max-w-[200px]">
+                  <span className="text-[11px] text-[#5F6368] truncate max-w-[200px]">
                     {cand.currentCompany ? `Ex: ${cand.currentCompany}` : 'Qualified Profile'}
                   </span>
                   <button
                     onClick={() => onOpenDossier(cand.id)}
-                    className="px-3.5 py-1.5 rounded-xl font-bold text-xs transition cursor-pointer shadow bg-amber-500 hover:bg-amber-400 text-slate-950 shrink-0"
+                    className="px-3.5 py-1.5 rounded-xl font-bold text-xs transition cursor-pointer shadow-xs bg-gradient-to-r from-[#D8BF85] to-[#BFA15F] hover:from-[#E5D2A0] hover:to-[#CDB06E] text-[#111111] shrink-0"
                   >
                     Executive Dossier
                   </button>

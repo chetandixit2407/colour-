@@ -810,17 +810,17 @@ export const CandidateCheckInForm: React.FC<CandidateCheckInFormProps> = ({
   }
 
   return (
-    <div className="w-full max-w-2xl mx-auto bg-white border border-slate-200/90 rounded-2xl shadow-xl text-slate-900 overflow-hidden font-sans">
+    <div className="w-full max-w-2xl mx-auto glass-panel-elevated bg-white/90 backdrop-blur-2xl border border-white/80 rounded-2xl shadow-[0_16px_40px_rgba(0,0,0,0.06)] text-slate-900 overflow-hidden font-sans">
       {/* Brand Header */}
-      <div className="p-5 sm:p-6 bg-slate-50 border-b border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+      <div className="p-5 sm:p-6 bg-white/60 border-b border-black/8 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <div>
           <div className="flex items-center gap-2">
-            <span className="w-2.5 h-2.5 rounded-full bg-amber-600" />
-            <span className="text-[11px] font-bold tracking-widest text-slate-700 uppercase">
+            <span className="w-2.5 h-2.5 rounded-full bg-[#9E8243]" />
+            <span className="text-[11px] font-bold tracking-widest text-[#9E8243] uppercase">
               WHITE COLLAR REALTY
             </span>
           </div>
-          <h1 className="text-xl sm:text-2xl font-extrabold text-slate-900 tracking-tight mt-1">
+          <h1 className="text-xl sm:text-2xl font-extrabold text-[#111111] tracking-tight mt-1">
             Check-In Pass Portal
           </h1>
           <p className="text-xs text-slate-500 mt-0.5">

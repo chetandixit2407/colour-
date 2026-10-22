@@ -76,11 +76,11 @@ export const ForgotPasswordModal: React.FC<ForgotPasswordModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 backdrop-blur-xs p-3 sm:p-5 overflow-y-auto">
-      <div className="bg-slate-900 border border-slate-800 rounded-3xl max-w-lg w-full p-6 sm:p-8 text-slate-100 shadow-2xl relative animate-in fade-in zoom-in-95 duration-200">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#FAF9F6]/75 backdrop-blur-xl p-3 sm:p-5 overflow-y-auto">
+      <div className="glass-panel-elevated bg-white/75 border border-white/80 rounded-3xl max-w-lg w-full p-6 sm:p-8 text-[#111111] shadow-[0_24px_60px_rgba(0,0,0,0.08)] relative animate-in fade-in zoom-in-95 duration-200">
         <button
           onClick={onClose}
-          className="absolute top-5 right-5 p-2 rounded-xl bg-slate-800/80 hover:bg-slate-800 text-slate-400 hover:text-white transition"
+          className="absolute top-5 right-5 p-2 rounded-xl bg-white/70 hover:bg-white text-[#5F6368] hover:text-[#111111] border border-black/10 shadow-xs transition"
           aria-label="Close"
         >
           <X className="w-5 h-5" />
@@ -90,52 +90,52 @@ export const ForgotPasswordModal: React.FC<ForgotPasswordModalProps> = ({
           <div>
             {/* Header */}
             <div className="flex items-center gap-3 mb-4">
-              <div className="w-12 h-12 rounded-2xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 shadow-inner">
+              <div className="w-12 h-12 rounded-2xl bg-[#D8BF85]/20 border border-[#D8BF85]/40 flex items-center justify-center text-[#9E8243] shadow-xs">
                 <KeyRound className="w-6 h-6" />
               </div>
               <div>
-                <h2 className="text-lg font-bold text-white tracking-tight">
+                <h2 className="text-lg font-bold text-[#111111] tracking-tight">
                   Staff Password Recovery
                 </h2>
-                <p className="text-xs text-slate-400">
+                <p className="text-xs text-[#5F6368]">
                   White Collar Realty Security & Identity Portal
                 </p>
               </div>
             </div>
 
-            <p className="text-xs text-slate-300 mb-5 leading-relaxed">
-              Enter your registered staff email address or username (e.g. <span className="font-mono text-amber-400">nisha@whitecollarrealty.com</span>, <span className="font-mono text-amber-400">sameer.admin</span>, or <span className="font-mono text-amber-400">lalit.sir</span>). A secure, time-limited verification token will be generated and routed for Admin approval.
+            <p className="text-xs text-[#2D3033] mb-5 leading-relaxed">
+              Enter your registered staff email address or username (e.g. <span className="font-mono text-[#9E8243] font-semibold">nisha@whitecollarrealty.com</span>, <span className="font-mono text-[#9E8243] font-semibold">sameer.admin</span>, or <span className="font-mono text-[#9E8243] font-semibold">lalit.sir</span>). A secure, time-limited verification token will be generated and routed for Admin approval.
             </p>
 
             {error && (
-              <div className="mb-4 p-3.5 bg-rose-500/10 border border-rose-500/30 rounded-2xl text-rose-300 text-xs flex items-center gap-2.5">
-                <AlertCircle className="w-4 h-4 text-rose-400 shrink-0" />
+              <div className="mb-4 p-3.5 bg-rose-50 border border-rose-200 rounded-2xl text-rose-700 text-xs flex items-center gap-2.5">
+                <AlertCircle className="w-4 h-4 text-rose-600 shrink-0" />
                 <span>{error}</span>
               </div>
             )}
 
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
-                <label className="block text-xs font-semibold text-slate-300 mb-1.5">
+                <label className="block text-xs font-semibold text-[#111111] mb-1.5">
                   Staff Email or Username
                 </label>
                 <div className="relative">
-                  <Mail className="w-4 h-4 text-slate-500 absolute left-3.5 top-1/2 -translate-y-1/2" />
+                  <Mail className="w-4 h-4 text-[#80868B] absolute left-3.5 top-1/2 -translate-y-1/2" />
                   <input
                     type="text"
                     required
                     value={identifier}
                     onChange={(e) => setIdentifier(e.target.value)}
                     placeholder="e.g. nisha@whitecollarrealty.com or sameer.admin"
-                    className="w-full pl-10 pr-4 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-xs text-white placeholder-slate-500 focus:outline-hidden focus:border-amber-400 transition"
+                    className="w-full pl-10 pr-4 py-2.5 bg-white/70 border border-black/15 rounded-xl text-xs text-[#111111] placeholder-[#80868B] focus:outline-hidden focus:border-[#9E8243] transition shadow-xs"
                   />
                 </div>
               </div>
 
               {/* Security Policy Notice */}
-              <div className="p-3 bg-slate-950/70 border border-slate-800 rounded-2xl space-y-1 text-[11px] text-slate-400">
-                <div className="flex items-center gap-1.5 font-bold text-slate-300">
-                  <ShieldCheck className="w-3.5 h-3.5 text-cyan-400" />
+              <div className="p-3 bg-white/50 border border-[#E5D2A0]/40 rounded-2xl space-y-1 text-[11px] text-[#5F6368]">
+                <div className="flex items-center gap-1.5 font-bold text-[#111111]">
+                  <ShieldCheck className="w-3.5 h-3.5 text-cyan-600" />
                   <span>Dual Verification & Admin Override Policy</span>
                 </div>
                 <p>
@@ -147,17 +147,17 @@ export const ForgotPasswordModal: React.FC<ForgotPasswordModalProps> = ({
                 <button
                   type="button"
                   onClick={onClose}
-                  className="flex-1 py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold text-xs rounded-xl border border-slate-700 transition"
+                  className="flex-1 py-2.5 bg-white/80 hover:bg-white text-[#111111] font-semibold text-xs rounded-xl border border-black/10 shadow-xs transition"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
                   disabled={loading}
-                  className="flex-1 py-2.5 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-black text-xs rounded-xl shadow-lg transition cursor-pointer flex items-center justify-center gap-1.5 disabled:opacity-50"
+                  className="flex-1 py-2.5 bg-gradient-to-r from-[#D8BF85] to-[#BFA15F] hover:from-[#E5D2A0] hover:to-[#CDB06E] text-[#111111] font-bold text-xs rounded-xl shadow-xs transition cursor-pointer flex items-center justify-center gap-1.5 disabled:opacity-50"
                 >
                   {loading ? (
-                    <div className="w-4 h-4 border-2 border-slate-950 border-t-transparent rounded-full animate-spin" />
+                    <div className="w-4 h-4 border-2 border-[#111111] border-t-transparent rounded-full animate-spin" />
                   ) : (
                     <>
                       <span>Request Reset Link</span>
@@ -172,43 +172,43 @@ export const ForgotPasswordModal: React.FC<ForgotPasswordModalProps> = ({
           /* SUCCESS STATE */
           <div className="space-y-4">
             <div className="flex items-center gap-3">
-              <div className="w-12 h-12 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
+              <div className="w-12 h-12 rounded-2xl bg-emerald-50 border border-emerald-200 flex items-center justify-center text-emerald-600 shadow-xs">
                 <CheckCircle2 className="w-6 h-6" />
               </div>
               <div>
-                <h3 className="text-lg font-bold text-white">Reset Request Registered!</h3>
-                <p className="text-xs text-emerald-400 font-medium">
+                <h3 className="text-lg font-bold text-[#111111]">Reset Request Registered!</h3>
+                <p className="text-xs text-emerald-700 font-medium">
                   {successData.request.userName} ({successData.request.userRole})
                 </p>
               </div>
             </div>
 
-            <p className="text-xs text-slate-300 leading-relaxed">
+            <p className="text-xs text-[#2D3033] leading-relaxed">
               {successData.message}
             </p>
 
             {/* Token & Expiry Details Card */}
-            <div className="p-4 bg-slate-950 border border-slate-800 rounded-2xl space-y-2.5 text-xs">
+            <div className="p-4 bg-white/60 border border-[#E5D2A0]/40 rounded-2xl space-y-2.5 text-xs shadow-xs">
               <div className="flex items-center justify-between">
-                <span className="text-slate-400">Target Account:</span>
-                <strong className="text-white font-mono">{successData.request.userEmail}</strong>
+                <span className="text-[#5F6368]">Target Account:</span>
+                <strong className="text-[#111111] font-mono">{successData.request.userEmail}</strong>
               </div>
               <div className="flex items-center justify-between">
-                <span className="text-slate-400">Status:</span>
-                <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-500/10 text-amber-300 border border-amber-500/30">
+                <span className="text-[#5F6368]">Status:</span>
+                <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-[#D8BF85]/20 text-[#9E8243] border border-[#D8BF85]/40">
                   {successData.request.status}
                 </span>
               </div>
               <div className="flex items-center justify-between">
-                <span className="text-slate-400 flex items-center gap-1">
-                  <Clock className="w-3.5 h-3.5 text-slate-500" />
+                <span className="text-[#5F6368] flex items-center gap-1">
+                  <Clock className="w-3.5 h-3.5 text-[#80868B]" />
                   Token Validity:
                 </span>
-                <strong className="text-slate-200">30 Minutes</strong>
+                <strong className="text-[#111111]">30 Minutes</strong>
               </div>
-              <div className="pt-2 border-t border-slate-800/80">
-                <span className="text-[11px] text-slate-400 block mb-1">Verification Token:</span>
-                <div className="p-2 bg-slate-900 border border-slate-800 rounded-xl font-mono text-[11px] text-amber-300 select-all break-all">
+              <div className="pt-2 border-t border-black/5">
+                <span className="text-[11px] text-[#5F6368] block mb-1">Verification Token:</span>
+                <div className="p-2 bg-white/80 border border-[#D8BF85]/50 rounded-xl font-mono text-[11px] text-[#9E8243] select-all break-all shadow-xs">
                   {successData.request.token}
                 </div>
               </div>
@@ -216,15 +216,15 @@ export const ForgotPasswordModal: React.FC<ForgotPasswordModalProps> = ({
 
             {/* Simulated Email Card */}
             {successData.simulatedEmailDelivery && (
-              <div className="p-3.5 bg-slate-950/60 border border-slate-800 rounded-2xl space-y-1.5 text-[11px]">
-                <div className="flex items-center justify-between text-slate-400">
-                  <span className="font-semibold text-slate-300 flex items-center gap-1">
-                    <Mail className="w-3.5 h-3.5 text-amber-400" />
+              <div className="p-3.5 bg-white/50 border border-black/10 rounded-2xl space-y-1.5 text-[11px]">
+                <div className="flex items-center justify-between text-[#5F6368]">
+                  <span className="font-semibold text-[#111111] flex items-center gap-1">
+                    <Mail className="w-3.5 h-3.5 text-[#9E8243]" />
                     Simulated Email Dispatch:
                   </span>
-                  <span className="text-[10px] text-emerald-400 font-mono">Delivered</span>
+                  <span className="text-[10px] text-emerald-700 font-mono font-bold">Delivered</span>
                 </div>
-                <div className="p-2 bg-slate-900/90 rounded-lg text-slate-300 font-mono text-[10px] whitespace-pre-wrap">
+                <div className="p-2 bg-white/80 rounded-lg text-[#2D3033] font-mono text-[10px] whitespace-pre-wrap border border-black/5">
                   {successData.simulatedEmailDelivery.body}
                 </div>
               </div>
@@ -234,9 +234,9 @@ export const ForgotPasswordModal: React.FC<ForgotPasswordModalProps> = ({
             <div className="flex flex-col sm:flex-row items-center gap-2 pt-2">
               <button
                 onClick={copyResetUrl}
-                className="w-full sm:flex-1 py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold text-xs rounded-xl border border-slate-700 transition cursor-pointer flex items-center justify-center gap-1.5"
+                className="w-full sm:flex-1 py-2.5 bg-white/80 hover:bg-white text-[#111111] font-semibold text-xs rounded-xl border border-black/10 shadow-xs transition cursor-pointer flex items-center justify-center gap-1.5"
               >
-                <Copy className="w-3.5 h-3.5 text-amber-400" />
+                <Copy className="w-3.5 h-3.5 text-[#9E8243]" />
                 <span>{copiedLink ? 'Link Copied!' : 'Copy Reset Link'}</span>
               </button>
 
@@ -248,7 +248,7 @@ export const ForgotPasswordModal: React.FC<ForgotPasswordModalProps> = ({
                     window.location.href = successData.request.resetLink || `/reset-password?token=${successData.request.token}`;
                   }
                 }}
-                className="w-full sm:flex-1 py-2.5 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-black text-xs rounded-xl shadow-lg transition cursor-pointer flex items-center justify-center gap-1.5"
+                className="w-full sm:flex-1 py-2.5 bg-gradient-to-r from-[#D8BF85] to-[#BFA15F] hover:from-[#E5D2A0] hover:to-[#CDB06E] text-[#111111] font-bold text-xs rounded-xl shadow-xs transition cursor-pointer flex items-center justify-center gap-1.5"
               >
                 <ExternalLink className="w-3.5 h-3.5" />
                 <span>Open Reset Screen</span>

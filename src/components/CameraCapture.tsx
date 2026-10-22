@@ -243,16 +243,16 @@ export const CameraCapture: React.FC<CameraCaptureProps> = ({
   };
 
   return (
-    <div className="w-full max-w-md mx-auto glass-panel-elevated rounded-3xl overflow-hidden border border-white/12 shadow-2xl text-slate-100">
+    <div className="w-full max-w-md mx-auto glass-panel-elevated bg-white/75 rounded-3xl overflow-hidden border border-white/80 shadow-[0_24px_60px_rgba(0,0,0,0.08)] text-[#111111]">
       {/* Header */}
-      <div className="p-4 sm:p-5 border-b border-white/8 flex items-center justify-between bg-white/2">
+      <div className="p-4 sm:p-5 border-b border-[#E5D2A0]/30 flex items-center justify-between bg-white/60 backdrop-blur-md">
         <div className="flex items-center gap-2.5">
-          <div className="w-8 h-8 rounded-xl bg-amber-500/20 text-amber-400 border border-amber-500/30 flex items-center justify-center">
+          <div className="w-8 h-8 rounded-xl bg-[#D8BF85]/20 text-[#9E8243] border border-[#D8BF85]/40 flex items-center justify-center shadow-xs">
             <Camera className="w-4 h-4" />
           </div>
           <div>
-            <h3 className="text-sm font-bold text-white tracking-tight">{title}</h3>
-            <p className="text-[11px] text-slate-400">{subtitle}</p>
+            <h3 className="text-sm font-bold text-[#111111] tracking-tight">{title}</h3>
+            <p className="text-[11px] text-[#5F6368]">{subtitle}</p>
           </div>
         </div>
         {onCancel && (
@@ -262,7 +262,7 @@ export const CameraCapture: React.FC<CameraCaptureProps> = ({
               stopAllMediaTracks();
               onCancel();
             }}
-            className="p-1.5 rounded-xl text-slate-400 hover:text-white hover:bg-white/6 transition cursor-pointer"
+            className="p-1.5 rounded-xl text-[#5F6368] hover:text-[#111111] hover:bg-black/5 transition cursor-pointer"
           >
             <X className="w-5 h-5" />
           </button>
