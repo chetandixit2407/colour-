@@ -8145,47 +8145,6 @@
   ],
   "pantryTasks": [
     {
-      "id": "pantry-task-1792664091540",
-      "category": "HOSPITALITY",
-      "roomId": "room-1",
-      "roomName": "Meeting Cabin",
-      "location": "White Collar Realty Office",
-      "instructions": "Hot Masala Tea for interview panel",
-      "candidateId": "",
-      "candidateName": "Guest / Candidate",
-      "taskType": "WATER_BEVERAGE",
-      "description": "Hot Masala Tea for interview panel",
-      "requiredItems": [
-        "2x Bottled Mineral Water"
-      ],
-      "itemsWithQuantities": [
-        {
-          "item": "2x Bottled Mineral Water",
-          "quantity": 1
-        }
-      ],
-      "priority": "MEDIUM",
-      "status": "PENDING",
-      "dueTime": "Immediate",
-      "assignedSteward": "Suresh Kumar (Floor 2 Pantry)",
-      "assignedStaffId": "",
-      "assignedTeam": "Pantry Team Alpha",
-      "createdById": "usr-hr-nisha",
-      "createdByName": "Nisha",
-      "createdByRole": "HR",
-      "createdAt": "2026-10-22T10:14:51.540Z",
-      "assignedAt": "2026-10-22T10:14:51.540Z",
-      "auditTrail": [
-        {
-          "timestamp": "2026-10-22T10:14:51.540Z",
-          "status": "PENDING",
-          "actorName": "Nisha",
-          "actorRole": "HR",
-          "note": "Task created and assigned to Suresh Kumar (Floor 2 Pantry)."
-        }
-      ]
-    },
-    {
       "id": "pantry-task-1792664074325",
       "category": "HOSPITALITY",
       "roomId": "room-skyline",

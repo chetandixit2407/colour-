@@ -183,27 +183,27 @@ export const SidebarNav: React.FC<SidebarNavProps> = ({
     currentUser.role === 'CO_FOUNDER';
 
   return (
-    <aside className="hidden lg:flex flex-col w-64 shrink-0 h-[100dvh] fixed top-0 left-0 z-30 bg-[#0B0F14] border-r border-[#252A32] select-none text-[#F5F6F8]">
-      <div className="flex-1 flex flex-col p-3.5 bg-[#0B0F14] relative overflow-hidden">
+    <aside className="hidden lg:flex flex-col w-64 shrink-0 h-[100dvh] fixed top-0 left-0 z-30 bg-white/72 backdrop-blur-[16px] border-r border-[#E5D2A0]/50 select-none text-[#111111]">
+      <div className="flex-1 flex flex-col p-3.5 bg-transparent relative overflow-hidden">
         {/* Subtle Top Inner Highlight */}
-        <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-amber-400/20 to-transparent pointer-events-none" />
+        <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#E5D2A0]/45 to-transparent pointer-events-none" />
 
         {/* Brand Block */}
-        <div className="px-2.5 py-3 border-b border-[#252A32] flex items-center justify-between">
+        <div className="px-2.5 py-3 border-b border-[#E5D2A0]/30 flex items-center justify-between">
           <div className="flex items-center gap-2.5">
             <div className="relative">
-              <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-amber-400 via-amber-500 to-amber-700 flex items-center justify-center text-slate-950 font-black text-xs shadow-lg shadow-amber-500/15 tracking-wider">
+              <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-[#FAF6ED] via-[#E5D2A0] to-[#C9AB68] flex items-center justify-center text-[#111111] font-black text-xs shadow-xs tracking-wider border border-[#E5D2A0]">
                 WCR
               </div>
-              <span className="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-emerald-400 ring-2 ring-[#0B0F14]" />
+              <span className="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-emerald-500 ring-2 ring-[#FAF9F6]" />
             </div>
             <div>
               <div className="flex items-center gap-1.5">
-                <span className="font-bold text-[#F5F6F8] text-xs tracking-tight">
+                <span className="font-bold text-[#111111] text-xs tracking-tight">
                   White Collar Realty
                 </span>
               </div>
-              <span className="text-[10px] text-amber-400/90 font-mono tracking-wider uppercase block">
+              <span className="text-[10px] text-[#9E8243] font-mono tracking-wider uppercase block">
                 {t('app_subbrand')}
               </span>
             </div>
@@ -217,9 +217,9 @@ export const SidebarNav: React.FC<SidebarNavProps> = ({
             aria-label="Real-time Connection Status"
             className={`w-2.5 h-2.5 rounded-full transition ${
               effectiveStatus === 'connected'
-                ? 'bg-emerald-400 animate-pulse cursor-default'
+                ? 'bg-emerald-500 animate-pulse cursor-default'
                 : effectiveStatus === 'reconnecting' || effectiveStatus === 'connecting'
-                ? 'bg-amber-400 animate-ping cursor-wait'
+                ? 'bg-[#E5D2A0] animate-ping cursor-wait'
                 : 'bg-rose-500 cursor-pointer hover:scale-125 ring-2 ring-rose-400/40'
             }`}
             title={
@@ -245,15 +245,15 @@ export const SidebarNav: React.FC<SidebarNavProps> = ({
                 onClick={() => onSelectSection(item.id)}
                 className={`relative w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs font-medium transition-all group cursor-pointer ${
                   isActive
-                    ? 'bg-[#1B2028] text-[#F5F6F8] font-semibold'
-                    : 'text-[#AEB7C4] hover:text-[#F5F6F8] hover:bg-[#1B2028]/60'
+                    ? 'bg-[#F0E5CC]/80 text-[#202124] font-semibold shadow-xs'
+                    : 'text-[#5F6368] hover:text-[#202124] hover:bg-[#F0E5CC]/40'
                 }`}
               >
                 {/* Active Indicator Accent Line */}
                 {isActive && (
                   <motion.div
                     layoutId="sidebar-active-indicator"
-                    className="absolute inset-0 border-l-2 border-amber-400 rounded-xl pointer-events-none"
+                    className="absolute inset-0 border-l-2 border-[#E5D2A0] rounded-xl pointer-events-none"
                     transition={{ type: 'spring', stiffness: 350, damping: 30 }}
                   />
                 )}
@@ -261,14 +261,14 @@ export const SidebarNav: React.FC<SidebarNavProps> = ({
                 <div className="flex items-center gap-2.5 relative z-10">
                   <Icon
                     className={`w-4 h-4 transition-colors ${
-                      isActive ? 'text-amber-400' : 'text-[#AEB7C4] group-hover:text-[#F5F6F8]'
+                      isActive ? 'text-[#9E8243]' : 'text-[#70757A] group-hover:text-[#202124]'
                     }`}
                   />
                   <span className="tracking-tight">{item.label}</span>
                 </div>
 
                 {item.badge !== undefined && item.badge > 0 && (
-                  <span className="relative z-10 px-1.5 py-0.5 rounded-full bg-amber-500 text-slate-950 font-bold text-[10px] tabular-nums">
+                  <span className="relative z-10 px-1.5 py-0.5 rounded-full bg-[#E5D2A0] text-[#202124] font-bold text-[10px] tabular-nums">
                     {item.badge}
                   </span>
                 )}
@@ -286,20 +286,20 @@ export const SidebarNav: React.FC<SidebarNavProps> = ({
               aria-haspopup="true"
               className={`relative w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs font-medium transition-all cursor-pointer ${
                 isSecondaryActive
-                  ? 'bg-[#1B2028] text-[#F5F6F8] font-semibold'
+                  ? 'bg-[#F0E5CC]/80 text-[#202124] font-semibold'
                   : isMoreMenuOpen
-                  ? 'bg-[#1B2028]/80 text-[#F5F6F8]'
-                  : 'text-[#AEB7C4] hover:text-[#F5F6F8] hover:bg-[#1B2028]/60'
+                  ? 'bg-[#F0E5CC]/60 text-[#202124]'
+                  : 'text-[#5F6368] hover:text-[#202124] hover:bg-[#F0E5CC]/40'
               }`}
             >
               {isSecondaryActive && (
-                <div className="absolute inset-0 border-l-2 border-amber-400 rounded-xl pointer-events-none" />
+                <div className="absolute inset-0 border-l-2 border-[#E5D2A0] rounded-xl pointer-events-none" />
               )}
 
               <div className="flex items-center gap-2.5 relative z-10">
                 <MoreHorizontal
                   className={`w-4 h-4 transition-colors ${
-                    isSecondaryActive ? 'text-amber-400' : 'text-[#AEB7C4]'
+                    isSecondaryActive ? 'text-[#9E8243]' : 'text-[#70757A]'
                   }`}
                 />
                 <span className="tracking-tight">
@@ -311,13 +311,13 @@ export const SidebarNav: React.FC<SidebarNavProps> = ({
 
               <div className="flex items-center gap-1.5 relative z-10">
                 {unreadCount > 0 && (
-                  <span className="px-1.5 py-0.5 rounded-full bg-amber-500 text-slate-950 font-bold text-[10px] tabular-nums">
+                  <span className="px-1.5 py-0.5 rounded-full bg-[#E5D2A0] text-[#202124] font-bold text-[10px] tabular-nums">
                     {unreadCount}
                   </span>
                 )}
                 <ChevronDown
-                  className={`w-3.5 h-3.5 text-[#AEB7C4] transition-transform duration-200 ${
-                    isMoreMenuOpen ? 'rotate-180 text-amber-400' : ''
+                  className={`w-3.5 h-3.5 text-[#70757A] transition-transform duration-200 ${
+                    isMoreMenuOpen ? 'rotate-180 text-[#9E8243]' : ''
                   }`}
                 />
               </div>
@@ -332,9 +332,9 @@ export const SidebarNav: React.FC<SidebarNavProps> = ({
                   exit={{ opacity: 0, y: -4, scale: 0.98 }}
                   transition={{ duration: 0.22, ease: smoothEase }}
                   role="menu"
-                  className="absolute left-0 right-0 top-full mt-1 bg-[#111722] border border-[#252A32] rounded-2xl shadow-2xl p-1.5 z-50 space-y-1"
+                  className="absolute left-0 right-0 top-full mt-1 bg-[#FAF9F6]/95 backdrop-blur-xl border border-[#E5D2A0]/40 rounded-2xl shadow-xl p-1.5 z-50 space-y-1 text-[#202124]"
                 >
-                  <div className="text-[10px] font-bold text-[#AEB7C4] px-2.5 py-1 uppercase tracking-wider">
+                  <div className="text-[10px] font-bold text-[#70757A] px-2.5 py-1 uppercase tracking-wider">
                     Additional Tabs & Sections
                   </div>
 
@@ -355,24 +355,24 @@ export const SidebarNav: React.FC<SidebarNavProps> = ({
                         }}
                         className={`w-full flex items-center justify-between px-2.5 py-2 rounded-xl text-xs transition cursor-pointer text-left ${
                           isSecActive
-                            ? 'bg-amber-500/20 text-amber-300 font-bold border-l-2 border-amber-400'
-                            : 'text-[#AEB7C4] hover:text-[#F5F6F8] hover:bg-[#1B2028]'
+                            ? 'bg-[#F0E5CC] text-[#202124] font-bold border-l-2 border-[#E5D2A0]'
+                            : 'text-[#5F6368] hover:text-[#202124] hover:bg-[#F0E5CC]/50'
                         }`}
                       >
                         <div className="flex items-center gap-2">
                           <SecIcon
                             className={`w-3.5 h-3.5 ${
-                              isSecActive ? 'text-amber-400' : 'text-[#AEB7C4]'
+                              isSecActive ? 'text-[#9E8243]' : 'text-[#70757A]'
                             }`}
                           />
                           <div>
                             <div className="leading-tight">{sec.label}</div>
-                            <div className="text-[10px] text-white/50">{sec.description}</div>
+                            <div className="text-[10px] text-[#70757A]">{sec.description}</div>
                           </div>
                         </div>
 
                         {sec.badge !== undefined && sec.badge > 0 && (
-                          <span className="px-1.5 py-0.2 rounded-full bg-amber-500 text-slate-950 font-bold text-[10px]">
+                          <span className="px-1.5 py-0.2 rounded-full bg-[#E5D2A0] text-[#202124] font-bold text-[10px]">
                             {sec.badge}
                           </span>
                         )}
@@ -387,10 +387,10 @@ export const SidebarNav: React.FC<SidebarNavProps> = ({
 
           {/* HR Sub-Profiles Section (Strictly hidden for Pantry) */}
           {!isPantry && (
-            <div className="pt-2 border-t border-[#252A32]/60 my-1 space-y-1">
-            <div className="px-3 py-1 flex items-center justify-between text-[10px] font-bold text-amber-400 font-mono tracking-wider uppercase">
+            <div className="pt-2 border-t border-[#E5D2A0]/25 my-1 space-y-1">
+            <div className="px-3 py-1 flex items-center justify-between text-[10px] font-bold text-[#9E8243] font-mono tracking-wider uppercase">
               <span>HR Profiles</span>
-              <span className="text-[9px] text-[#AEB7C4] font-normal">Dedicated</span>
+              <span className="text-[9px] text-[#70757A] font-normal">Dedicated</span>
             </div>
 
             {/* Profile 1: Nisha */}
@@ -398,29 +398,29 @@ export const SidebarNav: React.FC<SidebarNavProps> = ({
               onClick={() => onSelectSection('hr-nisha')}
               className={`relative w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs font-medium transition-all group cursor-pointer ${
                 activeSection === 'hr-nisha'
-                  ? 'bg-[#1B2028] text-amber-300 font-bold'
-                  : 'text-[#AEB7C4] hover:text-[#F5F6F8] hover:bg-[#1B2028]/60'
+                  ? 'bg-[#F0E5CC]/80 text-[#202124] font-bold border-l-2 border-[#E5D2A0]'
+                  : 'text-[#5F6368] hover:text-[#202124] hover:bg-[#F0E5CC]/40'
               }`}
             >
               {activeSection === 'hr-nisha' && (
                 <motion.div
                   layoutId="sidebar-active-indicator"
-                  className="absolute inset-0 border-l-2 border-amber-400 rounded-xl pointer-events-none"
+                  className="absolute inset-0 border-l-2 border-[#E5D2A0] rounded-xl pointer-events-none"
                   transition={{ type: 'spring', stiffness: 350, damping: 30 }}
                 />
               )}
               <div className="flex items-center gap-2.5 relative z-10">
                 <div className={`w-5 h-5 rounded-lg flex items-center justify-center text-[10px] font-black ${
-                  activeSection === 'hr-nisha' ? 'bg-amber-400 text-slate-950' : 'bg-white/10 text-slate-300'
+                  activeSection === 'hr-nisha' ? 'bg-[#E5D2A0] text-[#202124]' : 'bg-[#F0E5CC]/60 text-[#3C4043]'
                 }`}>
                   N
                 </div>
                 <div className="text-left">
                   <div className="tracking-tight leading-tight">Nisha</div>
-                  <div className="text-[10px] text-amber-400/80">Sr. HR Manager</div>
+                  <div className="text-[10px] text-[#9E8243]">Sr. HR Manager</div>
                 </div>
               </div>
-              <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/20 font-mono">
+              <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-[#E5D2A0]/20 text-[#7E6532] border border-[#E5D2A0]/40 font-mono">
                 Active
               </span>
             </button>
@@ -430,29 +430,29 @@ export const SidebarNav: React.FC<SidebarNavProps> = ({
               onClick={() => onSelectSection('hr-shriyanshi')}
               className={`relative w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs font-medium transition-all group cursor-pointer ${
                 activeSection === 'hr-shriyanshi'
-                  ? 'bg-[#1B2028] text-amber-300 font-bold'
-                  : 'text-[#AEB7C4] hover:text-[#F5F6F8] hover:bg-[#1B2028]/60'
+                  ? 'bg-[#F0E5CC]/80 text-[#202124] font-bold border-l-2 border-[#E5D2A0]'
+                  : 'text-[#5F6368] hover:text-[#202124] hover:bg-[#F0E5CC]/40'
               }`}
             >
               {activeSection === 'hr-shriyanshi' && (
                 <motion.div
                   layoutId="sidebar-active-indicator"
-                  className="absolute inset-0 border-l-2 border-amber-400 rounded-xl pointer-events-none"
+                  className="absolute inset-0 border-l-2 border-[#E5D2A0] rounded-xl pointer-events-none"
                   transition={{ type: 'spring', stiffness: 350, damping: 30 }}
                 />
               )}
               <div className="flex items-center gap-2.5 relative z-10">
                 <div className={`w-5 h-5 rounded-lg flex items-center justify-center text-[10px] font-black ${
-                  activeSection === 'hr-shriyanshi' ? 'bg-amber-400 text-slate-950' : 'bg-white/10 text-slate-300'
+                  activeSection === 'hr-shriyanshi' ? 'bg-[#E5D2A0] text-[#202124]' : 'bg-[#F0E5CC]/60 text-[#3C4043]'
                 }`}>
                   S
                 </div>
                 <div className="text-left">
                   <div className="tracking-tight leading-tight">Shriyanshi</div>
-                  <div className="text-[10px] text-sky-400/80">HR Executive</div>
+                  <div className="text-[10px] text-[#9E8243]">HR Executive</div>
                 </div>
               </div>
-              <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-sky-500/10 text-sky-400 border border-sky-500/20 font-mono">
+              <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-[#E5D2A0]/20 text-[#7E6532] border border-[#E5D2A0]/40 font-mono">
                 Active
               </span>
             </button>
@@ -465,14 +465,14 @@ export const SidebarNav: React.FC<SidebarNavProps> = ({
               onClick={() => onSelectSection('settings')}
               className={`relative w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs font-medium transition-all group cursor-pointer ${
                 activeSection === 'settings'
-                  ? 'bg-[#1B2028] text-[#F5F6F8] font-semibold'
-                  : 'text-[#AEB7C4] hover:text-[#F5F6F8] hover:bg-[#1B2028]/60'
+                  ? 'bg-[#F0E5CC]/80 text-[#202124] font-semibold border-l-2 border-[#E5D2A0]'
+                  : 'text-[#5F6368] hover:text-[#202124] hover:bg-[#F0E5CC]/40'
               }`}
             >
               {activeSection === 'settings' && (
                 <motion.div
                   layoutId="sidebar-active-indicator"
-                  className="absolute inset-0 border-l-2 border-amber-400 rounded-xl pointer-events-none"
+                  className="absolute inset-0 border-l-2 border-[#E5D2A0] rounded-xl pointer-events-none"
                   transition={{ type: 'spring', stiffness: 350, damping: 30 }}
                 />
               )}
@@ -481,8 +481,8 @@ export const SidebarNav: React.FC<SidebarNavProps> = ({
                 <Settings
                   className={`w-4 h-4 transition-colors ${
                     activeSection === 'settings'
-                      ? 'text-amber-400'
-                      : 'text-[#AEB7C4] group-hover:text-[#F5F6F8]'
+                      ? 'text-[#9E8243]'
+                      : 'text-[#70757A] group-hover:text-[#202124]'
                   }`}
                 />
                 <span className="tracking-tight">{t('nav_settings')}</span>
@@ -493,38 +493,38 @@ export const SidebarNav: React.FC<SidebarNavProps> = ({
 
         {/* Quick Launch Terminals (Hidden for Pantry) */}
         {!isPantry && (
-          <div className="py-2.5 border-t border-[#252A32] space-y-1.5">
+          <div className="py-2.5 border-t border-[#E5D2A0]/25 space-y-1.5">
             <button
               onClick={onOpenQRPasses}
-              className="w-full flex items-center gap-2 px-3 py-2 rounded-xl bg-[#141820] hover:bg-[#1B2028] border border-[#252A32] text-[#F5F6F8] text-xs font-semibold transition cursor-pointer"
+              className="w-full flex items-center gap-2 px-3 py-2 rounded-xl bg-white/70 hover:bg-[#F0E5CC]/50 border border-[#E5D2A0]/35 text-[#202124] text-xs font-semibold transition cursor-pointer shadow-xs"
             >
-              <QrCode className="w-3.5 h-3.5 text-amber-400" />
+              <QrCode className="w-3.5 h-3.5 text-[#9E8243]" />
               <span className="truncate">{t('btn_qr_standee')}</span>
             </button>
 
             <button
               onClick={onOpenBlankRegister}
-              className="w-full flex items-center gap-2 px-3 py-2 rounded-xl bg-emerald-950/40 hover:bg-emerald-900/40 border border-emerald-500/30 text-emerald-300 text-xs font-semibold transition cursor-pointer"
+              className="w-full flex items-center gap-2 px-3 py-2 rounded-xl bg-[#F0E5CC]/60 hover:bg-[#F0E5CC]/90 border border-[#E5D2A0]/40 text-[#202124] text-xs font-semibold transition cursor-pointer shadow-xs"
             >
-              <UserPlus className="w-3.5 h-3.5 text-emerald-400" />
+              <UserPlus className="w-3.5 h-3.5 text-emerald-600" />
               <span className="truncate">{t('btn_blank_register')}</span>
             </button>
           </div>
         )}
 
         {/* Role Switcher & User Profile */}
-        <div className="pt-3 border-t border-[#252A32] relative">
+        <div className="pt-3 border-t border-[#E5D2A0]/25 relative">
           {canSwitchViews && (
             <div className="mb-2 relative">
               <button
                 onClick={() => setRoleDropdownOpen(!roleDropdownOpen)}
-                className="w-full flex items-center justify-between px-2.5 py-1.5 rounded-xl bg-[#141820] hover:bg-[#1B2028] border border-[#252A32] text-[11px] font-semibold text-[#F5F6F8] transition cursor-pointer"
+                className="w-full flex items-center justify-between px-2.5 py-1.5 rounded-xl bg-white/70 hover:bg-[#F0E5CC]/50 border border-[#E5D2A0]/35 text-[11px] font-semibold text-[#202124] transition cursor-pointer shadow-xs"
               >
                 <div className="flex items-center gap-1.5 truncate">
-                  <Shield className="w-3 h-3 text-amber-400 shrink-0" />
+                  <Shield className="w-3 h-3 text-[#9E8243] shrink-0" />
                   <span className="truncate">Role: {currentRole}</span>
                 </div>
-                <ChevronDown className="w-3 h-3 text-[#AEB7C4] shrink-0" />
+                <ChevronDown className="w-3 h-3 text-[#70757A] shrink-0" />
               </button>
 
               <AnimatePresence>
@@ -534,9 +534,9 @@ export const SidebarNav: React.FC<SidebarNavProps> = ({
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: 4, scale: 0.98 }}
                     transition={{ duration: 0.22, ease: smoothEase }}
-                    className="absolute bottom-full left-0 right-0 mb-1 bg-[#141820] rounded-2xl p-1.5 z-50 border border-[#252A32] shadow-2xl max-h-56 overflow-y-auto"
+                    className="absolute bottom-full left-0 right-0 mb-1 bg-[#FAF9F6]/95 backdrop-blur-xl rounded-2xl p-1.5 z-50 border border-[#E5D2A0]/40 shadow-2xl max-h-56 overflow-y-auto text-[#202124]"
                   >
-                    <div className="text-[10px] font-bold text-[#AEB7C4] px-2 py-1 uppercase tracking-wider">
+                    <div className="text-[10px] font-bold text-[#70757A] px-2 py-1 uppercase tracking-wider">
                       {t('btn_switch_role')}
                     </div>
                     {allRoles.map((r) => (
@@ -548,8 +548,8 @@ export const SidebarNav: React.FC<SidebarNavProps> = ({
                         }}
                         className={`w-full flex items-center gap-2 px-2 py-1.5 rounded-lg text-xs transition text-left cursor-pointer ${
                           currentRole === r.role
-                            ? 'bg-amber-500/20 text-amber-300 font-bold'
-                            : 'text-[#AEB7C4] hover:text-[#F5F6F8] hover:bg-[#1B2028]'
+                            ? 'bg-[#F0E5CC] text-[#202124] font-bold border-l-2 border-[#E5D2A0]'
+                            : 'text-[#5F6368] hover:text-[#202124] hover:bg-[#F0E5CC]/40'
                         }`}
                       >
                         <r.icon className={`w-3.5 h-3.5 ${r.color}`} />
@@ -564,16 +564,16 @@ export const SidebarNav: React.FC<SidebarNavProps> = ({
 
           {/* User Profile Block */}
           {currentUser && (
-            <div className="flex items-center justify-between p-2 rounded-xl bg-[#141820] border border-[#252A32]">
+            <div className="flex items-center justify-between p-2 rounded-xl bg-white/60 border border-[#E5D2A0]/35 shadow-xs">
               <div className="min-w-0 pr-2">
-                <p className="text-xs font-bold text-[#F5F6F8] truncate">{currentUser.name}</p>
-                <p className="text-[10px] text-[#AEB7C4] font-mono truncate">{currentUser.role}</p>
+                <p className="text-xs font-bold text-[#202124] truncate">{currentUser.name}</p>
+                <p className="text-[10px] text-[#70757A] font-mono truncate">{currentUser.role}</p>
               </div>
 
               {onLogout && (
                 <button
                   onClick={onLogout}
-                  className="p-1.5 rounded-lg text-[#AEB7C4] hover:text-rose-400 hover:bg-rose-500/10 transition cursor-pointer"
+                  className="p-1.5 rounded-lg text-[#70757A] hover:text-rose-600 hover:bg-rose-500/10 transition cursor-pointer"
                   title={t('btn_sign_out')}
                 >
                   <LogOut className="w-3.5 h-3.5" />

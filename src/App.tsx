@@ -67,6 +67,7 @@ import { ApplicationSettingsView } from './components/ApplicationSettingsView.ts
 import { SecondaryOperationsMoreView } from './components/SecondaryOperationsMoreView.tsx';
 import { HRSubProfileView } from './components/HRSubProfileView.tsx';
 import { DashboardWatermark } from './components/DashboardWatermark.tsx';
+import { CinematicBackground } from './components/CinematicBackground.tsx';
 import { smoothEase, pageMotion } from './utils/motion.ts';
 
 import {
@@ -945,8 +946,10 @@ export default function App() {
   // ==========================================
   if (isGeneralRegisterRoute) {
     return (
-      <div className="min-h-screen bg-[#f8fafc] text-slate-900 p-4 sm:p-6 flex flex-col justify-center items-center font-sans antialiased selection:bg-amber-500 selection:text-slate-900">
-        <div className="w-full max-w-2xl">
+      <div className="min-h-screen bg-[#FAF9F6] text-[#111111] p-4 sm:p-6 flex flex-col justify-center items-center font-sans antialiased selection:bg-[#D8BF85] selection:text-[#111111] relative overflow-hidden">
+        <CinematicBackground />
+        <DashboardWatermark />
+        <div className="w-full max-w-2xl relative z-10">
           <GeneralNewCandidateRegister
             initialToken={dedicatedRegisterToken}
             onSuccess={() => {
@@ -982,8 +985,10 @@ export default function App() {
   // ==========================================
   if (isCandidateRoute) {
     return (
-      <div className="min-h-screen bg-[#f8fafc] text-slate-900 p-4 sm:p-6 flex flex-col justify-center items-center font-sans antialiased selection:bg-amber-500 selection:text-slate-900">
-        <div className="w-full max-w-2xl">
+      <div className="min-h-screen bg-[#FAF9F6] text-[#111111] p-4 sm:p-6 flex flex-col justify-center items-center font-sans antialiased selection:bg-[#D8BF85] selection:text-[#111111] relative overflow-hidden">
+        <CinematicBackground />
+        <DashboardWatermark />
+        <div className="w-full max-w-2xl relative z-10">
           <CandidateCheckInForm
             initialToken={dedicatedToken}
             isStandalonePage={true}
@@ -1003,40 +1008,42 @@ export default function App() {
   // ==========================================
   if (isCompleteRoute) {
     return (
-      <div className="min-h-screen bg-[#f8fafc] text-slate-900 p-4 sm:p-6 flex flex-col justify-center items-center font-sans antialiased selection:bg-amber-500 selection:text-slate-900">
-        <div className="w-full max-w-xl mx-auto bg-white border border-slate-200/90 rounded-2xl p-6 sm:p-8 shadow-xl text-center space-y-6 animate-in fade-in zoom-in-95 duration-200">
-          <div className="w-16 h-16 bg-emerald-50 text-emerald-600 border border-emerald-200 rounded-full flex items-center justify-center mx-auto shadow-sm">
+      <div className="min-h-screen bg-[#FAF9F6] text-[#111111] p-4 sm:p-6 flex flex-col justify-center items-center font-sans antialiased selection:bg-[#D8BF85] selection:text-[#111111] relative overflow-hidden">
+        <CinematicBackground />
+        <DashboardWatermark />
+        <div className="w-full max-w-xl mx-auto glass-panel-elevated rounded-3xl p-6 sm:p-8 shadow-2xl text-center space-y-6 animate-in fade-in zoom-in-95 duration-200 relative z-10 border border-[#D8BF85]/35">
+          <div className="w-16 h-16 bg-emerald-50 text-emerald-700 border border-emerald-200 rounded-full flex items-center justify-center mx-auto shadow-xs">
             <CheckCircle2 className="w-9 h-9" />
           </div>
 
           <div>
             <div className="flex items-center justify-center gap-2 mb-2">
-              <span className="text-[11px] font-bold tracking-widest text-amber-800 uppercase bg-amber-50 border border-amber-200 px-2.5 py-0.5 rounded-full inline-block">
+              <span className="text-[11px] font-bold tracking-widest text-[#7E6532] uppercase bg-[#F0E5CC] border border-[#D8BF85] px-2.5 py-0.5 rounded-full inline-block">
                 WHITE COLLAR REALTY
               </span>
             </div>
-            <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+            <h1 className="text-2xl sm:text-3xl font-extrabold text-[#202124] tracking-tight">
               ✓ Registration Completed
             </h1>
-            <p className="text-sm text-slate-600 mt-2 leading-relaxed">
+            <p className="text-sm text-[#3C4043] mt-2 leading-relaxed">
               Your arrival information has been recorded and received by White Collar Realty operations.
             </p>
           </div>
 
-          <div className="p-5 bg-slate-50 border border-slate-200 rounded-xl text-left space-y-3">
-            <div className="text-xs font-bold text-slate-900 uppercase tracking-wider">
+          <div className="p-5 bg-white/60 border border-[#D8BF85]/30 rounded-2xl text-left space-y-3">
+            <div className="text-xs font-bold text-[#202124] uppercase tracking-wider">
               Next Steps
             </div>
-            <p className="text-xs text-slate-600 leading-relaxed">
+            <p className="text-xs text-[#3C4043] leading-relaxed">
               Please take a seat in our <strong>Reception / Ground Floor Guest Lounge</strong>.
               Our coordinator has been notified and you will be escorted shortly.
             </p>
-            <div className="pt-2 border-t border-slate-200 flex items-center justify-between text-[11px] text-slate-500">
-              <span className="flex items-center gap-1 text-emerald-700 font-medium">
+            <div className="pt-2 border-t border-[#D8BF85]/20 flex items-center justify-between text-[11px] text-[#70757A]">
+              <span className="flex items-center gap-1 text-emerald-800 font-medium">
                 <CheckCircle2 className="w-3.5 h-3.5" />
                 Session Locked & Completed
               </span>
-              <span className="font-mono text-slate-400">Encrypted</span>
+              <span className="font-mono text-[#70757A]">Encrypted</span>
             </div>
           </div>
         </div>
@@ -1052,10 +1059,11 @@ export default function App() {
   if (docViewerMatch && docCandidateId && docViewerType) {
     if (routeCandidateLoading) {
       return (
-        <div className="min-h-screen bg-slate-950 text-slate-100 flex items-center justify-center font-sans">
-          <div className="p-8 text-center space-y-3">
-            <div className="w-10 h-10 border-3 border-amber-500 border-t-transparent rounded-full animate-spin mx-auto" />
-            <p className="text-xs text-slate-400 font-semibold tracking-wide">
+        <div className="min-h-screen bg-[#FAF9F6] text-[#202124] flex items-center justify-center font-sans">
+          <CinematicBackground />
+          <div className="p-8 text-center space-y-3 relative z-10">
+            <div className="w-10 h-10 border-3 border-[#D8BF85] border-t-transparent rounded-full animate-spin mx-auto" />
+            <p className="text-xs text-[#70757A] font-semibold tracking-wide">
               Loading Secure Document from WCR Repository...
             </p>
           </div>
@@ -1065,13 +1073,14 @@ export default function App() {
 
     if (!routeCandidate) {
       return (
-        <div className="min-h-screen bg-slate-950 text-slate-100 flex items-center justify-center font-sans p-4">
-          <div className="max-w-md w-full bg-slate-900 border border-slate-800 rounded-3xl p-6 text-center space-y-4">
-            <div className="w-12 h-12 bg-rose-500/20 text-rose-400 border border-rose-500/40 rounded-full flex items-center justify-center mx-auto">
+        <div className="min-h-screen bg-[#FAF9F6] text-[#202124] flex items-center justify-center font-sans p-4">
+          <CinematicBackground />
+          <div className="max-w-md w-full glass-panel-elevated border border-[#D8BF85]/35 rounded-3xl p-6 text-center space-y-4 relative z-10 shadow-2xl">
+            <div className="w-12 h-12 bg-rose-500/15 text-rose-600 border border-rose-300 rounded-full flex items-center justify-center mx-auto">
               <X className="w-6 h-6" />
             </div>
-            <h2 className="text-lg font-bold text-white">Document or Candidate Not Found</h2>
-            <p className="text-xs text-slate-400">
+            <h2 className="text-lg font-bold text-[#202124]">Document or Candidate Not Found</h2>
+            <p className="text-xs text-[#70757A]">
               The requested candidate document may have been archived or deleted under WCR retention policy.
             </p>
             <button
@@ -1079,7 +1088,7 @@ export default function App() {
                 window.history.pushState({}, '', '/');
                 setRoutePath('/');
               }}
-              className="px-5 py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold rounded-xl transition cursor-pointer"
+              className="px-5 py-2.5 bg-[#F0E5CC] hover:bg-[#F0E5CC]/80 text-[#202124] text-xs font-bold rounded-xl border border-[#D8BF85] transition cursor-pointer shadow-xs"
             >
               &larr; Return to Dashboard
             </button>
@@ -1106,52 +1115,54 @@ export default function App() {
   // ==========================================
   if (isDashboardRoute && !currentUser) {
     return (
-      <div className="min-h-screen bg-[#8F94A1] text-slate-100 flex items-center justify-center p-4 font-sans relative overflow-hidden">
-        <div className="glass-panel-elevated border border-white/10 rounded-3xl max-w-sm w-full p-6 shadow-2xl space-y-4 relative z-10 backdrop-blur-2xl">
-          <div className="flex items-center gap-2.5 pb-2 border-b border-white/8">
-            <div className="w-8 h-8 rounded-xl bg-amber-500/20 text-amber-400 border border-amber-500/30 flex items-center justify-center">
+      <div className="min-h-screen bg-[#FAF9F6] text-[#111111] flex items-center justify-center p-4 font-sans relative overflow-hidden selection:bg-[#D8BF85] selection:text-[#111111]">
+        <CinematicBackground />
+        <DashboardWatermark />
+        <div className="glass-panel-elevated rounded-3xl max-w-sm w-full p-6 shadow-2xl space-y-4 relative z-10">
+          <div className="flex items-center gap-2.5 pb-2 border-b border-[#D8BF85]/25">
+            <div className="w-8 h-8 rounded-xl bg-[#D8BF85]/20 text-[#9E8243] border border-[#D8BF85]/35 flex items-center justify-center">
               <Shield className="w-4 h-4" />
             </div>
             <div>
-              <h3 className="text-base font-bold text-white tracking-tight">Staff Authentication</h3>
-              <p className="text-[11px] text-slate-400">White Collar Realty Command Console</p>
+              <h3 className="text-base font-bold text-[#111111] tracking-tight">Staff Authentication</h3>
+              <p className="text-[11px] text-[#111111]/70">White Collar Realty Command Console</p>
             </div>
           </div>
-          <p className="text-xs text-slate-300">
+          <p className="text-xs text-[#111111]/85">
             Authenticate with verified White Collar Realty credentials to access operations decks.
           </p>
 
           {loginError && (
-            <div className="p-2.5 bg-rose-500/15 border border-rose-500/40 rounded-xl text-rose-300 text-xs">
+            <div className="p-2.5 bg-rose-50 border border-rose-300 rounded-xl text-rose-800 text-xs">
               {loginError}
             </div>
           )}
 
           <form onSubmit={handleStaffLogin} className="space-y-3 text-xs">
             <div>
-              <label className="block text-slate-300 font-semibold mb-1">Staff Email</label>
+              <label className="block text-[#111111] font-semibold mb-1">Staff Email</label>
               <input
                 type="email"
                 value={loginEmail}
                 onChange={(e) => setLoginEmail(e.target.value)}
                 placeholder="e.g. reception@whitecollarrealty.com"
-                className="w-full px-3 py-2 bg-[#07090C] border border-white/10 rounded-xl text-white text-xs focus:outline-none focus:border-amber-400 transition"
+                className="w-full px-3 py-2 bg-white/70 border border-[#D8BF85]/35 rounded-xl text-[#111111] placeholder:text-[#111111]/50 text-xs focus:outline-none focus:border-[#D8BF85] focus:ring-1 focus:ring-[#D8BF85]/40 transition"
                 required
               />
             </div>
             <div>
-              <label className="block text-slate-300 font-semibold mb-1">Password</label>
+              <label className="block text-[#111111] font-semibold mb-1">Password</label>
               <input
                 type="password"
                 value={loginPassword}
                 onChange={(e) => setLoginPassword(e.target.value)}
-                className="w-full px-3 py-2 bg-[#07090C] border border-white/10 rounded-xl text-white text-xs focus:outline-none focus:border-amber-400 transition"
+                className="w-full px-3 py-2 bg-white/70 border border-[#D8BF85]/35 rounded-xl text-[#111111] placeholder:text-[#111111]/50 text-xs focus:outline-none focus:border-[#D8BF85] focus:ring-1 focus:ring-[#D8BF85]/40 transition"
                 required
               />
             </div>
             <button
               type="submit"
-              className="w-full py-2.5 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-bold rounded-xl shadow-lg transition cursor-pointer"
+              className="w-full py-2.5 bg-gradient-to-r from-[#D8BF85] to-[#c7ab6e] hover:from-[#c7ab6e] hover:to-[#b89856] text-[#111111] font-bold rounded-xl shadow-md transition cursor-pointer"
             >
               Sign In to Staff Console
             </button>
@@ -1162,7 +1173,7 @@ export default function App() {
                 window.history.pushState({}, '', '/register');
                 setRoutePath('/register');
               }}
-              className="text-xs text-slate-400 hover:text-amber-400 underline cursor-pointer"
+              className="text-xs text-[#111111]/75 hover:text-[#9E8243] underline cursor-pointer"
             >
               &larr; Candidate Self-Registration (/register)
             </button>
@@ -1184,7 +1195,8 @@ export default function App() {
   // STAFF & OPERATIONS CONSOLE (HR, ADMIN, CEO, INTERVIEWER, RECEPTION, PANTRY)
   // ==========================================
   return (
-    <div className="h-[100dvh] max-h-[100dvh] bg-[#EEF2F6] text-slate-900 flex font-sans selection:bg-[#f36515] selection:text-white relative overflow-hidden">
+    <div className="h-[100dvh] max-h-[100dvh] bg-[#FAF9F6] text-[#111111] flex font-sans selection:bg-[#D8BF85] selection:text-[#111111] relative overflow-hidden">
+      <CinematicBackground />
       {/* Desktop Glass Sidebar Navigation */}
       <SidebarNav
         currentRole={currentRole}
@@ -1485,18 +1497,18 @@ export default function App() {
                   )}
 
                   {/* Interactive Testing Quick Launcher Strip */}
-                  <div className="p-4 card-dark bg-[#0B0B0D] text-white rounded-3xl border border-white/10 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4 text-xs shadow-xl">
+                  <div className="p-4 card-dark rounded-3xl border border-[#E5D2A0]/50 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4 text-xs shadow-sm">
                     <div className="space-y-1">
                       <div className="flex items-center gap-2">
-                        <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse" />
-                        <strong className="text-white font-bold text-sm tracking-tight">
+                        <span className="w-2.5 h-2.5 rounded-full bg-emerald-600 animate-pulse" />
+                        <strong className="text-[#111111] font-bold text-sm tracking-tight">
                           {t('quick_architecture_title')}
                         </strong>
                       </div>
-                      <p className="text-[#E0E0E0] text-xs">
-                        <strong className="text-emerald-400">1. General Reception QR</strong> (100% blank form, isolated session) &bull;{' '}
-                        <strong className="text-amber-400">2. Scheduled QR</strong> (Appointment pass) &bull;{' '}
-                        <strong className="text-cyan-400">3. Reception Live Photo</strong> (WebRTC desk verification).
+                      <p className="text-[#111111]/80 text-xs">
+                        <strong className="text-emerald-700">1. General Reception QR</strong> (100% blank form, isolated session) &bull;{' '}
+                        <strong className="text-[#9E8243]">2. Scheduled QR</strong> (Appointment pass) &bull;{' '}
+                        <strong className="text-sky-700">3. Reception Live Photo</strong> (WebRTC desk verification).
                       </p>
                     </div>
 
@@ -1715,32 +1727,32 @@ export default function App() {
 
       {/* Real-time In-App Internal Office Chat Toast Notification */}
       {chatToast && (
-        <div className="fixed bottom-5 right-5 z-50 max-w-sm w-full bg-slate-900 border border-amber-500/50 rounded-2xl shadow-2xl p-4 animate-in slide-in-from-bottom-5 duration-300">
+        <div className="fixed bottom-5 right-5 z-50 max-w-sm w-full glass-panel-elevated border border-[#E5D2A0] rounded-2xl shadow-xl p-4 animate-in slide-in-from-bottom-5 duration-300 text-[#111111]">
           <div className="flex items-start justify-between gap-3">
             <div className="flex items-start gap-3">
-              <div className="w-9 h-9 rounded-xl bg-amber-500/20 text-amber-400 border border-amber-500/30 flex items-center justify-center font-black shrink-0 mt-0.5">
-                <MessageSquare className="w-5 h-5" />
+              <div className="w-9 h-9 rounded-xl bg-[#E5D2A0]/30 text-[#9E8243] border border-[#E5D2A0] flex items-center justify-center font-black shrink-0 mt-0.5">
+                <MessageSquare className="w-5 h-5 text-[#9E8243]" />
               </div>
               <div className="min-w-0">
                 <div className="flex items-center gap-2 flex-wrap">
-                  <h4 className="text-xs font-bold text-white truncate">{chatToast.senderName}</h4>
-                  <span className="px-1.5 py-0.2 rounded-sm bg-slate-800 text-[9px] font-bold text-amber-400 border border-slate-700">
+                  <h4 className="text-xs font-bold text-[#111111] truncate">{chatToast.senderName}</h4>
+                  <span className="px-1.5 py-0.2 rounded-sm bg-[#FAF6ED] text-[9px] font-bold text-[#111111] border border-[#E5D2A0]">
                     {chatToast.senderRole}
                   </span>
-                  <span className="text-[10px] text-slate-500">{chatToast.timestamp}</span>
+                  <span className="text-[10px] text-[#70757A]">{chatToast.timestamp}</span>
                 </div>
-                <p className="text-xs text-slate-300 mt-1 line-clamp-2 leading-relaxed">
+                <p className="text-xs text-[#111111]/85 mt-1 line-clamp-2 leading-relaxed">
                   {chatToast.content}
                 </p>
                 {(chatToast.candidateName || chatToast.roomName) && (
                   <div className="flex flex-wrap items-center gap-1.5 mt-2">
                     {chatToast.candidateName && (
-                      <span className="px-2 py-0.5 bg-amber-500/10 border border-amber-500/30 rounded-md text-[10px] font-semibold text-amber-300">
+                      <span className="px-2 py-0.5 bg-[#FAF6ED] border border-[#E5D2A0]/60 rounded-md text-[10px] font-semibold text-[#111111]">
                         Candidate: {chatToast.candidateName}
                       </span>
                     )}
                     {chatToast.roomName && (
-                      <span className="px-2 py-0.5 bg-sky-500/10 border border-sky-500/30 rounded-md text-[10px] font-semibold text-sky-300">
+                      <span className="px-2 py-0.5 bg-[#FAF6ED] border border-[#E5D2A0]/60 rounded-md text-[10px] font-semibold text-[#111111]">
                         Room: {chatToast.roomName}
                       </span>
                     )}
@@ -1750,13 +1762,13 @@ export default function App() {
             </div>
             <button
               onClick={() => setChatToast(null)}
-              className="text-slate-500 hover:text-white p-1 rounded-lg hover:bg-slate-800 transition cursor-pointer shrink-0"
+              className="text-[#70757A] hover:text-[#111111] p-1 rounded-lg hover:bg-[#FAF6ED] transition cursor-pointer shrink-0"
               title="Dismiss alert"
             >
               <X className="w-4 h-4" />
             </button>
           </div>
-          <div className="flex items-center justify-end gap-2 mt-3 pt-2 border-t border-slate-800/80">
+          <div className="flex items-center justify-end gap-2 mt-3 pt-2 border-t border-[#E5D2A0]/30">
             <button
               onClick={() => {
                 setChatToast(null);
@@ -1950,54 +1962,54 @@ export default function App() {
 
       {/* 8. STAFF LOGIN MODAL (EMAIL + PASSWORD) */}
       {activeModal === 'STAFF_LOGIN' && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-xs p-4">
-          <div className="bg-slate-900 border border-slate-800 rounded-3xl max-w-sm w-full p-6 shadow-2xl space-y-4">
-            <div className="flex items-center justify-between pb-2 border-b border-slate-800">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+          <div className="glass-panel-elevated border border-[#E5D2A0] rounded-3xl max-w-sm w-full p-6 shadow-2xl space-y-4 text-[#111111]">
+            <div className="flex items-center justify-between pb-2 border-b border-[#E5D2A0]/40">
               <div className="flex items-center gap-2">
-                <Shield className="w-5 h-5 text-purple-400" />
-                <h3 className="text-base font-bold text-white">Staff Login</h3>
+                <Shield className="w-5 h-5 text-[#9E8243]" />
+                <h3 className="text-base font-bold text-[#111111]">Staff Login</h3>
               </div>
               <button
                 onClick={() => setActiveModal(null)}
-                className="p-1 rounded-lg text-slate-400 hover:text-white"
+                className="p-1 rounded-lg text-[#111111] hover:text-[#9E8243] cursor-pointer"
               >
                 <X className="w-5 h-5" />
               </button>
             </div>
 
             {loginError && (
-              <div className="p-2.5 bg-rose-500/15 border border-rose-500/40 rounded-xl text-rose-300 text-xs">
+              <div className="p-2.5 bg-rose-50 border border-rose-300 rounded-xl text-rose-700 text-xs">
                 {loginError}
               </div>
             )}
 
             {loginSuccess && (
-              <div className="p-2.5 bg-emerald-500/15 border border-emerald-500/40 rounded-xl text-emerald-300 text-xs flex items-center gap-1.5">
-                <CheckCircle2 className="w-4 h-4" />
+              <div className="p-2.5 bg-emerald-50 border border-emerald-300 rounded-xl text-emerald-800 text-xs flex items-center gap-1.5">
+                <CheckCircle2 className="w-4 h-4 text-emerald-600" />
                 <span>{loginSuccess}</span>
               </div>
             )}
 
             <form onSubmit={handleStaffLogin} className="space-y-3 text-xs">
               <div>
-                <label className="block text-slate-300 font-semibold mb-1">Staff Email</label>
+                <label className="block text-[#111111] font-semibold mb-1">Staff Email</label>
                 <input
                   type="email"
                   value={loginEmail}
                   onChange={(e) => setLoginEmail(e.target.value)}
                   placeholder="e.g. reception@whitecollarrealty.com"
-                  className="w-full px-3 py-2 bg-slate-950 border border-slate-700 rounded-xl text-white text-xs"
+                  className="w-full px-3 py-2 bg-white border border-[#E5D2A0] rounded-xl text-[#111111] text-xs"
                   required
                 />
               </div>
 
               <div>
                 <div className="flex items-center justify-between mb-1">
-                  <label className="block text-slate-300 font-semibold">Password</label>
+                  <label className="block text-[#111111] font-semibold">Password</label>
                   <button
                     type="button"
                     onClick={() => setActiveModal('FORGOT_PASSWORD')}
-                    className="text-amber-400 hover:text-amber-300 text-[11px] font-semibold underline cursor-pointer"
+                    className="text-[#9E8243] hover:text-[#7E6532] text-[11px] font-semibold underline cursor-pointer"
                   >
                     Forgot Password?
                   </button>
@@ -2006,7 +2018,7 @@ export default function App() {
                   type="password"
                   value={loginPassword}
                   onChange={(e) => setLoginPassword(e.target.value)}
-                  className="w-full px-3 py-2 bg-slate-950 border border-slate-700 rounded-xl text-white text-xs"
+                  className="w-full px-3 py-2 bg-white border border-[#E5D2A0] rounded-xl text-[#111111] text-xs"
                   required
                 />
               </div>
@@ -2014,14 +2026,14 @@ export default function App() {
               <div className="pt-2">
                 <button
                   type="submit"
-                  className="w-full py-2.5 bg-gradient-to-r from-purple-500 to-purple-600 hover:from-purple-400 hover:to-purple-500 text-white font-bold rounded-xl shadow-lg transition cursor-pointer"
+                  className="w-full py-2.5 bg-gradient-to-r from-white via-[#FAF6ED] to-[#E5D2A0] hover:to-[#D8BF85] text-[#111111] font-bold rounded-xl border border-[#E5D2A0] shadow-sm transition cursor-pointer"
                 >
                   Authenticate Staff Session
                 </button>
               </div>
 
-              <div className="pt-2 border-t border-slate-800 text-[10px] space-y-1.5">
-                <p className="font-semibold text-slate-400">Quick Select Staff Role (Password: <span className="font-mono text-amber-400">wcr123</span>):</p>
+              <div className="pt-2 border-t border-[#E5D2A0]/40 text-[10px] space-y-1.5">
+                <p className="font-semibold text-[#111111]/80">Quick Select Staff Role (Password: <span className="font-mono text-[#9E8243] font-bold">wcr123</span>):</p>
                 <div className="grid grid-cols-2 gap-1.5 pt-1">
                   <button
                     type="button"
@@ -2029,10 +2041,10 @@ export default function App() {
                       setLoginEmail('lalit@whitecollarrealty.com');
                       setLoginPassword('wcr123');
                     }}
-                    className="p-1.5 bg-slate-950 hover:bg-slate-800 border border-slate-800 rounded-lg text-left text-slate-300 hover:text-white transition cursor-pointer"
+                    className="p-1.5 bg-white hover:bg-[#FAF6ED] border border-[#E5D2A0]/60 rounded-lg text-left text-[#111111] transition cursor-pointer shadow-xs"
                   >
-                    <span className="font-bold text-emerald-400 block">CEO Suite</span>
-                    <span className="text-[9px] text-slate-500 font-mono truncate block">lalit@...</span>
+                    <span className="font-bold text-emerald-700 block">CEO Suite</span>
+                    <span className="text-[9px] text-[#70757A] font-mono truncate block">lalit@...</span>
                   </button>
 
                   <button
@@ -2041,10 +2053,10 @@ export default function App() {
                       setLoginEmail('nisha@whitecollarrealty.com');
                       setLoginPassword('wcr123');
                     }}
-                    className="p-1.5 bg-slate-950 hover:bg-slate-800 border border-slate-800 rounded-lg text-left text-slate-300 hover:text-white transition cursor-pointer"
+                    className="p-1.5 bg-white hover:bg-[#FAF6ED] border border-[#E5D2A0]/60 rounded-lg text-left text-[#111111] transition cursor-pointer shadow-xs"
                   >
-                    <span className="font-bold text-amber-400 block">HR Lead</span>
-                    <span className="text-[9px] text-slate-500 font-mono truncate block">nisha@...</span>
+                    <span className="font-bold text-[#9E8243] block">HR Lead</span>
+                    <span className="text-[9px] text-[#70757A] font-mono truncate block">nisha@...</span>
                   </button>
 
                   <button
@@ -2053,10 +2065,10 @@ export default function App() {
                       setLoginEmail('kimmi@whitecollarrealty.com');
                       setLoginPassword('wcr123');
                     }}
-                    className="p-1.5 bg-slate-950 hover:bg-slate-800 border border-slate-800 rounded-lg text-left text-slate-300 hover:text-white transition cursor-pointer"
+                    className="p-1.5 bg-white hover:bg-[#FAF6ED] border border-[#E5D2A0]/60 rounded-lg text-left text-[#111111] transition cursor-pointer shadow-xs"
                   >
-                    <span className="font-bold text-amber-300 block">Kimmi Mam (Sr HR)</span>
-                    <span className="text-[9px] text-slate-500 font-mono truncate block">kimmi@...</span>
+                    <span className="font-bold text-[#7E6532] block">Kimmi Mam (Sr HR)</span>
+                    <span className="text-[9px] text-[#70757A] font-mono truncate block">kimmi@...</span>
                   </button>
 
                   <button
@@ -2065,10 +2077,10 @@ export default function App() {
                       setLoginEmail('reception@whitecollarrealty.com');
                       setLoginPassword('wcr123');
                     }}
-                    className="p-1.5 bg-slate-950 hover:bg-slate-800 border border-slate-800 rounded-lg text-left text-slate-300 hover:text-white transition cursor-pointer"
+                    className="p-1.5 bg-white hover:bg-[#FAF6ED] border border-[#E5D2A0]/60 rounded-lg text-left text-[#111111] transition cursor-pointer shadow-xs"
                   >
-                    <span className="font-bold text-cyan-400 block">Reception Desk</span>
-                    <span className="text-[9px] text-slate-500 font-mono truncate block">reception@...</span>
+                    <span className="font-bold text-sky-700 block">Reception Desk</span>
+                    <span className="text-[9px] text-[#70757A] font-mono truncate block">reception@...</span>
                   </button>
 
                   <button
@@ -2077,10 +2089,10 @@ export default function App() {
                       setLoginEmail('pantry@whitecollarrealty.com');
                       setLoginPassword('wcr123');
                     }}
-                    className="p-1.5 bg-slate-950 hover:bg-slate-800 border border-slate-800 rounded-lg text-left text-slate-300 hover:text-white transition cursor-pointer"
+                    className="p-1.5 bg-white hover:bg-[#FAF6ED] border border-[#E5D2A0]/60 rounded-lg text-left text-[#111111] transition cursor-pointer shadow-xs"
                   >
-                    <span className="font-bold text-amber-200 block">Pantry Steward</span>
-                    <span className="text-[9px] text-slate-500 font-mono truncate block">pantry@...</span>
+                    <span className="font-bold text-[#9E8243] block">Pantry Steward</span>
+                    <span className="text-[9px] text-[#70757A] font-mono truncate block">pantry@...</span>
                   </button>
 
                   <button
@@ -2089,10 +2101,10 @@ export default function App() {
                       setLoginEmail('sameer@whitecollarrealty.com');
                       setLoginPassword('wcr123');
                     }}
-                    className="p-1.5 bg-slate-950 hover:bg-slate-800 border border-slate-800 rounded-lg text-left text-slate-300 hover:text-white transition cursor-pointer"
+                    className="p-1.5 bg-white hover:bg-[#FAF6ED] border border-[#E5D2A0]/60 rounded-lg text-left text-[#111111] transition cursor-pointer shadow-xs"
                   >
-                    <span className="font-bold text-purple-400 block">Admin Ops</span>
-                    <span className="text-[9px] text-slate-500 font-mono truncate block">sameer@...</span>
+                    <span className="font-bold text-purple-700 block">Admin Ops</span>
+                    <span className="text-[9px] text-[#70757A] font-mono truncate block">sameer@...</span>
                   </button>
                 </div>
               </div>

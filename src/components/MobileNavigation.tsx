@@ -89,14 +89,14 @@ export const MobileNavigation: React.FC<MobileNavigationProps> = ({
   return (
     <>
       {/* Mobile Glass Bottom Nav Bar */}
-      <nav className="lg:hidden fixed bottom-0 left-0 right-0 z-30 bg-[#0B0F14] border-t border-[#252A32] px-2 py-1.5 flex items-center justify-around">
+      <nav className="lg:hidden fixed bottom-0 left-0 right-0 z-30 bg-white/72 backdrop-blur-[16px] border-t border-[#E5D2A0]/40 px-2 py-1.5 flex items-center justify-around select-none text-[#111111]">
         <button
           onClick={() => onSelectSection('dashboard')}
-          className={`flex flex-col items-center py-1 px-3 rounded-xl transition ${
-            activeSection === 'dashboard' ? 'text-amber-400 font-bold' : 'text-[#AEB7C4]'
+          className={`flex flex-col items-center py-1 px-3 rounded-xl transition cursor-pointer ${
+            activeSection === 'dashboard' ? 'text-[#9E8243] font-bold' : 'text-[#111111]'
           }`}
         >
-          {isPantry ? <Coffee className="w-4 h-4 text-amber-400" /> : <LayoutDashboard className="w-4 h-4" />}
+          {isPantry ? <Coffee className="w-4 h-4 text-[#9E8243]" /> : <LayoutDashboard className="w-4 h-4" />}
           <span className="text-[10px] font-semibold mt-0.5">{isPantry ? 'Pantry Tasks' : 'Dashboard'}</span>
         </button>
 
@@ -104,8 +104,8 @@ export const MobileNavigation: React.FC<MobileNavigationProps> = ({
           <>
             <button
               onClick={() => onSelectSection('reception')}
-              className={`flex flex-col items-center py-1 px-3 rounded-xl transition ${
-                activeSection === 'reception' ? 'text-amber-400 font-bold' : 'text-[#AEB7C4]'
+              className={`flex flex-col items-center py-1 px-3 rounded-xl transition cursor-pointer ${
+                activeSection === 'reception' ? 'text-[#9E8243] font-bold' : 'text-[#111111]'
               }`}
             >
               <Building2 className="w-4 h-4" />
@@ -114,18 +114,18 @@ export const MobileNavigation: React.FC<MobileNavigationProps> = ({
 
             <button
               onClick={onOpenQRPasses}
-              className="flex flex-col items-center py-1 px-3 rounded-xl text-amber-400 font-bold"
+              className="flex flex-col items-center py-1 px-3 rounded-xl text-[#9E8243] font-bold cursor-pointer"
             >
-              <div className="w-7 h-7 rounded-lg bg-[#1B2028] border border-[#252A32] flex items-center justify-center -mt-2 shadow-lg">
-                <QrCode className="w-4 h-4 text-amber-400" />
+              <div className="w-7 h-7 rounded-lg bg-[#FAF6ED] border border-[#E5D2A0]/50 flex items-center justify-center -mt-2 shadow-xs text-[#111111]">
+                <QrCode className="w-4 h-4 text-[#9E8243]" />
               </div>
               <span className="text-[9px] font-bold mt-0.5">QR Pass</span>
             </button>
 
             <button
               onClick={() => onSelectSection('candidates')}
-              className={`flex flex-col items-center py-1 px-3 rounded-xl transition ${
-                activeSection === 'candidates' ? 'text-amber-400 font-bold' : 'text-[#AEB7C4]'
+              className={`flex flex-col items-center py-1 px-3 rounded-xl transition cursor-pointer ${
+                activeSection === 'candidates' ? 'text-[#9E8243] font-bold' : 'text-[#111111]'
               }`}
             >
               <UserCheck className="w-4 h-4" />
@@ -134,8 +134,8 @@ export const MobileNavigation: React.FC<MobileNavigationProps> = ({
 
             <button
               onClick={() => onSelectSection('more')}
-              className={`flex flex-col items-center py-1 px-3 rounded-xl transition ${
-                activeSection === 'more' ? 'text-amber-400 font-bold' : 'text-[#AEB7C4] hover:text-[#F5F6F8]'
+              className={`flex flex-col items-center py-1 px-3 rounded-xl transition cursor-pointer ${
+                activeSection === 'more' ? 'text-[#9E8243] font-bold' : 'text-[#111111]'
               }`}
             >
               <MoreHorizontal className="w-4 h-4" />
@@ -156,7 +156,7 @@ export const MobileNavigation: React.FC<MobileNavigationProps> = ({
               exit={{ opacity: 0 }}
               transition={{ duration: 0.24, ease: smoothEase }}
               onClick={onClose}
-              className="absolute inset-0 bg-black/80 backdrop-blur-md"
+              className="absolute inset-0 bg-[#FAF9F6]/75 backdrop-blur-[16px]"
             />
 
             {/* Drawer */}
@@ -165,21 +165,21 @@ export const MobileNavigation: React.FC<MobileNavigationProps> = ({
               animate={{ x: 0 }}
               exit={{ x: '-100%' }}
               transition={{ duration: 0.32, ease: smoothEase }}
-              className="relative w-72 max-w-[85vw] h-full bg-[#0B0F14] text-[#F5F6F8] p-4 flex flex-col border-r border-[#252A32] z-10"
+              className="relative w-72 max-w-[85vw] h-full bg-white/72 backdrop-blur-[16px] text-[#111111] p-4 flex flex-col border-r border-[#E5D2A0]/45 z-10 shadow-2xl"
             >
-              <div className="flex items-center justify-between pb-3 border-b border-[#252A32]">
+              <div className="flex items-center justify-between pb-3 border-b border-[#E5D2A0]/30">
                 <div className="flex items-center gap-2">
-                  <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center text-slate-950 font-black text-xs">
+                  <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-[#FAF6ED] via-[#E5D2A0] to-[#C9AB68] flex items-center justify-center text-[#111111] font-black text-xs shadow-xs border border-[#E5D2A0]">
                     WCR
                   </div>
                   <div>
-                    <h3 className="text-xs font-bold text-[#F5F6F8]">White Collar Realty</h3>
-                    <p className="text-[10px] text-amber-400 font-mono">Operations Console</p>
+                    <h3 className="text-xs font-bold text-[#111111]">White Collar Realty</h3>
+                    <p className="text-[10px] text-[#9E8243] font-mono">Operations Console</p>
                   </div>
                 </div>
                 <button
                   onClick={onClose}
-                  className="p-1.5 rounded-lg text-[#AEB7C4] hover:text-[#F5F6F8] hover:bg-[#1B2028]"
+                  className="p-1.5 rounded-lg text-[#111111] hover:text-[#9E8243] hover:bg-[#F0E5CC]/50 cursor-pointer"
                 >
                   <X className="w-4 h-4" />
                 </button>
@@ -197,18 +197,18 @@ export const MobileNavigation: React.FC<MobileNavigationProps> = ({
                         onSelectSection(item.id);
                         onClose();
                       }}
-                      className={`w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs font-medium transition ${
+                      className={`w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs font-medium transition cursor-pointer ${
                         isActive
-                          ? 'bg-[#1B2028] text-[#F5F6F8] font-bold border-l-2 border-amber-400'
-                          : 'text-[#AEB7C4] hover:text-[#F5F6F8] hover:bg-[#1B2028]/60'
+                          ? 'bg-[#F0E5CC] text-[#202124] font-bold border-l-2 border-[#E5D2A0]'
+                          : 'text-[#5F6368] hover:text-[#202124] hover:bg-[#F0E5CC]/40'
                       }`}
                     >
                       <div className="flex items-center gap-2.5">
-                        <Icon className={`w-4 h-4 ${isActive ? 'text-amber-400' : 'text-[#AEB7C4]'}`} />
+                        <Icon className={`w-4 h-4 ${isActive ? 'text-[#9E8243]' : 'text-[#70757A]'}`} />
                         <span>{item.label}</span>
                       </div>
                       {item.badge !== undefined && item.badge > 0 && (
-                        <span className="px-1.5 py-0.5 rounded-full bg-amber-500 text-slate-950 text-[10px] font-bold">
+                        <span className="px-1.5 py-0.5 rounded-full bg-[#E5D2A0] text-[#202124] text-[10px] font-bold">
                           {item.badge}
                         </span>
                       )}
@@ -218,8 +218,8 @@ export const MobileNavigation: React.FC<MobileNavigationProps> = ({
 
                 {/* HR Sub-Profiles Section (Strictly hidden for Pantry) */}
                 {!isPantry && (
-                  <div className="pt-2 border-t border-[#252A32] space-y-1">
-                    <div className="text-[10px] font-bold text-amber-400 px-3 py-1 uppercase tracking-wider font-mono">
+                  <div className="pt-2 border-t border-[#E5D2A0]/25 space-y-1">
+                    <div className="text-[10px] font-bold text-[#9E8243] px-3 py-1 uppercase tracking-wider font-mono">
                       HR Profiles
                     </div>
                     <button
@@ -227,19 +227,19 @@ export const MobileNavigation: React.FC<MobileNavigationProps> = ({
                         onSelectSection('hr-nisha');
                         onClose();
                       }}
-                      className={`w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs transition ${
+                      className={`w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs transition cursor-pointer ${
                         activeSection === 'hr-nisha'
-                          ? 'bg-[#1B2028] text-amber-300 font-bold border-l-2 border-amber-400'
-                          : 'text-[#AEB7C4] hover:text-[#F5F6F8] hover:bg-[#1B2028]/60'
+                          ? 'bg-[#F0E5CC] text-[#202124] font-bold border-l-2 border-[#E5D2A0]'
+                          : 'text-[#5F6368] hover:text-[#202124] hover:bg-[#F0E5CC]/40'
                       }`}
                     >
                       <div className="flex items-center gap-2">
-                        <div className="w-5 h-5 rounded-md bg-amber-400/20 text-amber-300 font-bold text-[10px] flex items-center justify-center">
+                        <div className="w-5 h-5 rounded-md bg-[#E5D2A0]/30 text-[#7E6532] font-bold text-[10px] flex items-center justify-center">
                           N
                         </div>
                         <span>Nisha (Senior HR)</span>
                       </div>
-                      <span className="text-[10px] text-amber-400 font-mono">Active</span>
+                      <span className="text-[10px] text-[#9E8243] font-mono">Active</span>
                     </button>
 
                     <button
@@ -247,25 +247,25 @@ export const MobileNavigation: React.FC<MobileNavigationProps> = ({
                         onSelectSection('hr-shriyanshi');
                         onClose();
                       }}
-                      className={`w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs transition ${
+                      className={`w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs transition cursor-pointer ${
                         activeSection === 'hr-shriyanshi'
-                          ? 'bg-[#1B2028] text-amber-300 font-bold border-l-2 border-amber-400'
-                          : 'text-[#AEB7C4] hover:text-[#F5F6F8] hover:bg-[#1B2028]/60'
+                          ? 'bg-[#F0E5CC] text-[#202124] font-bold border-l-2 border-[#E5D2A0]'
+                          : 'text-[#5F6368] hover:text-[#202124] hover:bg-[#F0E5CC]/40'
                       }`}
                     >
                       <div className="flex items-center gap-2">
-                        <div className="w-5 h-5 rounded-md bg-sky-400/20 text-sky-300 font-bold text-[10px] flex items-center justify-center">
+                        <div className="w-5 h-5 rounded-md bg-[#E5D2A0]/30 text-[#7E6532] font-bold text-[10px] flex items-center justify-center">
                           S
                         </div>
                         <span>Shriyanshi (Intake HR)</span>
                       </div>
-                      <span className="text-[10px] text-sky-400 font-mono">Active</span>
+                      <span className="text-[10px] text-[#9E8243] font-mono">Active</span>
                     </button>
                   </div>
                 )}
 
-                <div className="pt-3 border-t border-[#252A32]">
-                  <div className="text-[10px] font-bold text-[#AEB7C4] px-3 py-1 uppercase tracking-wider">
+                <div className="pt-3 border-t border-[#E5D2A0]/25">
+                  <div className="text-[10px] font-bold text-[#70757A] px-3 py-1 uppercase tracking-wider">
                     Role Views
                   </div>
                   {allRoles.map((r) => (
@@ -275,10 +275,10 @@ export const MobileNavigation: React.FC<MobileNavigationProps> = ({
                         onSelectRole(r.role);
                         onClose();
                       }}
-                      className={`w-full flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs transition ${
+                      className={`w-full flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs transition cursor-pointer ${
                         currentRole === r.role
-                          ? 'bg-[#1B2028] text-amber-300 font-bold'
-                          : 'text-[#AEB7C4] hover:text-[#F5F6F8] hover:bg-[#1B2028]/60'
+                          ? 'bg-[#F0E5CC] text-[#202124] font-bold border-l-2 border-[#E5D2A0]'
+                          : 'text-[#5F6368] hover:text-[#202124] hover:bg-[#F0E5CC]/40'
                       }`}
                     >
                       <r.icon className={`w-3.5 h-3.5 ${r.color}`} />
@@ -290,15 +290,15 @@ export const MobileNavigation: React.FC<MobileNavigationProps> = ({
 
               {/* User Logout */}
               {currentUser && (
-                <div className="pt-3 border-t border-[#252A32] flex items-center justify-between">
+                <div className="pt-3 border-t border-[#E5D2A0]/25 flex items-center justify-between">
                   <div className="min-w-0 pr-2">
-                    <p className="text-xs font-bold text-[#F5F6F8] truncate">{currentUser.name}</p>
-                    <p className="text-[10px] text-[#AEB7C4] font-mono truncate">{currentUser.role}</p>
+                    <p className="text-xs font-bold text-[#202124] truncate">{currentUser.name}</p>
+                    <p className="text-[10px] text-[#70757A] font-mono truncate">{currentUser.role}</p>
                   </div>
                   {onLogout && (
                     <button
                       onClick={onLogout}
-                      className="p-1.5 rounded-lg text-[#AEB7C4] hover:text-rose-400 hover:bg-rose-500/10"
+                      className="p-1.5 rounded-lg text-[#70757A] hover:text-rose-600 hover:bg-rose-500/10 cursor-pointer"
                     >
                       <LogOut className="w-4 h-4" />
                     </button>

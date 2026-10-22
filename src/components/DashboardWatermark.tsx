@@ -28,7 +28,7 @@ export const DashboardWatermark: React.FC = () => {
       >
         <svg
           viewBox="50 10 320 415"
-          className="w-full h-full object-contain opacity-[0.06] text-slate-800"
+          className="w-full h-full object-contain opacity-[0.08] text-[#202124]"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >

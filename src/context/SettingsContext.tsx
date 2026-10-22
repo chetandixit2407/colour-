@@ -76,14 +76,12 @@ export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
       if (settings.theme === 'light') {
         root.classList.add('theme-light');
         root.classList.remove('theme-dark');
-        document.body.classList.add('bg-[#E5E7EB]');
-        document.body.classList.remove('bg-[#8F94A1]');
       } else {
         root.classList.add('theme-dark');
         root.classList.remove('theme-light');
-        document.body.classList.add('bg-[#8F94A1]');
-        document.body.classList.remove('bg-[#E5E7EB]');
       }
+      document.body.classList.add('bg-[#FAF9F6]');
+      document.body.classList.remove('bg-[#8F94A1]', 'bg-[#E5E7EB]');
 
       // Text size scaling
       if (settings.textSize === 'small') {
