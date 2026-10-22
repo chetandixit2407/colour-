@@ -1,0 +1,750 @@
+@import "tailwindcss";
+
+@theme {
+  --color-amber-50: #FFF8F1;
+  --color-amber-100: #FEEDD8;
+  --color-amber-200: #FED7AA;
+  --color-amber-300: #FDBA74;
+  --color-amber-400: #FB923C;
+  --color-amber-500: #F36515;
+  --color-amber-600: #EA580C;
+  --color-amber-700: #C2410C;
+  --color-amber-800: #9A3412;
+  --color-amber-900: #7C2D12;
+  --color-amber-950: #431407;
+
+  --color-transit-orange: #F36515;
+  --color-transit-amber: #FF7B2B;
+  --color-station-teal: #2E7D7A;
+  --color-station-slate: #7B8A96;
+}
+
+@layer base {
+  *, ::before, ::after {
+    box-sizing: border-box;
+  }
+
+  html, body {
+    max-width: 100vw;
+    width: 100%;
+    overflow-x: hidden;
+  }
+
+  :root {
+    --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    
+    --bg-deep: #EEF2F6;
+    --bg-surface: #FFFFFF;
+    --bg-elevated: #F8FAFC;
+    
+    --glass-1: rgba(255, 255, 255, 0.45);
+    --glass-2: rgba(255, 255, 255, 0.60);
+    --glass-3: rgba(255, 255, 255, 0.75);
+    
+    --border-subtle: rgba(255, 255, 255, 0.85);
+    --border-highlight: rgba(255, 255, 255, 0.95);
+    
+    --text-primary: #0F172A;
+    --text-secondary: #334155;
+    --text-muted: #64748B;
+    
+    --accent-orange: #F36515;
+    --accent-amber: #EA580C;
+    --accent-glow: rgba(243, 101, 21, 0.20);
+    --accent-white-glow: rgba(255, 255, 255, 0.60);
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background-color: var(--bg-deep);
+    color: var(--text-primary);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* Custom Scrollbar for Luxury Glass Look */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(226, 232, 240, 0.5);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.35);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(243, 101, 21, 0.5);
+}
+
+/* ========================================================
+   WCR GLOBAL CARD STYLING & HOVER SYSTEM
+   Clean White Glassmorphism Style matching Reference
+   - All dashboard cards, KPI cards, candidate cards, room cards,
+     visitor cards, and dashboard panels have a translucent white glass background.
+   - background: rgba(255, 255, 255, 0.55 - 0.65), backdrop-filter: blur(16px),
+     subtle white borders and soft shadows.
+   - Underlying canvas and watermark remain subtly visible through each card.
+   - Zero black-to-white hover effect: On hover, cards remain transparent with only
+     a subtle lift (translateY(-2px)), smooth transition, and slightly enhanced shadow.
+   ======================================================== */
+
+.card-dark,
+.dashboard-card,
+.candidate-card,
+.wcr-card {
+  background: rgba(255, 255, 255, 0.60) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  color: #0F172A !important;
+  border: 1px solid rgba(255, 255, 255, 0.85) !important;
+  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05),
+              0 2px 6px -1px rgba(15, 23, 42, 0.03) !important;
+  border-radius: 1rem;
+  position: relative;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  perspective: 1200px;
+  transform-style: preserve-3d;
+  transition: transform 240ms cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 240ms cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 240ms cubic-bezier(0.16, 1, 0.3, 1),
+              background 240ms cubic-bezier(0.16, 1, 0.3, 1) !important;
+  transition-delay: 0ms !important;
+  will-change: transform, box-shadow;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .card-dark:hover,
+  .dashboard-card:hover,
+  .candidate-card:hover,
+  .wcr-card:hover,
+  [title*="Click to view"]:hover {
+    transform: translateY(-2px) !important;
+    background: rgba(255, 255, 255, 0.72) !important;
+    border-color: rgba(255, 255, 255, 0.95) !important;
+    box-shadow: 0 12px 28px -4px rgba(15, 23, 42, 0.08),
+                0 4px 8px -2px rgba(15, 23, 42, 0.04) !important;
+    transition-delay: 0ms !important;
+  }
+}
+
+.card-light,
+.candidate-card-light {
+  background: rgba(255, 255, 255, 0.65) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  color: #0F172A !important;
+  border: 1px solid rgba(226, 232, 240, 0.85) !important;
+  border-radius: 1rem;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05),
+              0 2px 6px -1px rgba(15, 23, 42, 0.03) !important;
+  position: relative;
+  transition: transform 240ms cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 240ms cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 240ms cubic-bezier(0.16, 1, 0.3, 1),
+              background 240ms cubic-bezier(0.16, 1, 0.3, 1) !important;
+  transition-delay: 0ms !important;
+  will-change: transform, box-shadow;
+}
+
+.card-light:hover,
+.candidate-card-light:hover {
+  background: rgba(255, 255, 255, 0.75) !important;
+  color: #0F172A !important;
+  border-color: rgba(255, 255, 255, 0.95) !important;
+  box-shadow: 0 12px 28px -4px rgba(15, 23, 42, 0.08),
+              0 4px 8px -2px rgba(15, 23, 42, 0.04) !important;
+  transform: translateY(-2px) !important;
+  transition-delay: 0ms !important;
+}
+
+/* Headings and primary text on translucent cards */
+.card-dark h1,
+.card-dark h2,
+.card-dark h3,
+.card-dark h4,
+.card-dark h5,
+.card-dark h6,
+.card-dark strong,
+.card-dark b,
+.card-dark th,
+.card-dark .font-bold,
+.card-dark .candidate-name,
+.dashboard-card h1,
+.dashboard-card h2,
+.dashboard-card h3,
+.dashboard-card h4,
+.dashboard-card h5,
+.dashboard-card h6,
+.dashboard-card strong,
+.dashboard-card b,
+.dashboard-card th,
+.dashboard-card .font-bold,
+.dashboard-card .candidate-name,
+.candidate-card h1,
+.candidate-card h2,
+.candidate-card h3,
+.candidate-card h4,
+.candidate-card h5,
+.candidate-card h6,
+.candidate-card strong,
+.candidate-card b,
+.candidate-card .candidate-name,
+.wcr-card h1,
+.wcr-card h2,
+.wcr-card h3,
+.wcr-card strong,
+[title*="Click to view"] h1,
+[title*="Click to view"] h2,
+[title*="Click to view"] h3,
+[title*="Click to view"] strong,
+[title*="Click to view"] b {
+  color: #0F172A !important;
+}
+
+/* Secondary descriptions, labels, and roles on translucent cards */
+.card-dark p,
+.card-dark li,
+.card-dark td,
+.card-dark .candidate-role,
+.dashboard-card p,
+.dashboard-card li,
+.dashboard-card td,
+.dashboard-card .candidate-role,
+.candidate-card p,
+.candidate-card .candidate-role,
+.wcr-card p,
+[title*="Click to view"] p {
+  color: #334155 !important;
+}
+
+/* Muted metadata, location, dates on translucent cards */
+.card-dark small,
+.card-dark label,
+.card-dark .candidate-meta,
+.card-dark .candidate-detail,
+.dashboard-card small,
+.dashboard-card label,
+.dashboard-card .candidate-meta,
+.dashboard-card .candidate-detail,
+.candidate-card small,
+.candidate-card .candidate-meta,
+.candidate-card .candidate-detail,
+.wcr-card small,
+[title*="Click to view"] small,
+[title*="Click to view"] label {
+  color: #64748B !important;
+}
+
+/* Text contrast on light cards */
+.card-light h1,
+.card-light h2,
+.card-light h3,
+.card-light h4,
+.card-light strong,
+.candidate-card-light h1,
+.candidate-card-light h2,
+.candidate-card-light strong {
+  color: #0F172A !important;
+}
+.card-light p,
+.candidate-card-light p {
+  color: #334155 !important;
+}
+.card-light small,
+.candidate-card-light small {
+  color: #64748B !important;
+}
+
+/* Candidate avatar box */
+.candidate-avatar,
+.card-dark .candidate-avatar,
+.dashboard-card .candidate-avatar,
+.candidate-card .candidate-avatar {
+  background-color: rgba(241, 245, 249, 0.85) !important;
+  color: #0F172A !important;
+  border-color: rgba(203, 213, 225, 0.8) !important;
+}
+
+/* Dossier link */
+.candidate-dossier-link,
+.card-dark .candidate-dossier-link,
+.dashboard-card .candidate-dossier-link,
+.candidate-card .candidate-dossier-link {
+  color: #2563EB !important;
+  text-decoration: underline !important;
+  font-weight: 600 !important;
+}
+
+/* Assign Room button on any card */
+.btn-assign-room,
+button[class*="from-amber-"] {
+  background: linear-gradient(to right, #F36515, #EA580C) !important;
+  color: #FFFFFF !important;
+  font-weight: 700 !important;
+}
+.btn-assign-room svg,
+button[class*="from-amber-"] svg {
+  color: #FFFFFF !important;
+}
+
+/* Route to Kimmi Mam button */
+.btn-route-kimmi,
+button.btn-route-kimmi,
+button[class*="bg-[#1F2937]"] {
+  background-color: rgba(241, 245, 249, 0.9) !important;
+  color: #0F172A !important;
+  border-color: rgba(203, 213, 225, 0.9) !important;
+}
+
+/* Neutral icons on cards */
+.card-dark svg:not([class*="text-amber-"]):not([class*="text-emerald-"]):not([class*="text-rose-"]):not([class*="text-blue-"]):not([class*="text-cyan-"]):not([class*="text-purple-"]):not([class*="text-sky-"]):not([class*="text-orange-"]):not([class*="fill-"]),
+.dashboard-card svg:not([class*="text-amber-"]):not([class*="text-emerald-"]):not([class*="text-rose-"]):not([class*="text-blue-"]):not([class*="text-cyan-"]):not([class*="text-purple-"]):not([class*="text-sky-"]):not([class*="text-orange-"]):not([class*="fill-"]),
+.candidate-card svg:not([class*="text-amber-"]):not([class*="text-emerald-"]):not([class*="text-rose-"]):not([class*="text-blue-"]):not([class*="text-cyan-"]):not([class*="text-purple-"]):not([class*="text-sky-"]):not([class*="text-orange-"]):not([class*="fill-"]) {
+  color: #64748B !important;
+}
+
+/* Base inner box styling: translucent frosted white */
+.card-inner,
+.inner-box,
+[class*="bg-[#25272B]"]:not(button):not(.btn-route-kimmi),
+.dashboard-card div.bg-black\/30,
+.dashboard-card div.bg-black\/40,
+.dashboard-card div.bg-black\/20,
+.dashboard-card div.bg-white\/5,
+.card-dark div.bg-black\/30,
+.card-dark div.bg-black\/40,
+.card-dark div.bg-white\/5 {
+  background: rgba(255, 255, 255, 0.45) !important;
+  backdrop-filter: blur(8px) !important;
+  border: 1px solid rgba(226, 232, 240, 0.85) !important;
+  color: #1E293B !important;
+  transition: background-color 200ms ease, border-color 200ms ease, color 200ms ease;
+}
+
+.card-inner h1, .card-inner h2, .card-inner h3, .card-inner h4, .card-inner strong, .card-inner b,
+.inner-box h1, .inner-box h2, .inner-box h3, .inner-box h4, .inner-box strong, .inner-box b,
+[class*="bg-[#25272B]"]:not(button):not(.btn-route-kimmi) strong,
+[class*="bg-[#25272B]"]:not(button):not(.btn-route-kimmi) b {
+  color: #0F172A !important;
+}
+
+.card-inner p, .inner-box p,
+[class*="bg-[#25272B]"]:not(button):not(.btn-route-kimmi) p {
+  color: #334155 !important;
+}
+
+.card-inner span:not([class*="text-"]):not([class*="badge"]),
+.inner-box span:not([class*="text-"]):not([class*="badge"]),
+[class*="bg-[#25272B]"]:not(button):not(.btn-route-kimmi) span:not([class*="text-"]):not([class*="badge"]) {
+  color: #64748B !important;
+}
+/* ========================================================
+   RULE 3: NAVIGATION FILTER TABS & SEARCH BAR
+   Clean translucent white glassmorphism styling
+   ======================================================== */
+.wcr-filter-tab,
+.card-pill {
+  background: rgba(255, 255, 255, 0.65) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  color: #334155 !important;
+  border: 1px solid rgba(226, 232, 240, 0.9) !important;
+  border-radius: 9999px !important;
+  transition: all 220ms cubic-bezier(0.22, 1, 0.36, 1) !important;
+  cursor: pointer !important;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04) !important;
+}
+
+.wcr-filter-tab *,
+.card-pill * {
+  color: #334155 !important;
+  transition: color 200ms ease !important;
+}
+
+.wcr-filter-tab:hover:not(.is-active):not(.active),
+.card-pill:hover:not(.is-active):not(.active) {
+  background: rgba(255, 255, 255, 0.9) !important;
+  color: #0F172A !important;
+  border-color: rgba(203, 213, 225, 0.95) !important;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.06) !important;
+  transform: translateY(-1px) !important;
+}
+
+.wcr-filter-tab:hover:not(.is-active):not(.active) *,
+.card-pill:hover:not(.is-active):not(.active) * {
+  color: #0F172A !important;
+}
+
+.wcr-filter-tab.is-active,
+.wcr-filter-tab.active,
+.card-pill.is-active,
+.card-pill.active {
+  background: #F36515 !important;
+  color: #FFFFFF !important;
+  border-color: #EA580C !important;
+  box-shadow: 0 0 0 2px rgba(243, 101, 21, 0.3), 0 4px 12px rgba(243, 101, 21, 0.25) !important;
+  font-weight: 700 !important;
+}
+
+.wcr-filter-tab.is-active *,
+.wcr-filter-tab.active *,
+.card-pill.is-active *,
+.card-pill.active * {
+  color: #FFFFFF !important;
+  font-weight: 700 !important;
+}
+
+.wcr-filter-tab:focus-visible,
+.card-pill:focus-visible {
+  outline: 2px solid #F36515 !important;
+  outline-offset: 2px !important;
+}
+
+/* Search input styling */
+.wcr-search-input,
+.glass-input {
+  background: rgba(255, 255, 255, 0.75) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border: 1px solid rgba(203, 213, 225, 0.85) !important;
+  color: #0F172A !important;
+  border-radius: 0.75rem !important;
+  transition: all 220ms cubic-bezier(0.22, 1, 0.36, 1) !important;
+}
+
+.wcr-search-input::placeholder,
+.glass-input::placeholder {
+  color: #94A3B8 !important;
+  opacity: 1 !important;
+}
+
+.wcr-search-input:focus,
+.glass-input:focus {
+  background: #FFFFFF !important;
+  border-color: #F36515 !important;
+  box-shadow: 0 0 0 2px rgba(243, 101, 21, 0.2) !important;
+  outline: none !important;
+  color: #0F172A !important;
+}
+
+/* ========================================================
+   VISITOR & CANDIDATE INTAKE FLOW - CLEAN TRANSLUCENT GLASS
+   ======================================================== */
+.intake-flow-container,
+.intake-flow-container:hover,
+.intake-flow-container:focus,
+.intake-flow-container:focus-within,
+.dashboard-card:hover .intake-flow-container,
+.card-dark:hover .intake-flow-container {
+  background: rgba(255, 255, 255, 0.55) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.85) !important;
+  color: #0F172A !important;
+  transform: none !important;
+  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05) !important;
+}
+
+.intake-flow-container h3,
+.intake-flow-container:hover h3,
+.dashboard-card:hover .intake-flow-container h3,
+.card-dark:hover .intake-flow-container h3 {
+  color: #0F172A !important;
+}
+
+/* Individual Stage Card - Base unselected state */
+.intake-stage-card,
+.intake-flow-container .intake-stage-card,
+.intake-flow-container:hover .intake-stage-card:not(:hover):not(.is-selected),
+.dashboard-card:hover .intake-stage-card:not(:hover):not(.is-selected),
+.card-dark:hover .intake-stage-card:not(:hover):not(.is-selected) {
+  background: rgba(255, 255, 255, 0.50) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border: 1px solid rgba(226, 232, 240, 0.85) !important;
+  color: #0F172A !important;
+  transition: transform 180ms ease, border-color 180ms ease, background 180ms ease, box-shadow 180ms ease !important;
+}
+
+.intake-stage-card:focus:not(.is-selected),
+.intake-flow-container .intake-stage-card:focus:not(.is-selected) {
+  background: rgba(255, 255, 255, 0.50) !important;
+  border-color: rgba(226, 232, 240, 0.85) !important;
+  color: #0F172A !important;
+}
+
+.intake-stage-card:focus-visible {
+  outline: 2px solid #F59E0B !important;
+  outline-offset: 2px !important;
+}
+
+.intake-stage-card .intake-stage-count,
+.intake-stage-card:not(.is-selected) .intake-stage-count,
+.intake-flow-container .intake-stage-card .intake-stage-count,
+.intake-flow-container:hover .intake-stage-card:not(.is-selected) .intake-stage-count,
+.dashboard-card:hover .intake-stage-card .intake-stage-count,
+.card-dark:hover .intake-stage-card .intake-stage-count {
+  color: #0F172A !important;
+}
+
+.intake-stage-card .intake-stage-label,
+.intake-stage-card:not(.is-selected) .intake-stage-label,
+.intake-flow-container .intake-stage-card .intake-stage-label,
+.intake-flow-container:hover .intake-stage-card:not(.is-selected) .intake-stage-label,
+.dashboard-card:hover .intake-stage-card .intake-stage-label,
+.card-dark:hover .intake-stage-card .intake-stage-label {
+  color: #1E293B !important;
+}
+
+.intake-stage-card .intake-stage-footer,
+.intake-flow-container .intake-stage-card .intake-stage-footer {
+  color: #64748B !important;
+}
+
+.intake-stage-card .intake-icon-badge,
+.intake-flow-container .intake-stage-card .intake-icon-badge,
+.intake-flow-container:hover .intake-stage-card:not(:hover) .intake-icon-badge,
+.dashboard-card:hover .intake-icon-badge,
+.card-dark:hover .intake-icon-badge {
+  background-color: rgba(241, 245, 249, 0.8) !important;
+  border-color: rgba(226, 232, 240, 0.9) !important;
+}
+
+/* Stage icon accent colors preserved */
+.intake-flow-container .intake-stage-card .text-slate-300 {
+  color: #475569 !important;
+}
+.intake-flow-container .intake-stage-card .text-amber-400 {
+  color: #D97706 !important;
+}
+.intake-flow-container .intake-stage-card .text-cyan-400 {
+  color: #0891B2 !important;
+}
+.intake-flow-container .intake-stage-card .text-blue-400 {
+  color: #2563EB !important;
+}
+.intake-flow-container .intake-stage-card .text-purple-400 {
+  color: #9333EA !important;
+}
+.intake-flow-container .intake-stage-card .text-emerald-400 {
+  color: #059669 !important;
+}
+.intake-flow-container .intake-stage-card .text-slate-400 {
+  color: #64748B !important;
+}
+
+/* Subtle lift hover on stage card without color inversion */
+.intake-stage-card:hover:not(.is-selected),
+.intake-flow-container .intake-stage-card:hover:not(.is-selected) {
+  background: rgba(255, 255, 255, 0.75) !important;
+  border-color: rgba(203, 213, 225, 0.95) !important;
+  color: #0F172A !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 20px -4px rgba(15, 23, 42, 0.08) !important;
+}
+
+.intake-stage-card:hover:not(.is-selected) .intake-stage-count {
+  color: #0F172A !important;
+}
+
+.intake-stage-card:hover:not(.is-selected) .intake-stage-label {
+  color: #0F172A !important;
+}
+
+.intake-stage-card:hover:not(.is-selected) .intake-stage-footer {
+  color: #475569 !important;
+  opacity: 1 !important;
+}
+
+.intake-stage-card:hover:not(.is-selected) .intake-icon-badge {
+  background-color: rgba(255, 255, 255, 0.9) !important;
+  border-color: rgba(203, 213, 225, 0.9) !important;
+}
+
+.intake-stage-card:active:not(.is-selected),
+.intake-flow-container .intake-stage-card:active:not(.is-selected) {
+  background: rgba(255, 255, 255, 0.65) !important;
+  color: #0F172A !important;
+}
+
+/* Active / Selected stage state */
+.intake-stage-card.is-selected,
+.intake-stage-card.is-selected:focus,
+.intake-flow-container .intake-stage-card.is-selected,
+.intake-flow-container:hover .intake-stage-card.is-selected {
+  background: rgba(243, 101, 21, 0.08) !important;
+  border-color: #F36515 !important;
+  color: #0F172A !important;
+  box-shadow: 0 0 0 1px #F36515, 0 8px 20px -4px rgba(243, 101, 21, 0.2) !important;
+}
+
+.intake-stage-card.is-selected:hover,
+.intake-flow-container .intake-stage-card.is-selected:hover {
+  background: rgba(243, 101, 21, 0.12) !important;
+  border-color: #EA580C !important;
+  color: #0F172A !important;
+  box-shadow: 0 0 0 1px #EA580C, 0 10px 24px -4px rgba(243, 101, 21, 0.25) !important;
+}
+
+.intake-stage-card.is-selected:active,
+.intake-flow-container .intake-stage-card.is-selected:active {
+  background: rgba(243, 101, 21, 0.16) !important;
+  color: #0F172A !important;
+}
+
+.intake-stage-card.is-selected .intake-stage-count,
+.intake-stage-card.is-selected:hover .intake-stage-count {
+  color: #EA580C !important;
+}
+
+.intake-stage-card.is-selected .intake-stage-label,
+.intake-stage-card.is-selected:hover .intake-stage-label {
+  color: #0F172A !important;
+}
+
+.intake-stage-card.is-selected .intake-stage-footer,
+.intake-stage-card.is-selected:hover .intake-stage-footer {
+  color: #C2410C !important;
+  opacity: 1 !important;
+}
+
+.intake-stage-card.is-selected .intake-icon-badge,
+.intake-stage-card.is-selected:hover .intake-icon-badge {
+  background-color: rgba(243, 101, 21, 0.15) !important;
+  border-color: rgba(243, 101, 21, 0.35) !important;
+}
+
+/* ========================================================
+   GLASS PANELS & MODAL SURFACES - CLEAN WHITE TRANSLUCENCY
+   ======================================================== */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.65) !important;
+  color: #0F172A !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.85) !important;
+  box-shadow: 0 16px 36px -12px rgba(15, 23, 42, 0.08), inset 0 1px 0 0 rgba(255, 255, 255, 0.9) !important;
+  border-radius: 1.25rem !important;
+}
+
+.glass-panel-elevated {
+  background: rgba(255, 255, 255, 0.82) !important;
+  color: #0F172A !important;
+  backdrop-filter: blur(28px) !important;
+  -webkit-backdrop-filter: blur(28px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.95) !important;
+  box-shadow: 0 25px 50px -15px rgba(15, 23, 42, 0.12), 0 0 0 1px rgba(226, 232, 240, 0.8) !important;
+  border-radius: 1.5rem !important;
+}
+
+.glass-panel-subtle {
+  background: rgba(255, 255, 255, 0.50) !important;
+  color: #0F172A !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border: 1px solid rgba(226, 232, 240, 0.85) !important;
+  box-shadow: 0 8px 24px -8px rgba(15, 23, 42, 0.05) !important;
+  border-radius: 1.25rem !important;
+}
+
+/* Camera Reticle Pulse */
+@keyframes reticle-pulse {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.02);
+  }
+}
+
+.animate-reticle {
+  animation: reticle-pulse 3s ease-in-out infinite;
+}
+
+/* Smooth Premium Modal Entrance & Exit Animations (Dribbble Signature Easing) */
+@keyframes modal-enter {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes fade-enter {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-in,
+.modal-animate-enter {
+  animation: modal-enter 320ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  will-change: transform, opacity;
+}
+
+.fade-enter {
+  animation: fade-enter 300ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  will-change: transform, opacity;
+}
+
+/* Button & Interactive Element Micro-Feedback */
+button:active:not(:disabled),
+a[role="button"]:active {
+  transform: scale(0.985) translateY(1px);
+  transition: transform 120ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Accessible focus visible outlines */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid #F36515 !important;
+  outline-offset: 2px !important;
+}
+
+/* Reduced Motion Compliance */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .card-dark,
+  .dashboard-card,
+  .candidate-card,
+  .wcr-card,
+  .card-light,
+  .candidate-card-light,
+  .intake-stage-card,
+  [title*="Click to view"] {
+    transform: none !important;
+    transition: none !important;
+    perspective: none !important;
+  }
+}
