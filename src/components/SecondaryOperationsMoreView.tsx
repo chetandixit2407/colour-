@@ -34,6 +34,7 @@ interface SecondaryOperationsMoreViewProps {
   onCheckout: (candidateId: string) => void;
   onBackToDashboard: () => void;
   onRefresh?: () => void;
+  onRecordDeleted?: (id: string, type: DeleteRecordType) => void;
   initialTab?: 'all' | 'lounge' | 'meetings' | 'checkout';
 }
 
@@ -43,6 +44,7 @@ export const SecondaryOperationsMoreView: React.FC<SecondaryOperationsMoreViewPr
   onCheckout,
   onBackToDashboard,
   onRefresh,
+  onRecordDeleted,
   initialTab = 'all',
 }) => {
   const { t } = useSettings();
@@ -539,6 +541,9 @@ export const SecondaryOperationsMoreView: React.FC<SecondaryOperationsMoreViewPr
         metadata={deleteModal.metadata}
         onClose={() => setDeleteModal((prev) => ({ ...prev, isOpen: false }))}
         onSuccess={() => {
+          if (onRecordDeleted) {
+            onRecordDeleted(deleteModal.recordId, deleteModal.recordType);
+          }
           if (onRefresh) onRefresh();
         }}
       />

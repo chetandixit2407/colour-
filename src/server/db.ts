@@ -771,6 +771,241 @@ export function deduplicateInterviewsList(
   return { cleaned, removedDuplicates };
 }
 
+export function deduplicateCandidatesList(
+  candidates: Candidate[],
+  db?: Partial<DatabaseSchema>
+): { cleaned: Candidate[]; idMap: Map<string, string> } {
+  if (!candidates || !Array.isArray(candidates)) {
+    return { cleaned: [], idMap: new Map() };
+  }
+
+  const idMap = new Map<string, string>();
+  const groups = new Map<string, Candidate[]>();
+
+  const getCanonicalKey = (c: Candidate): string => {
+    const rawName = (c.fullName || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+    const rawEmail = (c.email || '').toLowerCase().trim();
+    const rawPhone = (c.phone || '').replace(/\D/g, '');
+
+    if (rawName.length >= 3) {
+      return `name:${rawName}`;
+    }
+
+    if (rawPhone.length >= 7) return `phone:${rawPhone.slice(-10)}`;
+
+    if (rawEmail && rawEmail.includes('@') && !rawEmail.includes('example.com')) {
+      return `email:${rawEmail}`;
+    }
+
+    return `id:${c.id}`;
+  };
+
+  for (const cand of candidates) {
+    if ((cand as any).isDeleted) continue;
+    const key = getCanonicalKey(cand);
+    if (!groups.has(key)) groups.set(key, []);
+    groups.get(key)!.push(cand);
+  }
+
+  const cleaned: Candidate[] = [];
+
+  for (const group of groups.values()) {
+    if (group.length === 1) {
+      cleaned.push(group[0]);
+      idMap.set(group[0].id, group[0].id);
+      continue;
+    }
+
+    // Sort group to find best primary record
+    group.sort((a, b) => {
+      const aDocs = (a.governmentId ? 2 : 0) + (a.receptionPhotoUrl || a.photoUrl || a.livePhoto ? 2 : 0) + (a.resumeUrl ? 1 : 0);
+      const bDocs = (b.governmentId ? 2 : 0) + (b.receptionPhotoUrl || b.photoUrl || b.livePhoto ? 2 : 0) + (b.resumeUrl ? 1 : 0);
+      if (aDocs !== bDocs) return bDocs - aDocs;
+
+      const statusRank = (s?: string) => {
+        if (!s) return 0;
+        if (s.includes('Offer') || s.includes('Selected') || s.includes('Hired')) return 5;
+        if (s.includes('Interview') || s.includes('With')) return 4;
+        if (s.includes('Arrived') || s.includes('Checked In')) return 3;
+        return 1;
+      };
+      const rDiff = statusRank(b.status) - statusRank(a.status);
+      if (rDiff !== 0) return rDiff;
+
+      const aTime = new Date(a.updatedAt || a.createdAt || 0).getTime();
+      const bTime = new Date(b.updatedAt || b.createdAt || 0).getTime();
+      return bTime - aTime;
+    });
+
+    const primary = { ...group[0] };
+
+    // Merge missing fields from duplicate records into primary
+    for (let i = 1; i < group.length; i++) {
+      const dup = group[i];
+      idMap.set(dup.id, primary.id);
+
+      if (!primary.email && dup.email) primary.email = dup.email;
+      if (!primary.phone && dup.phone) primary.phone = dup.phone;
+      if (!primary.resumeUrl && dup.resumeUrl) {
+        primary.resumeUrl = dup.resumeUrl;
+        primary.resumeFileName = dup.resumeFileName;
+        primary.resumeMimeType = dup.resumeMimeType;
+      }
+      if (!primary.governmentId && dup.governmentId) primary.governmentId = dup.governmentId;
+      if (!primary.livePhoto && dup.livePhoto) primary.livePhoto = dup.livePhoto;
+      if (!primary.receptionPhotoUrl && dup.receptionPhotoUrl) primary.receptionPhotoUrl = dup.receptionPhotoUrl;
+      if (!primary.assignedRoomId && dup.assignedRoomId) primary.assignedRoomId = dup.assignedRoomId;
+      if (!primary.totalExperience && dup.totalExperience) primary.totalExperience = dup.totalExperience;
+      if (!primary.expectedSalary && dup.expectedSalary) primary.expectedSalary = dup.expectedSalary;
+      if (!primary.skills && dup.skills) primary.skills = dup.skills;
+    }
+
+    idMap.set(primary.id, primary.id);
+    cleaned.push(primary);
+  }
+
+  // Update references in DB if provided
+  if (db) {
+    if (db.interviews && Array.isArray(db.interviews)) {
+      db.interviews.forEach((i) => {
+        if (idMap.has(i.candidateId)) {
+          i.candidateId = idMap.get(i.candidateId)!;
+        }
+      });
+    }
+    if (db.timelineEvents && Array.isArray(db.timelineEvents)) {
+      db.timelineEvents.forEach((te) => {
+        if (te.candidateId && idMap.has(te.candidateId)) {
+          te.candidateId = idMap.get(te.candidateId)!;
+        }
+      });
+    }
+    if (db.checkInSessions && Array.isArray(db.checkInSessions)) {
+      db.checkInSessions.forEach((s) => {
+        if (s.candidateId && idMap.has(s.candidateId)) {
+          s.candidateId = idMap.get(s.candidateId)!;
+        }
+      });
+    }
+    if (db.pantryTasks && Array.isArray(db.pantryTasks)) {
+      db.pantryTasks.forEach((pt) => {
+        if (pt.candidateId && idMap.has(pt.candidateId)) {
+          pt.candidateId = idMap.get(pt.candidateId)!;
+        }
+      });
+    }
+    if (db.actionTasks && Array.isArray(db.actionTasks)) {
+      db.actionTasks.forEach((at) => {
+        if (at.candidateId && idMap.has(at.candidateId)) {
+          at.candidateId = idMap.get(at.candidateId)!;
+        }
+      });
+    }
+  }
+
+  return { cleaned, idMap };
+}
+
+export function deduplicateVisitorsList(visitors: Visitor[]): Visitor[] {
+  if (!visitors || !Array.isArray(visitors)) return [];
+
+  const seen = new Map<string, Visitor>();
+
+  for (const vis of visitors) {
+    if ((vis as any).isDeleted) continue;
+
+    const rawName = (vis.fullName || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+    const rawPhone = (vis.phone || '').replace(/\D/g, '');
+    const rawEmail = (vis.email || '').toLowerCase().trim();
+
+    let key = vis.id;
+    if (rawName.length >= 3) key = `name:${rawName}`;
+    else if (rawPhone.length >= 7) key = `phone:${rawPhone.slice(-10)}`;
+    else if (rawEmail && rawEmail.includes('@') && !rawEmail.includes('example.com')) key = `email:${rawEmail}`;
+
+    if (!seen.has(key)) {
+      seen.set(key, { ...vis });
+    } else {
+      const existing = seen.get(key)!;
+      if (!existing.photo && vis.photo) existing.photo = vis.photo;
+      if (!existing.company && vis.company) existing.company = vis.company;
+      if (!existing.roomAssigned && vis.roomAssigned) existing.roomAssigned = vis.roomAssigned;
+      if (existing.status !== 'CHECKED_IN' && vis.status === 'CHECKED_IN') existing.status = 'CHECKED_IN';
+    }
+  }
+
+  return Array.from(seen.values());
+}
+
+export function deduplicateRoomsList(rooms: Room[]): Room[] {
+  if (!rooms || !Array.isArray(rooms)) return [];
+
+  const seen = new Map<string, Room>();
+
+  for (const r of rooms) {
+    const key = (r.id || r.roomId || r.name || r.roomName || '').toLowerCase().trim();
+    if (!key) continue;
+
+    if (!seen.has(key)) {
+      seen.set(key, { ...r });
+    } else {
+      const existing = seen.get(key)!;
+      if (existing.status === 'AVAILABLE' && r.status === 'OCCUPIED') {
+        existing.status = 'OCCUPIED';
+        existing.currentCandidateId = r.currentCandidateId;
+        existing.currentCandidateName = r.currentCandidateName;
+      }
+    }
+  }
+
+  return Array.from(seen.values());
+}
+
+export function deduplicateUsersList(users: User[]): User[] {
+  if (!users || !Array.isArray(users)) return [];
+
+  const seen = new Map<string, User>();
+
+  for (const u of users) {
+    if ((u as any).isDeleted) continue;
+    const key = (u.email || u.username || u.id).toLowerCase().trim();
+    if (!key) continue;
+
+    if (!seen.has(key)) {
+      seen.set(key, { ...u });
+    } else {
+      const existing = seen.get(key)!;
+      if (existing.isActive === false && u.isActive !== false) {
+        seen.set(key, { ...u });
+      }
+    }
+  }
+
+  return Array.from(seen.values());
+}
+
+export function deduplicateNotificationsList(notifications: Notification[]): Notification[] {
+  if (!notifications || !Array.isArray(notifications)) return [];
+  const seen = new Set<string>();
+  return notifications.filter((n) => {
+    const key = `${n.recipientRole}::${n.title}::${n.message}::${n.entityId || ''}`;
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
+}
+
+export function deduplicateActionTasksList(actionTasks: ActionTask[]): ActionTask[] {
+  if (!actionTasks || !Array.isArray(actionTasks)) return [];
+  const seen = new Set<string>();
+  return actionTasks.filter((at) => {
+    const key = `${at.candidateId}::${at.taskType}::${at.status}`;
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
+}
+
 class DatabaseService {
   private db: DatabaseSchema;
 
@@ -788,6 +1023,20 @@ class DatabaseService {
         const raw = fs.readFileSync(DB_FILE, 'utf-8');
         const parsed = JSON.parse(raw);
 
+        // 0. Permanently purge any soft-deleted records from legacy state
+        if (parsed.candidates && Array.isArray(parsed.candidates)) {
+          parsed.candidates = parsed.candidates.filter((c: any) => !c.isDeleted);
+        }
+        if (parsed.visitors && Array.isArray(parsed.visitors)) {
+          parsed.visitors = parsed.visitors.filter((v: any) => !v.isDeleted);
+        }
+        const activeBootCandIds = new Set((parsed.candidates || []).map((c: any) => c.id));
+        if (parsed.interviews && Array.isArray(parsed.interviews)) {
+          parsed.interviews = parsed.interviews.filter(
+            (i: any) => !i.isDeleted && activeBootCandIds.has(i.candidateId)
+          );
+        }
+
         // 1. Preserve rooms from Room Management (or initialize if empty)
         if (!parsed.rooms || !Array.isArray(parsed.rooms) || parsed.rooms.length === 0) {
           parsed.rooms = defaultRooms;
@@ -797,9 +1046,6 @@ class DatabaseService {
             const { floor: _f, capacity: _c, seatingCapacity: _sc, ...cleanRoom } = r;
             return cleanRoom;
           });
-          if (!parsed.rooms.find((r: Room) => r.id === 'room-conf-a')) {
-            parsed.rooms.unshift(defaultRooms[0]);
-          }
         }
 
         const validRoomMap = new Map<string, Room>(parsed.rooms.map((r: Room) => [r.id, r]));
@@ -912,23 +1158,16 @@ class DatabaseService {
           });
         }
 
-        // 2. Ensure individual accounts for Lalit Sir, Kimmi Mam, Nisha, Shriyanshi, Sameer Sir, Reception, Pantry
-        const userMap = new Map<string, any>((parsed.users || []).map((u: any) => [u.email, u]));
-        defaultUsers.forEach((du) => {
-          if (!userMap.has(du.email)) {
-            userMap.set(du.email, du);
-          } else {
-            const existing: any = userMap.get(du.email);
-            existing.passwordHash = existing.passwordHash || du.passwordHash;
-            existing.role = du.role;
-            existing.name = du.name;
-            existing.designation = du.designation || existing.designation;
-            existing.department = du.department || existing.department;
-            existing.permissions = du.permissions || existing.permissions;
-            existing.isActive = existing.isActive !== undefined ? existing.isActive : true;
+        // 2. Preserve staff users and ensure at least one administrative profile exists
+        if (!parsed.users || !Array.isArray(parsed.users) || parsed.users.length === 0) {
+          parsed.users = defaultUsers;
+        } else {
+          // If all administrative accounts were removed, ensure primary admin exists
+          const hasExecutive = parsed.users.some((u: any) => u.role === 'ADMIN' || u.role === 'CEO' || u.role === 'HR');
+          if (!hasExecutive) {
+            parsed.users.unshift(defaultUsers[0], defaultUsers[4]);
           }
-        });
-        parsed.users = Array.from(userMap.values());
+        }
 
         // 3. Ensure changeRequests & passwordResetRequests arrays exist
         parsed.changeRequests = parsed.changeRequests || [];
@@ -1003,15 +1242,25 @@ class DatabaseService {
           });
         }
 
-        // Ensure chat channels and chat messages
-        if (!parsed.chatChannels || !Array.isArray(parsed.chatChannels) || parsed.chatChannels.length === 0) {
-          parsed.chatChannels = defaultChatChannels;
+        // Deduplicate all collections permanently
+        if (parsed.candidates && Array.isArray(parsed.candidates)) {
+          const { cleaned: dedupCands } = deduplicateCandidatesList(parsed.candidates, parsed);
+          parsed.candidates = dedupCands;
         }
-        if (!parsed.chatMessages || !Array.isArray(parsed.chatMessages)) {
-          parsed.chatMessages = defaultChatMessages;
+        if (parsed.visitors && Array.isArray(parsed.visitors)) {
+          parsed.visitors = deduplicateVisitorsList(parsed.visitors);
         }
-        if (!parsed.actionTasks || !Array.isArray(parsed.actionTasks)) {
-          parsed.actionTasks = [];
+        if (parsed.rooms && Array.isArray(parsed.rooms)) {
+          parsed.rooms = deduplicateRoomsList(parsed.rooms);
+        }
+        if (parsed.users && Array.isArray(parsed.users)) {
+          parsed.users = deduplicateUsersList(parsed.users);
+        }
+        if (parsed.notifications && Array.isArray(parsed.notifications)) {
+          parsed.notifications = deduplicateNotificationsList(parsed.notifications);
+        }
+        if (parsed.actionTasks && Array.isArray(parsed.actionTasks)) {
+          parsed.actionTasks = deduplicateActionTasksList(parsed.actionTasks);
         }
 
         this.persist(parsed);
@@ -1086,9 +1335,18 @@ class DatabaseService {
 
   private persist(data: DatabaseSchema): void {
     try {
-      fs.writeFileSync(DB_FILE, JSON.stringify(data, null, 2), 'utf-8');
+      const tmpFile = `${DB_FILE}.tmp`;
+      const json = JSON.stringify(data);
+      fs.writeFileSync(tmpFile, json, 'utf-8');
+      fs.renameSync(tmpFile, DB_FILE);
     } catch (err) {
-      console.error('Failed to write database file', err);
+      console.error('Atomic rename write failed, attempting direct sync write:', err);
+      try {
+        fs.writeFileSync(DB_FILE, JSON.stringify(data), 'utf-8');
+      } catch (fallbackErr) {
+        console.error('Fatal: Failed to write database file', fallbackErr);
+        throw fallbackErr;
+      }
     }
   }
 
@@ -1098,7 +1356,32 @@ class DatabaseService {
 
   public update(updater: (draft: DatabaseSchema) => void): DatabaseSchema {
     updater(this.db);
+    if (this.db.candidates && Array.isArray(this.db.candidates)) {
+      this.db.candidates = this.db.candidates.filter((c: any) => !c.isDeleted);
+      const { cleaned } = deduplicateCandidatesList(this.db.candidates, this.db);
+      this.db.candidates = cleaned;
+    }
+    if (this.db.visitors && Array.isArray(this.db.visitors)) {
+      this.db.visitors = this.db.visitors.filter((v: any) => !v.isDeleted);
+      this.db.visitors = deduplicateVisitorsList(this.db.visitors);
+    }
+    if (this.db.rooms && Array.isArray(this.db.rooms)) {
+      this.db.rooms = deduplicateRoomsList(this.db.rooms);
+    }
+    if (this.db.users && Array.isArray(this.db.users)) {
+      this.db.users = deduplicateUsersList(this.db.users);
+    }
+    if (this.db.notifications && Array.isArray(this.db.notifications)) {
+      this.db.notifications = deduplicateNotificationsList(this.db.notifications);
+    }
+    if (this.db.actionTasks && Array.isArray(this.db.actionTasks)) {
+      this.db.actionTasks = deduplicateActionTasksList(this.db.actionTasks);
+    }
     if (this.db.interviews && Array.isArray(this.db.interviews)) {
+      const activeCandIds = new Set((this.db.candidates || []).map((c) => c.id));
+      this.db.interviews = this.db.interviews.filter(
+        (i: any) => !i.isDeleted && activeCandIds.has(i.candidateId)
+      );
       const { cleaned } = deduplicateInterviewsList(this.db.interviews, this.db.candidates);
       this.db.interviews = cleaned;
     }

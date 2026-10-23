@@ -731,7 +731,25 @@ export const HRSubProfileView: React.FC<HRSubProfileViewProps> = ({
         recordName={deleteModal.recordName}
         metadata={deleteModal.metadata}
         onClose={() => setDeleteModal((prev) => ({ ...prev, isOpen: false }))}
-        onSuccess={() => {
+        onSuccess={(deletedId, recordType) => {
+          if (deletedId) {
+            setProfileData((prev: any) => {
+              if (!prev) return prev;
+              const next = { ...prev };
+              Object.keys(next).forEach((k) => {
+                if (next[k]?.candidates) {
+                  next[k].candidates = next[k].candidates.filter((c: any) => c.id !== deletedId);
+                }
+                if (next[k]?.interviews) {
+                  next[k].interviews = next[k].interviews.filter((i: any) => i.id !== deletedId && i.candidateId !== deletedId);
+                }
+              });
+              return next;
+            });
+          }
+          if (deletedId && recordType && onRecordDeleted) {
+            onRecordDeleted(deletedId, recordType);
+          }
           fetchProfileData();
         }}
       />

@@ -1535,7 +1535,16 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                           </button>
 
                           <button
-                            onClick={() => handleDeleteRoom(room.id, room.name)}
+                            type="button"
+                            onClick={() =>
+                              setGenericDeleteModal({
+                                isOpen: true,
+                                recordType: 'ROOM',
+                                recordId: room.id,
+                                recordName: room.name,
+                                metadata: { status: room.status },
+                              })
+                            }
                             className="p-1.5 bg-slate-800 hover:bg-rose-900/50 text-slate-400 hover:text-rose-300 rounded-lg transition cursor-pointer"
                             title="Delete Room"
                           >
@@ -2521,11 +2530,18 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
         metadata={genericDeleteModal.metadata}
         onClose={() => setGenericDeleteModal((prev) => ({ ...prev, isOpen: false }))}
         onSuccess={(deletedId, recordType) => {
-          fetchUsers();
-          fetchRooms();
+          if (deletedId) {
+            if (recordType === 'USER') {
+              setStaffUsers((prev) => prev.filter((u) => u.id !== deletedId && u.userId !== deletedId));
+            } else if (recordType === 'ROOM') {
+              setRooms((prev) => prev.filter((r) => r.id !== deletedId && r.roomId !== deletedId));
+            }
+          }
           if (deletedId && recordType && onRecordDeleted) {
             onRecordDeleted(deletedId, recordType);
           }
+          fetchUsers();
+          fetchRooms();
           if (onRefresh) onRefresh();
         }}
       />

@@ -104,8 +104,16 @@ export async function authenticatedFetch(
     headers.set('x-user-role', role);
   }
 
+  if (!headers.has('Cache-Control')) {
+    headers.set('Cache-Control', 'no-cache');
+  }
+  if (!headers.has('Pragma')) {
+    headers.set('Pragma', 'no-cache');
+  }
+
   return fetch(input, {
     ...init,
+    cache: init.cache || 'no-store',
     credentials: 'include',
     headers,
   });

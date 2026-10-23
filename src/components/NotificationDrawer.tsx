@@ -27,6 +27,7 @@ interface NotificationDrawerProps {
   onActionClick: (actionKey: string, payload?: any) => void;
   onMarkRead: (id: string) => void;
   onRefresh?: () => void;
+  onRecordDeleted?: (id: string, type: DeleteRecordType) => void;
 }
 
 export const NotificationDrawer: React.FC<NotificationDrawerProps> = ({
@@ -37,6 +38,7 @@ export const NotificationDrawer: React.FC<NotificationDrawerProps> = ({
   onActionClick,
   onMarkRead,
   onRefresh,
+  onRecordDeleted,
 }) => {
   const [editModal, setEditModal] = useState<{
     isOpen: boolean;
@@ -281,7 +283,10 @@ export const NotificationDrawer: React.FC<NotificationDrawerProps> = ({
             recordName={deleteModal.recordName}
             metadata={deleteModal.metadata}
             onClose={() => setDeleteModal((prev) => ({ ...prev, isOpen: false }))}
-            onSuccess={() => {
+            onSuccess={(deletedId, recordType) => {
+              if (deletedId && recordType && onRecordDeleted) {
+                onRecordDeleted(deletedId, recordType);
+              }
               if (onRefresh) onRefresh();
             }}
           />

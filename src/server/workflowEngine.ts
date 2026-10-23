@@ -386,9 +386,9 @@ class EventWorkflowEngine {
       dbService.update((draft) => {
         draft.domainEvents = draft.domainEvents || [];
         draft.domainEvents.unshift(domainEvent);
-        // Keep last 1000 domain events in persistence
-        if (draft.domainEvents.length > 1000) {
-          draft.domainEvents = draft.domainEvents.slice(0, 1000);
+        // Keep last 100 domain events in persistence
+        if (draft.domainEvents.length > 100) {
+          draft.domainEvents = draft.domainEvents.slice(0, 100);
         }
       });
       console.log(`[EVENT] event persisted: ${domainEvent.eventId} to authoritative storage`);
@@ -523,8 +523,8 @@ class EventWorkflowEngine {
     }
 
     // Ensure old intake/arrival events for deleted candidates or deleted visitors are never replayed
-    const deletedCandIds = new Set(
-      (db.candidates || []).filter((c) => (c as any).isDeleted).map((c) => c.id)
+    const activeCandIds = new Set(
+      (db.candidates || []).filter((c) => !(c as any).isDeleted).map((c) => c.id)
     );
     const existingVisIds = new Set(
       (db.visitors || []).filter((v) => !(v as any).isDeleted).map((v) => v.id)
@@ -536,7 +536,7 @@ class EventWorkflowEngine {
       if (role === 'PANTRY' && e.eventType === 'CANDIDATE_FORM_SUBMITTED') return false;
 
       // Do not replay outdated intake/arrival events for records that have been deleted
-      if (e.candidateId && deletedCandIds.has(e.candidateId) && e.eventType !== 'CANDIDATE_DELETED') {
+      if (e.candidateId && !activeCandIds.has(e.candidateId) && e.eventType !== 'CANDIDATE_DELETED') {
         return false;
       }
       const visId = e.visitId || (e.metadata as any)?.visitorId || (e.metadata as any)?.id;

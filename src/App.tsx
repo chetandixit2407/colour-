@@ -332,6 +332,16 @@ export default function App() {
         deletedCandidateIdsRef.current.add(id);
         setCandidates((prev) => prev.filter((c) => c.id !== id && !(c as any).isDeleted));
         setInterviews((prev) => prev.filter((i) => i.candidateId !== id && !(i as any).isDeleted));
+        setRooms((prev) =>
+          prev.map((r) =>
+            r.currentCandidateId === id || (r as any).currentCandidateName?.includes(id)
+              ? { ...r, status: 'AVAILABLE', currentCandidateId: undefined, currentCandidateName: undefined, currentInterviewId: undefined }
+              : r
+          )
+        );
+        setPantryTasks((prev) => prev.filter((pt) => (pt as any).candidateId !== id));
+        setActionTasks((prev) => prev.filter((at) => at.candidateId !== id));
+        setNotifications((prev) => prev.filter((n) => (n as any).candidateId !== id && n.entityId !== id && n.payload?.candidateId !== id));
         if (selectedCandidateId === id) {
           setSelectedCandidateId('');
           setActiveModal((prev) => (prev === 'DOSSIER' || prev === 'ASSIGN_ROOM' ? null : prev));
@@ -342,13 +352,38 @@ export default function App() {
       } else if (type === 'VISITOR') {
         deletedVisitorIdsRef.current.add(id);
         setVisitors((prev) => prev.filter((v) => v.id !== id && !(v as any).isDeleted));
+        setRooms((prev) =>
+          prev.map((r) =>
+            r.currentCandidateId === id || (r as any).currentCandidateName?.includes(id)
+              ? { ...r, status: 'AVAILABLE', currentCandidateId: undefined, currentCandidateName: undefined }
+              : r
+          )
+        );
+        setNotifications((prev) => prev.filter((n) => (n as any).visitorId !== id && n.entityId !== id));
       } else if (type === 'INTERVIEW') {
         setInterviews((prev) => prev.filter((i) => i.id !== id && !(i as any).isDeleted));
         setCandidates((prev) =>
           prev.map((c) => (c.currentInterviewId === id ? { ...c, currentInterviewId: undefined } : c))
         );
+        setRooms((prev) =>
+          prev.map((r) =>
+            r.currentInterviewId === id
+              ? { ...r, status: 'AVAILABLE', currentInterviewId: undefined, currentCandidateId: undefined, currentCandidateName: undefined }
+              : r
+          )
+        );
       } else if (type === 'ROOM') {
         setRooms((prev) => prev.filter((r) => r.id !== id && !(r as any).isDeleted));
+        setCandidates((prev) =>
+          prev.map((c) =>
+            c.assignedRoomId === id
+              ? { ...c, assignedRoomId: undefined, assignedRoomName: undefined, currentLocation: 'Reception / Waiting Lounge' }
+              : c
+          )
+        );
+        setInterviews((prev) =>
+          prev.map((i) => (i.roomId === id ? { ...i, roomId: undefined, roomName: undefined } : i))
+        );
       } else if (type === 'ACTION_TASK') {
         setActionTasks((prev) => prev.filter((t) => t.id !== id));
       } else if (type === 'NOTIFICATION') {
@@ -1394,6 +1429,7 @@ export default function App() {
               onCheckout={handleCheckout}
               onBackToDashboard={() => setActiveSection('dashboard')}
               onRefresh={fetchAllData}
+              onRecordDeleted={handleRecordDeleted}
               initialTab={moreInitialTab}
             />
           ) : activeSection === 'hr-nisha' || activeSection === 'hr-shriyanshi' ? (
@@ -1412,6 +1448,7 @@ export default function App() {
               }}
               currentUserRole={currentRole}
               currentUserId={currentUserId}
+              onRecordDeleted={handleRecordDeleted}
             />
           ) : (
             <>
@@ -1840,6 +1877,8 @@ export default function App() {
         role={currentRole}
         onActionClick={handleNotificationAction}
         onMarkRead={handleMarkNotificationRead}
+        onRefresh={fetchAllData}
+        onRecordDeleted={handleRecordDeleted}
       />
 
       {/* Real-time Internal Office Communication Modal */}

@@ -3,6 +3,7 @@ import type { Request, Response } from 'express';
 import fs from 'fs';
 import path from 'path';
 import crypto from 'crypto';
+import { execSync } from 'child_process';
 import { fileURLToPath } from 'url';
 import { dbService, deduplicateInterviewsList } from './src/server/db.ts';
 import type { DatabaseSchema } from './src/server/db.ts';
@@ -195,13 +196,82 @@ async function startServer() {
   app.use(express.json({ limit: '50mb' }));
   app.use(express.urlencoded({ extended: true, limit: '50mb' }));
 
-  // Request logger for API calls
+  // Cache prevention and request logger for all API endpoints
   app.use((req, res, next) => {
-    if (req.path.startsWith('/api') && req.path !== '/api/events') {
-      console.log(`[API] ${req.method} ${req.path}`);
+    if (req.path.startsWith('/api')) {
+      res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
+      res.setHeader('Pragma', 'no-cache');
+      res.setHeader('Expires', '0');
+      if (req.path !== '/api/events') {
+        console.log(`[API] ${req.method} ${req.path}`);
+      }
     }
     next();
   });
+
+  function findExistingCandidateInList(
+    candidates: Candidate[],
+    opts: { id?: string; phone?: string; email?: string; fullName?: string }
+  ): Candidate | undefined {
+    const normPhone = opts.phone ? opts.phone.replace(/\D/g, '') : '';
+    const normEmail = opts.email ? opts.email.toLowerCase().trim() : '';
+    const normName = opts.fullName ? opts.fullName.toLowerCase().replace(/[^a-z0-9]/g, '') : '';
+
+    return candidates.find((c) => {
+      if ((c as any).isDeleted) return false;
+      if (opts.id && c.id === opts.id) return true;
+
+      if (normPhone.length >= 7 && c.phone) {
+        const cPhone = c.phone.replace(/\D/g, '');
+        if (cPhone.length >= 7 && cPhone.slice(-10) === normPhone.slice(-10)) {
+          return true;
+        }
+      }
+
+      if (normEmail && normEmail.includes('@') && !normEmail.includes('example.com') && c.email) {
+        if (c.email.toLowerCase().trim() === normEmail) {
+          return true;
+        }
+      }
+
+      if (normName && normName.length >= 3 && c.fullName) {
+        const cName = c.fullName.toLowerCase().replace(/[^a-z0-9]/g, '');
+        if (cName === normName) return true;
+      }
+
+      return false;
+    });
+  }
+
+  function findExistingVisitorInList(
+    visitors: Visitor[],
+    opts: { id?: string; phone?: string; email?: string; fullName?: string; hostName?: string }
+  ): Visitor | undefined {
+    const normPhone = opts.phone ? opts.phone.replace(/\D/g, '') : '';
+    const normEmail = opts.email ? opts.email.toLowerCase().trim() : '';
+    const normName = opts.fullName ? opts.fullName.toLowerCase().replace(/[^a-z0-9]/g, '') : '';
+
+    return visitors.find((v) => {
+      if ((v as any).isDeleted) return false;
+      if (opts.id && v.id === opts.id) return true;
+
+      if (normPhone.length >= 7 && v.phone) {
+        const vPhone = v.phone.replace(/\D/g, '');
+        if (vPhone.length >= 7 && vPhone.slice(-10) === normPhone.slice(-10)) return true;
+      }
+
+      if (normEmail && normEmail.includes('@') && !normEmail.includes('example.com') && v.email) {
+        if (v.email.toLowerCase().trim() === normEmail) return true;
+      }
+
+      if (normName && normName.length >= 3 && v.fullName) {
+        const vName = v.fullName.toLowerCase().replace(/[^a-z0-9]/g, '');
+        if (vName === normName) return true;
+      }
+
+      return false;
+    });
+  }
 
   // ==========================================
   // REAL-TIME SERVER-SENT EVENTS (SSE) ROUTE (PROTECTED STAFF STREAM)
@@ -927,17 +997,12 @@ async function startServer() {
         }
         let candidateId = session?.candidateId;
 
-        // Check if candidate exists by phone/email or session
+        // Check if active candidate exists by phone/email or session (never revive deleted candidate)
         let existingCand = draft.candidates.find(
-          (c) => (candidateId && c.id === candidateId) || (phone && c.phone === phone) || (email && c.email && c.email === email)
+          (c) => !(c as any).isDeleted && ((candidateId && c.id === candidateId) || (phone && c.phone === phone) || (email && c.email && c.email === email))
         );
 
         if (existingCand) {
-          // Restore candidate if previously archived or deleted
-          delete (existingCand as any).isDeleted;
-          delete (existingCand as any).deletedAt;
-          delete (existingCand as any).deletedBy;
-          delete (existingCand as any).deletionReason;
 
           // Update existing candidate
           existingCand.fullName = fullName;
@@ -1593,19 +1658,15 @@ async function startServer() {
           resumeUrl
         );
 
-        // Safe candidate identification by phone or email
+        // Safe candidate identification by phone or email (never revive deleted candidate)
         let existingCand = draft.candidates.find(
           (c) =>
-            (c.phone && c.phone.trim() === phone.trim()) ||
-            (email && c.email && c.email.toLowerCase().trim() === email.toLowerCase().trim())
+            !(c as any).isDeleted &&
+            ((c.phone && c.phone.trim() === phone.trim()) ||
+             (email && c.email && c.email.toLowerCase().trim() === email.toLowerCase().trim()))
         );
 
         if (existingCand) {
-          // Restore candidate if previously archived or deleted
-          delete (existingCand as any).isDeleted;
-          delete (existingCand as any).deletedAt;
-          delete (existingCand as any).deletedBy;
-          delete (existingCand as any).deletionReason;
 
           // Update existing candidate
           existingCand.fullName = fullName;
@@ -3031,14 +3092,16 @@ async function startServer() {
     }
 
     const db = dbService.get();
+    const normPhone = phone ? phone.replace(/\D/g, '') : '';
     const existing = db.users.find(
-      (u) =>
+      (u: User) =>
         u.email.toLowerCase() === email.trim().toLowerCase() ||
-        (username && u.username?.toLowerCase() === username.trim().toLowerCase())
+        (username && u.username?.toLowerCase() === username.trim().toLowerCase()) ||
+        (normPhone && normPhone.length >= 7 && u.phone && u.phone.replace(/\D/g, '').slice(-10) === normPhone.slice(-10))
     );
 
     if (existing) {
-      return res.status(400).json({ success: false, error: 'A staff account with this email or username already exists.' });
+      return res.status(400).json({ success: false, error: 'A staff account with this email, username, or phone already exists.' });
     }
 
     const newUserId = `usr-${role.toLowerCase()}-${Date.now().toString().slice(-4)}`;
@@ -3691,12 +3754,39 @@ async function startServer() {
 
     try {
       dbService.update((draft) => {
-        draft.visitors = draft.visitors || [];
-        const idx = draft.visitors.findIndex((v) => v.id === id);
-        if (idx === -1) return;
+        deletedVisitorName = existingVis.fullName;
+        draft.visitors = (draft.visitors || []).filter((v) => v.id !== id);
 
-        deletedVisitorName = draft.visitors[idx].fullName;
-        draft.visitors.splice(idx, 1);
+        // Remove linked check-in sessions
+        if (draft.checkInSessions) {
+          draft.checkInSessions = draft.checkInSessions.filter(
+            (s) => s.candidateId !== id && s.token !== existingVis.qrToken && s.token !== id
+          );
+        }
+
+        // Clean visitor notifications and domain events
+        if (draft.notifications) {
+          draft.notifications = draft.notifications.filter(
+            (n) => n.entityId !== id && (n as any).visitorId !== id
+          );
+        }
+        if (draft.domainEvents) {
+          draft.domainEvents = draft.domainEvents.filter(
+            (e) => e.visitId !== id && (e.metadata as any)?.visitorId !== id && (e.metadata as any)?.id !== id
+          );
+        }
+
+        // Free room if allocated to visitor
+        if (draft.rooms) {
+          draft.rooms.forEach((rm) => {
+            if (rm.currentCandidateId === id || rm.currentCandidateName === deletedVisitorName) {
+              rm.status = 'AVAILABLE';
+              delete (rm as any).currentCandidateId;
+              delete (rm as any).currentCandidateName;
+              (rm as any).isOccupied = false;
+            }
+          });
+        }
 
         draft.auditLogs.unshift({
           id: `aud-${Date.now()}-vis-del`,
@@ -4538,13 +4628,19 @@ async function startServer() {
     try {
       dbService.update((draft) => {
         draft.actionTasks = draft.actionTasks || [];
-        const idx = draft.actionTasks.findIndex((t) => t.id === id);
-        if (idx === -1) {
+        const task = draft.actionTasks.find((t) => t.id === id);
+        if (!task) {
           throw new Error('Action task not found.');
         }
 
-        deletedTitle = draft.actionTasks[idx].title;
-        draft.actionTasks.splice(idx, 1);
+        deletedTitle = task.title;
+        draft.actionTasks = draft.actionTasks.filter((t) => t.id !== id);
+
+        if (draft.domainEvents) {
+          draft.domainEvents = draft.domainEvents.filter(
+            (e) => e.taskId !== id && (e.metadata as any)?.taskId !== id
+          );
+        }
 
         draft.auditLogs.unshift({
           id: `aud-${Date.now()}-task-del`,
@@ -5153,16 +5249,6 @@ async function startServer() {
       return res.json({ success: true, message: 'Candidate was already removed.', candidateId: id, isDeleted: true });
     }
 
-    // Idempotent check: if candidate is already soft-deleted, return success immediately and broadcast
-    if ((existingCand as any).isDeleted) {
-      eventWorkflowEngine.broadcast({
-        type: 'CANDIDATE_DELETED',
-        payload: { candidateId: id, id, timestamp, deletedBy: role },
-        targetRoles: ['HR', 'SENIOR_HR', 'ADMIN', 'CEO', 'CO_FOUNDER', 'INTERVIEWER', 'RECEPTION', 'PANTRY'],
-      });
-      return res.json({ success: true, message: `Candidate ${existingCand.fullName} was already archived.`, candidateId: id, isDeleted: true });
-    }
-
     // Active in-progress interview dependency diagnostic check
     const activeIntv = (db.interviews || []).find(
       (i) => i.candidateId === id && ((i.status as string) === 'IN_PROGRESS' || (i.status as string) === 'INTERVIEW_STARTED')
@@ -5190,18 +5276,12 @@ async function startServer() {
     }
 
     try {
-      let deletedName = existingCand.fullName;
+      const deletedName = existingCand.fullName;
       const freedRooms: Room[] = [];
 
       dbService.update((draft) => {
-        const candIdx = draft.candidates.findIndex((c) => c.id === id);
-        if (candIdx === -1) return;
-
-        const cand = draft.candidates[candIdx];
-        deletedName = cand.fullName;
-
-        // 1. Permanently remove candidate from active candidates list
-        draft.candidates.splice(candIdx, 1);
+        // 1. Permanently remove candidate from candidate list (remove all matching instances)
+        draft.candidates = (draft.candidates || []).filter((c) => c.id !== id);
 
         // 2. Clean up linked interviews (active, scheduled, completed)
         if (draft.interviews) {
@@ -5244,7 +5324,14 @@ async function startServer() {
           draft.pantryTasks = draft.pantryTasks.filter((pt) => (pt as any).candidateId !== id);
         }
 
-        // 8. Record audit trail & timeline
+        // 8. Clean up past domain events for this candidate to prevent resurrection on resync
+        if (draft.domainEvents) {
+          draft.domainEvents = draft.domainEvents.filter(
+            (e) => e.candidateId !== id && (e.metadata as any)?.candidateId !== id && (e.metadata as any)?.id !== id
+          );
+        }
+
+        // 9. Record audit trail & timeline
         draft.timelineEvents.unshift({
           id: `tl-${Date.now()}-del`,
           candidateId: id,
@@ -5261,11 +5348,23 @@ async function startServer() {
           actorType: 'USER',
           actorName: auth.user?.name ? `${auth.user.name} (${role})` : role,
           action: 'CANDIDATE_DELETED',
-          details: `Candidate ${id} (${deletedName}) and all linked schedules/allocations were removed by ${role}. Reason: ${reason}.${isActivelyInInterview ? ' Active interview session was resolved.' : ''}`,
+          details: `Candidate ${id} (${deletedName}) and all linked schedules/allocations were permanently removed by ${role}. Reason: ${reason}.${isActivelyInInterview ? ' Active interview session was resolved.' : ''}`,
           entityId: id,
           entityType: 'CANDIDATE',
         });
       });
+
+      // Also clean up any uploaded candidate document files on disk
+      try {
+        const resumeFile = path.resolve(RESUMES_DIR, `${id}-resume.bin`);
+        if (fs.existsSync(resumeFile)) fs.unlinkSync(resumeFile);
+        const govIdFile = path.resolve(GOV_IDS_DIR, `${id}-govid.bin`);
+        if (fs.existsSync(govIdFile)) fs.unlinkSync(govIdFile);
+        const photoFile = path.resolve(PHOTOS_DIR, `${id}-photo.jpg`);
+        if (fs.existsSync(photoFile)) fs.unlinkSync(photoFile);
+      } catch (fileErr) {
+        console.warn(`[DELETE] File cleanup note for candidate ${id}:`, fileErr);
+      }
 
       // Broadcast freed room updates immediately so all displays update
       freedRooms.forEach((rm) => {
@@ -5310,6 +5409,20 @@ async function startServer() {
 
     if (!name || !name.trim()) {
       return res.status(400).json({ success: false, error: 'Room name is required.' });
+    }
+
+    const db = dbService.get();
+    const normName = name.trim().toLowerCase();
+    const existing = db.rooms.find(
+      (r) =>
+        r.name.trim().toLowerCase() === normName ||
+        (r.roomName && r.roomName.trim().toLowerCase() === normName)
+    );
+    if (existing) {
+      return res.status(400).json({
+        success: false,
+        error: `A room named "${existing.name}" already exists. Duplicate room creation is prohibited.`,
+      });
     }
 
     const timestamp = new Date().toISOString();
@@ -5442,7 +5555,7 @@ async function startServer() {
 
     try {
       dbService.update((draft) => {
-        const idx = draft.rooms.findIndex((r) => r.id === id || r.roomId === id);
+        const idx = (draft.rooms || []).findIndex((r) => r.id === id || r.roomId === id);
         if (idx === -1) {
           throw new Error('Room not found.');
         }
@@ -5453,7 +5566,35 @@ async function startServer() {
         }
 
         deletedRoomName = room.name;
-        draft.rooms.splice(idx, 1);
+        draft.rooms = draft.rooms.filter((r) => r.id !== id && r.roomId !== id);
+
+        // Clear room references from candidates
+        if (draft.candidates) {
+          draft.candidates.forEach((c) => {
+            if (c.assignedRoomId === id) {
+              c.assignedRoomId = undefined;
+              c.assignedRoomName = undefined;
+              if (c.currentLocation && !c.currentLocation.includes('Waiting')) {
+                c.currentLocation = 'Reception / Waiting Lounge';
+              }
+            }
+          });
+        }
+
+        // Clear room references from interviews
+        if (draft.interviews) {
+          draft.interviews.forEach((i) => {
+            if (i.roomId === id) {
+              i.roomId = undefined;
+              i.roomName = undefined;
+            }
+          });
+        }
+
+        // Clean domain events referencing this room
+        if (draft.domainEvents) {
+          draft.domainEvents = draft.domainEvents.filter((e) => e.roomId !== id && (e.metadata as any)?.roomId !== id);
+        }
 
         draft.auditLogs.unshift({
           id: `aud-${Date.now()}-room-del`,
@@ -5468,8 +5609,13 @@ async function startServer() {
         });
       });
 
+      eventWorkflowEngine.broadcast({
+        type: 'ROOM_DELETED',
+        payload: { roomId: id, id, timestamp },
+        targetRoles: ['HR', 'SENIOR_HR', 'ADMIN', 'CEO', 'CO_FOUNDER', 'INTERVIEWER', 'RECEPTION', 'PANTRY'],
+      });
       eventWorkflowEngine.broadcast({ type: 'ROOMS_UPDATED', payload: { deletedRoomId: id } });
-      res.json({ success: true, message: `Room "${deletedRoomName}" deleted successfully.` });
+      res.json({ success: true, message: `Room "${deletedRoomName}" deleted successfully.`, roomId: id });
     } catch (err: any) {
       res.status(400).json({ success: false, error: err.message || 'Failed to delete room.' });
     }
@@ -5741,7 +5887,7 @@ async function startServer() {
     try {
       dbService.update((draft) => {
         draft.users = draft.users || [];
-        const idx = draft.users.findIndex((u) => u.id === id);
+        const idx = draft.users.findIndex((u) => u.id === id || u.userId === id);
         if (idx === -1) {
           throw new Error('User record not found.');
         }
@@ -5756,7 +5902,7 @@ async function startServer() {
         }
 
         deletedUserName = targetUser.name;
-        draft.users.splice(idx, 1);
+        draft.users = draft.users.filter((u) => u.id !== id && u.userId !== id);
 
         draft.auditLogs.unshift({
           id: `aud-${Date.now()}-user-del`,
@@ -5771,7 +5917,13 @@ async function startServer() {
         });
       });
 
-      res.json({ success: true, message: `Staff user "${deletedUserName}" deleted successfully.` });
+      eventWorkflowEngine.broadcast({
+        type: 'USER_DELETED',
+        payload: { userId: id, id, timestamp },
+        targetRoles: ['ADMIN', 'CEO', 'HR', 'SENIOR_HR'],
+      });
+
+      res.json({ success: true, message: `Staff user "${deletedUserName}" deleted successfully.`, userId: id });
     } catch (err: any) {
       res.status(400).json({ success: false, error: err.message || 'Failed to delete user record.' });
     }
@@ -5935,11 +6087,11 @@ async function startServer() {
 
   app.get('/api/interviews', (req: Request, res: Response) => {
     const db = dbService.get();
-    const deletedCandIds = new Set(
-      (db.candidates || []).filter((c) => (c as any).isDeleted).map((c) => c.id)
+    const activeCandIds = new Set(
+      (db.candidates || []).filter((c) => !(c as any).isDeleted).map((c) => c.id)
     );
     const activeInterviews = (db.interviews || []).filter(
-      (i) => !(i as any).isDeleted && !deletedCandIds.has(i.candidateId)
+      (i) => !(i as any).isDeleted && activeCandIds.has(i.candidateId)
     );
     const { cleaned } = deduplicateInterviewsList(activeInterviews, db.candidates);
     res.json({ success: true, interviews: cleaned });
@@ -6199,7 +6351,7 @@ async function startServer() {
         deletedCandidateName = intv.candidateName;
         const candidateId = intv.candidateId;
         const roomId = intv.roomId;
-        draft.interviews.splice(idx, 1);
+        draft.interviews = draft.interviews.filter((i) => i.id !== id);
 
         // Update candidate currentInterviewId if it pointed to this interview
         if (candidateId && draft.candidates) {
@@ -6224,6 +6376,13 @@ async function startServer() {
             delete (rm as any).currentCandidateId;
             delete (rm as any).currentCandidateName;
           }
+        }
+
+        // Clean domain events referencing this interview
+        if (draft.domainEvents) {
+          draft.domainEvents = draft.domainEvents.filter(
+            (e) => e.interviewId !== id && (e.metadata as any)?.interviewId !== id
+          );
         }
 
         draft.auditLogs.unshift({
@@ -6712,7 +6871,27 @@ async function startServer() {
   // ==========================================
   // VITE DEV MIDDLEWARE OR PRODUCTION STATIC
   // ==========================================
-  if (process.env.NODE_ENV !== 'production') {
+  const distHtmlPath = path.resolve(__dirname, 'dist', 'index.html');
+  if (!fs.existsSync(distHtmlPath)) {
+    console.log('[WCR OPS SERVER] dist/index.html not found. Building production assets...');
+    try {
+      execSync('npx vite build', { stdio: 'inherit' });
+    } catch (e) {
+      console.warn('[WCR OPS SERVER] Vite build on startup failed:', e);
+    }
+  }
+
+  if (process.env.NODE_ENV === 'production' || fs.existsSync(distHtmlPath)) {
+    app.use(express.static(path.resolve(__dirname, 'dist')));
+    app.get('*', (req: Request, res: Response) => {
+      const indexPath = path.resolve(__dirname, 'dist', 'index.html');
+      if (fs.existsSync(indexPath)) {
+        res.sendFile(indexPath);
+      } else {
+        res.status(404).send('App not built. Run npm run build.');
+      }
+    });
+  } else {
     const isHmrDisabled = process.env.DISABLE_HMR === 'true';
     const { createServer: createViteServer } = await import('vite');
     const vite = await createViteServer({
@@ -6725,11 +6904,6 @@ async function startServer() {
       appType: 'spa',
     });
     app.use(vite.middlewares);
-  } else {
-    app.use(express.static(path.resolve(__dirname, 'dist')));
-    app.get('*', (req: Request, res: Response) => {
-      res.sendFile(path.resolve(__dirname, 'dist', 'index.html'));
-    });
   }
 
   app.listen(PORT, '0.0.0.0', () => {
