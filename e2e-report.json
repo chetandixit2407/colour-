@@ -60,33 +60,33 @@
     "feature": "Candidate Self Check-in Registration",
     "testCase": "POST /api/checkin/submit with comprehensive profile payload",
     "status": "VERIFIED",
-    "evidence": "HTTP 200, Created Candidate ID: cand-1792750826073, Status: ARRIVED"
+    "evidence": "HTTP 200, Created Candidate ID: cand-1792754613207, Status: ARRIVED"
   },
   {
     "module": "Candidate Lifecycle",
     "feature": "Candidate Dossier & Profile Retrieval",
-    "testCase": "GET /api/candidates/cand-1792750826073 with HR authorization",
+    "testCase": "GET /api/candidates/cand-1792754613207 with HR authorization",
     "status": "VERIFIED",
     "evidence": "HTTP 200, Retrieved Pradeep Deshmukh QA, Experience: 5 Years"
   },
   {
     "module": "Candidate Lifecycle",
     "feature": "Live Desk Photo Verification & Capture",
-    "testCase": "POST /api/candidates/cand-1792750826073/reception-photo",
+    "testCase": "POST /api/candidates/cand-1792754613207/reception-photo",
     "status": "VERIFIED",
     "evidence": "HTTP 200, Desk photo persisted and attached to candidate dossier"
   },
   {
     "module": "Candidate Lifecycle",
     "feature": "Direct Photo Retrieval Without Broken Image Icons",
-    "testCase": "GET /api/candidates/cand-1792750826073/photo",
+    "testCase": "GET /api/candidates/cand-1792754613207/photo",
     "status": "VERIFIED",
     "evidence": "HTTP 200, Content-Type: image/jpeg"
   },
   {
     "module": "Candidate Lifecycle",
     "feature": "Candidate Profile Update",
-    "testCase": "PUT /api/candidates/cand-1792750826073 with updated notes & experience",
+    "testCase": "PUT /api/candidates/cand-1792754613207 with updated notes & experience",
     "status": "VERIFIED",
     "evidence": "HTTP 200, Candidate record updated successfully with audit trail"
   },
@@ -95,12 +95,12 @@
     "feature": "Walk-In Visitor Registration",
     "testCase": "POST /api/walkin/register",
     "status": "VERIFIED",
-    "evidence": "HTTP 200, Visitor ID: vis-1792750826389, Status: CHECKED_IN"
+    "evidence": "HTTP 200, Visitor ID: vis-1792754613603, Status: CHECKED_IN"
   },
   {
     "module": "Visitor Management",
     "feature": "Visitor Check-Out & Archival",
-    "testCase": "POST /api/visitors/vis-1792750826389/checkout",
+    "testCase": "POST /api/visitors/vis-1792754613603/checkout",
     "status": "VERIFIED",
     "evidence": "HTTP 200, Visitor marked as CHECKED_OUT with timestamp"
   },
@@ -109,12 +109,12 @@
     "feature": "QR Pass Token Generation",
     "testCase": "POST /api/qr/generate",
     "status": "VERIFIED",
-    "evidence": "HTTP 200, QR Token: WCR-APPT-556, Data URL generated"
+    "evidence": "HTTP 200, QR Token: WCR-APPT-872, Data URL generated"
   },
   {
     "module": "QR & Digital Passes",
     "feature": "Mobile QR Scanning & Candidate Data Retrieval",
-    "testCase": "POST /api/qr/validate with token WCR-APPT-556",
+    "testCase": "POST /api/qr/validate with token WCR-APPT-872",
     "status": "VERIFIED",
     "evidence": "HTTP 200, Token validated successfully, payload decoded"
   },
@@ -137,7 +137,7 @@
     "feature": "Interview Scheduling & Interviewer Assignment",
     "testCase": "POST /api/interviews/schedule",
     "status": "VERIFIED",
-    "evidence": "HTTP 200, Scheduled Interview ID: intv-1792750826711-xxqzk, Interviewer: Rahul Sharma"
+    "evidence": "HTTP 200, Scheduled Interview ID: intv-1792754613208-ffep, Interviewer: Rahul Sharma"
   },
   {
     "module": "Room Management",
@@ -156,7 +156,7 @@
   {
     "module": "Interview Lifecycle",
     "feature": "Interview Start, Completion & Feedback Submission",
-    "testCase": "POST /api/interviews/intv-1792750826711-xxqzk/end with rating and recommendation",
+    "testCase": "POST /api/interviews/intv-1792754613208-ffep/end with rating and recommendation",
     "status": "VERIFIED",
     "evidence": "HTTP 200, Status updated to INTERVIEW_COMPLETED, room automatically freed for cleaning"
   },
@@ -165,12 +165,12 @@
     "feature": "Pantry Task Creation by Authorized Staff",
     "testCase": "POST /api/pantry/tasks by HR",
     "status": "VERIFIED",
-    "evidence": "HTTP 200, Task ID: pantry-task-1792750827413, Items: Masala Chai, Mineral Water"
+    "evidence": "HTTP 200, Task ID: pantry-task-1792754614892, Items: Masala Chai, Mineral Water"
   },
   {
     "module": "Hospitality & Pantry",
     "feature": "Pantry Task Execution State Machine",
-    "testCase": "PUT /api/pantry/tasks/pantry-task-1792750827413 (PENDING -> PREPARING -> SERVED)",
+    "testCase": "PUT /api/pantry/tasks/pantry-task-1792754614892 (PENDING -> PREPARING -> SERVED)",
     "status": "VERIFIED",
     "evidence": "HTTP 200, Status successfully progressed to SERVED"
   },
@@ -191,7 +191,7 @@
   {
     "module": "Security & RBAC",
     "feature": "Unauthorized Resume Access Blocked for Pantry",
-    "testCase": "GET /api/candidates/cand-1792750826073/resume with PANTRY token",
+    "testCase": "GET /api/candidates/cand-1792754613207/resume with PANTRY token",
     "status": "VERIFIED",
     "evidence": "HTTP 403 Forbidden: Access blocked per RBAC specification"
   },

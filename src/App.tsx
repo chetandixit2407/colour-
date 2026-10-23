@@ -53,6 +53,7 @@ import {
   getStoredStaffRole,
   setStoredStaffRole,
 } from './utils/apiClient.ts';
+import { normalizeInterviewRound, getInterviewRoundKey } from './utils/candidateHelpers.ts';
 
 // Role Dashboards
 import { HRDashboard } from './components/dashboards/HRDashboard.tsx';
@@ -439,8 +440,7 @@ export default function App() {
         );
         const seenRounds = new Map<string, any>();
         activeList.forEach((intv: any) => {
-          const normRound = (intv.roundName || '').toLowerCase().replace(/[^a-z0-9]/g, '');
-          const key = `${intv.candidateId}::${normRound}`;
+          const key = getInterviewRoundKey(intv.candidateId, intv.roundName);
           if (!seenRounds.has(key)) {
             seenRounds.set(key, intv);
           } else {
@@ -605,11 +605,9 @@ export default function App() {
             next[idx] = { ...next[idx], ...incomingIntv };
             return next;
           }
-          const normIncoming = (incomingIntv.roundName || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+          const incomingKey = getInterviewRoundKey(incomingIntv.candidateId, incomingIntv.roundName);
           const dupIdx = prev.findIndex(
-            (i) =>
-              i.candidateId === incomingIntv.candidateId &&
-              (i.roundName || '').toLowerCase().replace(/[^a-z0-9]/g, '') === normIncoming
+            (i) => getInterviewRoundKey(i.candidateId, i.roundName) === incomingKey
           );
           if (dupIdx !== -1) {
             const next = [...prev];

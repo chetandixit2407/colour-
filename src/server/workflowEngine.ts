@@ -22,6 +22,7 @@ import type {
   VoiceAlertPayload,
   ArrivalVisualDetails,
 } from '../types/index.ts';
+import { normalizeInterviewRound } from '../utils/candidateHelpers.ts';
 
 // SSE client subscriber interface with verified staff session
 export interface SSEClient {
@@ -2039,29 +2040,50 @@ class EventWorkflowEngine {
           nextInterviewerId === 'usr-cofounder-kimmi' || nextIntvUser?.name?.includes('Kimmi')
             ? 'Kimmi Mam – Senior HR Interview'
             : nextIntvUser?.name || 'Next Interviewer';
-        newInterviewId = `intv-${Date.now()}`;
-
         const isSenior = nextInterviewerId === 'usr-cofounder-kimmi' || nextInterviewerName.includes('Kimmi') || (cand && /senior|director|lead|vp|head|manager/i.test(cand.position));
+        const targetRoundName = isSenior ? 'Senior HR Interview' : (nextRoundName || 'Next Evaluation Round');
+        const targetCategory = normalizeInterviewRound(targetRoundName);
 
-        const newIntv: Interview = {
-          id: newInterviewId,
-          candidateId: candId,
-          candidateName: candName,
-          position: cand?.position || intv.position,
-          roundName: isSenior ? 'Senior HR Interview' : (nextRoundName || 'Next Evaluation Round'),
-          interviewerId: nextInterviewerId || '',
-          interviewerName: nextInterviewerName,
-          scheduledTime: 'Immediate / Today',
-          status: 'CANDIDATE_ARRIVED',
-          createdAt: timestamp,
-          updatedAt: timestamp,
-        };
-        draft.interviews.push(newIntv);
+        // Check if an interview for this next round already exists
+        const existingNext = draft.interviews.find(
+          (i) =>
+            i.candidateId === candId &&
+            !(i as any).isDeleted &&
+            normalizeInterviewRound(i.roundName) === targetCategory &&
+            i.status !== 'INTERVIEW_COMPLETED'
+        );
+
+        let activeNextIntv: Interview;
+        if (existingNext) {
+          newInterviewId = existingNext.id;
+          existingNext.status = 'CANDIDATE_ARRIVED';
+          if (nextInterviewerId) existingNext.interviewerId = nextInterviewerId;
+          if (nextInterviewerName) existingNext.interviewerName = nextInterviewerName;
+          existingNext.updatedAt = timestamp;
+          activeNextIntv = existingNext;
+        } else {
+          newInterviewId = `intv-${Date.now()}`;
+          const newIntv: Interview = {
+            id: newInterviewId,
+            candidateId: candId,
+            candidateName: candName,
+            position: cand?.position || intv.position,
+            roundName: targetRoundName,
+            interviewerId: nextInterviewerId || '',
+            interviewerName: nextInterviewerName,
+            scheduledTime: 'Immediate / Today',
+            status: 'CANDIDATE_ARRIVED',
+            createdAt: timestamp,
+            updatedAt: timestamp,
+          };
+          draft.interviews.push(newIntv);
+          activeNextIntv = newIntv;
+        }
 
         if (cand) {
           cand.status = 'WAITING';
           cand.currentLocation = isSenior ? 'With Kimmi Mam – Senior HR Interview' : 'Waiting Area / Lounge';
-          cand.currentInterviewId = newIntv.id;
+          cand.currentInterviewId = activeNextIntv.id;
         }
 
         // Optional Immediate Room Allocation for Next Round
@@ -2073,9 +2095,9 @@ class EventWorkflowEngine {
             roomToAssign.currentCandidateName = candName;
             roomToAssign.currentInterviewId = newInterviewId;
             roomToAssign.assignedInterviewerName = nextInterviewerName;
-            newIntv.roomId = roomToAssign.id;
-            newIntv.roomName = roomToAssign.name;
-            newIntv.status = 'ROOM_ASSIGNED';
+            activeNextIntv.roomId = roomToAssign.id;
+            activeNextIntv.roomName = roomToAssign.name;
+            activeNextIntv.status = 'ROOM_ASSIGNED';
             if (cand) {
               cand.assignedRoomId = roomToAssign.id;
               cand.assignedRoomName = roomToAssign.name;
@@ -2091,10 +2113,10 @@ class EventWorkflowEngine {
             recipientRole: 'INTERVIEWER',
             recipientUserId: nextInterviewerId,
             title: 'Candidate Ready for Next Round',
-            message: `${candName} has cleared ${intv.roundName} and is waiting for ${newIntv.roundName} with you.`,
+            message: `${candName} has cleared ${intv.roundName} and is waiting for ${activeNextIntv.roundName} with you.`,
             priority: 'HIGH',
             eventType: 'NEXT_INTERVIEW_CREATED',
-            entityId: newIntv.id,
+            entityId: activeNextIntv.id,
             entityType: 'INTERVIEW',
             read: false,
             createdAt: timestamp,
@@ -2108,7 +2130,7 @@ class EventWorkflowEngine {
           id: `notif-${Date.now()}-hr-next`,
           recipientRole: 'HR',
           title: `Stage Cleared: ${candName}`,
-          message: `${candName} advanced to ${newIntv.roundName} with ${nextInterviewerName}. Room assignment required.`,
+          message: `${candName} advanced to ${activeNextIntv.roundName} with ${nextInterviewerName}. Room assignment required.`,
           priority: 'HIGH',
           eventType: 'NEXT_INTERVIEW_CREATED',
           entityId: candId,
@@ -2116,7 +2138,7 @@ class EventWorkflowEngine {
           read: false,
           createdAt: timestamp,
           actionButtons: [
-            { label: 'Assign Room', actionKey: 'ASSIGN_ROOM', payload: { candidateId: candId, interviewId: newIntv.id } },
+            { label: 'Assign Room', actionKey: 'ASSIGN_ROOM', payload: { candidateId: candId, interviewId: activeNextIntv.id } },
           ],
         });
 
@@ -2127,7 +2149,7 @@ class EventWorkflowEngine {
           actorType: 'USER',
           actorName: interviewerName,
           eventType: 'ADVANCED_TO_NEXT_STAGE',
-          description: `Candidate advanced to ${newIntv.roundName} with ${nextInterviewerName}. Candidate moved back to Waiting Lounge.`,
+          description: `Candidate advanced to ${activeNextIntv.roundName} with ${nextInterviewerName}. Candidate moved back to Waiting Lounge.`,
         });
       } else {
         if (cand) {

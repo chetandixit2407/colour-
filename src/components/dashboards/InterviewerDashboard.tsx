@@ -12,7 +12,7 @@ import {
   ArrowRight,
 } from 'lucide-react';
 import type { Candidate, Interview, Room } from '../../types/index.ts';
-import { formatCandidateExperience, formatCandidateLocation } from '../../utils/candidateHelpers.ts';
+import { formatCandidateExperience, formatCandidateLocation, getInterviewRoundKey } from '../../utils/candidateHelpers.ts';
 import { CandidateAvatar } from '../CandidateAvatar.tsx';
 
 
@@ -35,10 +35,27 @@ export const InterviewerDashboard: React.FC<InterviewerDashboardProps> = ({
   onOpenEndInterviewModal,
   onOpenDossier,
 }) => {
-  // Filter for interviews assigned to this interviewer
-  const myInterviews = interviews.filter(
-    (i) => !currentInterviewerId || i.interviewerId === currentInterviewerId || i.interviewerName.includes('Nisha')
-  );
+  // Filter for interviews assigned to this interviewer and deduplicate by canonical round key
+  const seenInterviews = new Map<string, Interview>();
+  interviews
+    .filter(
+      (i) =>
+        !currentInterviewerId ||
+        i.interviewerId === currentInterviewerId ||
+        (i.interviewerName && i.interviewerName.includes('Nisha'))
+    )
+    .forEach((i) => {
+      const key = getInterviewRoundKey(i.candidateId, i.roundName);
+      if (!seenInterviews.has(key)) {
+        seenInterviews.set(key, i);
+      } else {
+        const existing = seenInterviews.get(key)!;
+        if (!existing.roomId && i.roomId) {
+          seenInterviews.set(key, i);
+        }
+      }
+    });
+  const myInterviews = Array.from(seenInterviews.values());
 
   const waitingInterviews = myInterviews.filter(
     (i) => i.status === 'CANDIDATE_ARRIVED' || i.status === 'ROOM_ASSIGNED'

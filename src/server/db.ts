@@ -21,6 +21,7 @@ import type {
   ActionTask,
 } from '../types/index.ts';
 import { hashPassword, ROLE_PERMISSIONS } from './auth.ts';
+import { normalizeInterviewRound } from '../utils/candidateHelpers.ts';
 
 const DATA_DIR = path.resolve(process.cwd(), 'data');
 const DB_FILE = path.resolve(DATA_DIR, 'wcr_database.json');
@@ -656,6 +657,120 @@ const defaultCheckInSessions: CheckInSession[] = [
   },
 ];
 
+export function deduplicateInterviewsList(
+  interviews: Interview[],
+  candidates?: Candidate[]
+): {
+  cleaned: Interview[];
+  removedDuplicates: { candidateId: string; candidateName: string; keptId: string; removedId: string; round: string }[];
+} {
+  if (!interviews || !Array.isArray(interviews)) {
+    return { cleaned: [], removedDuplicates: [] };
+  }
+
+  const candMap = new Map<string, Candidate>((candidates || []).map((c) => [c.id, c]));
+  const seenRoundMap = new Map<string, Interview>();
+  const removedDuplicates: { candidateId: string; candidateName: string; keptId: string; removedId: string; round: string }[] = [];
+
+  // Sort so that prioritized records (designated room, active/started status, latest timestamp) take precedence
+  const sorted = [...interviews].sort((a, b) => {
+    // 1. Priority to interviews with designated room assigned
+    const aHasRoom = a.roomId || a.status === 'ROOM_ASSIGNED' ? 1 : 0;
+    const bHasRoom = b.roomId || b.status === 'ROOM_ASSIGNED' ? 1 : 0;
+    if (aHasRoom !== bHasRoom) return bHasRoom - aHasRoom;
+
+    // 2. Priority by status lifecycle advancement
+    const statusWeight = (s: string) => {
+      switch (s) {
+        case 'INTERVIEW_COMPLETED': return 5;
+        case 'INTERVIEW_STARTED': return 4;
+        case 'ROOM_ASSIGNED': return 3;
+        case 'CANDIDATE_ARRIVED': return 2;
+        case 'SCHEDULED': return 1;
+        case 'CANCELLED': return 0;
+        default: return 0;
+      }
+    };
+    const sDiff = statusWeight(b.status) - statusWeight(a.status);
+    if (sDiff !== 0) return sDiff;
+
+    // 3. Fallback to newest updated or created timestamp
+    const aTime = new Date(a.updatedAt || a.createdAt || 0).getTime();
+    const bTime = new Date(b.updatedAt || b.createdAt || 0).getTime();
+    return bTime - aTime;
+  });
+
+  for (const intv of sorted) {
+    const roundCategory = normalizeInterviewRound(intv.roundName);
+    const key = `${intv.candidateId}::${roundCategory}`;
+
+    if (!seenRoundMap.has(key)) {
+      seenRoundMap.set(key, { ...intv });
+    } else {
+      const existing = seenRoundMap.get(key)!;
+      const cand = candMap.get(intv.candidateId);
+
+      // Determine which interview candidate record currently references
+      const candPrefersThis = cand && cand.currentInterviewId === intv.id;
+      const candPrefersExisting = cand && cand.currentInterviewId === existing.id;
+
+      if (candPrefersThis && !candPrefersExisting) {
+        // Swap to this one as primary, merge room or details
+        const merged: Interview = {
+          ...existing,
+          ...intv,
+          roomId: intv.roomId || existing.roomId,
+          roomName: intv.roomName || existing.roomName,
+        };
+        seenRoundMap.set(key, merged);
+        removedDuplicates.push({
+          candidateId: intv.candidateId,
+          candidateName: intv.candidateName,
+          keptId: intv.id,
+          removedId: existing.id,
+          round: intv.roundName,
+        });
+      } else {
+        // Keep existing as primary, merge room if needed
+        if (!existing.roomId && intv.roomId) {
+          existing.roomId = intv.roomId;
+          existing.roomName = intv.roomName;
+        }
+        if (existing.status === 'SCHEDULED' && intv.status === 'CANDIDATE_ARRIVED') {
+          existing.status = 'CANDIDATE_ARRIVED';
+        }
+        removedDuplicates.push({
+          candidateId: intv.candidateId,
+          candidateName: intv.candidateName,
+          keptId: existing.id,
+          removedId: intv.id,
+          round: intv.roundName,
+        });
+
+        // Ensure candidate currentInterviewId points to the kept interview
+        if (cand && cand.currentInterviewId === intv.id) {
+          cand.currentInterviewId = existing.id;
+        }
+      }
+    }
+  }
+
+  const cleaned = Array.from(seenRoundMap.values());
+  const keptIds = new Set(cleaned.map((i) => i.id));
+  if (candidates) {
+    candidates.forEach((cand) => {
+      if (cand.currentInterviewId && !keptIds.has(cand.currentInterviewId)) {
+        const match = cleaned.find((i) => i.candidateId === cand.id);
+        if (match) {
+          cand.currentInterviewId = match.id;
+        }
+      }
+    });
+  }
+
+  return { cleaned, removedDuplicates };
+}
+
 class DatabaseService {
   private db: DatabaseSchema;
 
@@ -751,55 +866,12 @@ class DatabaseService {
             return intv;
           });
 
-          // 1.75 Deduplicate interviews using candidate ID, interview ID, and scheduled round (preserving legitimate separate interview rounds)
-          const candMap = new Map<string, any>((parsed.candidates || []).map((c: any) => [c.id, c]));
-          const uniqueInterviews: Interview[] = [];
-          const seenRounds = new Map<string, number>();
-
-          parsed.interviews.forEach((intv: any) => {
-            const normRound = (intv.roundName || '').toLowerCase().replace(/[^a-z0-9]/g, '');
-            const key = `${intv.candidateId}::${normRound}`;
-
-            if (!seenRounds.has(key)) {
-              seenRounds.set(key, uniqueInterviews.length);
-              uniqueInterviews.push({ ...intv });
-            } else {
-              const existingIdx = seenRounds.get(key)!;
-              const existing = uniqueInterviews[existingIdx];
-              const cand = candMap.get(intv.candidateId);
-
-              const isCandPointingToThis = cand && cand.currentInterviewId === intv.id;
-              const isCandPointingToExisting = cand && cand.currentInterviewId === existing.id;
-              const thisHasRoom = !!intv.roomId || intv.status === 'ROOM_ASSIGNED';
-              const existingHasRoom = !!existing.roomId || existing.status === 'ROOM_ASSIGNED';
-
-              let keepThis = false;
-              if (isCandPointingToThis && !isCandPointingToExisting) {
-                keepThis = true;
-              } else if (thisHasRoom && !existingHasRoom) {
-                keepThis = true;
-              } else if (intv.status === 'INTERVIEW_STARTED' || intv.status === 'INTERVIEW_COMPLETED') {
-                keepThis = true;
-              }
-
-              if (keepThis) {
-                uniqueInterviews[existingIdx] = { ...existing, ...intv };
-                if (cand && cand.currentInterviewId === existing.id) {
-                  cand.currentInterviewId = intv.id;
-                }
-              } else {
-                if (!existing.roomId && intv.roomId) {
-                  existing.roomId = intv.roomId;
-                  existing.roomName = intv.roomName;
-                }
-                if (cand && cand.currentInterviewId === intv.id) {
-                  cand.currentInterviewId = existing.id;
-                }
-              }
-            }
-          });
-
-          parsed.interviews = uniqueInterviews;
+          // 1.75 Deduplicate interviews using canonical round categories (preserving legitimate separate interview rounds e.g. Round 1 vs Senior HR Interview)
+          const { cleaned, removedDuplicates } = deduplicateInterviewsList(parsed.interviews, parsed.candidates);
+          parsed.interviews = cleaned;
+          if (removedDuplicates.length > 0) {
+            console.log(`[DB Boot] Safely cleaned ${removedDuplicates.length} accidental duplicate interview stubs from persistent storage.`);
+          }
         }
 
         // 1.8 Sanitize past notifications, timeline events, and audit logs
@@ -1026,6 +1098,10 @@ class DatabaseService {
 
   public update(updater: (draft: DatabaseSchema) => void): DatabaseSchema {
     updater(this.db);
+    if (this.db.interviews && Array.isArray(this.db.interviews)) {
+      const { cleaned } = deduplicateInterviewsList(this.db.interviews, this.db.candidates);
+      this.db.interviews = cleaned;
+    }
     this.persist(this.db);
     return this.db;
   }

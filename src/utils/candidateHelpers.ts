@@ -130,3 +130,59 @@ export function getValidCandidatePhoto(cand?: any | null): string | null {
   return trimmed;
 }
 
+/**
+ * Normalizes interview round names into canonical evaluation stages:
+ * - ROUND_1: Initial Assessment, Screening, Technical Evaluation, Round 1 (any variation)
+ * - ROUND_2_SENIOR_HR: Senior HR Interview, Co-Founder, Kimmi Mam, Round 2
+ * - ROUND_3_CEO: CEO Round, Lalit Sir, Final Leadership Round, Round 3
+ * - Or sanitized alphanumeric stage token for custom bespoke rounds
+ */
+export function normalizeInterviewRound(roundName?: string): string {
+  if (!roundName) return 'ROUND_1';
+  const clean = roundName.toLowerCase().trim();
+
+  // CEO / Final Leadership evaluation
+  if (
+    clean.includes('ceo') ||
+    clean.includes('lalit') ||
+    clean.includes('round 3') ||
+    clean.includes('round3') ||
+    clean.includes('final')
+  ) {
+    return 'ROUND_3_CEO';
+  }
+
+  // Senior HR / Kimmi Mam / Co-Founder interview
+  if (
+    clean.includes('senior') ||
+    clean.includes('kimmi') ||
+    clean.includes('round 2') ||
+    clean.includes('round2') ||
+    clean.includes('co-founder') ||
+    clean.includes('cofounder') ||
+    clean.includes('leadership')
+  ) {
+    return 'ROUND_2_SENIOR_HR';
+  }
+
+  // Round 1 / Technical / Screening / Initial Assessment
+  if (
+    clean.includes('round 1') ||
+    clean.includes('round1') ||
+    clean.includes('technical') ||
+    clean.includes('initial') ||
+    clean.includes('screening') ||
+    clean.includes('assessment') ||
+    clean.includes('evaluation')
+  ) {
+    return 'ROUND_1';
+  }
+
+  const alpha = clean.replace(/[^a-z0-9]/g, '');
+  return alpha ? `ROUND_${alpha.toUpperCase()}` : 'ROUND_1';
+}
+
+export function getInterviewRoundKey(candidateId: string, roundName?: string): string {
+  return `${candidateId}::${normalizeInterviewRound(roundName)}`;
+}
+

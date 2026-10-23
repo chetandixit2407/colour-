@@ -29,7 +29,7 @@
       "phone": "+91 98100 00001",
       "createdAt": "2026-10-06T10:05:37.532Z",
       "updatedAt": "2026-10-06T10:05:37.532Z",
-      "lastLoginAt": "2026-10-23T10:49:45.109Z"
+      "lastLoginAt": "2026-10-23T11:23:32.858Z"
     },
     {
       "id": "usr-cofounder-kimmi",
@@ -58,7 +58,7 @@
       "phone": "+91 98100 00002",
       "createdAt": "2026-10-06T10:05:37.533Z",
       "updatedAt": "2026-10-06T10:05:37.533Z",
-      "lastLoginAt": "2026-10-23T10:49:45.169Z"
+      "lastLoginAt": "2026-10-23T11:23:32.908Z"
     },
     {
       "id": "usr-hr-nisha",
@@ -90,7 +90,7 @@
       "phone": "+91 98100 00003",
       "createdAt": "2026-10-06T10:05:37.533Z",
       "updatedAt": "2026-10-06T10:05:37.533Z",
-      "lastLoginAt": "2026-10-23T10:49:45.223Z"
+      "lastLoginAt": "2026-10-23T11:23:32.958Z"
     },
     {
       "id": "usr-hr-shriyanshi",
@@ -156,7 +156,7 @@
       "phone": "+91 98100 00005",
       "createdAt": "2026-10-06T10:05:37.533Z",
       "updatedAt": "2026-10-06T10:05:37.533Z",
-      "lastLoginAt": "2026-10-23T10:49:45.055Z"
+      "lastLoginAt": "2026-10-23T11:23:32.799Z"
     },
     {
       "id": "usr-rec-ananya",
@@ -182,7 +182,7 @@
       "phone": "+91 98100 00006",
       "createdAt": "2026-10-06T10:05:37.534Z",
       "updatedAt": "2026-10-06T10:05:37.534Z",
-      "lastLoginAt": "2026-10-23T10:49:45.327Z"
+      "lastLoginAt": "2026-10-23T11:23:33.059Z"
     },
     {
       "id": "usr-pan-ramesh",
@@ -204,7 +204,7 @@
       "phone": "+91 98100 00007",
       "createdAt": "2026-10-06T10:05:37.534Z",
       "updatedAt": "2026-10-06T10:05:37.534Z",
-      "lastLoginAt": "2026-10-23T10:49:45.379Z"
+      "lastLoginAt": "2026-10-23T11:23:33.107Z"
     },
     {
       "id": "usr-sales-vikram",
@@ -248,7 +248,7 @@
       "phone": "+91 98100 00009",
       "createdAt": "2026-10-22T05:35:08.579Z",
       "updatedAt": "2026-10-22T05:35:08.579Z",
-      "lastLoginAt": "2026-10-23T10:49:45.277Z"
+      "lastLoginAt": "2026-10-23T11:23:33.007Z"
     }
   ],
   "candidates": [
@@ -5179,90 +5179,6 @@
       "roomName": "Conference Room A"
     },
     {
-      "id": "intv-1792750827087",
-      "candidateId": "cand-1792750827087",
-      "candidateName": "Aniket Kulkarni QA",
-      "position": "Commercial Leasing Manager",
-      "roundName": "Round 1 - Technical Assessment",
-      "interviewerId": "usr-intv-rahul",
-      "interviewerName": "Rahul Sharma",
-      "scheduledTime": "Immediate / Walk-in",
-      "status": "CANCELLED",
-      "createdAt": "2026-10-23T10:20:27.087Z",
-      "updatedAt": "2026-10-23T10:20:27.087Z",
-      "isDeleted": true
-    },
-    {
-      "id": "intv-1792750826073",
-      "candidateId": "cand-1792750826073",
-      "candidateName": "Pradeep Deshmukh QA",
-      "position": "Senior Property Consultant",
-      "roundName": "Round 1 - Technical Assessment",
-      "interviewerId": "usr-intv-rahul",
-      "interviewerName": "Rahul Sharma",
-      "scheduledTime": "Immediate / Walk-in",
-      "status": "CANCELLED",
-      "createdAt": "2026-10-23T10:20:26.073Z",
-      "updatedAt": "2026-10-23T10:20:26.073Z",
-      "isDeleted": true
-    },
-    {
-      "id": "intv-1792750810155",
-      "candidateId": "cand-1792750810155",
-      "candidateName": "Aniket Kulkarni QA",
-      "position": "Commercial Leasing Manager",
-      "roundName": "Round 1 - Technical Assessment",
-      "interviewerId": "usr-intv-rahul",
-      "interviewerName": "Rahul Sharma",
-      "scheduledTime": "Immediate / Walk-in",
-      "status": "CANCELLED",
-      "createdAt": "2026-10-23T10:20:10.155Z",
-      "updatedAt": "2026-10-23T10:20:10.155Z",
-      "isDeleted": true
-    },
-    {
-      "id": "intv-1792750809255",
-      "candidateId": "cand-1792750809255",
-      "candidateName": "Pradeep Deshmukh QA",
-      "position": "Senior Property Consultant",
-      "roundName": "Round 1 - Technical Assessment",
-      "interviewerId": "usr-intv-rahul",
-      "interviewerName": "Rahul Sharma",
-      "scheduledTime": "Immediate / Walk-in",
-      "status": "CANCELLED",
-      "createdAt": "2026-10-23T10:20:09.254Z",
-      "updatedAt": "2026-10-23T10:20:09.254Z",
-      "isDeleted": true
-    },
-    {
-      "id": "intv-1792750693378",
-      "candidateId": "cand-1792750693378",
-      "candidateName": "Aniket Kulkarni QA",
-      "position": "Commercial Leasing Manager",
-      "roundName": "Round 1 - Technical Assessment",
-      "interviewerId": "usr-intv-rahul",
-      "interviewerName": "Rahul Sharma",
-      "scheduledTime": "Immediate / Walk-in",
-      "status": "CANCELLED",
-      "createdAt": "2026-10-23T10:18:13.378Z",
-      "updatedAt": "2026-10-23T10:18:13.378Z",
-      "isDeleted": true
-    },
-    {
-      "id": "intv-1792750692717",
-      "candidateId": "cand-1792750692717",
-      "candidateName": "Pradeep Deshmukh QA",
-      "position": "Senior Property Consultant",
-      "roundName": "Round 1 - Technical Assessment",
-      "interviewerId": "usr-intv-rahul",
-      "interviewerName": "Rahul Sharma",
-      "scheduledTime": "Immediate / Walk-in",
-      "status": "CANCELLED",
-      "createdAt": "2026-10-23T10:18:12.716Z",
-      "updatedAt": "2026-10-23T10:18:12.716Z",
-      "isDeleted": true
-    },
-    {
       "id": "intv-1792750648300-0i7k",
       "candidateId": "cand-1792750648299-lmm5",
       "candidateName": "Rohan Sharma QA",
@@ -5276,62 +5192,6 @@
       "updatedAt": "2026-10-23T10:17:28.299Z",
       "roomId": "room-conf-a",
       "roomName": "Conference Room A"
-    },
-    {
-      "id": "intv-1792750443623",
-      "candidateId": "cand-1792750443623",
-      "candidateName": "Aniket Kulkarni QA",
-      "position": "Commercial Leasing Manager",
-      "roundName": "Round 1 - Technical Assessment",
-      "interviewerId": "usr-intv-rahul",
-      "interviewerName": "Rahul Sharma",
-      "scheduledTime": "Immediate / Walk-in",
-      "status": "CANCELLED",
-      "createdAt": "2026-10-23T10:14:03.622Z",
-      "updatedAt": "2026-10-23T10:14:03.622Z",
-      "isDeleted": true
-    },
-    {
-      "id": "intv-1792750442839",
-      "candidateId": "cand-1792750442839",
-      "candidateName": "Pradeep Deshmukh QA",
-      "position": "Senior Property Consultant",
-      "roundName": "Round 1 - Technical Assessment",
-      "interviewerId": "usr-intv-rahul",
-      "interviewerName": "Rahul Sharma",
-      "scheduledTime": "Immediate / Walk-in",
-      "status": "CANCELLED",
-      "createdAt": "2026-10-23T10:14:02.839Z",
-      "updatedAt": "2026-10-23T10:14:02.839Z",
-      "isDeleted": true
-    },
-    {
-      "id": "intv-1792750408083",
-      "candidateId": "cand-1792750408083",
-      "candidateName": "Aniket Kulkarni QA",
-      "position": "Commercial Leasing Manager",
-      "roundName": "Round 1 - Technical Assessment",
-      "interviewerId": "usr-intv-rahul",
-      "interviewerName": "Rahul Sharma",
-      "scheduledTime": "Immediate / Walk-in",
-      "status": "CANCELLED",
-      "createdAt": "2026-10-23T10:13:28.083Z",
-      "updatedAt": "2026-10-23T10:13:28.083Z",
-      "isDeleted": true
-    },
-    {
-      "id": "intv-1792750407486",
-      "candidateId": "cand-1792750407486",
-      "candidateName": "Pradeep Deshmukh QA",
-      "position": "Senior Property Consultant",
-      "roundName": "Round 1 - Technical Assessment",
-      "interviewerId": "usr-intv-rahul",
-      "interviewerName": "Rahul Sharma",
-      "scheduledTime": "Immediate / Walk-in",
-      "status": "CANCELLED",
-      "createdAt": "2026-10-23T10:13:27.485Z",
-      "updatedAt": "2026-10-23T10:13:27.485Z",
-      "isDeleted": true
     },
     {
       "id": "intv-1792750398078-c0hl",
@@ -5377,62 +5237,6 @@
       "updatedAt": "2026-10-23T10:12:26.045Z",
       "roomId": "room-conf-a",
       "roomName": "Conference Room A"
-    },
-    {
-      "id": "intv-1792750336744",
-      "candidateId": "cand-1792750336744",
-      "candidateName": "Aniket Kulkarni QA",
-      "position": "Commercial Leasing Manager",
-      "roundName": "Round 1 - Technical Assessment",
-      "interviewerId": "usr-intv-rahul",
-      "interviewerName": "Rahul Sharma",
-      "scheduledTime": "Immediate / Walk-in",
-      "status": "CANCELLED",
-      "createdAt": "2026-10-23T10:12:16.744Z",
-      "updatedAt": "2026-10-23T10:12:16.744Z",
-      "isDeleted": true
-    },
-    {
-      "id": "intv-1792750336157",
-      "candidateId": "cand-1792750336157",
-      "candidateName": "Pradeep Deshmukh QA",
-      "position": "Senior Property Consultant",
-      "roundName": "Round 1 - Technical Assessment",
-      "interviewerId": "usr-intv-rahul",
-      "interviewerName": "Rahul Sharma",
-      "scheduledTime": "Immediate / Walk-in",
-      "status": "CANCELLED",
-      "createdAt": "2026-10-23T10:12:16.156Z",
-      "updatedAt": "2026-10-23T10:12:16.156Z",
-      "isDeleted": true
-    },
-    {
-      "id": "intv-1792750141519",
-      "candidateId": "cand-1792750141518",
-      "candidateName": "Aniket Kulkarni QA",
-      "position": "Commercial Leasing Manager",
-      "roundName": "Round 1 - Technical Assessment",
-      "interviewerId": "usr-intv-rahul",
-      "interviewerName": "Rahul Sharma",
-      "scheduledTime": "Immediate / Walk-in",
-      "status": "CANCELLED",
-      "createdAt": "2026-10-23T10:09:01.518Z",
-      "updatedAt": "2026-10-23T10:09:01.518Z",
-      "isDeleted": true
-    },
-    {
-      "id": "intv-1792750140944",
-      "candidateId": "cand-1792750140944",
-      "candidateName": "Pradeep Deshmukh QA",
-      "position": "Senior Property Consultant",
-      "roundName": "Round 1 - Technical Assessment",
-      "interviewerId": "usr-intv-rahul",
-      "interviewerName": "Rahul Sharma",
-      "scheduledTime": "Immediate / Walk-in",
-      "status": "CANCELLED",
-      "createdAt": "2026-10-23T10:09:00.942Z",
-      "updatedAt": "2026-10-23T10:09:00.942Z",
-      "isDeleted": true
     },
     {
       "id": "intv-1792749379980-yn5e",
@@ -5540,20 +5344,6 @@
       "roomName": "The Community"
     },
     {
-      "id": "intv-1792746420813-4twa",
-      "candidateId": "cand-1792746420812-1pdo",
-      "candidateName": "Rohan Sharma QA",
-      "position": "Senior Sales Executive",
-      "roundName": "Round 1 - Technical Assessment",
-      "interviewerId": "usr-intv-rahul",
-      "interviewerName": "Rahul Sharma",
-      "scheduledTime": "Walk-in / Immediate",
-      "status": "CANCELLED",
-      "createdAt": "2026-10-23T09:07:00.811Z",
-      "updatedAt": "2026-10-23T09:07:00.811Z",
-      "isDeleted": true
-    },
-    {
       "id": "intv-1792664074098-rawd",
       "candidateId": "cand-1792664074098-qq74",
       "candidateName": "Rohan Sharma QA",
@@ -5584,19 +5374,6 @@
       "roomName": "The Prestige Loft (Waiting Area)"
     },
     {
-      "id": "intv-1792647697669-qdnp",
-      "candidateId": "cand-1792647697669-9sog",
-      "candidateName": "Pooja Verma",
-      "position": "Graphic Designer",
-      "roundName": "Round 1 - Technical Assessment",
-      "interviewerId": "usr-intv-rahul",
-      "interviewerName": "Rahul Sharma",
-      "scheduledTime": "Walk-in / Immediate",
-      "status": "CANDIDATE_ARRIVED",
-      "createdAt": "2026-10-22T05:41:37.669Z",
-      "updatedAt": "2026-10-22T05:41:37.669Z"
-    },
-    {
       "id": "intv-1792647697368-wypm",
       "candidateId": "cand-1792647697307-yq3s",
       "candidateName": "Rohan Sharma Duplicate",
@@ -5610,6 +5387,190 @@
       "updatedAt": "2026-10-22T05:41:37.368Z",
       "roomId": "room-lalit-cabin",
       "roomName": "Lalit Sir Cabin"
+    },
+    {
+      "id": "intv-1791292941093",
+      "candidateId": "cand-1",
+      "candidateName": "Rahul Sharma",
+      "position": "Senior Property Consultant",
+      "roundName": "Senior HR Interview",
+      "interviewerId": "usr-cofounder-kimmi",
+      "interviewerName": "Kimmi Mam – Senior HR Interview",
+      "scheduledTime": "Immediate / Today",
+      "status": "ROOM_ASSIGNED",
+      "createdAt": "2026-10-06T13:22:21.093Z",
+      "updatedAt": "2026-10-06T13:22:21.093Z",
+      "roomId": "room-kimmi-cabin",
+      "roomName": "Elegance Suite"
+    },
+    {
+      "id": "intv-1792750826711-xxqzk",
+      "candidateId": "cand-1792750826073",
+      "candidateName": "Pradeep Deshmukh QA",
+      "interviewerId": "usr-intv-rahul",
+      "interviewerName": "Rahul Sharma",
+      "roundName": "Round 1: Technical & Sales Evaluation",
+      "position": "Senior Property Consultant",
+      "scheduledTime": "2026-10-23T11:20:26.693Z",
+      "status": "CANCELLED",
+      "roomId": "room-conf-a",
+      "roomName": "Conference Room A",
+      "createdAt": "2026-10-23T10:20:26.711Z",
+      "updatedAt": "2026-10-23T10:20:26.711Z",
+      "startedAt": "2026-10-23T10:20:27.243Z",
+      "completedAt": "2026-10-23T10:20:27.320Z",
+      "outcome": "SELECTED",
+      "interviewerFeedback": "Outstanding technical presentation and market knowledge.",
+      "isDeleted": true
+    },
+    {
+      "id": "intv-1792750809840-kekm9",
+      "candidateId": "cand-1792750809255",
+      "candidateName": "Pradeep Deshmukh QA",
+      "interviewerId": "usr-intv-rahul",
+      "interviewerName": "Rahul Sharma",
+      "roundName": "Round 1: Technical & Sales Evaluation",
+      "position": "Senior Property Consultant",
+      "scheduledTime": "2026-10-23T11:20:09.838Z",
+      "status": "CANCELLED",
+      "roomId": "room-conf-a",
+      "roomName": "Conference Room A",
+      "createdAt": "2026-10-23T10:20:09.840Z",
+      "updatedAt": "2026-10-23T10:20:09.840Z",
+      "startedAt": "2026-10-23T10:20:10.311Z",
+      "completedAt": "2026-10-23T10:20:10.390Z",
+      "outcome": "SELECTED",
+      "interviewerFeedback": "Outstanding technical presentation and market knowledge.",
+      "isDeleted": true
+    },
+    {
+      "id": "intv-1792750693269-imyb6",
+      "candidateId": "cand-1792750692717",
+      "candidateName": "Pradeep Deshmukh QA",
+      "interviewerId": "usr-intv-rahul",
+      "interviewerName": "Rahul Sharma",
+      "roundName": "Round 1: Technical & Sales Evaluation",
+      "position": "Senior Property Consultant",
+      "scheduledTime": "2026-10-23T11:18:13.250Z",
+      "status": "CANCELLED",
+      "roomId": "room-conf-a",
+      "roomName": "Conference Room A",
+      "createdAt": "2026-10-23T10:18:13.269Z",
+      "updatedAt": "2026-10-23T10:18:13.269Z",
+      "startedAt": "2026-10-23T10:18:13.531Z",
+      "completedAt": "2026-10-23T10:18:13.619Z",
+      "outcome": "SELECTED",
+      "interviewerFeedback": "Outstanding technical presentation and market knowledge.",
+      "isDeleted": true
+    },
+    {
+      "id": "intv-1792750443412-k51lg",
+      "candidateId": "cand-1792750442839",
+      "candidateName": "Pradeep Deshmukh QA",
+      "interviewerId": "usr-intv-rahul",
+      "interviewerName": "Rahul Sharma",
+      "roundName": "Round 1: Technical & Sales Evaluation",
+      "position": "Senior Property Consultant",
+      "scheduledTime": "2026-10-23T11:14:03.411Z",
+      "status": "CANCELLED",
+      "roomId": "room-conf-a",
+      "roomName": "Conference Room A",
+      "createdAt": "2026-10-23T10:14:03.412Z",
+      "updatedAt": "2026-10-23T10:14:03.412Z",
+      "startedAt": "2026-10-23T10:14:03.788Z",
+      "completedAt": "2026-10-23T10:14:03.860Z",
+      "outcome": "SELECTED",
+      "interviewerFeedback": "Outstanding technical presentation and market knowledge.",
+      "isDeleted": true
+    },
+    {
+      "id": "intv-1792750407947-pi8s9",
+      "candidateId": "cand-1792750407486",
+      "candidateName": "Pradeep Deshmukh QA",
+      "interviewerId": "usr-intv-rahul",
+      "interviewerName": "Rahul Sharma",
+      "roundName": "Round 1: Technical & Sales Evaluation",
+      "position": "Senior Property Consultant",
+      "scheduledTime": "2026-10-23T11:13:27.946Z",
+      "status": "CANCELLED",
+      "roomId": "room-conf-a",
+      "roomName": "Conference Room A",
+      "createdAt": "2026-10-23T10:13:27.947Z",
+      "updatedAt": "2026-10-23T10:13:27.947Z",
+      "startedAt": "2026-10-23T10:13:28.200Z",
+      "completedAt": "2026-10-23T10:13:28.299Z",
+      "outcome": "SELECTED",
+      "interviewerFeedback": "Outstanding technical presentation and market knowledge.",
+      "isDeleted": true
+    },
+    {
+      "id": "intv-1792750336593-0n8gx",
+      "candidateId": "cand-1792750336157",
+      "candidateName": "Pradeep Deshmukh QA",
+      "interviewerId": "usr-intv-rahul",
+      "interviewerName": "Rahul Sharma",
+      "roundName": "Round 1: Technical & Sales Evaluation",
+      "position": "Senior Property Consultant",
+      "scheduledTime": "2026-10-23T11:12:16.592Z",
+      "status": "CANCELLED",
+      "roomId": "room-conf-a",
+      "roomName": "Conference Room A",
+      "createdAt": "2026-10-23T10:12:16.593Z",
+      "updatedAt": "2026-10-23T10:12:16.593Z",
+      "startedAt": "2026-10-23T10:12:16.861Z",
+      "completedAt": "2026-10-23T10:12:16.917Z",
+      "outcome": "SELECTED",
+      "interviewerFeedback": "Outstanding technical presentation and market knowledge.",
+      "isDeleted": true
+    },
+    {
+      "id": "intv-1792750141407-z36hv",
+      "candidateId": "cand-1792750140944",
+      "candidateName": "Pradeep Deshmukh QA",
+      "interviewerId": "usr-intv-rahul",
+      "interviewerName": "Rahul Sharma",
+      "roundName": "Round 1: Technical & Sales Evaluation",
+      "position": "Senior Property Consultant",
+      "scheduledTime": "2026-10-23T11:09:01.405Z",
+      "status": "CANCELLED",
+      "roomId": "room-conf-a",
+      "roomName": "Conference Room A",
+      "createdAt": "2026-10-23T10:09:01.407Z",
+      "updatedAt": "2026-10-23T10:09:01.407Z",
+      "startedAt": "2026-10-23T10:09:01.648Z",
+      "completedAt": "2026-10-23T10:09:01.699Z",
+      "outcome": "SELECTED",
+      "interviewerFeedback": "Outstanding technical presentation and market knowledge.",
+      "isDeleted": true
+    },
+    {
+      "id": "intv-1",
+      "candidateId": "cand-1",
+      "candidateName": "Rahul Sharma",
+      "position": "Sales Manager - Luxury Residential",
+      "roundName": "Round 1 - Technical Assessment",
+      "interviewerId": "usr-int-1",
+      "interviewerName": "Nisha Verma",
+      "scheduledTime": "11:00 AM",
+      "status": "INTERVIEW_COMPLETED",
+      "createdAt": "2026-10-06T08:05:37.535Z",
+      "updatedAt": "2026-10-06T08:05:37.535Z",
+      "completedAt": "2026-10-06T13:22:21.093Z",
+      "outcome": "NEXT_INTERVIEW",
+      "interviewerFeedback": "Excellent sales acumen, advancing to Senior HR Round with Kimmi Mam in Elegance Suite."
+    },
+    {
+      "id": "intv-1792647697669-qdnp",
+      "candidateId": "cand-1792647697669-9sog",
+      "candidateName": "Pooja Verma",
+      "position": "Graphic Designer",
+      "roundName": "Round 1 - Technical Assessment",
+      "interviewerId": "usr-intv-rahul",
+      "interviewerName": "Rahul Sharma",
+      "scheduledTime": "Walk-in / Immediate",
+      "status": "CANDIDATE_ARRIVED",
+      "createdAt": "2026-10-22T05:41:37.669Z",
+      "updatedAt": "2026-10-22T05:41:37.669Z"
     },
     {
       "id": "intv-1791544512249-5exd",
@@ -5703,22 +5664,6 @@
       "updatedAt": "2026-10-06T10:29:24.277Z"
     },
     {
-      "id": "intv-1",
-      "candidateId": "cand-1",
-      "candidateName": "Rahul Sharma",
-      "position": "Sales Manager - Luxury Residential",
-      "roundName": "Round 1 - Technical Assessment",
-      "interviewerId": "usr-int-1",
-      "interviewerName": "Nisha Verma",
-      "scheduledTime": "11:00 AM",
-      "status": "INTERVIEW_COMPLETED",
-      "createdAt": "2026-10-06T08:05:37.535Z",
-      "updatedAt": "2026-10-06T08:05:37.535Z",
-      "completedAt": "2026-10-06T13:22:21.093Z",
-      "outcome": "NEXT_INTERVIEW",
-      "interviewerFeedback": "Excellent sales acumen, advancing to Senior HR Round with Kimmi Mam in Elegance Suite."
-    },
-    {
       "id": "intv-2",
       "candidateId": "cand-2",
       "candidateName": "Sneha Kapoor",
@@ -5732,158 +5677,115 @@
       "updatedAt": "2026-10-06T06:05:37.535Z"
     },
     {
-      "id": "intv-1791292941093",
-      "candidateId": "cand-1",
-      "candidateName": "Rahul Sharma",
-      "position": "Senior Property Consultant",
-      "roundName": "Senior HR Interview",
-      "interviewerId": "usr-cofounder-kimmi",
-      "interviewerName": "Kimmi Mam – Senior HR Interview",
-      "scheduledTime": "Immediate / Today",
-      "status": "ROOM_ASSIGNED",
-      "createdAt": "2026-10-06T13:22:21.093Z",
-      "updatedAt": "2026-10-06T13:22:21.093Z",
-      "roomId": "room-kimmi-cabin",
-      "roomName": "Elegance Suite"
-    },
-    {
-      "id": "intv-1792750141407-z36hv",
-      "candidateId": "cand-1792750140944",
-      "candidateName": "Pradeep Deshmukh QA",
+      "id": "intv-1792750827087",
+      "candidateId": "cand-1792750827087",
+      "candidateName": "Aniket Kulkarni QA",
+      "position": "Commercial Leasing Manager",
+      "roundName": "Round 1 - Technical Assessment",
       "interviewerId": "usr-intv-rahul",
       "interviewerName": "Rahul Sharma",
-      "roundName": "Round 1: Technical & Sales Evaluation",
-      "position": "Senior Property Consultant",
-      "scheduledTime": "2026-10-23T11:09:01.405Z",
+      "scheduledTime": "Immediate / Walk-in",
       "status": "CANCELLED",
-      "roomId": "room-conf-a",
-      "roomName": "Conference Room A",
-      "createdAt": "2026-10-23T10:09:01.407Z",
-      "updatedAt": "2026-10-23T10:09:01.407Z",
-      "startedAt": "2026-10-23T10:09:01.648Z",
-      "completedAt": "2026-10-23T10:09:01.699Z",
-      "outcome": "SELECTED",
-      "interviewerFeedback": "Outstanding technical presentation and market knowledge.",
+      "createdAt": "2026-10-23T10:20:27.087Z",
+      "updatedAt": "2026-10-23T10:20:27.087Z",
       "isDeleted": true
     },
     {
-      "id": "intv-1792750336593-0n8gx",
-      "candidateId": "cand-1792750336157",
-      "candidateName": "Pradeep Deshmukh QA",
+      "id": "intv-1792750810155",
+      "candidateId": "cand-1792750810155",
+      "candidateName": "Aniket Kulkarni QA",
+      "position": "Commercial Leasing Manager",
+      "roundName": "Round 1 - Technical Assessment",
       "interviewerId": "usr-intv-rahul",
       "interviewerName": "Rahul Sharma",
-      "roundName": "Round 1: Technical & Sales Evaluation",
-      "position": "Senior Property Consultant",
-      "scheduledTime": "2026-10-23T11:12:16.592Z",
+      "scheduledTime": "Immediate / Walk-in",
       "status": "CANCELLED",
-      "roomId": "room-conf-a",
-      "roomName": "Conference Room A",
-      "createdAt": "2026-10-23T10:12:16.593Z",
-      "updatedAt": "2026-10-23T10:12:16.593Z",
-      "startedAt": "2026-10-23T10:12:16.861Z",
-      "completedAt": "2026-10-23T10:12:16.917Z",
-      "outcome": "SELECTED",
-      "interviewerFeedback": "Outstanding technical presentation and market knowledge.",
+      "createdAt": "2026-10-23T10:20:10.155Z",
+      "updatedAt": "2026-10-23T10:20:10.155Z",
       "isDeleted": true
     },
     {
-      "id": "intv-1792750407947-pi8s9",
-      "candidateId": "cand-1792750407486",
-      "candidateName": "Pradeep Deshmukh QA",
+      "id": "intv-1792750693378",
+      "candidateId": "cand-1792750693378",
+      "candidateName": "Aniket Kulkarni QA",
+      "position": "Commercial Leasing Manager",
+      "roundName": "Round 1 - Technical Assessment",
       "interviewerId": "usr-intv-rahul",
       "interviewerName": "Rahul Sharma",
-      "roundName": "Round 1: Technical & Sales Evaluation",
-      "position": "Senior Property Consultant",
-      "scheduledTime": "2026-10-23T11:13:27.946Z",
+      "scheduledTime": "Immediate / Walk-in",
       "status": "CANCELLED",
-      "roomId": "room-conf-a",
-      "roomName": "Conference Room A",
-      "createdAt": "2026-10-23T10:13:27.947Z",
-      "updatedAt": "2026-10-23T10:13:27.947Z",
-      "startedAt": "2026-10-23T10:13:28.200Z",
-      "completedAt": "2026-10-23T10:13:28.299Z",
-      "outcome": "SELECTED",
-      "interviewerFeedback": "Outstanding technical presentation and market knowledge.",
+      "createdAt": "2026-10-23T10:18:13.378Z",
+      "updatedAt": "2026-10-23T10:18:13.378Z",
       "isDeleted": true
     },
     {
-      "id": "intv-1792750443412-k51lg",
-      "candidateId": "cand-1792750442839",
-      "candidateName": "Pradeep Deshmukh QA",
+      "id": "intv-1792750443623",
+      "candidateId": "cand-1792750443623",
+      "candidateName": "Aniket Kulkarni QA",
+      "position": "Commercial Leasing Manager",
+      "roundName": "Round 1 - Technical Assessment",
       "interviewerId": "usr-intv-rahul",
       "interviewerName": "Rahul Sharma",
-      "roundName": "Round 1: Technical & Sales Evaluation",
-      "position": "Senior Property Consultant",
-      "scheduledTime": "2026-10-23T11:14:03.411Z",
+      "scheduledTime": "Immediate / Walk-in",
       "status": "CANCELLED",
-      "roomId": "room-conf-a",
-      "roomName": "Conference Room A",
-      "createdAt": "2026-10-23T10:14:03.412Z",
-      "updatedAt": "2026-10-23T10:14:03.412Z",
-      "startedAt": "2026-10-23T10:14:03.788Z",
-      "completedAt": "2026-10-23T10:14:03.860Z",
-      "outcome": "SELECTED",
-      "interviewerFeedback": "Outstanding technical presentation and market knowledge.",
+      "createdAt": "2026-10-23T10:14:03.622Z",
+      "updatedAt": "2026-10-23T10:14:03.622Z",
       "isDeleted": true
     },
     {
-      "id": "intv-1792750693269-imyb6",
-      "candidateId": "cand-1792750692717",
-      "candidateName": "Pradeep Deshmukh QA",
+      "id": "intv-1792750408083",
+      "candidateId": "cand-1792750408083",
+      "candidateName": "Aniket Kulkarni QA",
+      "position": "Commercial Leasing Manager",
+      "roundName": "Round 1 - Technical Assessment",
       "interviewerId": "usr-intv-rahul",
       "interviewerName": "Rahul Sharma",
-      "roundName": "Round 1: Technical & Sales Evaluation",
-      "position": "Senior Property Consultant",
-      "scheduledTime": "2026-10-23T11:18:13.250Z",
+      "scheduledTime": "Immediate / Walk-in",
       "status": "CANCELLED",
-      "roomId": "room-conf-a",
-      "roomName": "Conference Room A",
-      "createdAt": "2026-10-23T10:18:13.269Z",
-      "updatedAt": "2026-10-23T10:18:13.269Z",
-      "startedAt": "2026-10-23T10:18:13.531Z",
-      "completedAt": "2026-10-23T10:18:13.619Z",
-      "outcome": "SELECTED",
-      "interviewerFeedback": "Outstanding technical presentation and market knowledge.",
+      "createdAt": "2026-10-23T10:13:28.083Z",
+      "updatedAt": "2026-10-23T10:13:28.083Z",
       "isDeleted": true
     },
     {
-      "id": "intv-1792750809840-kekm9",
-      "candidateId": "cand-1792750809255",
-      "candidateName": "Pradeep Deshmukh QA",
+      "id": "intv-1792750336744",
+      "candidateId": "cand-1792750336744",
+      "candidateName": "Aniket Kulkarni QA",
+      "position": "Commercial Leasing Manager",
+      "roundName": "Round 1 - Technical Assessment",
       "interviewerId": "usr-intv-rahul",
       "interviewerName": "Rahul Sharma",
-      "roundName": "Round 1: Technical & Sales Evaluation",
-      "position": "Senior Property Consultant",
-      "scheduledTime": "2026-10-23T11:20:09.838Z",
+      "scheduledTime": "Immediate / Walk-in",
       "status": "CANCELLED",
-      "roomId": "room-conf-a",
-      "roomName": "Conference Room A",
-      "createdAt": "2026-10-23T10:20:09.840Z",
-      "updatedAt": "2026-10-23T10:20:09.840Z",
-      "startedAt": "2026-10-23T10:20:10.311Z",
-      "completedAt": "2026-10-23T10:20:10.390Z",
-      "outcome": "SELECTED",
-      "interviewerFeedback": "Outstanding technical presentation and market knowledge.",
+      "createdAt": "2026-10-23T10:12:16.744Z",
+      "updatedAt": "2026-10-23T10:12:16.744Z",
       "isDeleted": true
     },
     {
-      "id": "intv-1792750826711-xxqzk",
-      "candidateId": "cand-1792750826073",
-      "candidateName": "Pradeep Deshmukh QA",
+      "id": "intv-1792750141519",
+      "candidateId": "cand-1792750141518",
+      "candidateName": "Aniket Kulkarni QA",
+      "position": "Commercial Leasing Manager",
+      "roundName": "Round 1 - Technical Assessment",
       "interviewerId": "usr-intv-rahul",
       "interviewerName": "Rahul Sharma",
-      "roundName": "Round 1: Technical & Sales Evaluation",
-      "position": "Senior Property Consultant",
-      "scheduledTime": "2026-10-23T11:20:26.693Z",
+      "scheduledTime": "Immediate / Walk-in",
       "status": "CANCELLED",
-      "roomId": "room-conf-a",
-      "roomName": "Conference Room A",
-      "createdAt": "2026-10-23T10:20:26.711Z",
-      "updatedAt": "2026-10-23T10:20:26.711Z",
-      "startedAt": "2026-10-23T10:20:27.243Z",
-      "completedAt": "2026-10-23T10:20:27.320Z",
-      "outcome": "SELECTED",
-      "interviewerFeedback": "Outstanding technical presentation and market knowledge.",
+      "createdAt": "2026-10-23T10:09:01.518Z",
+      "updatedAt": "2026-10-23T10:09:01.518Z",
+      "isDeleted": true
+    },
+    {
+      "id": "intv-1792746420813-4twa",
+      "candidateId": "cand-1792746420812-1pdo",
+      "candidateName": "Rohan Sharma QA",
+      "position": "Senior Sales Executive",
+      "roundName": "Round 1 - Technical Assessment",
+      "interviewerId": "usr-intv-rahul",
+      "interviewerName": "Rahul Sharma",
+      "scheduledTime": "Walk-in / Immediate",
+      "status": "CANCELLED",
+      "createdAt": "2026-10-23T09:07:00.811Z",
+      "updatedAt": "2026-10-23T09:07:00.811Z",
       "isDeleted": true
     }
   ],
@@ -5895,18 +5797,14 @@
       "roomName": "Conference Room A",
       "type": "MEETING_ROOM",
       "roomType": "MEETING_ROOM",
-      "status": "ASSIGNED",
+      "status": "AVAILABLE",
       "isActive": true,
       "preferredFor": "Executive & Technical Interview Panels",
       "createdAt": "2026-10-23T10:12:13.018Z",
-      "updatedAt": "2026-10-23T10:49:46.272Z",
-      "cleaningRequestedAt": "2026-10-23T10:20:27.320Z",
-      "lastCleanedAt": "2026-10-23T10:20:27.828Z",
-      "lastCleanedBy": "Suresh Kumar (Pantry)",
-      "currentCandidateId": "cand-1792752585550-h7xv",
-      "currentCandidateName": "Rohan Sharma QA",
-      "currentInterviewId": "intv-1792752585550-t5nn",
-      "assignedInterviewerName": "Rahul Sharma"
+      "updatedAt": "2026-10-23T11:23:35.480Z",
+      "cleaningRequestedAt": "2026-10-23T11:23:34.769Z",
+      "lastCleanedAt": "2026-10-23T11:23:35.480Z",
+      "lastCleanedBy": "Suresh Kumar (Pantry)"
     },
     {
       "id": "room-lalit-cabin",
@@ -6067,6 +5965,809 @@
     }
   ],
   "notifications": [
+    {
+      "id": "notif-1792754615225-pan-done",
+      "recipientRole": "HR",
+      "recipientUserId": "usr-hr-nisha",
+      "title": "Task Completed: Conference Room A",
+      "message": "Ramesh Kumar marked task completed in 1s. Ready for verification.",
+      "priority": "NORMAL",
+      "eventType": "PANTRY_TASK_COMPLETED",
+      "entityId": "pantry-task-1792754614892",
+      "entityType": "PANTRY_TASK",
+      "read": false,
+      "createdAt": "2026-10-23T11:23:35.225Z",
+      "payload": {
+        "taskId": "pantry-task-1792754614892",
+        "room": "Conference Room A",
+        "timeTaken": "1s",
+        "steward": "Ramesh Kumar"
+      }
+    },
+    {
+      "id": "notif-1792754614892-pan-assigned",
+      "recipientRole": "PANTRY",
+      "title": "Task Assigned: Conference Room A",
+      "message": "Nisha assigned: Serve immediately upon room entry",
+      "priority": "HIGH",
+      "eventType": "ROOM_PREPARATION_REQUIRED",
+      "entityId": "pantry-task-1792754614892",
+      "entityType": "PANTRY_TASK",
+      "read": false,
+      "createdAt": "2026-10-23T11:23:34.891Z",
+      "actionButtons": [
+        {
+          "label": "Accept Task",
+          "actionKey": "ACCEPT_PANTRY_TASK",
+          "payload": {
+            "taskId": "pantry-task-1792754614892"
+          }
+        },
+        {
+          "label": "Mark Complete",
+          "actionKey": "COMPLETE_PANTRY_TASK",
+          "payload": {
+            "taskId": "pantry-task-1792754614892"
+          }
+        }
+      ],
+      "payload": {
+        "task": "Serve immediately upon room entry",
+        "room": "Conference Room A",
+        "candidate": "Pradeep Deshmukh QA",
+        "dueTime": "Immediate",
+        "time": "11:23 AM"
+      }
+    },
+    {
+      "id": "notif-1792754614770-rec-co",
+      "recipientRole": "RECEPTION",
+      "title": "Candidate Completed Interview - Ready for Checkout",
+      "message": "Pradeep Deshmukh QA has finished their interview process. Assist with visitor exit and checkout.",
+      "priority": "NORMAL",
+      "eventType": "READY_FOR_CHECKOUT",
+      "entityId": "cand-1792754613207",
+      "entityType": "CANDIDATE",
+      "read": false,
+      "createdAt": "2026-10-23T11:23:34.769Z",
+      "actionButtons": [
+        {
+          "label": "Process Checkout",
+          "actionKey": "CHECKOUT_CANDIDATE",
+          "payload": {
+            "candidateId": "cand-1792754613207"
+          }
+        }
+      ]
+    },
+    {
+      "id": "notif-1792754614535-hr",
+      "recipientRole": "HR",
+      "title": "New Candidate Checked In",
+      "message": "Aniket Kulkarni QA has arrived for Commercial Leasing Manager (Round 1 - Technical Assessment). Scheduled: Immediate / Walk-in.",
+      "priority": "HIGH",
+      "eventType": "CANDIDATE_ARRIVED",
+      "entityId": "cand-1792754614440",
+      "entityType": "CANDIDATE",
+      "read": false,
+      "createdAt": "2026-10-23T11:23:34.535Z",
+      "actionButtons": [
+        {
+          "label": "Assign Room",
+          "actionKey": "ASSIGN_ROOM",
+          "payload": {
+            "candidateId": "cand-1792754614440",
+            "interviewId": "intv-1792754614440-ru3x"
+          }
+        },
+        {
+          "label": "View Profile",
+          "actionKey": "VIEW_CANDIDATE",
+          "payload": {
+            "candidateId": "cand-1792754614440"
+          }
+        }
+      ],
+      "payload": {
+        "candidateName": "Aniket Kulkarni QA",
+        "position": "Commercial Leasing Manager",
+        "stage": "Round 1 - Technical Assessment",
+        "interviewer": "Rahul Sharma",
+        "scheduled": "Immediate / Walk-in",
+        "arrived": "11:23 AM",
+        "phone": "9833658165",
+        "email": "",
+        "experience": "Fresher",
+        "currentLocation": "Reception / Waiting Lounge",
+        "hasPhoto": false,
+        "hasResume": false
+      }
+    },
+    {
+      "id": "notif-1792754614535-admin",
+      "recipientRole": "ADMIN",
+      "title": "Candidate Checked In",
+      "message": "Aniket Kulkarni QA checked in for Commercial Leasing Manager. Status: Waiting in Reception.",
+      "priority": "HIGH",
+      "eventType": "CANDIDATE_ARRIVED",
+      "entityId": "cand-1792754614440",
+      "entityType": "CANDIDATE",
+      "read": false,
+      "createdAt": "2026-10-23T11:23:34.535Z",
+      "actionButtons": [
+        {
+          "label": "View Record",
+          "actionKey": "VIEW_CANDIDATE",
+          "payload": {
+            "candidateId": "cand-1792754614440"
+          }
+        }
+      ],
+      "payload": {
+        "candidateName": "Aniket Kulkarni QA",
+        "position": "Commercial Leasing Manager",
+        "interviewer": "Rahul Sharma",
+        "arrived": "11:23 AM",
+        "currentLocation": "Reception / Waiting Lounge",
+        "room": "Not Assigned",
+        "photoAvailable": false,
+        "resumeAvailable": false
+      }
+    },
+    {
+      "id": "notif-1792754614535-ceo",
+      "recipientRole": "CEO",
+      "title": "Candidate Arrived for Interview",
+      "message": "Aniket Kulkarni QA (Commercial Leasing Manager) is in reception for Round 1 - Technical Assessment.",
+      "priority": "NORMAL",
+      "eventType": "CANDIDATE_ARRIVED",
+      "entityId": "cand-1792754614440",
+      "entityType": "CANDIDATE",
+      "read": false,
+      "createdAt": "2026-10-23T11:23:34.535Z",
+      "actionButtons": [
+        {
+          "label": "Executive Profile",
+          "actionKey": "VIEW_CANDIDATE",
+          "payload": {
+            "candidateId": "cand-1792754614440"
+          }
+        }
+      ],
+      "payload": {
+        "candidateName": "Aniket Kulkarni QA",
+        "position": "Commercial Leasing Manager",
+        "stage": "Round 1 - Technical Assessment",
+        "interviewer": "Rahul Sharma",
+        "scheduled": "Immediate / Walk-in",
+        "arrived": "11:23 AM",
+        "currentStatus": "Waiting in Reception"
+      }
+    },
+    {
+      "id": "notif-1792754614535-cofounder",
+      "recipientRole": "CO_FOUNDER",
+      "title": "Candidate Arrived for Interview",
+      "message": "Aniket Kulkarni QA (Commercial Leasing Manager) checked in at Reception.",
+      "priority": "NORMAL",
+      "eventType": "CANDIDATE_ARRIVED",
+      "entityId": "cand-1792754614440",
+      "entityType": "CANDIDATE",
+      "read": false,
+      "createdAt": "2026-10-23T11:23:34.535Z",
+      "actionButtons": [
+        {
+          "label": "View Profile",
+          "actionKey": "VIEW_CANDIDATE",
+          "payload": {
+            "candidateId": "cand-1792754614440"
+          }
+        }
+      ],
+      "payload": {
+        "candidateName": "Aniket Kulkarni QA",
+        "position": "Commercial Leasing Manager",
+        "stage": "Round 1 - Technical Assessment",
+        "interviewer": "Rahul Sharma",
+        "arrived": "11:23 AM"
+      }
+    },
+    {
+      "id": "notif-1792754614535-intv",
+      "recipientRole": "INTERVIEWER",
+      "recipientUserId": "usr-intv-rahul",
+      "title": "Your Candidate Has Arrived",
+      "message": "Aniket Kulkarni QA has arrived for Round 1 - Technical Assessment. Waiting in Reception area.",
+      "priority": "HIGH",
+      "eventType": "CANDIDATE_WAITING",
+      "entityId": "cand-1792754614440",
+      "entityType": "INTERVIEW",
+      "read": false,
+      "createdAt": "2026-10-23T11:23:34.535Z",
+      "actionButtons": [
+        {
+          "label": "View Candidate",
+          "actionKey": "VIEW_CANDIDATE",
+          "payload": {
+            "candidateId": "cand-1792754614440"
+          }
+        },
+        {
+          "label": "Start Interview",
+          "actionKey": "START_INTERVIEW",
+          "payload": {
+            "interviewId": "intv-1792754614440-ru3x"
+          }
+        }
+      ],
+      "payload": {
+        "candidateName": "Aniket Kulkarni QA",
+        "position": "Commercial Leasing Manager",
+        "stage": "Round 1 - Technical Assessment",
+        "arrived": "11:23 AM",
+        "currentLocation": "Waiting Area",
+        "room": "Awaiting HR Room Assignment",
+        "experience": "Fresher",
+        "relevantExperience": ""
+      }
+    },
+    {
+      "id": "notif-1792754614536-rec",
+      "recipientRole": "RECEPTION",
+      "title": "Candidate Arrived at Front Desk",
+      "message": "Aniket Kulkarni QA checked in for Commercial Leasing Manager. Direct to Waiting Lounge.",
+      "priority": "HIGH",
+      "eventType": "CANDIDATE_ARRIVED",
+      "entityId": "cand-1792754614440",
+      "entityType": "CANDIDATE",
+      "read": false,
+      "createdAt": "2026-10-23T11:23:34.535Z",
+      "actionButtons": [
+        {
+          "label": "Assist Candidate",
+          "actionKey": "VIEW_CANDIDATE",
+          "payload": {
+            "candidateId": "cand-1792754614440"
+          }
+        }
+      ],
+      "payload": {
+        "candidateName": "Aniket Kulkarni QA",
+        "position": "Commercial Leasing Manager",
+        "interviewer": "Rahul Sharma",
+        "status": "Waiting in Lounge",
+        "action": "Guide candidate to waiting area lounge and offer comfort",
+        "arrived": "11:23 AM"
+      }
+    },
+    {
+      "id": "notif-1792754614248-rec-guide",
+      "recipientRole": "RECEPTION",
+      "title": "Escort Candidate to Room",
+      "message": "Escort Pradeep Deshmukh QA to Conference Room A for interview with Rahul Sharma.",
+      "priority": "NORMAL",
+      "eventType": "ROOM_ASSIGNED",
+      "entityId": "cand-1792754613207",
+      "entityType": "CANDIDATE",
+      "read": false,
+      "createdAt": "2026-10-23T11:23:34.247Z",
+      "payload": {
+        "candidate": "Pradeep Deshmukh QA",
+        "room": "Conference Room A",
+        "interviewer": "Rahul Sharma",
+        "action": "Guide candidate to Conference Room A"
+      }
+    },
+    {
+      "id": "notif-1792754614248-intv-room",
+      "recipientRole": "INTERVIEWER",
+      "recipientUserId": "usr-intv-rahul",
+      "title": "Room Assigned: Conference Room A",
+      "message": "Pradeep Deshmukh QA has been assigned to Conference Room A. You may proceed to start the interview.",
+      "priority": "HIGH",
+      "eventType": "ROOM_ASSIGNED",
+      "entityId": "intv-1792754613208-ffep",
+      "entityType": "INTERVIEW",
+      "read": false,
+      "createdAt": "2026-10-23T11:23:34.247Z",
+      "actionButtons": [
+        {
+          "label": "Start Interview",
+          "actionKey": "START_INTERVIEW",
+          "payload": {
+            "interviewId": "intv-1792754613208-ffep"
+          }
+        }
+      ],
+      "payload": {
+        "candidate": "Pradeep Deshmukh QA",
+        "room": "Conference Room A",
+        "stage": "Round 1: Technical & Sales Evaluation",
+        "status": "Ready in Room"
+      }
+    },
+    {
+      "id": "notif-1792754614248-pan",
+      "recipientRole": "PANTRY",
+      "title": "Room Hospitality Preparation",
+      "message": "Task: Prepare Conference Room A for interview. Required: Water + Room Preparation. Time: 11:23 AM.",
+      "priority": "HIGH",
+      "eventType": "ROOM_PREPARATION_REQUIRED",
+      "entityId": "pantry-task-1792754614248",
+      "entityType": "PANTRY_TASK",
+      "read": false,
+      "createdAt": "2026-10-23T11:23:34.247Z",
+      "actionButtons": [
+        {
+          "label": "Mark Complete",
+          "actionKey": "COMPLETE_PANTRY_TASK",
+          "payload": {
+            "taskId": "pantry-task-1792754614248"
+          }
+        }
+      ],
+      "payload": {
+        "task": "Prepare Room",
+        "room": "Conference Room A",
+        "candidate": "Pradeep Deshmukh QA",
+        "time": "11:23 AM",
+        "required": "Water + Room Preparation"
+      }
+    },
+    {
+      "id": "notif-1792754613648-host",
+      "recipientRole": "CEO",
+      "recipientUserId": "usr-ceo-lalit",
+      "title": "Client Arrived: Rajesh Khanna (Client)",
+      "message": "Rajesh Khanna (Client) (Visitor) has arrived to meet you for \"Commercial Space Investment Meeting\". Waiting in Reception.",
+      "priority": "HIGH",
+      "eventType": "VISITOR_CHECKED_IN",
+      "entityId": "vis-1792754613603",
+      "entityType": "VISITOR",
+      "read": false,
+      "createdAt": "2026-10-23T11:23:33.647Z",
+      "payload": {
+        "visitorName": "Rajesh Khanna (Client)",
+        "company": "",
+        "purpose": "Commercial Space Investment Meeting",
+        "hostName": "Lalit Sir",
+        "hostDepartment": "General Management",
+        "phone": "9822344638",
+        "email": "",
+        "arrived": "11:23 AM"
+      }
+    },
+    {
+      "id": "notif-1792754613648-rec-vis",
+      "recipientRole": "RECEPTION",
+      "title": "Client Checked In at Front Desk",
+      "message": "Rajesh Khanna (Client) arrived to meet Lalit Sir (General Management). Direct to Lounge.",
+      "priority": "HIGH",
+      "eventType": "VISITOR_CHECKED_IN",
+      "entityId": "vis-1792754613603",
+      "entityType": "VISITOR",
+      "read": false,
+      "createdAt": "2026-10-23T11:23:33.647Z",
+      "payload": {
+        "visitorName": "Rajesh Khanna (Client)",
+        "company": "",
+        "purpose": "Commercial Space Investment Meeting",
+        "hostName": "Lalit Sir",
+        "arrived": "11:23 AM"
+      }
+    },
+    {
+      "id": "notif-1792754613603-vis",
+      "recipientRole": "RECEPTION",
+      "title": "Walk-in CLIENT Checked In",
+      "message": "Rajesh Khanna (Client) (Individual) arrived to meet undefined. QR pass WCR-WALK-MVKVT4YR-BGAA verified.",
+      "priority": "NORMAL",
+      "eventType": "VISITOR_CHECKED_IN",
+      "entityId": "vis-1792754613603",
+      "entityType": "VISITOR",
+      "read": false,
+      "createdAt": "2026-10-23T11:23:33.603Z"
+    },
+    {
+      "id": "notif-1792754613307-hr",
+      "recipientRole": "HR",
+      "title": "New Candidate Checked In",
+      "message": "Pradeep Deshmukh QA has arrived for Senior Property Consultant (Round 1 - Technical Assessment). Scheduled: Immediate / Walk-in.",
+      "priority": "HIGH",
+      "eventType": "CANDIDATE_ARRIVED",
+      "entityId": "cand-1792754613207",
+      "entityType": "CANDIDATE",
+      "read": false,
+      "createdAt": "2026-10-23T11:23:33.301Z",
+      "actionButtons": [
+        {
+          "label": "Assign Room",
+          "actionKey": "ASSIGN_ROOM",
+          "payload": {
+            "candidateId": "cand-1792754613207",
+            "interviewId": "intv-1792754613208-ffep"
+          }
+        },
+        {
+          "label": "View Profile",
+          "actionKey": "VIEW_CANDIDATE",
+          "payload": {
+            "candidateId": "cand-1792754613207"
+          }
+        }
+      ],
+      "payload": {
+        "candidateName": "Pradeep Deshmukh QA",
+        "position": "Senior Property Consultant",
+        "stage": "Round 1 - Technical Assessment",
+        "interviewer": "Rahul Sharma",
+        "scheduled": "Immediate / Walk-in",
+        "arrived": "11:23 AM",
+        "phone": "9811514426",
+        "email": "qa.candidate.1792754613158@example.com",
+        "experience": "5 Years",
+        "currentLocation": "Reception / Waiting Lounge",
+        "hasPhoto": false,
+        "hasResume": false
+      }
+    },
+    {
+      "id": "notif-1792754613307-admin",
+      "recipientRole": "ADMIN",
+      "title": "Candidate Checked In",
+      "message": "Pradeep Deshmukh QA checked in for Senior Property Consultant. Status: Waiting in Reception.",
+      "priority": "HIGH",
+      "eventType": "CANDIDATE_ARRIVED",
+      "entityId": "cand-1792754613207",
+      "entityType": "CANDIDATE",
+      "read": false,
+      "createdAt": "2026-10-23T11:23:33.301Z",
+      "actionButtons": [
+        {
+          "label": "View Record",
+          "actionKey": "VIEW_CANDIDATE",
+          "payload": {
+            "candidateId": "cand-1792754613207"
+          }
+        }
+      ],
+      "payload": {
+        "candidateName": "Pradeep Deshmukh QA",
+        "position": "Senior Property Consultant",
+        "interviewer": "Rahul Sharma",
+        "arrived": "11:23 AM",
+        "currentLocation": "Reception / Waiting Lounge",
+        "room": "Not Assigned",
+        "photoAvailable": false,
+        "resumeAvailable": false
+      }
+    },
+    {
+      "id": "notif-1792754613307-ceo",
+      "recipientRole": "CEO",
+      "title": "Candidate Arrived for Interview",
+      "message": "Pradeep Deshmukh QA (Senior Property Consultant) is in reception for Round 1 - Technical Assessment.",
+      "priority": "NORMAL",
+      "eventType": "CANDIDATE_ARRIVED",
+      "entityId": "cand-1792754613207",
+      "entityType": "CANDIDATE",
+      "read": false,
+      "createdAt": "2026-10-23T11:23:33.301Z",
+      "actionButtons": [
+        {
+          "label": "Executive Profile",
+          "actionKey": "VIEW_CANDIDATE",
+          "payload": {
+            "candidateId": "cand-1792754613207"
+          }
+        }
+      ],
+      "payload": {
+        "candidateName": "Pradeep Deshmukh QA",
+        "position": "Senior Property Consultant",
+        "stage": "Round 1 - Technical Assessment",
+        "interviewer": "Rahul Sharma",
+        "scheduled": "Immediate / Walk-in",
+        "arrived": "11:23 AM",
+        "currentStatus": "Waiting in Reception"
+      }
+    },
+    {
+      "id": "notif-1792754613307-cofounder",
+      "recipientRole": "CO_FOUNDER",
+      "title": "Candidate Arrived for Interview",
+      "message": "Pradeep Deshmukh QA (Senior Property Consultant) checked in at Reception.",
+      "priority": "NORMAL",
+      "eventType": "CANDIDATE_ARRIVED",
+      "entityId": "cand-1792754613207",
+      "entityType": "CANDIDATE",
+      "read": false,
+      "createdAt": "2026-10-23T11:23:33.301Z",
+      "actionButtons": [
+        {
+          "label": "View Profile",
+          "actionKey": "VIEW_CANDIDATE",
+          "payload": {
+            "candidateId": "cand-1792754613207"
+          }
+        }
+      ],
+      "payload": {
+        "candidateName": "Pradeep Deshmukh QA",
+        "position": "Senior Property Consultant",
+        "stage": "Round 1 - Technical Assessment",
+        "interviewer": "Rahul Sharma",
+        "arrived": "11:23 AM"
+      }
+    },
+    {
+      "id": "notif-1792754613307-intv",
+      "recipientRole": "INTERVIEWER",
+      "recipientUserId": "usr-intv-rahul",
+      "title": "Your Candidate Has Arrived",
+      "message": "Pradeep Deshmukh QA has arrived for Round 1 - Technical Assessment. Waiting in Reception area.",
+      "priority": "HIGH",
+      "eventType": "CANDIDATE_WAITING",
+      "entityId": "cand-1792754613207",
+      "entityType": "INTERVIEW",
+      "read": false,
+      "createdAt": "2026-10-23T11:23:33.301Z",
+      "actionButtons": [
+        {
+          "label": "View Candidate",
+          "actionKey": "VIEW_CANDIDATE",
+          "payload": {
+            "candidateId": "cand-1792754613207"
+          }
+        },
+        {
+          "label": "Start Interview",
+          "actionKey": "START_INTERVIEW",
+          "payload": {
+            "interviewId": "intv-1792754613208-ffep"
+          }
+        }
+      ],
+      "payload": {
+        "candidateName": "Pradeep Deshmukh QA",
+        "position": "Senior Property Consultant",
+        "stage": "Round 1 - Technical Assessment",
+        "arrived": "11:23 AM",
+        "currentLocation": "Waiting Area",
+        "room": "Awaiting HR Room Assignment",
+        "experience": "5 Years",
+        "relevantExperience": ""
+      }
+    },
+    {
+      "id": "notif-1792754613307-rec",
+      "recipientRole": "RECEPTION",
+      "title": "Candidate Arrived at Front Desk",
+      "message": "Pradeep Deshmukh QA checked in for Senior Property Consultant. Direct to Waiting Lounge.",
+      "priority": "HIGH",
+      "eventType": "CANDIDATE_ARRIVED",
+      "entityId": "cand-1792754613207",
+      "entityType": "CANDIDATE",
+      "read": false,
+      "createdAt": "2026-10-23T11:23:33.301Z",
+      "actionButtons": [
+        {
+          "label": "Assist Candidate",
+          "actionKey": "VIEW_CANDIDATE",
+          "payload": {
+            "candidateId": "cand-1792754613207"
+          }
+        }
+      ],
+      "payload": {
+        "candidateName": "Pradeep Deshmukh QA",
+        "position": "Senior Property Consultant",
+        "interviewer": "Rahul Sharma",
+        "status": "Waiting in Lounge",
+        "action": "Guide candidate to waiting area lounge and offer comfort",
+        "arrived": "11:23 AM"
+      }
+    },
+    {
+      "id": "notif-1792753941555-hr",
+      "recipientRole": "HR",
+      "title": "New Candidate Checked In",
+      "message": "Verification Candidate Idempotency has arrived for Senior Property Advisor (Round 1 - Technical Assessment). Scheduled: Immediate / Walk-in.",
+      "priority": "HIGH",
+      "eventType": "CANDIDATE_ARRIVED",
+      "entityId": "cand-1792753941414",
+      "entityType": "CANDIDATE",
+      "read": false,
+      "createdAt": "2026-10-23T11:12:21.547Z",
+      "actionButtons": [
+        {
+          "label": "Assign Room",
+          "actionKey": "ASSIGN_ROOM",
+          "payload": {
+            "candidateId": "cand-1792753941414",
+            "interviewId": "intv-1792753941415-3zc0"
+          }
+        },
+        {
+          "label": "View Profile",
+          "actionKey": "VIEW_CANDIDATE",
+          "payload": {
+            "candidateId": "cand-1792753941414"
+          }
+        }
+      ],
+      "payload": {
+        "candidateName": "Verification Candidate Idempotency",
+        "position": "Senior Property Advisor",
+        "stage": "Round 1 - Technical Assessment",
+        "interviewer": "Rahul Sharma",
+        "scheduled": "Immediate / Walk-in",
+        "arrived": "11:12 AM",
+        "phone": "9999900001",
+        "email": "verify.idempotency@example.com",
+        "experience": "Fresher",
+        "currentLocation": "Reception / Waiting Lounge",
+        "hasPhoto": false,
+        "hasResume": false
+      }
+    },
+    {
+      "id": "notif-1792753941555-admin",
+      "recipientRole": "ADMIN",
+      "title": "Candidate Checked In",
+      "message": "Verification Candidate Idempotency checked in for Senior Property Advisor. Status: Waiting in Reception.",
+      "priority": "HIGH",
+      "eventType": "CANDIDATE_ARRIVED",
+      "entityId": "cand-1792753941414",
+      "entityType": "CANDIDATE",
+      "read": false,
+      "createdAt": "2026-10-23T11:12:21.547Z",
+      "actionButtons": [
+        {
+          "label": "View Record",
+          "actionKey": "VIEW_CANDIDATE",
+          "payload": {
+            "candidateId": "cand-1792753941414"
+          }
+        }
+      ],
+      "payload": {
+        "candidateName": "Verification Candidate Idempotency",
+        "position": "Senior Property Advisor",
+        "interviewer": "Rahul Sharma",
+        "arrived": "11:12 AM",
+        "currentLocation": "Reception / Waiting Lounge",
+        "room": "Not Assigned",
+        "photoAvailable": false,
+        "resumeAvailable": false
+      }
+    },
+    {
+      "id": "notif-1792753941555-ceo",
+      "recipientRole": "CEO",
+      "title": "Candidate Arrived for Interview",
+      "message": "Verification Candidate Idempotency (Senior Property Advisor) is in reception for Round 1 - Technical Assessment.",
+      "priority": "NORMAL",
+      "eventType": "CANDIDATE_ARRIVED",
+      "entityId": "cand-1792753941414",
+      "entityType": "CANDIDATE",
+      "read": false,
+      "createdAt": "2026-10-23T11:12:21.547Z",
+      "actionButtons": [
+        {
+          "label": "Executive Profile",
+          "actionKey": "VIEW_CANDIDATE",
+          "payload": {
+            "candidateId": "cand-1792753941414"
+          }
+        }
+      ],
+      "payload": {
+        "candidateName": "Verification Candidate Idempotency",
+        "position": "Senior Property Advisor",
+        "stage": "Round 1 - Technical Assessment",
+        "interviewer": "Rahul Sharma",
+        "scheduled": "Immediate / Walk-in",
+        "arrived": "11:12 AM",
+        "currentStatus": "Waiting in Reception"
+      }
+    },
+    {
+      "id": "notif-1792753941555-cofounder",
+      "recipientRole": "CO_FOUNDER",
+      "title": "Candidate Arrived for Interview",
+      "message": "Verification Candidate Idempotency (Senior Property Advisor) checked in at Reception.",
+      "priority": "NORMAL",
+      "eventType": "CANDIDATE_ARRIVED",
+      "entityId": "cand-1792753941414",
+      "entityType": "CANDIDATE",
+      "read": false,
+      "createdAt": "2026-10-23T11:12:21.547Z",
+      "actionButtons": [
+        {
+          "label": "View Profile",
+          "actionKey": "VIEW_CANDIDATE",
+          "payload": {
+            "candidateId": "cand-1792753941414"
+          }
+        }
+      ],
+      "payload": {
+        "candidateName": "Verification Candidate Idempotency",
+        "position": "Senior Property Advisor",
+        "stage": "Round 1 - Technical Assessment",
+        "interviewer": "Rahul Sharma",
+        "arrived": "11:12 AM"
+      }
+    },
+    {
+      "id": "notif-1792753941555-intv",
+      "recipientRole": "INTERVIEWER",
+      "recipientUserId": "usr-intv-rahul",
+      "title": "Your Candidate Has Arrived",
+      "message": "Verification Candidate Idempotency has arrived for Round 1 - Technical Assessment. Waiting in Reception area.",
+      "priority": "HIGH",
+      "eventType": "CANDIDATE_WAITING",
+      "entityId": "cand-1792753941414",
+      "entityType": "INTERVIEW",
+      "read": false,
+      "createdAt": "2026-10-23T11:12:21.547Z",
+      "actionButtons": [
+        {
+          "label": "View Candidate",
+          "actionKey": "VIEW_CANDIDATE",
+          "payload": {
+            "candidateId": "cand-1792753941414"
+          }
+        },
+        {
+          "label": "Start Interview",
+          "actionKey": "START_INTERVIEW",
+          "payload": {
+            "interviewId": "intv-1792753941415-3zc0"
+          }
+        }
+      ],
+      "payload": {
+        "candidateName": "Verification Candidate Idempotency",
+        "position": "Senior Property Advisor",
+        "stage": "Round 1 - Technical Assessment",
+        "arrived": "11:12 AM",
+        "currentLocation": "Waiting Area",
+        "room": "Awaiting HR Room Assignment",
+        "experience": "Fresher",
+        "relevantExperience": ""
+      }
+    },
+    {
+      "id": "notif-1792753941555-rec",
+      "recipientRole": "RECEPTION",
+      "title": "Candidate Arrived at Front Desk",
+      "message": "Verification Candidate Idempotency checked in for Senior Property Advisor. Direct to Waiting Lounge.",
+      "priority": "HIGH",
+      "eventType": "CANDIDATE_ARRIVED",
+      "entityId": "cand-1792753941414",
+      "entityType": "CANDIDATE",
+      "read": false,
+      "createdAt": "2026-10-23T11:12:21.547Z",
+      "actionButtons": [
+        {
+          "label": "Assist Candidate",
+          "actionKey": "VIEW_CANDIDATE",
+          "payload": {
+            "candidateId": "cand-1792753941414"
+          }
+        }
+      ],
+      "payload": {
+        "candidateName": "Verification Candidate Idempotency",
+        "position": "Senior Property Advisor",
+        "interviewer": "Rahul Sharma",
+        "status": "Waiting in Lounge",
+        "action": "Guide candidate to waiting area lounge and offer comfort",
+        "arrived": "11:12 AM"
+      }
+    },
     {
       "id": "notif-1792752586592-pan-done",
       "recipientRole": "HR",
@@ -21904,6 +22605,105 @@
   ],
   "pantryTasks": [
     {
+      "id": "pantry-task-1792754614892",
+      "category": "HOSPITALITY",
+      "roomId": "room-conf-a",
+      "roomName": "Conference Room A",
+      "location": "Conference Room A",
+      "instructions": "Serve immediately upon room entry",
+      "candidateId": "cand-1792754613207",
+      "candidateName": "Pradeep Deshmukh QA",
+      "taskType": "WATER_BEVERAGE",
+      "description": "Serve immediately upon room entry",
+      "requiredItems": [
+        "2x Bottled Mineral Water"
+      ],
+      "itemsWithQuantities": [
+        {
+          "item": "2x Bottled Mineral Water",
+          "quantity": 1
+        }
+      ],
+      "priority": "HIGH",
+      "status": "COMPLETED",
+      "dueTime": "Immediate",
+      "assignedSteward": "Suresh Kumar (Floor 2 Pantry)",
+      "assignedStaffId": "",
+      "assignedTeam": "Pantry Team Alpha",
+      "createdById": "usr-hr-nisha",
+      "createdByName": "Nisha",
+      "createdByRole": "HR",
+      "createdAt": "2026-10-23T11:23:34.891Z",
+      "assignedAt": "2026-10-23T11:23:34.891Z",
+      "auditTrail": [
+        {
+          "timestamp": "2026-10-23T11:23:35.225Z",
+          "status": "COMPLETED",
+          "actorName": "Ramesh Kumar",
+          "actorRole": "PANTRY",
+          "note": "Staff reported task completion in 1s."
+        },
+        {
+          "timestamp": "2026-10-23T11:23:35.072Z",
+          "status": "IN_PROGRESS",
+          "actorName": "Ramesh Kumar",
+          "actorRole": "PANTRY",
+          "note": "Task started and service currently in progress."
+        },
+        {
+          "timestamp": "2026-10-23T11:23:34.891Z",
+          "status": "PENDING",
+          "actorName": "Nisha",
+          "actorRole": "HR",
+          "note": "Task created and assigned to Suresh Kumar (Floor 2 Pantry)."
+        }
+      ],
+      "startedAt": "2026-10-23T11:23:35.072Z",
+      "completedAt": "2026-10-23T11:23:35.480Z",
+      "completedBy": "Suresh Kumar (Pantry)",
+      "isStaffReportedCompleted": true,
+      "staffReportedCompletedAt": "2026-10-23T11:23:35.225Z",
+      "completionDurationMinutes": 1,
+      "timeTakenFormatted": "1s"
+    },
+    {
+      "id": "pantry-clean-1792754614770",
+      "roomId": "room-conf-a",
+      "roomName": "Conference Room A",
+      "candidateName": "",
+      "taskType": "ROOM_RESET",
+      "description": "Clean Conference Room A after candidate interview.",
+      "requiredItems": [
+        "Sanitize conference table & chairs",
+        "Clear used glasses / bottles",
+        "Restock fresh mineral water"
+      ],
+      "priority": "HIGH",
+      "status": "COMPLETED",
+      "createdAt": "2026-10-23T11:23:34.769Z",
+      "completedAt": "2026-10-23T11:23:35.480Z",
+      "completedBy": "Suresh Kumar (Pantry)"
+    },
+    {
+      "id": "pantry-task-1792754614248",
+      "roomId": "room-conf-a",
+      "roomName": "Conference Room A",
+      "candidateId": "cand-1792754613207",
+      "candidateName": "Pradeep Deshmukh QA",
+      "taskType": "ROOM_PREP",
+      "description": "Prepare Conference Room A: Sanitization, setup, and 2 bottles of premium mineral water.",
+      "requiredItems": [
+        "2x Bottled Mineral Water",
+        "Room Setup & Lights Check",
+        "Whiteboard markers"
+      ],
+      "priority": "HIGH",
+      "status": "COMPLETED",
+      "createdAt": "2026-10-23T11:23:34.247Z",
+      "completedAt": "2026-10-23T11:23:35.480Z",
+      "completedBy": "Suresh Kumar (Pantry)"
+    },
+    {
       "id": "pantry-task-1792752586449",
       "category": "HOSPITALITY",
       "roomId": "room-conf-a",
@@ -21971,8 +22771,10 @@
         "Whiteboard markers"
       ],
       "priority": "HIGH",
-      "status": "PENDING",
-      "createdAt": "2026-10-23T10:49:46.272Z"
+      "status": "COMPLETED",
+      "createdAt": "2026-10-23T10:49:46.272Z",
+      "completedAt": "2026-10-23T11:23:34.099Z",
+      "completedBy": "Pantry QA Runner"
     },
     {
       "id": "pantry-task-1792750827413",
@@ -24070,6 +24872,201 @@
     }
   ],
   "timelineEvents": [
+    {
+      "id": "tl-1792754615868-del",
+      "candidateId": "cand-1792754614440",
+      "timestamp": "2026-10-23T11:23:35.868Z",
+      "actorType": "USER",
+      "actorName": "Administrator",
+      "eventType": "CANDIDATE_ARCHIVED",
+      "description": "Candidate record archived/deleted. Reason: Administrative Archive."
+    },
+    {
+      "id": "tl-1792754615772-del",
+      "candidateId": "cand-1792754613207",
+      "timestamp": "2026-10-23T11:23:35.772Z",
+      "actorType": "USER",
+      "actorName": "Administrator",
+      "eventType": "CANDIDATE_ARCHIVED",
+      "description": "Candidate record archived/deleted. Reason: Administrative Archive."
+    },
+    {
+      "id": "tl-1792754614770-end-intv",
+      "candidateId": "cand-1792754613207",
+      "timestamp": "2026-10-23T11:23:34.769Z",
+      "actorType": "USER",
+      "actorName": "Interviewer",
+      "eventType": "INTERVIEW_OUTCOME_RECORDED",
+      "description": "Interview concluded with outcome: SELECTED. Feedback recorded. Room Conference Room A released."
+    },
+    {
+      "id": "tl-1792754614669-intv-started",
+      "candidateId": "cand-1792754613207",
+      "timestamp": "2026-10-23T11:23:34.669Z",
+      "actorType": "USER",
+      "actorName": "Interviewer",
+      "eventType": "INTERVIEW_STARTED",
+      "description": "Interview started by Interviewer (Round 1: Technical & Sales Evaluation) in Conference Room A."
+    },
+    {
+      "id": "tl-1792754614536-submit",
+      "candidateId": "cand-1792754614440",
+      "timestamp": "2026-10-23T11:23:34.535Z",
+      "actorType": "USER",
+      "actorName": "Aniket Kulkarni QA",
+      "eventType": "CANDIDATE_FORM_SUBMITTED",
+      "description": "Candidate completed self-check-in with live photo and resume verification."
+    },
+    {
+      "id": "tl-1792754614536-alerts",
+      "candidateId": "cand-1792754614440",
+      "timestamp": "2026-10-23T11:23:34.535Z",
+      "actorType": "SYSTEM",
+      "actorName": "Workflow Engine",
+      "eventType": "ROLE_BASED_ALERTS_DISPATCHED",
+      "description": "Dispatched automated arrival alerts to HR, Interviewer (Rahul Sharma), Admin, CEO, and Reception."
+    },
+    {
+      "id": "tl-1792754614440-chk-sub",
+      "candidateId": "cand-1792754614440",
+      "timestamp": "2026-10-23T11:23:34.440Z",
+      "actorType": "USER",
+      "actorName": "Aniket Kulkarni QA",
+      "eventType": "CANDIDATE_CHECK_IN",
+      "description": "Candidate checked in. Government ID (ID) and resume verified."
+    },
+    {
+      "id": "tl-1792754614440-chk-val",
+      "candidateId": "cand-1792754614440",
+      "timestamp": "2026-10-23T11:23:34.440Z",
+      "actorType": "SYSTEM",
+      "actorName": "WCR Validation Engine",
+      "eventType": "CANDIDATE_VALIDATION_COMPLETED",
+      "description": "Automated validation status: NEEDS_REVIEW. Information requires reception/HR review.",
+      "metadata": {
+        "overallStatus": "NEEDS_REVIEW",
+        "checksPassed": 3,
+        "checksFlagged": 1
+      }
+    },
+    {
+      "id": "tl-1792754614248-hr-room",
+      "candidateId": "cand-1792754613207",
+      "timestamp": "2026-10-23T11:23:34.247Z",
+      "actorType": "USER",
+      "actorName": "Nisha (HR)",
+      "eventType": "ROOM_ASSIGNED_BY_HR",
+      "description": "HR assigned Conference Room A to candidate Pradeep Deshmukh QA."
+    },
+    {
+      "id": "tl-1792754614248-sys-pantry",
+      "candidateId": "cand-1792754613207",
+      "timestamp": "2026-10-23T11:23:34.247Z",
+      "actorType": "SYSTEM",
+      "actorName": "Workflow Engine",
+      "eventType": "PANTRY_TASK_AUTOMATED",
+      "description": "Automated hospitality task generated for Pantry to prepare Conference Room A with water & room setup."
+    },
+    {
+      "id": "tl-1792754613510-edit",
+      "candidateId": "cand-1792754613207",
+      "timestamp": "2026-10-23T11:23:33.510Z",
+      "actorType": "USER",
+      "actorName": "Nisha",
+      "eventType": "CANDIDATE_PROFILE_UPDATED",
+      "description": "Candidate profile updated by Nisha (HR). Non-system fields refreshed."
+    },
+    {
+      "id": "tl-1792754613411-photo",
+      "candidateId": "cand-1792754613207",
+      "timestamp": "2026-10-23T11:23:33.411Z",
+      "actorType": "USER",
+      "actorName": "Ananya Sen",
+      "eventType": "LIVE_PHOTO_CAPTURED",
+      "description": "Physical live arrival photo captured & verified at reception desk by Ananya Sen."
+    },
+    {
+      "id": "tl-1792754613307-submit",
+      "candidateId": "cand-1792754613207",
+      "timestamp": "2026-10-23T11:23:33.301Z",
+      "actorType": "USER",
+      "actorName": "Pradeep Deshmukh QA",
+      "eventType": "CANDIDATE_FORM_SUBMITTED",
+      "description": "Candidate completed self-check-in with live photo and resume verification."
+    },
+    {
+      "id": "tl-1792754613307-alerts",
+      "candidateId": "cand-1792754613207",
+      "timestamp": "2026-10-23T11:23:33.301Z",
+      "actorType": "SYSTEM",
+      "actorName": "Workflow Engine",
+      "eventType": "ROLE_BASED_ALERTS_DISPATCHED",
+      "description": "Dispatched automated arrival alerts to HR, Interviewer (Rahul Sharma), Admin, CEO, and Reception."
+    },
+    {
+      "id": "tl-1792754613208-chk-sub",
+      "candidateId": "cand-1792754613207",
+      "timestamp": "2026-10-23T11:23:33.206Z",
+      "actorType": "USER",
+      "actorName": "Pradeep Deshmukh QA",
+      "eventType": "CANDIDATE_CHECK_IN",
+      "description": "Candidate checked in. Government ID (ID) and resume verified."
+    },
+    {
+      "id": "tl-1792754613208-chk-val",
+      "candidateId": "cand-1792754613207",
+      "timestamp": "2026-10-23T11:23:33.206Z",
+      "actorType": "SYSTEM",
+      "actorName": "WCR Validation Engine",
+      "eventType": "CANDIDATE_VALIDATION_COMPLETED",
+      "description": "Automated validation status: NEEDS_REVIEW. Information requires reception/HR review.",
+      "metadata": {
+        "overallStatus": "NEEDS_REVIEW",
+        "checksPassed": 4,
+        "checksFlagged": 1
+      }
+    },
+    {
+      "id": "tl-1792753941555-submit",
+      "candidateId": "cand-1792753941414",
+      "timestamp": "2026-10-23T11:12:21.547Z",
+      "actorType": "USER",
+      "actorName": "Verification Candidate Idempotency",
+      "eventType": "CANDIDATE_FORM_SUBMITTED",
+      "description": "Candidate completed self-check-in with live photo and resume verification."
+    },
+    {
+      "id": "tl-1792753941555-alerts",
+      "candidateId": "cand-1792753941414",
+      "timestamp": "2026-10-23T11:12:21.547Z",
+      "actorType": "SYSTEM",
+      "actorName": "Workflow Engine",
+      "eventType": "ROLE_BASED_ALERTS_DISPATCHED",
+      "description": "Dispatched automated arrival alerts to HR, Interviewer (Rahul Sharma), Admin, CEO, and Reception."
+    },
+    {
+      "id": "tl-1792753941415-chk-sub",
+      "candidateId": "cand-1792753941414",
+      "timestamp": "2026-10-23T11:12:21.412Z",
+      "actorType": "USER",
+      "actorName": "Verification Candidate Idempotency",
+      "eventType": "CANDIDATE_CHECK_IN",
+      "description": "Candidate checked in. Government ID (ID) and resume verified."
+    },
+    {
+      "id": "tl-1792753941415-chk-val",
+      "candidateId": "cand-1792753941414",
+      "timestamp": "2026-10-23T11:12:21.412Z",
+      "actorType": "SYSTEM",
+      "actorName": "WCR Validation Engine",
+      "eventType": "CANDIDATE_VALIDATION_COMPLETED",
+      "description": "Automated validation status: NEEDS_REVIEW. Information requires reception/HR review.",
+      "metadata": {
+        "overallStatus": "NEEDS_REVIEW",
+        "checksPassed": 4,
+        "checksFlagged": 1
+      }
+    },
     {
       "id": "tl-1792752586592-pantry-done",
       "candidateId": "cand-1792752585550-h7xv",
@@ -27087,6 +28084,375 @@
     }
   ],
   "auditLogs": [
+    {
+      "id": "aud-1792754615868-del",
+      "timestamp": "2026-10-23T11:23:35.868Z",
+      "actorType": "USER",
+      "actorName": "ADMIN",
+      "action": "CANDIDATE_DELETED",
+      "details": "Candidate cand-1792754614440 (Aniket Kulkarni QA) was soft-deleted/archived by ADMIN. Reason: Administrative Archive.",
+      "entityId": "cand-1792754614440",
+      "entityType": "CANDIDATE"
+    },
+    {
+      "id": "aud-1792754615772-del",
+      "timestamp": "2026-10-23T11:23:35.772Z",
+      "actorType": "USER",
+      "actorName": "ADMIN",
+      "action": "CANDIDATE_DELETED",
+      "details": "Candidate cand-1792754613207 (Pradeep Deshmukh QA) was soft-deleted/archived by ADMIN. Reason: Administrative Archive.",
+      "entityId": "cand-1792754613207",
+      "entityType": "CANDIDATE"
+    },
+    {
+      "id": "aud-1792754615480-clean",
+      "timestamp": "2026-10-23T11:23:35.480Z",
+      "actorType": "USER",
+      "actorName": "Suresh Kumar (Pantry)",
+      "actorRole": "PANTRY",
+      "action": "ROOM_CLEANED_READY",
+      "details": "Room \"Conference Room A\" marked CLEANED / READY by Suresh Kumar (Pantry). Room is now available.",
+      "entityId": "room-conf-a",
+      "entityType": "ROOM"
+    },
+    {
+      "id": "aud-1792754615225",
+      "timestamp": "2026-10-23T11:23:35.225Z",
+      "actorType": "USER",
+      "actorName": "Ramesh Kumar",
+      "actorRole": "PANTRY",
+      "action": "COMPLETE_PANTRY_TASK",
+      "details": "Completed hospitality preparation for Conference Room A in 1s (Staff-Reported).",
+      "entityId": "pantry-task-1792754614892",
+      "entityType": "PANTRY_TASK"
+    },
+    {
+      "id": "aud-1792754615072-pan-start",
+      "timestamp": "2026-10-23T11:23:35.072Z",
+      "actorType": "USER",
+      "actorName": "Ramesh Kumar",
+      "actorRole": "PANTRY",
+      "action": "START_PANTRY_TASK",
+      "details": "Started work on task in Conference Room A.",
+      "entityId": "pantry-task-1792754614892",
+      "entityType": "PANTRY_TASK"
+    },
+    {
+      "id": "aud-1792754614892-pan-assign",
+      "timestamp": "2026-10-23T11:23:34.891Z",
+      "actorType": "USER",
+      "actorName": "Nisha",
+      "actorRole": "HR",
+      "action": "ASSIGN_PANTRY_TASK",
+      "details": "Assigned HOSPITALITY task (WATER_BEVERAGE) for Conference Room A (Due: Immediate).",
+      "entityId": "pantry-task-1792754614892",
+      "entityType": "PANTRY_TASK"
+    },
+    {
+      "id": "aud-1792754614770",
+      "timestamp": "2026-10-23T11:23:34.769Z",
+      "actorType": "USER",
+      "actorName": "Interviewer",
+      "actorRole": "INTERVIEWER",
+      "action": "COMPLETE_INTERVIEW",
+      "details": "Concluded interview intv-1792754613208-ffep for Pradeep Deshmukh QA with outcome SELECTED.",
+      "entityId": "intv-1792754613208-ffep",
+      "entityType": "INTERVIEW"
+    },
+    {
+      "id": "aud-1792754614669",
+      "timestamp": "2026-10-23T11:23:34.669Z",
+      "actorType": "USER",
+      "actorName": "Interviewer",
+      "actorRole": "INTERVIEWER",
+      "action": "START_INTERVIEW",
+      "details": "Started interview intv-1792754613208-ffep with candidate Pradeep Deshmukh QA in Conference Room A.",
+      "entityId": "intv-1792754613208-ffep",
+      "entityType": "INTERVIEW"
+    },
+    {
+      "id": "aud-1792754614536",
+      "timestamp": "2026-10-23T11:23:34.535Z",
+      "actorType": "SYSTEM",
+      "actorName": "Self-CheckIn Engine",
+      "action": "CANDIDATE_CHECKED_IN",
+      "details": "Candidate Aniket Kulkarni QA (cand-1792754614440) arrived via QR token WCR-APPT-1792754614393. Persisted to DB.",
+      "entityId": "cand-1792754614440",
+      "entityType": "CANDIDATE"
+    },
+    {
+      "id": "aud-1792754614440-chk-sub",
+      "timestamp": "2026-10-23T11:23:34.440Z",
+      "actorType": "USER",
+      "actorName": "Aniket Kulkarni QA",
+      "action": "FORM_SUBMITTED",
+      "details": "Scheduled check-in submitted with undefined for Aniket Kulkarni QA (Commercial Leasing Manager).",
+      "entityId": "cand-1792754614440",
+      "entityType": "CANDIDATE"
+    },
+    {
+      "id": "aud-1792754614440-chk-comp",
+      "timestamp": "2026-10-23T11:23:34.440Z",
+      "actorType": "SYSTEM",
+      "actorName": "Session Manager",
+      "action": "REGISTRATION_SESSION_COMPLETED",
+      "details": "Check-in session WCR-APPT-1792754614393 completed and locked.",
+      "entityId": "sess-1792754614393-mmov",
+      "entityType": "CHECK_IN_SESSION"
+    },
+    {
+      "id": "aud-1792754614248",
+      "timestamp": "2026-10-23T11:23:34.247Z",
+      "actorType": "USER",
+      "actorName": "Nisha (HR)",
+      "actorRole": "HR",
+      "action": "ASSIGN_ROOM",
+      "details": "Assigned room Conference Room A (room-conf-a) to candidate Pradeep Deshmukh QA (cand-1792754613207). Automated downstream workflow tasks.",
+      "entityId": "room-conf-a",
+      "entityType": "ROOM"
+    },
+    {
+      "id": "aud-1792754614099-clean",
+      "timestamp": "2026-10-23T11:23:34.099Z",
+      "actorType": "USER",
+      "actorName": "Pantry QA Runner",
+      "actorRole": "PANTRY",
+      "action": "ROOM_CLEANED_READY",
+      "details": "Room \"Conference Room A\" marked CLEANED / READY by Pantry QA Runner. Room is now available.",
+      "entityId": "room-conf-a",
+      "entityType": "ROOM"
+    },
+    {
+      "id": "aud-1792754614002-intv-sched",
+      "timestamp": "2026-10-23T11:23:34.002Z",
+      "actorType": "USER",
+      "actorName": "Rahul Sharma",
+      "actorRole": "HR",
+      "action": "INTERVIEW_UPDATED",
+      "details": "Updated interview for Pradeep Deshmukh QA with Rahul Sharma (Round 1: Technical & Sales Evaluation).",
+      "entityId": "intv-1792754613208-ffep",
+      "entityType": "INTERVIEW"
+    },
+    {
+      "id": "aud-1792754613947",
+      "timestamp": "2026-10-23T11:23:33.947Z",
+      "actorType": "USER",
+      "actorName": "Admin / HR",
+      "action": "GENERATE_QR_PASS",
+      "details": "Generated appointment QR pass token WCR-APPT-872 for Pradeep Deshmukh QA (undefined)."
+    },
+    {
+      "id": "aud-1792754613844",
+      "timestamp": "2026-10-23T11:23:33.844Z",
+      "actorType": "USER",
+      "actorName": "Ananya Sen (Reception)",
+      "actorRole": "RECEPTION",
+      "action": "VISITOR_CHECKOUT",
+      "details": "Processed physical checkout for visitor Rajesh Khanna (Client) (vis-1792754613603).",
+      "entityId": "vis-1792754613603",
+      "entityType": "VISITOR"
+    },
+    {
+      "id": "aud-1792754613648-vis-arr",
+      "timestamp": "2026-10-23T11:23:33.647Z",
+      "actorType": "USER",
+      "actorName": "Rajesh Khanna (Client)",
+      "action": "VISITOR_CHECKED_IN",
+      "details": "Client Rajesh Khanna (Client) (Direct) checked in to meet Lalit Sir.",
+      "entityId": "vis-1792754613603",
+      "entityType": "VISITOR"
+    },
+    {
+      "id": "aud-1792754613603",
+      "timestamp": "2026-10-23T11:23:33.603Z",
+      "actorType": "USER",
+      "actorName": "Self Check-in / Front Desk",
+      "action": "WALKIN_REGISTERED",
+      "details": "Walk-in visitor Rajesh Khanna (Client) checked in with QR Pass WCR-WALK-MVKVT4YR-BGAA to meet undefined.",
+      "entityId": "vis-1792754613603",
+      "entityType": "VISITOR"
+    },
+    {
+      "id": "aud-1792754613510-edit",
+      "timestamp": "2026-10-23T11:23:33.510Z",
+      "actorType": "USER",
+      "actorName": "Nisha",
+      "actorRole": "HR",
+      "action": "CANDIDATE_UPDATED",
+      "details": "Candidate record cand-1792754613207 (Pradeep Deshmukh QA) edited by HR. System fields preserved.",
+      "entityId": "cand-1792754613207",
+      "entityType": "CANDIDATE"
+    },
+    {
+      "id": "aud-1792754613411-rec-photo",
+      "timestamp": "2026-10-23T11:23:33.411Z",
+      "actorType": "USER",
+      "actorName": "Ananya Sen",
+      "actorRole": "RECEPTION",
+      "action": "CAPTURE_RECEPTION_LIVE_PHOTO",
+      "details": "Receptionist Ananya Sen captured verified live arrival photo for candidate Pradeep Deshmukh QA (cand-1792754613207).",
+      "entityId": "cand-1792754613207",
+      "entityType": "CANDIDATE"
+    },
+    {
+      "id": "aud-1792754613307",
+      "timestamp": "2026-10-23T11:23:33.301Z",
+      "actorType": "SYSTEM",
+      "actorName": "Self-CheckIn Engine",
+      "action": "CANDIDATE_CHECKED_IN",
+      "details": "Candidate Pradeep Deshmukh QA (cand-1792754613207) arrived via QR token QR-QA-1792754613158. Persisted to DB.",
+      "entityId": "cand-1792754613207",
+      "entityType": "CANDIDATE"
+    },
+    {
+      "id": "aud-1792754613208-chk-sub",
+      "timestamp": "2026-10-23T11:23:33.206Z",
+      "actorType": "USER",
+      "actorName": "Pradeep Deshmukh QA",
+      "action": "FORM_SUBMITTED",
+      "details": "Scheduled check-in submitted with undefined for Pradeep Deshmukh QA (Senior Property Consultant).",
+      "entityId": "cand-1792754613207",
+      "entityType": "CANDIDATE"
+    },
+    {
+      "id": "aud-1792754613208-chk-comp",
+      "timestamp": "2026-10-23T11:23:33.206Z",
+      "actorType": "SYSTEM",
+      "actorName": "Session Manager",
+      "action": "REGISTRATION_SESSION_COMPLETED",
+      "details": "Check-in session QR-QA-1792754613158 completed and locked.",
+      "entityId": "sess-1792754613161-us1w",
+      "entityType": "CHECK_IN_SESSION"
+    },
+    {
+      "id": "aud-1792754613107-login",
+      "timestamp": "2026-10-23T11:23:33.107Z",
+      "actorUserId": "usr-pan-ramesh",
+      "actorName": "Ramesh Kumar",
+      "actorRole": "PANTRY",
+      "action": "LOGIN",
+      "details": "Ramesh Kumar (PANTRY) logged in to operations console.",
+      "entityId": "usr-pan-ramesh",
+      "entityType": "USER"
+    },
+    {
+      "id": "aud-1792754613059-login",
+      "timestamp": "2026-10-23T11:23:33.059Z",
+      "actorUserId": "usr-rec-ananya",
+      "actorName": "Ananya Sen",
+      "actorRole": "RECEPTION",
+      "action": "LOGIN",
+      "details": "Ananya Sen (RECEPTION) logged in to operations console.",
+      "entityId": "usr-rec-ananya",
+      "entityType": "USER"
+    },
+    {
+      "id": "aud-1792754613007-login",
+      "timestamp": "2026-10-23T11:23:33.007Z",
+      "actorUserId": "usr-intv-rahul",
+      "actorName": "Rahul Sharma",
+      "actorRole": "INTERVIEWER",
+      "action": "LOGIN",
+      "details": "Rahul Sharma (INTERVIEWER) logged in to operations console.",
+      "entityId": "usr-intv-rahul",
+      "entityType": "USER"
+    },
+    {
+      "id": "aud-1792754612958-login",
+      "timestamp": "2026-10-23T11:23:32.958Z",
+      "actorUserId": "usr-hr-nisha",
+      "actorName": "Nisha",
+      "actorRole": "HR",
+      "action": "LOGIN",
+      "details": "Nisha (HR) logged in to operations console.",
+      "entityId": "usr-hr-nisha",
+      "entityType": "USER"
+    },
+    {
+      "id": "aud-1792754612908-login",
+      "timestamp": "2026-10-23T11:23:32.908Z",
+      "actorUserId": "usr-cofounder-kimmi",
+      "actorName": "Kimmi Mam",
+      "actorRole": "SENIOR_HR",
+      "action": "LOGIN",
+      "details": "Kimmi Mam (SENIOR_HR) logged in to operations console.",
+      "entityId": "usr-cofounder-kimmi",
+      "entityType": "USER"
+    },
+    {
+      "id": "aud-1792754612858-login",
+      "timestamp": "2026-10-23T11:23:32.858Z",
+      "actorUserId": "usr-ceo-lalit",
+      "actorName": "Lalit Sir",
+      "actorRole": "CEO",
+      "action": "LOGIN",
+      "details": "Lalit Sir (CEO) logged in to operations console.",
+      "entityId": "usr-ceo-lalit",
+      "entityType": "USER"
+    },
+    {
+      "id": "aud-1792754612800-login",
+      "timestamp": "2026-10-23T11:23:32.799Z",
+      "actorUserId": "usr-admin-sameer",
+      "actorName": "Sameer Sir",
+      "actorRole": "ADMIN",
+      "action": "LOGIN",
+      "details": "Sameer Sir (ADMIN) logged in to operations console.",
+      "entityId": "usr-admin-sameer",
+      "entityType": "USER"
+    },
+    {
+      "id": "aud-1792753941701-intv-sched",
+      "timestamp": "2026-10-23T11:12:21.700Z",
+      "actorType": "USER",
+      "actorName": "Rahul Sharma",
+      "actorRole": "HR",
+      "action": "INTERVIEW_UPDATED",
+      "details": "Updated interview for Verification Candidate Idempotency with Rahul Sharma (Round 1: Technical & Sales Evaluation).",
+      "entityId": "intv-1792753941415-3zc0",
+      "entityType": "INTERVIEW"
+    },
+    {
+      "id": "aud-1792753941555",
+      "timestamp": "2026-10-23T11:12:21.547Z",
+      "actorType": "SYSTEM",
+      "actorName": "Self-CheckIn Engine",
+      "action": "CANDIDATE_CHECKED_IN",
+      "details": "Candidate Verification Candidate Idempotency (cand-1792753941414) arrived via QR token WCR-TEST-IDEM-01. Persisted to DB.",
+      "entityId": "cand-1792753941414",
+      "entityType": "CANDIDATE"
+    },
+    {
+      "id": "aud-1792753941415-chk-sub",
+      "timestamp": "2026-10-23T11:12:21.412Z",
+      "actorType": "USER",
+      "actorName": "Verification Candidate Idempotency",
+      "action": "FORM_SUBMITTED",
+      "details": "Scheduled check-in submitted with undefined for Verification Candidate Idempotency (Senior Property Advisor).",
+      "entityId": "cand-1792753941414",
+      "entityType": "CANDIDATE"
+    },
+    {
+      "id": "aud-1792753941415-chk-comp",
+      "timestamp": "2026-10-23T11:12:21.412Z",
+      "actorType": "SYSTEM",
+      "actorName": "Session Manager",
+      "action": "REGISTRATION_SESSION_COMPLETED",
+      "details": "Check-in session WCR-TEST-IDEM-01 completed and locked.",
+      "entityId": "sess-1792753941349-40uw",
+      "entityType": "CHECK_IN_SESSION"
+    },
+    {
+      "id": "aud-1792753941274-login",
+      "timestamp": "2026-10-23T11:12:21.274Z",
+      "actorUserId": "usr-hr-nisha",
+      "actorName": "Nisha",
+      "actorRole": "HR",
+      "action": "LOGIN",
+      "details": "Nisha (HR) logged in to operations console.",
+      "entityId": "usr-hr-nisha",
+      "entityType": "USER"
+    },
     {
       "id": "aud-1792752586592",
       "timestamp": "2026-10-23T10:49:46.592Z",
@@ -35657,6 +37023,29 @@
   ],
   "checkInSessions": [
     {
+      "id": "session-1792754613947",
+      "token": "WCR-APPT-872",
+      "qrType": "APPOINTMENT",
+      "candidateName": "Pradeep Deshmukh QA",
+      "interviewRound": "Round 1 - Technical Assessment",
+      "status": "ACTIVE",
+      "expiresAt": "2026-10-24T11:23:33.947Z",
+      "createdAt": "2026-10-23T11:23:33.947Z"
+    },
+    {
+      "id": "sess-1792754613603",
+      "token": "WCR-WALK-MVKVT4YR-BGAA",
+      "qrType": "GENERAL_RECEPTION",
+      "source": "GENERAL_WCR_QR",
+      "candidateName": "Rajesh Khanna (Client)",
+      "position": "Commercial Space Investment Meeting",
+      "department": "General Management",
+      "status": "COMPLETED",
+      "completedAt": "2026-10-23T11:23:33.603Z",
+      "expiresAt": "2026-10-25T11:23:33.603Z",
+      "createdAt": "2026-10-23T11:23:33.603Z"
+    },
+    {
       "id": "sess-1792752585898",
       "token": "WCR-WALK-MVKULODM-PLAY",
       "qrType": "GENERAL_RECEPTION",
@@ -37502,9 +38891,40 @@
       "submittedAt": "2026-10-23T10:20:27.087Z",
       "lockedAt": "2026-10-23T10:20:27.087Z",
       "candidateId": "cand-1792750827087"
+    },
+    {
+      "id": "sess-1792753941349-40uw",
+      "token": "WCR-TEST-IDEM-01",
+      "qrType": "APPOINTMENT",
+      "candidateName": "Verification Candidate Idempotency",
+      "position": "Senior Property Advisor",
+      "createdAt": "2026-10-23T11:12:21.350Z",
+      "expiresAt": "2026-10-24T11:12:21.350Z",
+      "status": "COMPLETED",
+      "completedAt": "2026-10-23T11:12:21.412Z",
+      "submittedAt": "2026-10-23T11:12:21.412Z",
+      "lockedAt": "2026-10-23T11:12:21.412Z",
+      "candidateId": "cand-1792753941414"
     }
   ],
   "visitors": [
+    {
+      "id": "vis-1792754613603",
+      "fullName": "Rajesh Khanna (Client)",
+      "phone": "9822344638",
+      "email": "",
+      "company": "",
+      "visitorType": "CLIENT",
+      "hostName": "Lalit Sir",
+      "hostDepartment": "General Management",
+      "purpose": "Commercial Space Investment Meeting",
+      "status": "CHECKED_OUT",
+      "checkInTime": "2026-10-23T11:23:33.603Z",
+      "qrToken": "WCR-WALK-MVKVT4YR-BGAA",
+      "qrVerificationStatus": "VERIFIED",
+      "qrVerifiedAt": "2026-10-23T11:23:33.603Z",
+      "checkOutTime": "2026-10-23T11:23:33.844Z"
+    },
     {
       "id": "vis-1792752585898",
       "fullName": "Deepak Verma (Vendor)",
@@ -38576,6 +39996,1263 @@
   "changeRequests": [],
   "passwordResetRequests": [],
   "domainEvents": [
+    {
+      "eventId": "evt-1792754616053-92y0i8k",
+      "eventType": "SETTINGS_UPDATED",
+      "timestamp": "2026-10-23T11:23:36.053Z",
+      "actorType": "STAFF",
+      "source": "STAFF_ACTION",
+      "metadata": {
+        "settings": {
+          "autoAssignPantryOnRoom": true,
+          "pantryWaterRequired": true,
+          "requireLivePhoto": true,
+          "requireResume": true,
+          "requireGovernmentId": true,
+          "allowedGovernmentIdTypes": [
+            "AADHAAR",
+            "PAN",
+            "DRIVING_LICENSE",
+            "PASSPORT",
+            "VOTER_ID",
+            "OTHER"
+          ],
+          "allowedUploadFormats": [
+            "pdf",
+            "png",
+            "jpg",
+            "jpeg"
+          ],
+          "qrSessionExpiryMinutes": 30,
+          "fieldVisibility": {
+            "HR": {
+              "candidateName": true,
+              "phone": true,
+              "email": true,
+              "address": true,
+              "resume": true,
+              "governmentId": true,
+              "validationResults": true,
+              "livePhoto": true,
+              "hrNotes": true,
+              "interviewStatus": true,
+              "room": true,
+              "pantryTask": true,
+              "salary": true
+            },
+            "SENIOR_HR": {
+              "candidateName": true,
+              "phone": true,
+              "email": true,
+              "address": true,
+              "resume": true,
+              "governmentId": true,
+              "validationResults": true,
+              "livePhoto": true,
+              "hrNotes": true,
+              "interviewStatus": true,
+              "room": true,
+              "pantryTask": false,
+              "salary": false
+            },
+            "ADMIN": {
+              "candidateName": true,
+              "phone": true,
+              "email": true,
+              "address": true,
+              "resume": true,
+              "governmentId": true,
+              "validationResults": true,
+              "livePhoto": true,
+              "hrNotes": true,
+              "interviewStatus": true,
+              "room": true,
+              "pantryTask": true,
+              "salary": true
+            },
+            "CEO": {
+              "candidateName": true,
+              "phone": true,
+              "email": true,
+              "address": true,
+              "resume": true,
+              "governmentId": true,
+              "validationResults": true,
+              "livePhoto": true,
+              "hrNotes": true,
+              "interviewStatus": true,
+              "room": true,
+              "pantryTask": true,
+              "salary": true
+            },
+            "CO_FOUNDER": {
+              "candidateName": true,
+              "phone": true,
+              "email": true,
+              "address": true,
+              "resume": true,
+              "governmentId": true,
+              "validationResults": true,
+              "livePhoto": true,
+              "hrNotes": true,
+              "interviewStatus": true,
+              "room": true,
+              "pantryTask": true,
+              "salary": true
+            },
+            "INTERVIEWER": {
+              "candidateName": true,
+              "phone": true,
+              "email": true,
+              "address": false,
+              "resume": true,
+              "governmentId": false,
+              "validationResults": true,
+              "livePhoto": true,
+              "hrNotes": true,
+              "interviewStatus": true,
+              "room": true,
+              "pantryTask": false,
+              "salary": false
+            },
+            "RECEPTION": {
+              "candidateName": true,
+              "phone": true,
+              "email": true,
+              "address": true,
+              "resume": true,
+              "governmentId": true,
+              "validationResults": true,
+              "livePhoto": true,
+              "hrNotes": false,
+              "interviewStatus": true,
+              "room": true,
+              "pantryTask": true,
+              "salary": false
+            },
+            "PANTRY": {
+              "candidateName": true,
+              "phone": false,
+              "email": false,
+              "address": false,
+              "resume": false,
+              "governmentId": false,
+              "validationResults": false,
+              "livePhoto": false,
+              "hrNotes": false,
+              "interviewStatus": false,
+              "room": true,
+              "pantryTask": true,
+              "salary": false
+            }
+          },
+          "voiceAlerts": true,
+          "autoRefresh": true,
+          "language": "en"
+        }
+      }
+    },
+    {
+      "eventId": "evt-1792754615918-n64c2g1",
+      "eventType": "CANDIDATE_DELETED",
+      "candidateId": "cand-1792754614440",
+      "visitId": "cand-1792754614440",
+      "applicationId": "cand-1792754614440",
+      "timestamp": "2026-10-23T11:23:35.918Z",
+      "actorType": "STAFF",
+      "source": "STAFF_ACTION",
+      "targetRoles": [
+        "HR",
+        "SENIOR_HR",
+        "ADMIN",
+        "CEO",
+        "CO_FOUNDER",
+        "INTERVIEWER",
+        "RECEPTION",
+        "PANTRY"
+      ],
+      "metadata": {
+        "candidateId": "cand-1792754614440",
+        "id": "cand-1792754614440",
+        "timestamp": "2026-10-23T11:23:35.868Z",
+        "deletedBy": "ADMIN"
+      }
+    },
+    {
+      "eventId": "evt-1792754615818-wh7l5ux",
+      "eventType": "CANDIDATE_DELETED",
+      "candidateId": "cand-1792754613207",
+      "visitId": "cand-1792754613207",
+      "applicationId": "cand-1792754613207",
+      "timestamp": "2026-10-23T11:23:35.818Z",
+      "actorType": "STAFF",
+      "source": "STAFF_ACTION",
+      "targetRoles": [
+        "HR",
+        "SENIOR_HR",
+        "ADMIN",
+        "CEO",
+        "CO_FOUNDER",
+        "INTERVIEWER",
+        "RECEPTION",
+        "PANTRY"
+      ],
+      "metadata": {
+        "candidateId": "cand-1792754613207",
+        "id": "cand-1792754613207",
+        "timestamp": "2026-10-23T11:23:35.772Z",
+        "deletedBy": "ADMIN"
+      }
+    },
+    {
+      "eventId": "evt-1792754615720-b5vq9kh",
+      "eventType": "SETTINGS_UPDATED",
+      "timestamp": "2026-10-23T11:23:35.720Z",
+      "actorType": "STAFF",
+      "source": "STAFF_ACTION",
+      "metadata": {
+        "settings": {
+          "autoAssignPantryOnRoom": true,
+          "pantryWaterRequired": true,
+          "requireLivePhoto": true,
+          "requireResume": true,
+          "requireGovernmentId": true,
+          "allowedGovernmentIdTypes": [
+            "AADHAAR",
+            "PAN",
+            "DRIVING_LICENSE",
+            "PASSPORT",
+            "VOTER_ID",
+            "OTHER"
+          ],
+          "allowedUploadFormats": [
+            "pdf",
+            "png",
+            "jpg",
+            "jpeg"
+          ],
+          "qrSessionExpiryMinutes": 30,
+          "fieldVisibility": {
+            "HR": {
+              "candidateName": true,
+              "phone": true,
+              "email": true,
+              "address": true,
+              "resume": true,
+              "governmentId": true,
+              "validationResults": true,
+              "livePhoto": true,
+              "hrNotes": true,
+              "interviewStatus": true,
+              "room": true,
+              "pantryTask": true,
+              "salary": true
+            },
+            "SENIOR_HR": {
+              "candidateName": true,
+              "phone": true,
+              "email": true,
+              "address": true,
+              "resume": true,
+              "governmentId": true,
+              "validationResults": true,
+              "livePhoto": true,
+              "hrNotes": true,
+              "interviewStatus": true,
+              "room": true,
+              "pantryTask": false,
+              "salary": false
+            },
+            "ADMIN": {
+              "candidateName": true,
+              "phone": true,
+              "email": true,
+              "address": true,
+              "resume": true,
+              "governmentId": true,
+              "validationResults": true,
+              "livePhoto": true,
+              "hrNotes": true,
+              "interviewStatus": true,
+              "room": true,
+              "pantryTask": true,
+              "salary": true
+            },
+            "CEO": {
+              "candidateName": true,
+              "phone": true,
+              "email": true,
+              "address": true,
+              "resume": true,
+              "governmentId": true,
+              "validationResults": true,
+              "livePhoto": true,
+              "hrNotes": true,
+              "interviewStatus": true,
+              "room": true,
+              "pantryTask": true,
+              "salary": true
+            },
+            "CO_FOUNDER": {
+              "candidateName": true,
+              "phone": true,
+              "email": true,
+              "address": true,
+              "resume": true,
+              "governmentId": true,
+              "validationResults": true,
+              "livePhoto": true,
+              "hrNotes": true,
+              "interviewStatus": true,
+              "room": true,
+              "pantryTask": true,
+              "salary": true
+            },
+            "INTERVIEWER": {
+              "candidateName": true,
+              "phone": true,
+              "email": true,
+              "address": false,
+              "resume": true,
+              "governmentId": false,
+              "validationResults": true,
+              "livePhoto": true,
+              "hrNotes": true,
+              "interviewStatus": true,
+              "room": true,
+              "pantryTask": false,
+              "salary": false
+            },
+            "RECEPTION": {
+              "candidateName": true,
+              "phone": true,
+              "email": true,
+              "address": true,
+              "resume": true,
+              "governmentId": true,
+              "validationResults": true,
+              "livePhoto": true,
+              "hrNotes": false,
+              "interviewStatus": true,
+              "room": true,
+              "pantryTask": true,
+              "salary": false
+            },
+            "PANTRY": {
+              "candidateName": true,
+              "phone": false,
+              "email": false,
+              "address": false,
+              "resume": false,
+              "governmentId": false,
+              "validationResults": false,
+              "livePhoto": false,
+              "hrNotes": false,
+              "interviewStatus": false,
+              "room": true,
+              "pantryTask": true,
+              "salary": false
+            }
+          },
+          "voiceAlerts": true,
+          "autoRefresh": true,
+          "language": "hi"
+        }
+      }
+    },
+    {
+      "eventId": "evt-1792754615577-temfjyx",
+      "eventType": "ROOMS_UPDATED",
+      "timestamp": "2026-10-23T11:23:35.577Z",
+      "actorType": "STAFF",
+      "source": "STAFF_ACTION",
+      "metadata": {
+        "room": {
+          "id": "room-conf-a",
+          "roomId": "room-conf-a",
+          "name": "Conference Room A",
+          "roomName": "Conference Room A",
+          "type": "MEETING_ROOM",
+          "roomType": "MEETING_ROOM",
+          "status": "AVAILABLE",
+          "isActive": true,
+          "preferredFor": "Executive & Technical Interview Panels",
+          "createdAt": "2026-10-23T10:12:13.018Z",
+          "updatedAt": "2026-10-23T11:23:35.480Z",
+          "cleaningRequestedAt": "2026-10-23T11:23:34.769Z",
+          "lastCleanedAt": "2026-10-23T11:23:35.480Z",
+          "lastCleanedBy": "Suresh Kumar (Pantry)"
+        }
+      }
+    },
+    {
+      "eventId": "evt-1792754615525-i6i42db",
+      "eventType": "ROOM_CLEANED_READY",
+      "roomId": "room-conf-a",
+      "timestamp": "2026-10-23T11:23:35.525Z",
+      "actorType": "STAFF",
+      "source": "STAFF_ACTION",
+      "metadata": {
+        "roomId": "room-conf-a",
+        "roomName": "Conference Room A",
+        "stewardName": "Suresh Kumar (Pantry)",
+        "timestamp": "2026-10-23T11:23:35.480Z",
+        "room": {
+          "id": "room-conf-a",
+          "roomId": "room-conf-a",
+          "name": "Conference Room A",
+          "roomName": "Conference Room A",
+          "type": "MEETING_ROOM",
+          "roomType": "MEETING_ROOM",
+          "status": "AVAILABLE",
+          "isActive": true,
+          "preferredFor": "Executive & Technical Interview Panels",
+          "createdAt": "2026-10-23T10:12:13.018Z",
+          "updatedAt": "2026-10-23T11:23:35.480Z",
+          "cleaningRequestedAt": "2026-10-23T11:23:34.769Z",
+          "lastCleanedAt": "2026-10-23T11:23:35.480Z",
+          "lastCleanedBy": "Suresh Kumar (Pantry)"
+        }
+      }
+    },
+    {
+      "eventId": "evt-1792754615384-zn4yb28",
+      "eventType": "PANTRY_TASKS_UPDATED",
+      "taskId": "pantry-task-1792754614892",
+      "timestamp": "2026-10-23T11:23:35.384Z",
+      "actorType": "STAFF",
+      "source": "STAFF_ACTION",
+      "metadata": {
+        "taskId": "pantry-task-1792754614892",
+        "status": "COMPLETED"
+      }
+    },
+    {
+      "eventId": "evt-1792754615338-ovo2xs5",
+      "eventType": "ROOMS_UPDATED",
+      "roomId": "room-conf-a",
+      "timestamp": "2026-10-23T11:23:35.338Z",
+      "actorType": "STAFF",
+      "source": "STAFF_ACTION",
+      "metadata": {
+        "roomId": "room-conf-a"
+      }
+    },
+    {
+      "eventId": "evt-1792754615291-rxd9gzg",
+      "eventType": "PANTRY_TASK_COMPLETED",
+      "roomId": "room-conf-a",
+      "taskId": "pantry-task-1792754614892",
+      "timestamp": "2026-10-23T11:23:35.291Z",
+      "actorType": "STAFF",
+      "source": "STAFF_ACTION",
+      "metadata": {
+        "task": {
+          "id": "pantry-task-1792754614892",
+          "category": "HOSPITALITY",
+          "roomId": "room-conf-a",
+          "roomName": "Conference Room A",
+          "location": "Conference Room A",
+          "instructions": "Serve immediately upon room entry",
+          "candidateId": "cand-1792754613207",
+          "candidateName": "Pradeep Deshmukh QA",
+          "taskType": "WATER_BEVERAGE",
+          "description": "Serve immediately upon room entry",
+          "requiredItems": [
+            "2x Bottled Mineral Water"
+          ],
+          "itemsWithQuantities": [
+            {
+              "item": "2x Bottled Mineral Water",
+              "quantity": 1
+            }
+          ],
+          "priority": "HIGH",
+          "status": "COMPLETED",
+          "dueTime": "Immediate",
+          "assignedSteward": "Suresh Kumar (Floor 2 Pantry)",
+          "assignedStaffId": "",
+          "assignedTeam": "Pantry Team Alpha",
+          "createdById": "usr-hr-nisha",
+          "createdByName": "Nisha",
+          "createdByRole": "HR",
+          "createdAt": "2026-10-23T11:23:34.891Z",
+          "assignedAt": "2026-10-23T11:23:34.891Z",
+          "auditTrail": [
+            {
+              "timestamp": "2026-10-23T11:23:35.225Z",
+              "status": "COMPLETED",
+              "actorName": "Ramesh Kumar",
+              "actorRole": "PANTRY",
+              "note": "Staff reported task completion in 1s."
+            },
+            {
+              "timestamp": "2026-10-23T11:23:35.072Z",
+              "status": "IN_PROGRESS",
+              "actorName": "Ramesh Kumar",
+              "actorRole": "PANTRY",
+              "note": "Task started and service currently in progress."
+            },
+            {
+              "timestamp": "2026-10-23T11:23:34.891Z",
+              "status": "PENDING",
+              "actorName": "Nisha",
+              "actorRole": "HR",
+              "note": "Task created and assigned to Suresh Kumar (Floor 2 Pantry)."
+            }
+          ],
+          "startedAt": "2026-10-23T11:23:35.072Z",
+          "completedAt": "2026-10-23T11:23:35.480Z",
+          "completedBy": "Suresh Kumar (Pantry)",
+          "isStaffReportedCompleted": true,
+          "staffReportedCompletedAt": "2026-10-23T11:23:35.225Z",
+          "completionDurationMinutes": 1,
+          "timeTakenFormatted": "1s"
+        },
+        "taskId": "pantry-task-1792754614892",
+        "roomId": "room-conf-a",
+        "roomName": "Conference Room A",
+        "candidateName": "Pradeep Deshmukh QA",
+        "stewardName": "Ramesh Kumar"
+      }
+    },
+    {
+      "eventId": "evt-1792754615169-wmdl8ap",
+      "eventType": "PANTRY_TASKS_UPDATED",
+      "taskId": "pantry-task-1792754614892",
+      "timestamp": "2026-10-23T11:23:35.169Z",
+      "actorType": "STAFF",
+      "source": "STAFF_ACTION",
+      "metadata": {
+        "taskId": "pantry-task-1792754614892",
+        "status": "IN_PROGRESS"
+      }
+    },
+    {
+      "eventId": "evt-1792754615122-coyelfs",
+      "eventType": "PANTRY_TASK_UPDATED",
+      "timestamp": "2026-10-23T11:23:35.122Z",
+      "actorType": "STAFF",
+      "source": "STAFF_ACTION",
+      "metadata": {
+        "task": {
+          "id": "pantry-task-1792754614892",
+          "category": "HOSPITALITY",
+          "roomId": "room-conf-a",
+          "roomName": "Conference Room A",
+          "location": "Conference Room A",
+          "instructions": "Serve immediately upon room entry",
+          "candidateId": "cand-1792754613207",
+          "candidateName": "Pradeep Deshmukh QA",
+          "taskType": "WATER_BEVERAGE",
+          "description": "Serve immediately upon room entry",
+          "requiredItems": [
+            "2x Bottled Mineral Water"
+          ],
+          "itemsWithQuantities": [
+            {
+              "item": "2x Bottled Mineral Water",
+              "quantity": 1
+            }
+          ],
+          "priority": "HIGH",
+          "status": "COMPLETED",
+          "dueTime": "Immediate",
+          "assignedSteward": "Suresh Kumar (Floor 2 Pantry)",
+          "assignedStaffId": "",
+          "assignedTeam": "Pantry Team Alpha",
+          "createdById": "usr-hr-nisha",
+          "createdByName": "Nisha",
+          "createdByRole": "HR",
+          "createdAt": "2026-10-23T11:23:34.891Z",
+          "assignedAt": "2026-10-23T11:23:34.891Z",
+          "auditTrail": [
+            {
+              "timestamp": "2026-10-23T11:23:35.225Z",
+              "status": "COMPLETED",
+              "actorName": "Ramesh Kumar",
+              "actorRole": "PANTRY",
+              "note": "Staff reported task completion in 1s."
+            },
+            {
+              "timestamp": "2026-10-23T11:23:35.072Z",
+              "status": "IN_PROGRESS",
+              "actorName": "Ramesh Kumar",
+              "actorRole": "PANTRY",
+              "note": "Task started and service currently in progress."
+            },
+            {
+              "timestamp": "2026-10-23T11:23:34.891Z",
+              "status": "PENDING",
+              "actorName": "Nisha",
+              "actorRole": "HR",
+              "note": "Task created and assigned to Suresh Kumar (Floor 2 Pantry)."
+            }
+          ],
+          "startedAt": "2026-10-23T11:23:35.072Z",
+          "completedAt": "2026-10-23T11:23:35.480Z",
+          "completedBy": "Suresh Kumar (Pantry)",
+          "isStaffReportedCompleted": true,
+          "staffReportedCompletedAt": "2026-10-23T11:23:35.225Z",
+          "completionDurationMinutes": 1,
+          "timeTakenFormatted": "1s"
+        },
+        "taskId": "pantry-task-1792754614892",
+        "status": "IN_PROGRESS",
+        "stewardName": "Ramesh Kumar"
+      }
+    },
+    {
+      "eventId": "evt-1792754614986-oylmu3u",
+      "eventType": "PANTRY_TASKS_UPDATED",
+      "taskId": "pantry-task-1792754614892",
+      "timestamp": "2026-10-23T11:23:34.986Z",
+      "actorType": "STAFF",
+      "source": "STAFF_ACTION",
+      "metadata": {
+        "taskId": "pantry-task-1792754614892"
+      }
+    },
+    {
+      "eventId": "evt-1792754614939-o2zskfv",
+      "eventType": "PANTRY_TASK_CREATED",
+      "timestamp": "2026-10-23T11:23:34.939Z",
+      "actorType": "STAFF",
+      "source": "STAFF_ACTION",
+      "metadata": {
+        "task": {
+          "id": "pantry-task-1792754614892",
+          "category": "HOSPITALITY",
+          "roomId": "room-conf-a",
+          "roomName": "Conference Room A",
+          "location": "Conference Room A",
+          "instructions": "Serve immediately upon room entry",
+          "candidateId": "cand-1792754613207",
+          "candidateName": "Pradeep Deshmukh QA",
+          "taskType": "WATER_BEVERAGE",
+          "description": "Serve immediately upon room entry",
+          "requiredItems": [
+            "2x Bottled Mineral Water"
+          ],
+          "itemsWithQuantities": [
+            {
+              "item": "2x Bottled Mineral Water",
+              "quantity": 1
+            }
+          ],
+          "priority": "HIGH",
+          "status": "COMPLETED",
+          "dueTime": "Immediate",
+          "assignedSteward": "Suresh Kumar (Floor 2 Pantry)",
+          "assignedStaffId": "",
+          "assignedTeam": "Pantry Team Alpha",
+          "createdById": "usr-hr-nisha",
+          "createdByName": "Nisha",
+          "createdByRole": "HR",
+          "createdAt": "2026-10-23T11:23:34.891Z",
+          "assignedAt": "2026-10-23T11:23:34.891Z",
+          "auditTrail": [
+            {
+              "timestamp": "2026-10-23T11:23:35.225Z",
+              "status": "COMPLETED",
+              "actorName": "Ramesh Kumar",
+              "actorRole": "PANTRY",
+              "note": "Staff reported task completion in 1s."
+            },
+            {
+              "timestamp": "2026-10-23T11:23:35.072Z",
+              "status": "IN_PROGRESS",
+              "actorName": "Ramesh Kumar",
+              "actorRole": "PANTRY",
+              "note": "Task started and service currently in progress."
+            },
+            {
+              "timestamp": "2026-10-23T11:23:34.891Z",
+              "status": "PENDING",
+              "actorName": "Nisha",
+              "actorRole": "HR",
+              "note": "Task created and assigned to Suresh Kumar (Floor 2 Pantry)."
+            }
+          ],
+          "startedAt": "2026-10-23T11:23:35.072Z",
+          "completedAt": "2026-10-23T11:23:35.480Z",
+          "completedBy": "Suresh Kumar (Pantry)",
+          "isStaffReportedCompleted": true,
+          "staffReportedCompletedAt": "2026-10-23T11:23:35.225Z",
+          "completionDurationMinutes": 1,
+          "timeTakenFormatted": "1s"
+        },
+        "taskId": "pantry-task-1792754614892",
+        "roomId": "room-conf-a",
+        "roomName": "Conference Room A",
+        "taskType": "WATER_BEVERAGE"
+      }
+    },
+    {
+      "eventId": "evt-1792754614820-qeivsgw",
+      "eventType": "INTERVIEW_COMPLETED",
+      "candidateId": "cand-1792754613207",
+      "visitId": "cand-1792754613207",
+      "applicationId": "cand-1792754613207",
+      "interviewId": "intv-1792754613208-ffep",
+      "timestamp": "2026-10-23T11:23:34.820Z",
+      "actorType": "STAFF",
+      "source": "STAFF_ACTION",
+      "metadata": {
+        "interviewId": "intv-1792754613208-ffep",
+        "candidateId": "cand-1792754613207",
+        "candidateName": "Pradeep Deshmukh QA",
+        "outcome": "SELECTED",
+        "previousRoomName": "Conference Room A"
+      }
+    },
+    {
+      "eventId": "evt-1792754614717-ck76gvc",
+      "eventType": "INTERVIEW_STARTED",
+      "candidateId": "cand-1792754613207",
+      "visitId": "cand-1792754613207",
+      "applicationId": "cand-1792754613207",
+      "interviewId": "intv-1792754613208-ffep",
+      "roomId": "room-conf-a",
+      "timestamp": "2026-10-23T11:23:34.717Z",
+      "actorType": "STAFF",
+      "source": "STAFF_ACTION",
+      "metadata": {
+        "interviewId": "intv-1792754613208-ffep",
+        "candidateId": "cand-1792754613207",
+        "candidateName": "Pradeep Deshmukh QA",
+        "roomName": "Conference Room A",
+        "interviewerName": "Interviewer"
+      }
+    },
+    {
+      "eventId": "evt-1792754614586-1mi0z70",
+      "eventType": "CANDIDATE_ARRIVED",
+      "candidateId": "cand-1792754614440",
+      "visitId": "cand-1792754614440",
+      "applicationId": "cand-1792754614440",
+      "interviewId": "intv-1792754614440-ru3x",
+      "registrationSessionId": "WCR-APPT-1792754614393",
+      "timestamp": "2026-10-23T11:23:34.586Z",
+      "actorType": "CANDIDATE",
+      "source": "CANDIDATE_REGISTRATION",
+      "targetRoles": [
+        "HR",
+        "SENIOR_HR",
+        "ADMIN",
+        "CEO",
+        "CO_FOUNDER",
+        "INTERVIEWER",
+        "RECEPTION"
+      ],
+      "metadata": {
+        "candidateName": "Aniket Kulkarni QA",
+        "position": "Commercial Leasing Manager",
+        "department": "Sales & Operations",
+        "status": "ARRIVED",
+        "currentLocation": "Reception / Waiting Lounge",
+        "arrivalTime": "2026-10-23T11:23:34.535Z",
+        "arrivalDetails": {
+          "visitorName": "Aniket Kulkarni QA",
+          "visitorType": "CANDIDATE",
+          "purpose": "Round 1 - Technical Assessment",
+          "personToMeet": "Rahul Sharma",
+          "departmentToMeet": "HR & Recruitment",
+          "arrivalTime": "2026-10-23T11:23:34.535Z",
+          "status": "ARRIVED",
+          "isInterview": true,
+          "targetHostUserId": "usr-intv-rahul",
+          "targetHostName": "Rahul Sharma",
+          "isReceptionAssistance": false
+        },
+        "voiceAlert": {
+          "id": "voice-1792754614585-7a4mo",
+          "targetUserId": "usr-intv-rahul",
+          "targetHostName": "Rahul Sharma",
+          "visitorName": "Aniket Kulkarni QA",
+          "purpose": "interview",
+          "spokenText": "Rahul Sharma, Aniket Kulkarni QA aapse interview ke liye milne aaye hain.",
+          "spokenTextEn": "Rahul Sharma, Aniket Kulkarni QA is here to meet you for interview.",
+          "timestamp": "2026-10-23T11:23:34.535Z"
+        }
+      }
+    },
+    {
+      "eventId": "evt-1792754614489-f6l4xl5",
+      "eventType": "CANDIDATE_FORM_SUBMITTED",
+      "candidateId": "cand-1792754614440",
+      "visitId": "cand-1792754614440",
+      "applicationId": "cand-1792754614440",
+      "interviewId": "intv-1792754614440-ru3x",
+      "registrationSessionId": "WCR-APPT-1792754614393",
+      "timestamp": "2026-10-23T11:23:34.489Z",
+      "actorType": "CANDIDATE",
+      "source": "CANDIDATE_REGISTRATION",
+      "targetRoles": [
+        "HR",
+        "SENIOR_HR",
+        "ADMIN",
+        "CEO",
+        "CO_FOUNDER",
+        "INTERVIEWER",
+        "RECEPTION"
+      ],
+      "metadata": {
+        "candidateName": "Aniket Kulkarni QA",
+        "position": "Commercial Leasing Manager",
+        "department": "Sales & Operations",
+        "status": "ARRIVED",
+        "currentLocation": "Reception / Waiting Lounge",
+        "arrivalTime": "2026-10-23T11:23:34.440Z",
+        "interviewRound": "Round 1 - Technical Assessment"
+      }
+    },
+    {
+      "eventId": "evt-1792754614345-esh7z11",
+      "eventType": "PANTRY_TASK_CREATED",
+      "candidateId": "cand-1792754613207",
+      "visitId": "cand-1792754613207",
+      "applicationId": "cand-1792754613207",
+      "roomId": "room-conf-a",
+      "taskId": "pantry-task-1792754614248",
+      "timestamp": "2026-10-23T11:23:34.345Z",
+      "actorType": "SYSTEM",
+      "source": "WORKFLOW_ENGINE",
+      "targetRoles": [
+        "PANTRY",
+        "ADMIN",
+        "HR"
+      ],
+      "metadata": {
+        "taskId": "pantry-task-1792754614248",
+        "roomName": "Conference Room A",
+        "candidateName": "Pradeep Deshmukh QA",
+        "taskType": "ROOM_PREP"
+      }
+    },
+    {
+      "eventId": "evt-1792754614297-f5wio9y",
+      "eventType": "ROOM_ASSIGNED",
+      "candidateId": "cand-1792754613207",
+      "visitId": "cand-1792754613207",
+      "applicationId": "cand-1792754613207",
+      "interviewId": "intv-1792754613208-ffep",
+      "roomId": "room-conf-a",
+      "timestamp": "2026-10-23T11:23:34.297Z",
+      "actorType": "STAFF",
+      "source": "STAFF_ACTION",
+      "metadata": {
+        "candidateName": "Pradeep Deshmukh QA",
+        "roomId": "room-conf-a",
+        "roomName": "Conference Room A",
+        "interviewerId": "usr-intv-rahul",
+        "interviewerName": "Rahul Sharma",
+        "status": "ROOM_ASSIGNED"
+      }
+    },
+    {
+      "eventId": "evt-1792754614195-5s816wh",
+      "eventType": "ROOMS_UPDATED",
+      "timestamp": "2026-10-23T11:23:34.195Z",
+      "actorType": "STAFF",
+      "source": "STAFF_ACTION",
+      "metadata": {
+        "room": {
+          "id": "room-conf-a",
+          "roomId": "room-conf-a",
+          "name": "Conference Room A",
+          "roomName": "Conference Room A",
+          "type": "MEETING_ROOM",
+          "roomType": "MEETING_ROOM",
+          "status": "AVAILABLE",
+          "isActive": true,
+          "preferredFor": "Executive & Technical Interview Panels",
+          "createdAt": "2026-10-23T10:12:13.018Z",
+          "updatedAt": "2026-10-23T11:23:34.099Z",
+          "cleaningRequestedAt": "2026-10-23T10:20:27.320Z",
+          "lastCleanedAt": "2026-10-23T11:23:34.099Z",
+          "lastCleanedBy": "Pantry QA Runner"
+        }
+      }
+    },
+    {
+      "eventId": "evt-1792754614147-sx6nalv",
+      "eventType": "ROOM_CLEANED_READY",
+      "roomId": "room-conf-a",
+      "timestamp": "2026-10-23T11:23:34.147Z",
+      "actorType": "STAFF",
+      "source": "STAFF_ACTION",
+      "metadata": {
+        "roomId": "room-conf-a",
+        "roomName": "Conference Room A",
+        "stewardName": "Pantry QA Runner",
+        "timestamp": "2026-10-23T11:23:34.099Z",
+        "room": {
+          "id": "room-conf-a",
+          "roomId": "room-conf-a",
+          "name": "Conference Room A",
+          "roomName": "Conference Room A",
+          "type": "MEETING_ROOM",
+          "roomType": "MEETING_ROOM",
+          "status": "AVAILABLE",
+          "isActive": true,
+          "preferredFor": "Executive & Technical Interview Panels",
+          "createdAt": "2026-10-23T10:12:13.018Z",
+          "updatedAt": "2026-10-23T11:23:34.099Z",
+          "cleaningRequestedAt": "2026-10-23T10:20:27.320Z",
+          "lastCleanedAt": "2026-10-23T11:23:34.099Z",
+          "lastCleanedBy": "Pantry QA Runner"
+        }
+      }
+    },
+    {
+      "eventId": "evt-1792754614048-rtki7mr",
+      "eventType": "INTERVIEW_SCHEDULED",
+      "timestamp": "2026-10-23T11:23:34.048Z",
+      "actorType": "STAFF",
+      "source": "STAFF_ACTION",
+      "targetRoles": [
+        "HR",
+        "SENIOR_HR",
+        "INTERVIEWER",
+        "ADMIN",
+        "CEO",
+        "RECEPTION"
+      ],
+      "metadata": {
+        "interview": {
+          "id": "intv-1792754613208-ffep",
+          "candidateId": "cand-1792754613207",
+          "candidateName": "Pradeep Deshmukh QA",
+          "position": "Senior Property Consultant",
+          "roundName": "Round 1: Technical & Sales Evaluation",
+          "interviewerId": "usr-intv-rahul",
+          "interviewerName": "Rahul Sharma",
+          "scheduledTime": "2026-10-23T12:23:34.001Z",
+          "status": "ROOM_ASSIGNED",
+          "createdAt": "2026-10-23T11:23:33.206Z",
+          "updatedAt": "2026-10-23T11:23:34.002Z",
+          "roomId": "room-conf-a",
+          "roomName": "Conference Room A"
+        }
+      }
+    },
+    {
+      "eventId": "evt-1792754613895-x7tm705",
+      "eventType": "VISITOR_CHECKED_OUT",
+      "visitId": "vis-1792754613603",
+      "timestamp": "2026-10-23T11:23:33.895Z",
+      "actorType": "STAFF",
+      "source": "STAFF_ACTION",
+      "metadata": {
+        "visitorId": "vis-1792754613603",
+        "visitorName": "Rajesh Khanna (Client)"
+      }
+    },
+    {
+      "eventId": "evt-1792754613796-3xlnbnw",
+      "eventType": "VISITORS_UPDATED",
+      "visitId": "vis-1792754613603",
+      "timestamp": "2026-10-23T11:23:33.796Z",
+      "actorType": "STAFF",
+      "source": "STAFF_ACTION",
+      "metadata": {
+        "visitorId": "vis-1792754613603",
+        "status": "CHECKED_IN"
+      }
+    },
+    {
+      "eventId": "evt-1792754613741-u291200",
+      "eventType": "WALKIN_REGISTERED",
+      "visitId": "vis-1792754613603",
+      "timestamp": "2026-10-23T11:23:33.741Z",
+      "actorType": "STAFF",
+      "source": "STAFF_ACTION",
+      "metadata": {
+        "visitorId": "vis-1792754613603",
+        "fullName": "Rajesh Khanna (Client)",
+        "qrToken": "WCR-WALK-MVKVT4YR-BGAA"
+      }
+    },
+    {
+      "eventId": "evt-1792754613694-ha0t828",
+      "eventType": "VISITOR_CHECKED_IN",
+      "visitId": "vis-1792754613603",
+      "registrationSessionId": "WCR-WALK-MVKVT4YR-BGAA",
+      "timestamp": "2026-10-23T11:23:33.694Z",
+      "actorType": "USER",
+      "source": "CANDIDATE_REGISTRATION",
+      "targetRoles": [
+        "RECEPTION",
+        "ADMIN",
+        "CEO",
+        "HR",
+        "SENIOR_HR",
+        "CEO",
+        "CO_FOUNDER"
+      ],
+      "metadata": {
+        "visitorId": "vis-1792754613603",
+        "visitorName": "Rajesh Khanna (Client)",
+        "visitorType": "CLIENT",
+        "company": "",
+        "purpose": "Commercial Space Investment Meeting",
+        "hostName": "Lalit Sir",
+        "hostDepartment": "General Management",
+        "arrivalTime": "2026-10-23T11:23:33.647Z",
+        "arrivalDetails": {
+          "visitorName": "Rajesh Khanna (Client)",
+          "visitorType": "CLIENT",
+          "purpose": "Commercial Space Investment Meeting",
+          "personToMeet": "Lalit Sir",
+          "departmentToMeet": "General Management",
+          "arrivalTime": "2026-10-23T11:23:33.647Z",
+          "status": "CHECKED_IN",
+          "isInterview": false,
+          "targetHostUserId": "usr-ceo-lalit",
+          "targetHostName": "Lalit Sir",
+          "isReceptionAssistance": false
+        },
+        "voiceAlert": {
+          "id": "voice-1792754613648-tg1hn",
+          "targetUserId": "usr-ceo-lalit",
+          "targetHostName": "Lalit Sir",
+          "visitorName": "Rajesh Khanna (Client)",
+          "purpose": "Commercial Space Investment Meeting",
+          "spokenText": "Lalit Sir, Rajesh Khanna (Client) aapse commercial space investment meeting ke liye milne aaye hain.",
+          "spokenTextEn": "Lalit Sir, Rajesh Khanna (Client) is here to meet you for commercial space investment meeting.",
+          "timestamp": "2026-10-23T11:23:33.647Z"
+        }
+      }
+    },
+    {
+      "eventId": "evt-1792754613554-b9d7dpj",
+      "eventType": "CANDIDATE_PROFILE_UPDATED",
+      "candidateId": "cand-1792754613207",
+      "visitId": "cand-1792754613207",
+      "applicationId": "cand-1792754613207",
+      "timestamp": "2026-10-23T11:23:33.554Z",
+      "actorType": "STAFF",
+      "source": "STAFF_ACTION",
+      "metadata": {
+        "candidateId": "cand-1792754613207",
+        "timestamp": "2026-10-23T11:23:33.510Z"
+      }
+    },
+    {
+      "eventId": "evt-1792754613454-2r00c51",
+      "eventType": "CANDIDATE_LIVE_PHOTO_CAPTURED",
+      "candidateId": "cand-1792754613207",
+      "visitId": "cand-1792754613207",
+      "applicationId": "cand-1792754613207",
+      "timestamp": "2026-10-23T11:23:33.454Z",
+      "actorType": "STAFF",
+      "source": "STAFF_ACTION",
+      "metadata": {
+        "candidateId": "cand-1792754613207",
+        "candidateName": "Pradeep Deshmukh QA",
+        "capturedAt": "2026-10-23T11:23:33.411Z",
+        "uploadedAt": "2026-10-23T11:23:33.411Z",
+        "capturedByName": "Ananya Sen",
+        "photoUrl": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAP//////////////////////////////////////////////////////////////////////////////////////wgALCAABAAEBAREA/8QAFBABAAAAAAAAAAAAAAAAAAAAAP/aAAgBAQABPxA="
+      }
+    },
+    {
+      "eventId": "evt-1792754613356-h9apwis",
+      "eventType": "CANDIDATE_ARRIVED",
+      "candidateId": "cand-1792754613207",
+      "visitId": "cand-1792754613207",
+      "applicationId": "cand-1792754613207",
+      "interviewId": "intv-1792754613208-ffep",
+      "registrationSessionId": "QR-QA-1792754613158",
+      "timestamp": "2026-10-23T11:23:33.356Z",
+      "actorType": "CANDIDATE",
+      "source": "CANDIDATE_REGISTRATION",
+      "targetRoles": [
+        "HR",
+        "SENIOR_HR",
+        "ADMIN",
+        "CEO",
+        "CO_FOUNDER",
+        "INTERVIEWER",
+        "RECEPTION"
+      ],
+      "metadata": {
+        "candidateName": "Pradeep Deshmukh QA",
+        "position": "Senior Property Consultant",
+        "department": "Sales & Real Estate",
+        "status": "ARRIVED",
+        "currentLocation": "Reception / Waiting Lounge",
+        "arrivalTime": "2026-10-23T11:23:33.301Z",
+        "arrivalDetails": {
+          "visitorName": "Pradeep Deshmukh QA",
+          "visitorType": "CANDIDATE",
+          "purpose": "Round 1 - Technical Assessment",
+          "personToMeet": "Rahul Sharma",
+          "departmentToMeet": "HR & Recruitment",
+          "arrivalTime": "2026-10-23T11:23:33.301Z",
+          "status": "ARRIVED",
+          "isInterview": true,
+          "targetHostUserId": "usr-intv-rahul",
+          "targetHostName": "Rahul Sharma",
+          "isReceptionAssistance": false
+        },
+        "voiceAlert": {
+          "id": "voice-1792754613356-advlg",
+          "targetUserId": "usr-intv-rahul",
+          "targetHostName": "Rahul Sharma",
+          "visitorName": "Pradeep Deshmukh QA",
+          "purpose": "interview",
+          "spokenText": "Rahul Sharma, Pradeep Deshmukh QA aapse interview ke liye milne aaye hain.",
+          "spokenTextEn": "Rahul Sharma, Pradeep Deshmukh QA is here to meet you for interview.",
+          "timestamp": "2026-10-23T11:23:33.301Z"
+        }
+      }
+    },
+    {
+      "eventId": "evt-1792754613256-mhlzyyo",
+      "eventType": "CANDIDATE_FORM_SUBMITTED",
+      "candidateId": "cand-1792754613207",
+      "visitId": "cand-1792754613207",
+      "applicationId": "cand-1792754613207",
+      "interviewId": "intv-1792754613208-ffep",
+      "registrationSessionId": "QR-QA-1792754613158",
+      "timestamp": "2026-10-23T11:23:33.256Z",
+      "actorType": "CANDIDATE",
+      "source": "CANDIDATE_REGISTRATION",
+      "targetRoles": [
+        "HR",
+        "SENIOR_HR",
+        "ADMIN",
+        "CEO",
+        "CO_FOUNDER",
+        "INTERVIEWER",
+        "RECEPTION"
+      ],
+      "metadata": {
+        "candidateName": "Pradeep Deshmukh QA",
+        "position": "Senior Property Consultant",
+        "department": "Sales & Real Estate",
+        "status": "ARRIVED",
+        "currentLocation": "Reception / Waiting Lounge",
+        "arrivalTime": "2026-10-23T11:23:33.206Z",
+        "interviewRound": "Round 1 - Technical Assessment"
+      }
+    },
+    {
+      "eventId": "evt-1792753941801-agitrer",
+      "eventType": "INTERVIEW_SCHEDULED",
+      "timestamp": "2026-10-23T11:12:21.801Z",
+      "actorType": "STAFF",
+      "source": "STAFF_ACTION",
+      "targetRoles": [
+        "HR",
+        "SENIOR_HR",
+        "INTERVIEWER",
+        "ADMIN",
+        "CEO",
+        "RECEPTION"
+      ],
+      "metadata": {
+        "interview": {
+          "id": "intv-1792753941415-3zc0",
+          "candidateId": "cand-1792753941414",
+          "candidateName": "Verification Candidate Idempotency",
+          "position": "Senior Property Advisor",
+          "roundName": "Round 1: Technical & Sales Evaluation",
+          "interviewerId": "usr-intv-rahul",
+          "interviewerName": "Rahul Sharma",
+          "scheduledTime": "Immediate / Walk-in",
+          "status": "ROOM_ASSIGNED",
+          "createdAt": "2026-10-23T11:12:21.412Z",
+          "updatedAt": "2026-10-23T11:12:21.700Z",
+          "roomId": "room-conf-a",
+          "roomName": "Conference Room A"
+        }
+      }
+    },
+    {
+      "eventId": "evt-1792753941612-ab0cryx",
+      "eventType": "CANDIDATE_ARRIVED",
+      "candidateId": "cand-1792753941414",
+      "visitId": "cand-1792753941414",
+      "applicationId": "cand-1792753941414",
+      "interviewId": "intv-1792753941415-3zc0",
+      "registrationSessionId": "WCR-TEST-IDEM-01",
+      "timestamp": "2026-10-23T11:12:21.612Z",
+      "actorType": "CANDIDATE",
+      "source": "CANDIDATE_REGISTRATION",
+      "targetRoles": [
+        "HR",
+        "SENIOR_HR",
+        "ADMIN",
+        "CEO",
+        "CO_FOUNDER",
+        "INTERVIEWER",
+        "RECEPTION"
+      ],
+      "metadata": {
+        "candidateName": "Verification Candidate Idempotency",
+        "position": "Senior Property Advisor",
+        "department": "Sales & Operations",
+        "status": "ARRIVED",
+        "currentLocation": "Reception / Waiting Lounge",
+        "arrivalTime": "2026-10-23T11:12:21.547Z",
+        "arrivalDetails": {
+          "visitorName": "Verification Candidate Idempotency",
+          "visitorType": "CANDIDATE",
+          "purpose": "Round 1 - Technical Assessment",
+          "personToMeet": "Rahul Sharma",
+          "departmentToMeet": "HR & Talent Acquisition",
+          "arrivalTime": "2026-10-23T11:12:21.547Z",
+          "status": "ARRIVED",
+          "isInterview": true,
+          "targetHostUserId": "usr-intv-rahul",
+          "targetHostName": "Rahul Sharma",
+          "isReceptionAssistance": false
+        },
+        "voiceAlert": {
+          "id": "voice-1792753941611-x8wcy",
+          "targetUserId": "usr-intv-rahul",
+          "targetHostName": "Rahul Sharma",
+          "visitorName": "Verification Candidate Idempotency",
+          "purpose": "interview",
+          "spokenText": "Rahul Sharma, Verification Candidate Idempotency aapse interview ke liye milne aaye hain.",
+          "spokenTextEn": "Rahul Sharma, Verification Candidate Idempotency is here to meet you for interview.",
+          "timestamp": "2026-10-23T11:12:21.547Z"
+        }
+      }
+    },
+    {
+      "eventId": "evt-1792753941469-x3l36vt",
+      "eventType": "CANDIDATE_FORM_SUBMITTED",
+      "candidateId": "cand-1792753941414",
+      "visitId": "cand-1792753941414",
+      "applicationId": "cand-1792753941414",
+      "interviewId": "intv-1792753941415-3zc0",
+      "registrationSessionId": "WCR-TEST-IDEM-01",
+      "timestamp": "2026-10-23T11:12:21.469Z",
+      "actorType": "CANDIDATE",
+      "source": "CANDIDATE_REGISTRATION",
+      "targetRoles": [
+        "HR",
+        "SENIOR_HR",
+        "ADMIN",
+        "CEO",
+        "CO_FOUNDER",
+        "INTERVIEWER",
+        "RECEPTION"
+      ],
+      "metadata": {
+        "candidateName": "Verification Candidate Idempotency",
+        "position": "Senior Property Advisor",
+        "department": "Sales & Operations",
+        "status": "ARRIVED",
+        "currentLocation": "Reception / Waiting Lounge",
+        "arrivalTime": "2026-10-23T11:12:21.412Z",
+        "interviewRound": "Round 1 - Technical Assessment"
+      }
+    },
     {
       "eventId": "evt-1792752586856-fau3rj4",
       "eventType": "INTERNAL_CHAT_MESSAGE",

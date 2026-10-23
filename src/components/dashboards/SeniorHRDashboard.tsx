@@ -20,7 +20,7 @@ import {
 import type { Candidate, Interview, Room } from '../../types/index.ts';
 import { EditRecordModal } from '../modals/EditRecordModal.tsx';
 import { DeleteConfirmModal, DeleteRecordType } from '../modals/DeleteConfirmModal.tsx';
-import { formatCandidateExperience, formatCandidateLocation } from '../../utils/candidateHelpers.ts';
+import { formatCandidateExperience, formatCandidateLocation, getInterviewRoundKey } from '../../utils/candidateHelpers.ts';
 import { CandidateAvatar } from '../CandidateAvatar.tsx';
 
 
@@ -93,11 +93,23 @@ export const SeniorHRDashboard: React.FC<SeniorHRDashboardProps> = ({
       (c as any).assignedInterviewerName?.includes('Kimmi')
   );
 
-  const combinedInterviews = [...myInterviews];
+  const seenMap = new Map<string, Interview>();
+  myInterviews.forEach((i) => {
+    const key = getInterviewRoundKey(i.candidateId, i.roundName);
+    if (!seenMap.has(key)) {
+      seenMap.set(key, i);
+    } else {
+      const existing = seenMap.get(key)!;
+      if (!existing.roomId && i.roomId) {
+        seenMap.set(key, i);
+      }
+    }
+  });
+
   candidatesAssignedToMe.forEach((cand) => {
-    const hasExisting = combinedInterviews.some((i) => i.candidateId === cand.id);
-    if (!hasExisting) {
-      combinedInterviews.unshift({
+    const key = getInterviewRoundKey(cand.id, 'Senior HR Interview');
+    if (!seenMap.has(key)) {
+      seenMap.set(key, {
         id: cand.currentInterviewId || `intv-kimmi-${cand.id}`,
         candidateId: cand.id,
         candidateName: cand.fullName,
@@ -112,6 +124,8 @@ export const SeniorHRDashboard: React.FC<SeniorHRDashboardProps> = ({
       });
     }
   });
+
+  const combinedInterviews = Array.from(seenMap.values());
 
   const pendingInterviews = combinedInterviews.filter(
     (i) => i.status === 'CANDIDATE_ARRIVED' || i.status === 'ROOM_ASSIGNED' || i.status === 'SCHEDULED'

@@ -4,8 +4,9 @@ import fs from 'fs';
 import path from 'path';
 import crypto from 'crypto';
 import { fileURLToPath } from 'url';
-import { dbService } from './src/server/db.ts';
+import { dbService, deduplicateInterviewsList } from './src/server/db.ts';
 import type { DatabaseSchema } from './src/server/db.ts';
+import { normalizeInterviewRound } from './src/utils/candidateHelpers.ts';
 import { eventWorkflowEngine } from './src/server/workflowEngine.ts';
 import { validationEngine } from './src/server/validationEngine.ts';
 import {
@@ -1065,7 +1066,7 @@ async function startServer() {
 
         if (!relatedInterview) {
           relatedInterview = draft.interviews.find(
-            (i) => i.candidateId === savedCandidate!.id && !(i as any).isDeleted && i.roundName === 'Round 1 - Technical Assessment'
+            (i) => i.candidateId === savedCandidate!.id && !(i as any).isDeleted && normalizeInterviewRound(i.roundName) === normalizeInterviewRound('Round 1') && i.status !== 'INTERVIEW_COMPLETED'
           );
         }
 
@@ -1088,7 +1089,9 @@ async function startServer() {
           relatedInterview = newIntv;
           savedCandidate.currentInterviewId = newIntv.id;
         } else {
-          relatedInterview.status = 'CANDIDATE_ARRIVED';
+          if (relatedInterview.status !== 'INTERVIEW_STARTED' && relatedInterview.status !== 'INTERVIEW_COMPLETED') {
+            relatedInterview.status = (relatedInterview.roomId || relatedInterview.status === 'ROOM_ASSIGNED') ? 'ROOM_ASSIGNED' : 'CANDIDATE_ARRIVED';
+          }
           relatedInterview.candidateName = savedCandidate.fullName;
           relatedInterview.position = savedCandidate.position;
           relatedInterview.updatedAt = timestamp;
@@ -1752,12 +1755,14 @@ async function startServer() {
         }
         if (!existingIntv) {
           existingIntv = draft.interviews.find(
-            (i) => i.candidateId === savedCandidate!.id && !(i as any).isDeleted && (i.roundName === 'Round 1 - Technical Assessment' || i.status === 'SCHEDULED' || i.status === 'CANDIDATE_ARRIVED' || i.status === 'ROOM_ASSIGNED')
+            (i) => i.candidateId === savedCandidate!.id && !(i as any).isDeleted && (normalizeInterviewRound(i.roundName) === normalizeInterviewRound('Round 1') || i.status === 'SCHEDULED' || i.status === 'CANDIDATE_ARRIVED' || i.status === 'ROOM_ASSIGNED') && i.status !== 'INTERVIEW_COMPLETED'
           );
         }
 
         if (existingIntv) {
-          existingIntv.status = 'CANDIDATE_ARRIVED';
+          if (existingIntv.status !== 'INTERVIEW_STARTED' && existingIntv.status !== 'INTERVIEW_COMPLETED') {
+            existingIntv.status = (existingIntv.roomId || existingIntv.status === 'ROOM_ASSIGNED') ? 'ROOM_ASSIGNED' : 'CANDIDATE_ARRIVED';
+          }
           existingIntv.candidateName = savedCandidate.fullName;
           existingIntv.position = savedCandidate.position;
           existingIntv.updatedAt = timestamp;
@@ -4725,7 +4730,8 @@ async function startServer() {
       return res.status(404).json({ success: false, error: 'Candidate record has been archived or removed according to retention policy.', isDeleted: true });
     }
 
-    const interviews = db.interviews.filter((i) => i.candidateId === id);
+    const rawInterviews = db.interviews.filter((i) => i.candidateId === id && !(i as any).isDeleted);
+    const { cleaned: interviews } = deduplicateInterviewsList(rawInterviews, [candidate]);
     const timeline = db.timelineEvents.filter((t) => t.candidateId === id);
 
     // Confidentiality payload filter & field-level authorization
@@ -5862,10 +5868,11 @@ async function startServer() {
     const activeInterviews = (db.interviews || []).filter(
       (i) => !(i as any).isDeleted && !deletedCandIds.has(i.candidateId)
     );
-    res.json({ success: true, interviews: activeInterviews });
+    const { cleaned } = deduplicateInterviewsList(activeInterviews, db.candidates);
+    res.json({ success: true, interviews: cleaned });
   });
 
-  // SCHEDULE NEW INTERVIEW
+  // SCHEDULE NEW INTERVIEW (IDEMPOTENT - PREVENTS DUPLICATE WRITES)
   app.post(['/api/interviews/schedule', '/api/interviews'], (req: Request, res: Response) => {
     const {
       candidateId,
@@ -5887,56 +5894,109 @@ async function startServer() {
     const cand = db.candidates.find((c) => c.id === candidateId);
     const resolvedCandidateName = candidateName || cand?.fullName || 'Candidate';
     const resolvedPosition = position || cand?.position || 'Sales Associate';
-    const newInterviewId = `intv-${Date.now()}-${Math.random().toString(36).substr(2, 5)}`;
+    const targetRoundCategory = normalizeInterviewRound(roundName || 'Round 1');
     const timestamp = new Date().toISOString();
 
-    const newInterview: Interview = {
-      id: newInterviewId,
-      candidateId,
-      candidateName: resolvedCandidateName,
-      interviewerId: interviewerId || 'usr-intv-rahul',
-      interviewerName: interviewerName || 'Rahul Sharma',
-      roundName: roundName || 'Round 1: Initial Assessment',
-      position: resolvedPosition,
-      scheduledTime: scheduledTime || new Date(Date.now() + 3600000).toISOString(),
-      status: 'SCHEDULED',
-      roomId: roomId || undefined,
-      roomName: roomName || undefined,
-      createdAt: timestamp,
-      updatedAt: timestamp,
-    };
+    let scheduledInterview: Interview = null as any;
+    let isUpdate = false;
 
     dbService.update((draft) => {
-      draft.interviews.push(newInterview);
+      // 1. Look for existing interview matching round category that is not yet completed
+      let existing = draft.interviews.find(
+        (i) =>
+          i.candidateId === candidateId &&
+          !(i as any).isDeleted &&
+          normalizeInterviewRound(i.roundName) === targetRoundCategory &&
+          i.status !== 'INTERVIEW_COMPLETED'
+      );
+
+      // 2. If no exact round match, check candidate's current active interview stub
+      if (!existing && cand?.currentInterviewId) {
+        const current = draft.interviews.find(
+          (i) =>
+            i.id === cand.currentInterviewId &&
+            !(i as any).isDeleted &&
+            i.status !== 'INTERVIEW_COMPLETED' &&
+            i.status !== 'CANCELLED'
+        );
+        if (current && (current.status === 'SCHEDULED' || current.status === 'CANDIDATE_ARRIVED')) {
+          existing = current;
+        }
+      }
+
+      if (existing) {
+        isUpdate = true;
+        existing.candidateName = resolvedCandidateName;
+        existing.position = resolvedPosition;
+        existing.roundName = roundName || existing.roundName || 'Round 1: Initial Assessment';
+        if (interviewerId) existing.interviewerId = interviewerId;
+        if (interviewerName) existing.interviewerName = interviewerName;
+        if (scheduledTime) existing.scheduledTime = scheduledTime;
+        if (roomId) existing.roomId = roomId;
+        if (roomName) existing.roomName = roomName;
+        if (roomId && existing.status !== 'INTERVIEW_STARTED') {
+          existing.status = 'ROOM_ASSIGNED';
+        }
+        existing.updatedAt = timestamp;
+        scheduledInterview = { ...existing };
+      } else {
+        const newInterviewId = `intv-${Date.now()}-${Math.random().toString(36).substr(2, 5)}`;
+        scheduledInterview = {
+          id: newInterviewId,
+          candidateId,
+          candidateName: resolvedCandidateName,
+          interviewerId: interviewerId || 'usr-intv-rahul',
+          interviewerName: interviewerName || 'Rahul Sharma',
+          roundName: roundName || 'Round 1: Initial Assessment',
+          position: resolvedPosition,
+          scheduledTime: scheduledTime || new Date(Date.now() + 3600000).toISOString(),
+          status: roomId ? 'ROOM_ASSIGNED' : 'SCHEDULED',
+          roomId: roomId || undefined,
+          roomName: roomName || undefined,
+          createdAt: timestamp,
+          updatedAt: timestamp,
+        };
+        draft.interviews.push(scheduledInterview);
+      }
+
       const c = draft.candidates.find((item) => item.id === candidateId);
       if (c) {
-        c.currentInterviewId = newInterviewId;
-        c.assignedInterviewerId = newInterview.interviewerId;
-        c.assignedInterviewerName = newInterview.interviewerName;
+        c.currentInterviewId = scheduledInterview.id;
+        c.assignedInterviewerId = scheduledInterview.interviewerId;
+        c.assignedInterviewerName = scheduledInterview.interviewerName;
         if (roomId) c.assignedRoomId = roomId;
         if (roomName) c.assignedRoomName = roomName;
+        if (roomId && c.status !== 'IN_INTERVIEW') {
+          c.status = 'ROOM_ASSIGNED';
+        }
         c.updatedAt = timestamp;
       }
+
       draft.auditLogs.unshift({
         id: `aud-${Date.now()}-intv-sched`,
         timestamp,
         actorType: 'USER',
         actorName: interviewerName || 'HR Operations',
         actorRole: 'HR',
-        action: 'INTERVIEW_SCHEDULED',
-        details: `Scheduled interview for ${resolvedCandidateName} with ${newInterview.interviewerName} (${newInterview.roundName}).`,
-        entityId: newInterviewId,
+        action: isUpdate ? 'INTERVIEW_UPDATED' : 'INTERVIEW_SCHEDULED',
+        details: `${isUpdate ? 'Updated' : 'Scheduled'} interview for ${resolvedCandidateName} with ${scheduledInterview.interviewerName} (${scheduledInterview.roundName}).`,
+        entityId: scheduledInterview.id,
         entityType: 'INTERVIEW',
       });
     });
 
     eventWorkflowEngine.broadcast({
       type: 'INTERVIEW_SCHEDULED',
-      payload: { interview: newInterview },
+      payload: { interview: scheduledInterview },
       targetRoles: ['HR', 'SENIOR_HR', 'INTERVIEWER', 'ADMIN', 'CEO', 'RECEPTION'],
     });
 
-    res.json({ success: true, interview: newInterview, message: 'Interview scheduled successfully.' });
+    res.json({
+      success: true,
+      interview: scheduledInterview,
+      isUpdated: isUpdate,
+      message: isUpdate ? 'Interview updated successfully.' : 'Interview scheduled successfully.',
+    });
   });
 
   // UPDATE / EDIT INTERVIEW
