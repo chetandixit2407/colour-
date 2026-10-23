@@ -410,33 +410,34 @@ export const VisitorJourneyOverview: React.FC<{
               variants={staggerItem}
               type="button"
               aria-pressed={isSelected}
+              aria-label={`${stg.label} stage, ${count} records${isSelected ? ' (Currently active filter)' : ''}`}
               onClick={() => handleTileClick(stg.id)}
               className={`intake-stage-card p-5 sm:p-6 rounded-2xl border text-left cursor-pointer relative overflow-hidden group select-none min-h-[148px] flex flex-col justify-between focus-visible:outline-2 focus-visible:outline-[#121316] focus-visible:outline-offset-2 transition-all duration-200 ${
                 isSelected
                   ? 'is-selected bg-[#FDFBC9] border-[#EADB5F] text-[#121316] shadow-sm ring-2 ring-[#EADB5F]'
                   : 'bg-white border-[#E5DFD4] text-[#121316] shadow-xs hover:bg-[#FAF8F5] hover:border-[#D5CEBF]'
               }`}
-              title={`Click to filter ${stg.label} records (${count})`}
             >
-              {isSelected && (
-                <div className="absolute top-2.5 right-2.5">
-                  <span className="px-2 py-0.5 rounded-full text-[10px] font-mono font-bold bg-[#121316] text-white uppercase tracking-wide">
-                    Active
-                  </span>
-                </div>
-              )}
               <div>
                 <div className="flex items-center justify-between gap-2 mb-3 pointer-events-none">
-                  <div
-                    className={`intake-icon-badge w-10 h-10 rounded-xl flex items-center justify-center transition-transform duration-200 group-hover:scale-110 shadow-xs ${
-                      isSelected
-                        ? 'bg-[#121316] text-[#F5EB78]'
-                        : 'bg-[#F8F6F0] border border-[#EAE5DB] text-[#121316]'
-                    }`}
-                  >
-                    <Icon className="w-5 h-5" />
+                  <div className="flex items-center gap-2">
+                    <div
+                      className={`intake-icon-badge w-10 h-10 rounded-xl flex items-center justify-center transition-transform duration-200 group-hover:scale-110 shadow-xs ${
+                        isSelected
+                          ? 'bg-[#121316] text-[#F5EB78]'
+                          : 'bg-[#F8F6F0] border border-[#EAE5DB] text-[#121316]'
+                      }`}
+                    >
+                      <Icon className="w-5 h-5" />
+                    </div>
+                    {isSelected && (
+                      <span className="px-2 py-0.5 rounded-full text-[10px] font-mono font-bold bg-[#121316] text-[#F5EB78] uppercase tracking-wide inline-flex items-center gap-1 shadow-2xs">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#F5EB78] animate-pulse" />
+                        <span>Active</span>
+                      </span>
+                    )}
                   </div>
-                  <span className="text-2xl sm:text-3xl font-mono font-extrabold tabular-nums text-[#121316] intake-stage-count pr-1">
+                  <span className="text-2xl sm:text-3xl font-mono font-extrabold tabular-nums text-[#121316] intake-stage-count relative z-10 pr-1">
                     {count}
                   </span>
                 </div>

@@ -25,6 +25,7 @@ export const ROLE_PERMISSIONS: Record<UserRole, string[]> = {
     'FULL_ACCESS',
     'candidate.view',
     'candidate.view.full',
+    'candidate.delete',
     'candidate.documents.view',
     'candidate.resume.view',
     'candidate.government_id.view',
@@ -40,6 +41,7 @@ export const ROLE_PERMISSIONS: Record<UserRole, string[]> = {
     'FULL_ACCESS',
     'candidate.view',
     'candidate.view.full',
+    'candidate.delete',
     'candidate.documents.view',
     'candidate.resume.view',
     'candidate.government_id.view',
@@ -88,6 +90,8 @@ export const ROLE_PERMISSIONS: Record<UserRole, string[]> = {
   SENIOR_HR: [
     'candidate.view',
     'candidate.view.full',
+    'candidate.edit',
+    'candidate.delete',
     'candidate.documents.view',
     'candidate.resume.view',
     'candidate.government_id.view',
@@ -110,6 +114,7 @@ export const ROLE_PERMISSIONS: Record<UserRole, string[]> = {
   RECEPTION: [
     'candidate.view',
     'candidate.view.basic',
+    'candidate.delete',
     'candidate.checkin.manage',
     'candidate.photo.capture',
     'candidate.checkout.process',

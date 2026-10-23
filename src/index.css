@@ -632,6 +632,27 @@ select:focus {
   border-radius: 0.75rem !important;
 }
 
+/* Anti-Overlay & Clear Statistics Protection for Intake Stage Cards */
+.intake-stage-card {
+  position: relative;
+  isolation: isolate;
+}
+
+.intake-stage-card::before,
+.intake-stage-card::after,
+.intake-stage-count::before,
+.intake-stage-count::after {
+  display: none !important;
+  content: none !important;
+}
+
+.intake-stage-count {
+  position: relative !important;
+  z-index: 10 !important;
+  display: inline-block !important;
+  pointer-events: auto !important;
+}
+
 /* ========================================================
    MODALS, DETAIL VIEWS, DRAWERS & POPUPS
    Crextio Style: Crisp white container with 28px rounded corners,

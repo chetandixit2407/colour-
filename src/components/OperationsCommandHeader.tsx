@@ -215,7 +215,7 @@ export const OperationsCommandHeader: React.FC<OperationsCommandHeaderProps> = (
                   ? 'bg-[#F5EB78] border border-[#E8DC5F] text-[#121316] hover:bg-[#EFE463] shadow-[0_4px_20px_-2px_rgba(245,235,120,0.35)]'
                   : 'bg-white border border-[#E5DFD4] text-[#121316] hover:bg-[#FAF8F5] hover:border-[#D5CEBF]'
               }`}
-              title={`Click to view ${kpi.label} details`}
+              aria-label={`View ${kpi.label} details: ${kpi.value}`}
             >
               <div className="relative z-10 flex items-center justify-between text-xs">
                 <span className={`font-bold tracking-tight text-[#121316]`}>

@@ -5107,17 +5107,37 @@ async function startServer() {
   });
 
   // ==========================================
-  // HR CANDIDATE DELETE / ARCHIVE (DELETE)
+  // HR / ADMIN / RECEPTION CANDIDATE DELETE (DELETE)
   // ==========================================
   app.delete('/api/candidates/:id', (req: Request, res: Response) => {
     const { id } = req.params;
     const db = dbService.get();
     const auth = authenticateStaffRequest(req, db.users);
     const role = (auth.user?.role || req.query.role || req.headers['x-user-role']) as UserRole;
-    const reason = req.body?.reason || 'Administrative Archive';
+    const reason = req.body?.reason || 'Administrative Deletion';
+    const forceResolve = Boolean(
+      req.body?.forceResolveActiveSession ||
+      req.body?.resolveActiveInterview ||
+      req.body?.force ||
+      req.query.force === 'true'
+    );
 
-    if (role !== 'HR' && role !== 'ADMIN' && role !== 'SENIOR_HR' && role !== 'RECEPTION' && role !== 'CEO') {
-      return res.status(403).json({ success: false, error: 'Unauthorized: Insufficient permissions to delete candidate records.' });
+    const allowedRoles: UserRole[] = ['HR', 'ADMIN', 'SENIOR_HR', 'RECEPTION', 'CEO', 'CO_FOUNDER'];
+    const hasAllowedRole = allowedRoles.includes(role);
+    const hasDeletePermission =
+      auth.authenticated &&
+      Boolean(
+        auth.effectivePermissions?.includes('candidate.delete') ||
+        auth.effectivePermissions?.includes('ALL_PERMISSIONS') ||
+        auth.effectivePermissions?.includes('FULL_ACCESS') ||
+        auth.effectivePermissions?.includes('HR_FULL_ACCESS')
+      );
+
+    if (!hasAllowedRole && !hasDeletePermission) {
+      return res.status(403).json({
+        success: false,
+        error: 'Unauthorized: Insufficient permissions to delete candidate records.',
+      });
     }
 
     const timestamp = new Date().toISOString();
@@ -5143,12 +5163,36 @@ async function startServer() {
       return res.json({ success: true, message: `Candidate ${existingCand.fullName} was already archived.`, candidateId: id, isDeleted: true });
     }
 
-    if (existingCand.status === 'IN_INTERVIEW') {
-      return res.status(400).json({ success: false, error: 'Cannot delete candidate while an interview is actively in progress. Please conclude or end the interview first.' });
+    // Active in-progress interview dependency diagnostic check
+    const activeIntv = (db.interviews || []).find(
+      (i) => i.candidateId === id && ((i.status as string) === 'IN_PROGRESS' || (i.status as string) === 'INTERVIEW_STARTED')
+    );
+    const isActivelyInInterview = existingCand.status === 'IN_INTERVIEW' || Boolean(activeIntv);
+
+    if (isActivelyInInterview && !forceResolve) {
+      const room = db.rooms.find((r) => r.id === (activeIntv?.roomId || existingCand.assignedRoomId));
+      return res.status(409).json({
+        success: false,
+        code: 'ACTIVE_INTERVIEW_DEPENDENCY',
+        error: `Active interview in progress: ${existingCand.fullName} is currently in an active interview session (${activeIntv?.roundName || 'Interview'}) inside ${room?.name || existingCand.assignedRoomName || 'an assigned room'}. Please conclude or resolve the interview first.`,
+        activeDependency: {
+          type: 'INTERVIEW',
+          interviewId: activeIntv?.id,
+          roundName: activeIntv?.roundName || 'Active Evaluation',
+          roomId: room?.id || activeIntv?.roomId || existingCand.assignedRoomId,
+          roomName: room?.name || activeIntv?.roomName || existingCand.assignedRoomName || 'Assigned Cabin',
+          interviewerName: activeIntv?.interviewerName || existingCand.assignedInterviewerName || 'Assigned Interviewer',
+          status: activeIntv?.status || existingCand.status,
+        },
+        canResolve: true,
+        actionMessage: 'You can resolve and conclude this active session to release the room and proceed with candidate deletion.',
+      });
     }
 
     try {
-      let deletedName = '';
+      let deletedName = existingCand.fullName;
+      const freedRooms: Room[] = [];
+
       dbService.update((draft) => {
         const candIdx = draft.candidates.findIndex((c) => c.id === id);
         if (candIdx === -1) return;
@@ -5156,55 +5200,79 @@ async function startServer() {
         const cand = draft.candidates[candIdx];
         deletedName = cand.fullName;
 
-        // Permanently remove candidate from active candidates list
+        // 1. Permanently remove candidate from active candidates list
         draft.candidates.splice(candIdx, 1);
 
-        // Clean up linked interviews
+        // 2. Clean up linked interviews (active, scheduled, completed)
         if (draft.interviews) {
           draft.interviews = draft.interviews.filter((i) => i.candidateId !== id);
         }
 
-        // Release any room allocated to this candidate
+        // 3. Release any room allocated to this candidate or their active interviews
         if (draft.rooms) {
           draft.rooms.forEach((rm) => {
-            if (rm.currentCandidateId === id) {
+            if (rm.currentCandidateId === id || rm.currentCandidateName === deletedName) {
               rm.status = 'AVAILABLE';
               delete (rm as any).currentCandidateId;
               delete (rm as any).currentCandidateName;
               delete (rm as any).currentInterviewId;
+              (rm as any).isOccupied = false;
+              freedRooms.push(rm);
             }
           });
         }
 
-        // Expire and remove any pending check-in sessions
+        // 4. Expire and remove any pending check-in sessions
         if (draft.checkInSessions) {
           draft.checkInSessions = draft.checkInSessions.filter((s) => s.candidateId !== id);
         }
 
-        // Clean up any pending action tasks for this candidate
+        // 5. Clean up any pending action tasks for this candidate
         if (draft.actionTasks) {
           draft.actionTasks = draft.actionTasks.filter((t) => t.candidateId !== id);
         }
 
+        // 6. Clean up candidate-specific notifications
+        if (draft.notifications) {
+          draft.notifications = draft.notifications.filter(
+            (n) => (n as any).candidateId !== id && n.entityId !== id && n.payload?.candidateId !== id
+          );
+        }
+
+        // 7. Clean up pending pantry tasks linked to this candidate
+        if (draft.pantryTasks) {
+          draft.pantryTasks = draft.pantryTasks.filter((pt) => (pt as any).candidateId !== id);
+        }
+
+        // 8. Record audit trail & timeline
         draft.timelineEvents.unshift({
           id: `tl-${Date.now()}-del`,
           candidateId: id,
           timestamp,
           actorType: 'USER',
-          actorName: role === 'HR' ? 'HR Operations' : 'Administrator',
-          eventType: 'CANDIDATE_ARCHIVED',
-          description: `Candidate record archived/deleted. Reason: ${reason}.`,
+          actorName: auth.user?.name || (role === 'HR' ? 'HR Operations' : role === 'RECEPTION' ? 'Reception Desk' : 'Administrator'),
+          eventType: 'CANDIDATE_DELETED',
+          description: `Candidate record deleted by ${role}. Reason: ${reason}.${isActivelyInInterview ? ' (Active interview session was cleanly resolved).' : ''}`,
         });
 
         draft.auditLogs.unshift({
           id: `aud-${Date.now()}-del`,
           timestamp,
           actorType: 'USER',
-          actorName: role,
+          actorName: auth.user?.name ? `${auth.user.name} (${role})` : role,
           action: 'CANDIDATE_DELETED',
-          details: `Candidate ${id} (${deletedName}) was soft-deleted/archived by ${role}. Reason: ${reason}.`,
+          details: `Candidate ${id} (${deletedName}) and all linked schedules/allocations were removed by ${role}. Reason: ${reason}.${isActivelyInInterview ? ' Active interview session was resolved.' : ''}`,
           entityId: id,
           entityType: 'CANDIDATE',
+        });
+      });
+
+      // Broadcast freed room updates immediately so all displays update
+      freedRooms.forEach((rm) => {
+        eventWorkflowEngine.broadcast({
+          type: 'ROOM_STATUS_CHANGED',
+          payload: { roomId: rm.id, status: 'AVAILABLE', room: rm },
+          targetRoles: ['HR', 'SENIOR_HR', 'ADMIN', 'CEO', 'CO_FOUNDER', 'INTERVIEWER', 'RECEPTION', 'PANTRY'],
         });
       });
 
@@ -5215,9 +5283,14 @@ async function startServer() {
         targetRoles: ['HR', 'SENIOR_HR', 'ADMIN', 'CEO', 'CO_FOUNDER', 'INTERVIEWER', 'RECEPTION', 'PANTRY'],
       });
 
-      res.json({ success: true, message: `Candidate ${deletedName} successfully archived.`, candidateId: id });
+      res.json({
+        success: true,
+        message: `Candidate ${deletedName} and all linked schedules/allocations successfully removed.`,
+        candidateId: id,
+        freedRooms: freedRooms.map((r) => r.name),
+      });
     } catch (err: any) {
-      res.status(400).json({ success: false, error: err.message || 'Failed to archive candidate' });
+      res.status(500).json({ success: false, error: err.message || 'Failed to delete candidate' });
     }
   });
 

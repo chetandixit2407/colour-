@@ -1120,6 +1120,22 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                                 Dossier
                               </button>
                             )}
+                            <button
+                              type="button"
+                              onClick={() =>
+                                setGenericDeleteModal({
+                                  isOpen: true,
+                                  recordType: 'CANDIDATE',
+                                  recordId: cand.id,
+                                  recordName: cand.fullName,
+                                  metadata: { status: cand.status, roomId: cand.assignedRoomId },
+                                })
+                              }
+                              className="p-1.5 bg-slate-800 hover:bg-rose-950 text-slate-400 hover:text-rose-400 rounded-xl border border-slate-700 hover:border-rose-700/50 transition cursor-pointer"
+                              title="Delete / Archive Candidate"
+                            >
+                              <Trash2 className="w-3.5 h-3.5" />
+                            </button>
                           </div>
                         </td>
                       </tr>

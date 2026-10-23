@@ -293,16 +293,25 @@ export const CandidateDossierModal: React.FC<CandidateDossierModalProps> = ({
     }
   };
 
-  const handleDeleteCandidate = async () => {
+  const handleDeleteCandidate = async (options?: { forceResolve?: boolean }) => {
     setDeleting(true);
     setActionError(null);
+    const forceResolve = options?.forceResolve || false;
     try {
       const res = await authenticatedFetch(`/api/candidates/${candidateId}?role=${currentRole}`, {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json', 'x-user-role': currentRole },
-        body: JSON.stringify({ reason: deleteReason }),
+        body: JSON.stringify({
+          reason: deleteReason,
+          forceResolveActiveSession: forceResolve,
+        }),
       });
       const data = await res.json();
+      if (res.status === 409 || data.code === 'ACTIVE_INTERVIEW_DEPENDENCY') {
+        setActionError(data.error || 'Active interview session in progress. Click "Resolve Session & Delete" to proceed.');
+        setDeleting(false);
+        return;
+      }
       if (data.success) {
         setShowDeleteConfirm(false);
         if (typeof window !== 'undefined') {
@@ -311,6 +320,7 @@ export const CandidateDossierModal: React.FC<CandidateDossierModalProps> = ({
           );
         }
         if (onCandidateDeleted) onCandidateDeleted();
+        onClose();
       } else {
         setActionError(data.error || 'Failed to delete record.');
       }
@@ -419,7 +429,12 @@ export const CandidateDossierModal: React.FC<CandidateDossierModalProps> = ({
               </button>
             )}
 
-            {currentRole === 'ADMIN' && (
+            {(currentRole === 'ADMIN' ||
+              currentRole === 'HR' ||
+              currentRole === 'SENIOR_HR' ||
+              currentRole === 'RECEPTION' ||
+              currentRole === 'CEO' ||
+              currentRole === 'CO_FOUNDER') && (
               <button
                 onClick={() => setShowDeleteConfirm(true)}
                 className="p-2 rounded-xl bg-white hover:bg-rose-50 text-[#6F727A] hover:text-rose-600 border border-[#E5DFD4] transition cursor-pointer shadow-xs"
@@ -474,28 +489,51 @@ export const CandidateDossierModal: React.FC<CandidateDossierModalProps> = ({
           {showDeleteConfirm && (
             <div className="p-4 bg-rose-50 border border-rose-200 rounded-2xl space-y-3">
               <div className="flex items-start gap-2">
-                <AlertTriangle className="w-4 h-4 text-rose-600 mt-0.5" />
-                <div>
-                  <h4 className="text-xs font-bold text-rose-900">Confirm Candidate Record Archive</h4>
-                  <p className="text-[11px] text-rose-700">
-                    This will permanently delete/archive candidate files under White Collar Realty retention policy.
+                <AlertTriangle className="w-4 h-4 text-rose-600 mt-0.5 shrink-0" />
+                <div className="space-y-1">
+                  <h4 className="text-xs font-bold text-rose-900">
+                    Confirm Candidate Deletion ({candidate?.fullName})
+                  </h4>
+                  <p className="text-[11px] text-rose-700 leading-relaxed">
+                    This will permanently delete candidate records and safely release any allocated facility rooms, check-in sessions, and interview schedules.
                   </p>
+                  {candidate?.status === 'IN_INTERVIEW' && (
+                    <div className="p-2.5 bg-amber-50 rounded-xl border border-amber-300 text-[11px] text-amber-900 mt-2">
+                      <strong>Active Interview Dependency:</strong> Candidate is currently inside an evaluation session. Selecting "Resolve Session & Delete" will safely conclude the session and free the room.
+                    </div>
+                  )}
+                  {candidate?.status === 'ROOM_ASSIGNED' && (
+                    <div className="p-2 bg-sky-50 rounded-xl border border-sky-200 text-[11px] text-sky-800 mt-2">
+                      Candidate has an allocated room ({candidate?.assignedRoomName || 'Room'}). Room will be automatically set to AVAILABLE.
+                    </div>
+                  )}
                 </div>
               </div>
               <div className="flex gap-2 justify-end pt-1">
                 <button
                   onClick={() => setShowDeleteConfirm(false)}
+                  disabled={deleting}
                   className="px-3 py-1.5 bg-white hover:bg-slate-50 text-[#121316] text-xs font-medium rounded-xl border border-[#E5DFD4]"
                 >
                   Cancel
                 </button>
-                <button
-                  onClick={handleDeleteCandidate}
-                  disabled={deleting}
-                  className="px-3 py-1.5 bg-rose-600 hover:bg-rose-500 text-white text-xs font-bold rounded-xl"
-                >
-                  {deleting ? 'Deleting...' : 'Confirm Archive'}
-                </button>
+                {candidate?.status === 'IN_INTERVIEW' ? (
+                  <button
+                    onClick={() => handleDeleteCandidate({ forceResolve: true })}
+                    disabled={deleting}
+                    className="px-3.5 py-1.5 bg-amber-600 hover:bg-amber-700 text-white text-xs font-bold rounded-xl shadow-xs"
+                  >
+                    {deleting ? 'Resolving...' : 'Resolve Session & Delete'}
+                  </button>
+                ) : (
+                  <button
+                    onClick={() => handleDeleteCandidate()}
+                    disabled={deleting}
+                    className="px-3.5 py-1.5 bg-rose-600 hover:bg-rose-500 text-white text-xs font-bold rounded-xl shadow-xs"
+                  >
+                    {deleting ? 'Deleting...' : 'Confirm Delete'}
+                  </button>
+                )}
               </div>
             </div>
           )}
