@@ -12,8 +12,11 @@ import {
   ArrowRight,
 } from 'lucide-react';
 import type { Candidate, Interview, Room } from '../../types/index.ts';
-import type { DashboardModalTarget } from '../DashboardCardDetailsModal.tsx';
 import { formatCandidateExperience, formatCandidateLocation } from '../../utils/candidateHelpers.ts';
+import type { DashboardModalTarget } from '../DashboardCardDetailsModal.tsx';
+import { CandidateAvatar } from '../CandidateAvatar.tsx';
+
+
 
 interface CEODashboardProps {
   candidates: Candidate[];
@@ -115,17 +118,17 @@ export const CEODashboard: React.FC<CEODashboardProps> = ({
               >
                 <div className="flex items-start justify-between gap-3">
                   <div className="flex items-center gap-3">
-                    {cand.livePhoto ? (
-                      <img
-                        src={cand.livePhoto}
-                        alt={cand.fullName}
-                        className="w-12 h-12 rounded-2xl object-cover border border-[#D8BF85]/50 shadow-xs"
-                      />
-                    ) : (
-                      <div className="w-12 h-12 rounded-2xl flex items-center justify-center bg-[#D8BF85]/15 border border-[#D8BF85]/30 text-[#9E8243]">
-                        <Award className="w-6 h-6" />
-                      </div>
-                    )}
+                    <CandidateAvatar
+                      candidate={cand}
+                      name={cand.fullName}
+                      sizeClassName="w-12 h-12"
+                      roundedClassName="rounded-2xl"
+                      borderClassName="border-2 border-[#121316]"
+                      fallbackBgClassName="bg-[#FAF8F5]"
+                      fallbackTextClassName="text-[#121316]"
+                      icon={<Award className="w-6 h-6" />}
+                    />
+
                     <div>
                       <h3 className="text-base font-bold text-[#111111]">{cand.fullName}</h3>
                       <p className="text-xs font-semibold text-[#9E8243]">{cand.position}</p>

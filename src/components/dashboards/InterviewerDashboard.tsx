@@ -13,6 +13,8 @@ import {
 } from 'lucide-react';
 import type { Candidate, Interview, Room } from '../../types/index.ts';
 import { formatCandidateExperience, formatCandidateLocation } from '../../utils/candidateHelpers.ts';
+import { CandidateAvatar } from '../CandidateAvatar.tsx';
+
 
 interface InterviewerDashboardProps {
   candidates: Candidate[];
@@ -99,17 +101,17 @@ export const InterviewerDashboard: React.FC<InterviewerDashboardProps> = ({
                   <div className="space-y-3.5">
                     <div className="flex items-start justify-between gap-3">
                       <div className="flex items-center gap-3.5">
-                        {cand?.livePhoto ? (
-                          <img
-                            src={cand.livePhoto}
-                            alt={intv.candidateName}
-                            className="w-14 h-14 rounded-2xl object-cover border-2 border-[#D8BF85]/60 shadow-xs shrink-0"
-                          />
-                        ) : (
-                          <div className="w-14 h-14 rounded-2xl flex items-center justify-center shrink-0 bg-[#D8BF85]/20 border border-[#D8BF85]/40 text-[#9E8243]">
-                            <UserCheck className="w-7 h-7" />
-                          </div>
-                        )}
+                        <CandidateAvatar
+                          candidate={cand}
+                          name={intv.candidateName}
+                          sizeClassName="w-14 h-14"
+                          roundedClassName="rounded-2xl"
+                          borderClassName="border-2 border-[#121316]"
+                          fallbackBgClassName="bg-[#FAF8F5]"
+                          fallbackTextClassName="text-[#121316]"
+                          icon={<UserCheck className="w-7 h-7" />}
+                        />
+
                         <div>
                           <h3 className="text-base sm:text-lg font-bold text-[#111111]">{intv.candidateName}</h3>
                           <p className="text-xs sm:text-sm font-semibold text-[#9E8243]">{intv.position}</p>

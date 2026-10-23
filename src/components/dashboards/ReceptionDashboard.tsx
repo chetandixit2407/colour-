@@ -39,6 +39,8 @@ import { authenticatedFetch } from '../../utils/apiClient.ts';
 import { EditRecordModal } from '../modals/EditRecordModal.tsx';
 import { DeleteConfirmModal, DeleteRecordType } from '../modals/DeleteConfirmModal.tsx';
 import { formatCandidateLocation } from '../../utils/candidateHelpers.ts';
+import { CandidateAvatar } from '../CandidateAvatar.tsx';
+
 
 interface ReceptionDashboardProps {
   candidates: Candidate[];
@@ -870,17 +872,16 @@ export const ReceptionDashboard: React.FC<ReceptionDashboardProps> = ({
                     <div className="flex items-start justify-between gap-3">
                       <div className="flex items-center gap-3.5">
                         <div className="flex flex-col items-center shrink-0">
-                          {cand.receptionPhotoUrl || cand.photoUrl || cand.livePhoto || cand.arrivalPhoto ? (
-                            <img
-                              src={cand.receptionPhotoUrl || cand.photoUrl || cand.livePhoto || cand.arrivalPhoto}
-                              alt={cand.fullName}
-                              className="w-14 h-14 rounded-2xl object-cover border-2 border-amber-500 shadow-md shrink-0"
-                            />
-                          ) : (
-                            <div className="w-14 h-14 rounded-2xl flex items-center justify-center shrink-0 font-extrabold text-sm bg-[#25272B] border border-white/10 text-white">
-                              {cand.fullName.slice(0, 2).toUpperCase()}
-                            </div>
-                          )}
+                          <CandidateAvatar
+                            candidate={cand}
+                            name={cand.fullName}
+                            sizeClassName="w-14 h-14"
+                            roundedClassName="rounded-2xl"
+                            borderClassName="border-2 border-[#121316]"
+                            fallbackBgClassName="bg-[#FAF8F5]"
+                            fallbackTextClassName="text-[#121316]"
+                          />
+
                           {(cand.receptionPhotoCapturedAt || cand.arrivalPhotoCapturedAt || cand.livePhotoCapturedAt) && (
                             <span
                               className="text-[9px] text-amber-300 font-mono tracking-tight mt-1 text-center truncate max-w-[85px]"
@@ -1051,17 +1052,16 @@ export const ReceptionDashboard: React.FC<ReceptionDashboardProps> = ({
                     >
                       <div className="flex items-start justify-between gap-3">
                         <div className="flex items-center gap-3">
-                          {cand.receptionPhotoUrl || cand.photoUrl ? (
-                            <img
-                              src={cand.receptionPhotoUrl || cand.photoUrl}
-                              alt={cand.fullName}
-                              className="w-10 h-10 rounded-xl object-cover border border-amber-500 shrink-0"
-                            />
-                          ) : (
-                            <div className="w-10 h-10 rounded-xl flex items-center justify-center font-bold bg-[#25272B] border border-white/10 text-white shrink-0">
-                              {cand.fullName.slice(0, 2).toUpperCase()}
-                            </div>
-                          )}
+                          <CandidateAvatar
+                            candidate={cand}
+                            name={cand.fullName}
+                            sizeClassName="w-10 h-10"
+                            roundedClassName="rounded-xl"
+                            borderClassName="border-2 border-[#121316]"
+                            fallbackBgClassName="bg-[#FAF8F5]"
+                            fallbackTextClassName="text-[#121316]"
+                          />
+
                           <div>
                             <h4 className="font-bold text-sm text-white">{cand.fullName}</h4>
                             <p className="text-[11px] text-white/70">{cand.position}</p>

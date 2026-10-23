@@ -29,6 +29,8 @@ import { HRSubProfileView, HRProfileKey } from '../HRSubProfileView.tsx';
 import { EditRecordModal } from '../modals/EditRecordModal.tsx';
 import { DeleteConfirmModal, DeleteRecordType } from '../modals/DeleteConfirmModal.tsx';
 import type { ArrivalStage } from '../VisitorArrivalTimeline.tsx';
+import { CandidateAvatar } from '../CandidateAvatar.tsx';
+
 
 interface HRDashboardProps {
   candidates: Candidate[];
@@ -316,18 +318,17 @@ export const HRDashboard: React.FC<HRDashboardProps> = ({
                     <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3.5">
                       <div className="flex items-center gap-3.5 sm:gap-4 min-w-0">
                         <div className="flex flex-col items-center shrink-0">
-                          {cand.receptionPhotoUrl || cand.photoUrl || cand.livePhoto || cand.arrivalPhoto ? (
-                            <img
-                              src={cand.receptionPhotoUrl || cand.photoUrl || cand.livePhoto || cand.arrivalPhoto}
-                              alt={cand.fullName}
-                              className="w-14 h-14 rounded-2xl object-cover border-2 border-[#D8BF85]/60 shadow-xs shrink-0"
-                            />
-                          ) : (
-                            <div className="candidate-avatar w-14 h-14 rounded-2xl flex items-center justify-center shrink-0 font-extrabold text-sm bg-[#D8BF85]/20 border border-[#D8BF85]/40 text-[#9E8243] shadow-xs">
-                              {cand.fullName.slice(0, 2).toUpperCase()}
-                            </div>
-                          )}
+                          <CandidateAvatar
+                            candidate={cand}
+                            name={cand.fullName}
+                            sizeClassName="w-14 h-14"
+                            roundedClassName="rounded-2xl"
+                            borderClassName="border-2 border-[#121316]"
+                            fallbackBgClassName="bg-[#FAF8F5]"
+                            fallbackTextClassName="text-[#121316]"
+                          />
                           {(cand.receptionPhotoCapturedAt || cand.arrivalPhotoCapturedAt || cand.livePhotoCapturedAt) && (
+
                             <span
                               className="text-[9px] text-[#9E8243] font-mono tracking-tight mt-1 text-center truncate max-w-[95px]"
                               title={`Captured: ${formatPhotoTimestamp(cand.receptionPhotoCapturedAt || cand.arrivalPhotoCapturedAt || cand.livePhotoCapturedAt)}`}

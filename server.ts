@@ -2083,24 +2083,39 @@ async function startServer() {
     if (!cand) {
       return res.status(404).send('Candidate record not found');
     }
-    const photoData = cand.receptionPhotoUrl || cand.photoUrl || cand.livePhoto || cand.arrivalPhoto;
-    if (photoData && photoData.startsWith('data:image/')) {
-      const match = photoData.match(/^data:([^;]+);base64,(.+)$/);
-      if (match) {
-        const mime = match[1];
-        const buf = Buffer.from(match[2], 'base64');
-        res.setHeader('Content-Type', mime);
-        res.setHeader('Cache-Control', 'public, max-age=86400');
-        return res.send(buf);
-      }
-    }
+
     const diskPath = path.resolve(PHOTOS_DIR, `${id}-photo.jpg`);
     if (fs.existsSync(diskPath)) {
-      res.setHeader('Content-Type', 'image/jpeg');
-      return res.sendFile(diskPath);
+      try {
+        const stats = fs.statSync(diskPath);
+        if (stats.size > 10) {
+          res.setHeader('Content-Type', 'image/jpeg');
+          res.setHeader('Cache-Control', 'public, max-age=86400');
+          return res.sendFile(diskPath);
+        }
+      } catch {}
     }
+
+    const photoData = cand.receptionPhotoUrl || cand.photoUrl || cand.livePhoto || cand.arrivalPhoto;
+    if (photoData && photoData.startsWith('data:image/') && photoData.length > 50) {
+      const match = photoData.match(/^data:([^;]+);base64,(.+)$/);
+      if (match && match[2] && !match[2].endsWith('...')) {
+        try {
+          const mime = match[1];
+          const buf = Buffer.from(match[2], 'base64');
+          if (buf.length > 10) {
+            res.setHeader('Content-Type', mime);
+            res.setHeader('Cache-Control', 'public, max-age=86400');
+            return res.send(buf);
+          }
+        } catch {}
+      }
+    }
+
     return res.status(404).send('No photo available');
   });
+
+
 
   // ==========================================
   // RESUME SECURE VIEW & FETCH (INLINE FOR HR/ADMIN/INTERVIEWER/CEO)

@@ -36,6 +36,8 @@ import type {
 import { computeArrivalStage, type ArrivalStage } from './VisitorArrivalTimeline.tsx';
 import { formatPhotoTimestamp } from '../utils/dateFormatter.ts';
 import { formatCandidateExperience } from '../utils/candidateHelpers.ts';
+import { CandidateAvatar } from './CandidateAvatar.tsx';
+
 
 export type DashboardModalTarget =
   | 'stage_EXPECTED'
@@ -436,17 +438,16 @@ export const DashboardCardDetailsModal: React.FC<DashboardCardDetailsModalProps>
                         <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 min-w-0">
                           <div className="flex items-start sm:items-center gap-3 min-w-0 flex-1">
                             <div className="flex flex-col items-center shrink-0">
-                              {cand.receptionPhotoUrl || cand.photoUrl || cand.livePhoto || cand.arrivalPhoto ? (
-                                <img
-                                  src={cand.receptionPhotoUrl || cand.photoUrl || cand.livePhoto || cand.arrivalPhoto}
-                                  alt={cand.fullName}
-                                  className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl object-cover border-2 border-[#121316] shadow-sm shrink-0"
-                                />
-                              ) : (
-                                <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-[#F5EB78] border border-[#121316]/20 flex items-center justify-center font-bold text-sm text-[#121316] shrink-0">
-                                  {cand.fullName.slice(0, 2).toUpperCase()}
-                                </div>
-                              )}
+                              <CandidateAvatar
+                                candidate={cand}
+                                name={cand.fullName}
+                                sizeClassName="w-11 h-11 sm:w-12 sm:h-12"
+                                roundedClassName="rounded-xl"
+                                borderClassName="border-2 border-[#121316]"
+                                fallbackBgClassName="bg-[#F5EB78]"
+                                fallbackTextClassName="text-[#121316]"
+                              />
+
                               {(cand.receptionPhotoCapturedAt || cand.arrivalPhotoCapturedAt || cand.livePhotoCapturedAt) && (
                                 <span
                                   className="text-[9px] text-[#6F727A] font-mono tracking-tight mt-1 text-center truncate max-w-[75px] sm:max-w-[85px]"

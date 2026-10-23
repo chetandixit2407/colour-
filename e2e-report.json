@@ -1,0 +1,170 @@
+[
+  {
+    "module": "Auth & RBAC",
+    "feature": "Staff Login (ADMIN)",
+    "testCase": "POST /api/auth/login with sameer@whitecollarrealty.com",
+    "status": "VERIFIED",
+    "evidence": "HTTP 200, Token issued, User: Sameer Sir"
+  },
+  {
+    "module": "Auth & RBAC",
+    "feature": "Staff Login (CEO)",
+    "testCase": "POST /api/auth/login with lalit@whitecollarrealty.com",
+    "status": "VERIFIED",
+    "evidence": "HTTP 200, Token issued, User: Lalit Sir"
+  },
+  {
+    "module": "Auth & RBAC",
+    "feature": "Staff Login (SENIOR_HR)",
+    "testCase": "POST /api/auth/login with kimmi@whitecollarrealty.com",
+    "status": "VERIFIED",
+    "evidence": "HTTP 200, Token issued, User: Kimmi Mam"
+  },
+  {
+    "module": "Auth & RBAC",
+    "feature": "Staff Login (HR)",
+    "testCase": "POST /api/auth/login with nisha@whitecollarrealty.com",
+    "status": "VERIFIED",
+    "evidence": "HTTP 200, Token issued, User: Nisha"
+  },
+  {
+    "module": "Auth & RBAC",
+    "feature": "Staff Login (INTERVIEWER)",
+    "testCase": "POST /api/auth/login with interviewer@whitecollarrealty.com",
+    "status": "VERIFIED",
+    "evidence": "HTTP 200, Token issued, User: Rahul Sharma"
+  },
+  {
+    "module": "Auth & RBAC",
+    "feature": "Staff Login (RECEPTION)",
+    "testCase": "POST /api/auth/login with reception@whitecollarrealty.com",
+    "status": "VERIFIED",
+    "evidence": "HTTP 200, Token issued, User: Ananya Sen"
+  },
+  {
+    "module": "Auth & RBAC",
+    "feature": "Staff Login (PANTRY)",
+    "testCase": "POST /api/auth/login with pantry@whitecollarrealty.com",
+    "status": "VERIFIED",
+    "evidence": "HTTP 200, Token issued, User: Ramesh Kumar"
+  },
+  {
+    "module": "Reception Dashboard",
+    "feature": "Real-time KPIs & Statistics",
+    "testCase": "GET /api/stats",
+    "status": "VERIFIED",
+    "evidence": "HTTP 200, Total candidates: undefined, Waiting: 8, Active Interviews: undefined"
+  },
+  {
+    "module": "Candidate Lifecycle",
+    "feature": "Candidate Self Check-in Registration",
+    "testCase": "POST /api/checkin/submit",
+    "status": "FAILED",
+    "evidence": "HTTP 400: {\"success\":false,\"error\":\"Missing check-in token.\"}"
+  },
+  {
+    "module": "Visitor Management",
+    "feature": "Walk-In Visitor Registration",
+    "testCase": "POST /api/walkin/register",
+    "status": "VERIFIED",
+    "evidence": "HTTP 200, Visitor ID: vis-1792748892231, Status: CHECKED_IN"
+  },
+  {
+    "module": "Visitor Management",
+    "feature": "Visitor Check-Out & Archival",
+    "testCase": "POST /api/visitors/vis-1792748892231/checkout",
+    "status": "FAILED",
+    "evidence": "HTTP 404"
+  },
+  {
+    "module": "QR & Digital Passes",
+    "feature": "QR Pass Token Generation",
+    "testCase": "POST /api/qr/generate",
+    "status": "VERIFIED",
+    "evidence": "HTTP 200, QR Token: WCR-APPT-838, Data URL generated"
+  },
+  {
+    "module": "QR & Digital Passes",
+    "feature": "Mobile QR Scanning & Candidate Data Retrieval",
+    "testCase": "POST /api/qr/validate",
+    "status": "FAILED",
+    "evidence": "HTTP 404"
+  },
+  {
+    "module": "Automations & Integrations",
+    "feature": "WhatsApp Automated Invite Dispatch",
+    "testCase": "Real WhatsApp Cloud API Trigger",
+    "status": "BLOCKED",
+    "evidence": "Blocked: WhatsApp Business API credentials (WHATSAPP_API_TOKEN) not configured in environment. In-app share links and copy fallbacks operate normally."
+  },
+  {
+    "module": "Automations & Integrations",
+    "feature": "Email SMTP Invitation Dispatch",
+    "testCase": "Real SMTP / SendGrid Email Trigger",
+    "status": "BLOCKED",
+    "evidence": "Blocked: SMTP_HOST / SENDGRID_API_KEY not configured in environment. Client-side mailto and appointment details operate normally."
+  },
+  {
+    "module": "Interview Lifecycle",
+    "feature": "Interview Scheduling & Interviewer Assignment",
+    "testCase": "POST /api/interviews/schedule",
+    "status": "FAILED",
+    "evidence": "HTTP 404: {\"success\":false,\"error\":\"API endpoint not found: POST /api/interviews/schedule\"}"
+  },
+  {
+    "module": "Room Management",
+    "feature": "Room Allocation & Real-time Room Sync",
+    "testCase": "POST /api/rooms/assign",
+    "status": "FAILED",
+    "evidence": "HTTP 400: {\"success\":false,\"error\":\"candidateId and roomId are required\"}"
+  },
+  {
+    "module": "Hospitality & Pantry",
+    "feature": "Pantry Task Creation by Authorized Staff",
+    "testCase": "POST /api/pantry/tasks by HR",
+    "status": "VERIFIED",
+    "evidence": "HTTP 200, Task ID: pantry-task-1792748892455, Items: Masala Chai, Mineral Water"
+  },
+  {
+    "module": "Hospitality & Pantry",
+    "feature": "Pantry Task Execution State Machine",
+    "testCase": "PUT /api/pantry/tasks/:id",
+    "status": "FAILED",
+    "evidence": "HTTP 404"
+  },
+  {
+    "module": "Room Management",
+    "feature": "Room Sanitization & Cleaning Verification",
+    "testCase": "POST /api/rooms/clean",
+    "status": "FAILED",
+    "evidence": "HTTP 404"
+  },
+  {
+    "module": "Security & RBAC",
+    "feature": "Pantry Role Data Isolation & Field Redaction",
+    "testCase": "GET /api/candidates with PANTRY token",
+    "status": "VERIFIED",
+    "evidence": "HTTP 200, Sensitive fields (phone, email, resume, salary) STRICTLY REDACTED for Pantry role"
+  },
+  {
+    "module": "Security & RBAC",
+    "feature": "Unauthenticated Request Rejection",
+    "testCase": "GET /api/admin/audit-logs without token",
+    "status": "FAILED",
+    "evidence": "HTTP 404"
+  },
+  {
+    "module": "Settings & UI Engine",
+    "feature": "System Settings Retrieval",
+    "testCase": "GET /api/settings",
+    "status": "FAILED",
+    "evidence": "HTTP 404"
+  },
+  {
+    "module": "Settings & UI Engine",
+    "feature": "Settings Synchronization & English/Hindi Switching",
+    "testCase": "PUT /api/settings",
+    "status": "FAILED",
+    "evidence": "HTTP 404"
+  }
+]

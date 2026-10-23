@@ -814,6 +814,9 @@ export const GeneralNewCandidateRegister: React.FC<GeneralNewCandidateRegisterPr
                 <img
                   src={photoDataUrl}
                   alt={fullName}
+                  onError={(e) => {
+                    (e.currentTarget as HTMLElement).style.display = 'none';
+                  }}
                   className="w-14 h-14 rounded-xl object-cover border border-slate-300 shadow-sm shrink-0"
                 />
               ) : (
@@ -821,6 +824,7 @@ export const GeneralNewCandidateRegister: React.FC<GeneralNewCandidateRegisterPr
                   <User className="w-7 h-7" />
                 </div>
               )}
+
               <div className="min-w-0">
                 <h3 className="text-base font-bold text-slate-900 truncate">{fullName}</h3>
                 <p className="text-xs font-semibold text-amber-900 truncate">
@@ -2158,9 +2162,13 @@ export const GeneralNewCandidateRegister: React.FC<GeneralNewCandidateRegisterPr
                       <img
                         src={photoDataUrl}
                         alt="Arrival Preview"
+                        onError={(e) => {
+                          (e.currentTarget as HTMLElement).style.display = 'none';
+                        }}
                         className="w-14 h-14 rounded-lg object-cover border border-slate-300 shrink-0"
                       />
                       <div>
+
                         <span className="text-xs font-bold text-slate-900 flex items-center gap-1">
                           <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
                           {photoSource === 'LIVE_CAMERA' ? 'Live Camera Capture' : 'Device Photo Upload'}

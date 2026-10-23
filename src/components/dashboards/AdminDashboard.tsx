@@ -53,6 +53,8 @@ import type {
 import { AdminChangeCredentialsModal } from '../AdminChangeCredentialsModal.tsx';
 import { EditRecordModal } from '../modals/EditRecordModal.tsx';
 import { DeleteConfirmModal, DeleteRecordType } from '../modals/DeleteConfirmModal.tsx';
+import { CandidateAvatar } from '../CandidateAvatar.tsx';
+
 
 interface AdminDashboardProps {
   candidates?: Candidate[];
@@ -972,17 +974,16 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                         {/* Candidate Name & Contact */}
                         <td className="p-4">
                           <div className="flex items-center gap-3">
-                            {cand.livePhoto ? (
-                              <img
-                                src={cand.livePhoto}
-                                alt={cand.fullName}
-                                className="w-10 h-10 rounded-xl object-cover border border-slate-700 shrink-0"
-                              />
-                            ) : (
-                              <div className="w-10 h-10 rounded-xl bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-400 font-bold shrink-0">
-                                {cand.fullName?.charAt(0) || 'C'}
-                              </div>
-                            )}
+                            <CandidateAvatar
+                              candidate={cand}
+                              name={cand.fullName}
+                              sizeClassName="w-10 h-10"
+                              roundedClassName="rounded-xl"
+                              borderClassName="border border-slate-700"
+                              fallbackBgClassName="bg-slate-800"
+                              fallbackTextClassName="text-slate-300"
+                            />
+
                             <div>
                               <h4 className="font-bold text-white text-xs flex items-center gap-1.5">
                                 {cand.fullName}

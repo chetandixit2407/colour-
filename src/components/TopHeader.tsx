@@ -152,7 +152,7 @@ export const TopHeader: React.FC<TopHeaderProps> = ({
             className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold border transition cursor-pointer select-none ${
               settings.voiceAlerts
                 ? 'bg-[#F5EB78] text-[#121316] border-[#E8DC5F] hover:bg-[#EFE463] shadow-xs'
-                : 'bg-white text-[#6F727A] border-[#E5DFD4] hover:bg-[#FAF8F5] hover:text-[#121316]'
+                : 'bg-white text-[#383B42] border-[#E5DFD4] hover:bg-[#FAF8F5] hover:text-[#121316]'
             }`}
             title={
               settings.voiceAlerts
@@ -168,12 +168,13 @@ export const TopHeader: React.FC<TopHeaderProps> = ({
               </>
             ) : (
               <>
-                <VolumeX className="w-3.5 h-3.5 text-[#6F727A]" />
+                <VolumeX className="w-3.5 h-3.5 text-[#383B42]" />
                 <span className="hidden sm:inline font-medium">Voice: Muted</span>
                 <span className="sm:hidden font-medium">Muted</span>
               </>
             )}
           </button>
+
 
           {/* Quick Intake Button */}
           {currentRole !== 'PANTRY' && (

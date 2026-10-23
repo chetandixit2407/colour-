@@ -40,6 +40,8 @@ import { ResumeDocumentModal } from './ResumeDocumentModal.tsx';
 import { ReceptionPhotoModal } from './ReceptionPhotoModal.tsx';
 import { VisitorArrivalTimeline } from './VisitorArrivalTimeline.tsx';
 import { authenticatedFetch } from '../utils/apiClient.ts';
+import { CandidateAvatar } from './CandidateAvatar.tsx';
+
 
 type DossierSection =
   | 'Identity'
@@ -343,17 +345,16 @@ export const CandidateDossierModal: React.FC<CandidateDossierModalProps> = ({
             {/* Live photo or fallback avatar */}
             <div className="flex flex-col items-center shrink-0">
               <div className="relative group">
-                {candidate?.receptionPhotoUrl || candidate?.photoUrl || candidate?.livePhoto || candidate?.arrivalPhoto ? (
-                  <img
-                    src={candidate.receptionPhotoUrl || candidate.photoUrl || candidate.livePhoto || candidate.arrivalPhoto}
-                    alt={candidate?.fullName}
-                    className="w-12 h-12 sm:w-16 sm:h-16 rounded-2xl object-cover border-2 border-[#121316] shadow-sm shrink-0"
-                  />
-                ) : (
-                  <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-2xl bg-[#F5EB78] text-[#121316] border border-[#121316]/20 flex items-center justify-center font-bold text-base sm:text-lg shrink-0">
-                    {(candidate?.fullName || 'WCR').slice(0, 2).toUpperCase()}
-                  </div>
-                )}
+                <CandidateAvatar
+                  candidate={candidate}
+                  name={candidate?.fullName}
+                  sizeClassName="w-12 h-12 sm:w-16 sm:h-16"
+                  roundedClassName="rounded-2xl"
+                  borderClassName="border-2 border-[#121316]"
+                  fallbackBgClassName="bg-[#F5EB78]"
+                  fallbackTextClassName="text-[#121316]"
+                />
+
                 {(candidate?.receptionPhotoUrl || candidate?.arrivalPhoto) && (
                   <span
                     className="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-emerald-500 text-white flex items-center justify-center ring-2 ring-white shadow-xs"
@@ -604,23 +605,29 @@ export const CandidateDossierModal: React.FC<CandidateDossierModalProps> = ({
               <div className="p-4 sm:p-5 bg-[#FAF7F0] rounded-2xl border border-[#E5DFD4] space-y-4">
                 <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                   <div className="flex items-center gap-4">
-                    {candidate?.receptionPhotoUrl || candidate?.photoUrl || candidate?.livePhoto || candidate?.arrivalPhoto ? (
-                      <div className="relative shrink-0">
-                        <img
-                          src={candidate.receptionPhotoUrl || candidate.photoUrl || candidate.livePhoto || candidate.arrivalPhoto}
-                          alt={`${candidate?.fullName} Desk Photo`}
-                          className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl object-cover border-2 border-[#121316] shadow-md"
-                        />
+                    <div className="relative shrink-0">
+                      <CandidateAvatar
+                        candidate={candidate}
+                        name={candidate?.fullName}
+                        sizeClassName="w-20 h-20 sm:w-24 sm:h-24"
+                        roundedClassName="rounded-2xl"
+                        borderClassName="border-2 border-[#121316]"
+                        fallbackBgClassName="bg-[#F5EB78]/40"
+                        fallbackTextClassName="text-[#121316]"
+                        icon={
+                          <div className="flex flex-col items-center justify-center gap-1">
+                            <Camera className="w-7 h-7 text-[#121316]" />
+                            <span className="text-[10px] font-bold">No Photo</span>
+                          </div>
+                        }
+                      />
+                      {(candidate?.receptionPhotoUrl || candidate?.arrivalPhoto) && (
                         <span className="absolute -bottom-1.5 -right-1.5 bg-emerald-500 text-white p-1 rounded-full ring-2 ring-white shadow-xs">
                           <Check className="w-3 h-3 stroke-[3]" />
                         </span>
-                      </div>
-                    ) : (
-                      <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-[#F5EB78]/40 border border-[#E5DFD4] text-[#121316] flex flex-col items-center justify-center gap-1 shrink-0">
-                        <Camera className="w-7 h-7 text-[#121316]" />
-                        <span className="text-[10px] font-bold">No Photo</span>
-                      </div>
-                    )}
+                      )}
+                    </div>
+
 
                     <div className="space-y-1">
                       <div className="flex items-center gap-2 flex-wrap">

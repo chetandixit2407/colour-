@@ -31,6 +31,8 @@ import { authenticatedFetch, safeJson } from '../utils/apiClient.ts';
 import { formatPhotoTimestamp } from '../utils/dateFormatter.ts';
 import { EditRecordModal } from './modals/EditRecordModal.tsx';
 import { DeleteConfirmModal, DeleteRecordType } from './modals/DeleteConfirmModal.tsx';
+import { CandidateAvatar } from './CandidateAvatar.tsx';
+
 
 export type HRProfileKey = 'nisha' | 'shriyanshi';
 
@@ -411,18 +413,17 @@ export const HRSubProfileView: React.FC<HRSubProfileViewProps> = ({
                 >
                   <div className="flex items-start justify-between gap-3">
                     <div className="flex items-center gap-3">
-                      <div className="flex flex-col items-center shrink-0">
-                        {cand.receptionPhotoUrl || cand.photoUrl || cand.livePhoto || cand.arrivalPhoto ? (
-                          <img
-                            src={cand.receptionPhotoUrl || cand.photoUrl || cand.livePhoto || cand.arrivalPhoto}
-                            alt={cand.fullName}
-                            className="w-12 h-12 rounded-xl object-cover border-2 border-amber-500 shadow-md shrink-0"
+                        <div className="flex flex-col items-center shrink-0">
+                          <CandidateAvatar
+                            candidate={cand}
+                            name={cand.fullName}
+                            sizeClassName="w-12 h-12"
+                            roundedClassName="rounded-xl"
+                            borderClassName="border-2 border-[#121316]"
+                            fallbackBgClassName="bg-[#FAF8F5]"
+                            fallbackTextClassName="text-[#121316]"
                           />
-                        ) : (
-                          <div className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0 font-bold bg-[#25272B] border border-white/10 text-white">
-                            {cand.fullName.slice(0, 2).toUpperCase()}
-                          </div>
-                        )}
+
                         {(cand.receptionPhotoCapturedAt || cand.arrivalPhotoCapturedAt || cand.livePhotoCapturedAt) && (
                           <span
                             className="text-[9px] text-amber-300 font-mono tracking-tight mt-1 text-center truncate max-w-[80px]"

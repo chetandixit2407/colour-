@@ -25,6 +25,8 @@ import { useSettings } from '../context/SettingsContext.tsx';
 import { formatPhotoTimestamp } from '../utils/dateFormatter.ts';
 import { EditRecordModal } from './modals/EditRecordModal.tsx';
 import { DeleteConfirmModal, DeleteRecordType } from './modals/DeleteConfirmModal.tsx';
+import { CandidateAvatar } from './CandidateAvatar.tsx';
+
 
 interface SecondaryOperationsMoreViewProps {
   candidates: Candidate[];
@@ -230,17 +232,16 @@ export const SecondaryOperationsMoreView: React.FC<SecondaryOperationsMoreViewPr
                     <div className="flex items-start justify-between gap-3">
                       <div className="flex items-center gap-3">
                         <div className="flex flex-col items-center shrink-0">
-                          {cand.receptionPhotoUrl || cand.photoUrl || cand.livePhoto || cand.arrivalPhoto ? (
-                            <img
-                              src={cand.receptionPhotoUrl || cand.photoUrl || cand.livePhoto || cand.arrivalPhoto}
-                              alt={cand.fullName}
-                              className="w-12 h-12 rounded-xl object-cover border-2 border-[#D8BF85] shadow-sm shrink-0"
-                            />
-                          ) : (
-                            <div className="candidate-avatar w-12 h-12 rounded-xl flex items-center justify-center shrink-0 font-bold bg-white/80 border border-black/10 text-[#111111]">
-                              {cand.fullName.slice(0, 2).toUpperCase()}
-                            </div>
-                          )}
+                          <CandidateAvatar
+                            candidate={cand}
+                            name={cand.fullName}
+                            sizeClassName="w-12 h-12"
+                            roundedClassName="rounded-xl"
+                            borderClassName="border-2 border-[#121316]"
+                            fallbackBgClassName="bg-[#FAF8F5]"
+                            fallbackTextClassName="text-[#121316]"
+                          />
+
                           {(cand.receptionPhotoCapturedAt || cand.arrivalPhotoCapturedAt || cand.livePhotoCapturedAt) && (
                             <span
                               className="text-[9px] text-[#9E8243] font-mono font-medium tracking-tight mt-1 text-center truncate max-w-[85px]"

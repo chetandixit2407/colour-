@@ -91,3 +91,42 @@ export function formatCandidateExperience(experience?: string | null): string {
 export function formatExperienceBadge(experience?: string | null): string {
   return formatCandidateExperience(experience);
 }
+
+/**
+ * Validates candidate photo strings, filtering out corrupted base64, truncated previews,
+ * or 1x1 blank placeholders so the UI never displays broken image icons.
+ */
+export function getValidCandidatePhoto(cand?: any | null): string | null {
+  if (!cand) return null;
+  const photo = cand.receptionPhotoUrl || cand.photoUrl || cand.livePhoto || cand.arrivalPhoto;
+  if (!photo || typeof photo !== 'string') return null;
+  const trimmed = photo.trim();
+  if (!trimmed) return null;
+
+  // Filter out corrupted strings with trailing ellipsis or broken JPEG headers
+  if (
+    trimmed.endsWith('...') ||
+    trimmed === 'data:image/jpeg;base64,/9j/4AAQSkZJRg==' ||
+    trimmed === 'data:image/jpeg;base64,/9j/4AAQSkZJRg...'
+  ) {
+    return null;
+  }
+
+  // Filter out the 1x1 transparent/white placeholder
+  if (
+    trimmed ===
+    'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAP//////////////////////////////////////////////////////////////////////////////////////wgALCAABAAEBAREA/8QAFBABAAAAAAAAAAAAAAAAAAAAAP/aAAgBAQABPxA='
+  ) {
+    return null;
+  }
+
+  // If it's a data URL, verify it has enough content to be an actual rendered photo
+  if (trimmed.startsWith('data:image/')) {
+    if (trimmed.length < 250) {
+      return null;
+    }
+  }
+
+  return trimmed;
+}
+

@@ -534,10 +534,16 @@ export const SidebarNav: React.FC<SidebarNavProps> = ({
           {/* User Profile Block */}
           {currentUser && (
             <div className="flex items-center justify-between p-2.5 rounded-xl bg-white border border-[#E5DFD4] shadow-xs">
-              <div className="min-w-0 pr-2">
-                <p className="text-xs font-bold text-[#121316] truncate">{currentUser.name}</p>
-                <p className="text-[10px] text-[#6F727A] font-mono truncate">{currentUser.role}</p>
+              <div className="flex items-center gap-2.5 min-w-0 pr-2">
+                <div className="w-8 h-8 rounded-lg bg-[#F5EB78] text-[#121316] font-bold text-xs flex items-center justify-center shrink-0 border border-[#E8DC5F] shadow-xs">
+                  {currentUser.name.slice(0, 2).toUpperCase()}
+                </div>
+                <div className="min-w-0">
+                  <p className="text-xs font-bold text-[#121316] truncate">{currentUser.name}</p>
+                  <p className="text-[10px] text-[#383B42] font-mono truncate">{currentUser.role}</p>
+                </div>
               </div>
+
 
               {onLogout && (
                 <button

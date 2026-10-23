@@ -58,12 +58,34 @@
 @layer base {
   *, ::before, ::after {
     box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
   }
 
-  html, body {
+  html {
     max-width: 100vw;
     width: 100%;
     overflow-x: hidden;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    font-synthesis: none;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  body {
+    max-width: 100vw;
+    width: 100%;
+    overflow-x: hidden;
+    font-family: var(--font-sans);
+    background-color: var(--crextio-bg-canvas);
+    color: var(--crextio-charcoal);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
   }
 
   :root {
@@ -79,18 +101,11 @@
     --crextio-yellow-hover: #EFE463;
     --crextio-charcoal: #121316;
     --crextio-charcoal-card: #141518;
-    --crextio-muted: #6F727A;
+    --crextio-muted: #383B42; /* Crisp, high-contrast dark slate */
     --crextio-inner-bg: #F8F6F0;
   }
-
-  body {
-    font-family: var(--font-sans);
-    background-color: var(--crextio-bg-canvas);
-    color: var(--crextio-charcoal);
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
 }
+
 
 /* Custom Scrollbar in Warm Cream & Muted Charcoal */
 ::-webkit-scrollbar {
@@ -165,7 +180,6 @@ header,
   transition: transform 220ms cubic-bezier(0.16, 1, 0.3, 1),
               box-shadow 220ms cubic-bezier(0.16, 1, 0.3, 1),
               border-color 220ms cubic-bezier(0.16, 1, 0.3, 1) !important;
-  will-change: transform, box-shadow;
 }
 
 /* Crextio Smooth Lift & Hover Glow */
@@ -191,43 +205,87 @@ header,
 
 /* ========================================================
    CREXTIO TYPOGRAPHY & TEXT SYSTEM
-   - Bold Charcoal Black (#121316) for primary headings & text
-   - Warm Muted Grey (#6F727A) for secondary labels & metadata
-   - High contrast, sharp legibility
+   - High-contrast Charcoal Black (#121316) for headings & primary text
+   - Deep Slate Grey (#383B42) for secondary labels & metadata (10.5:1 contrast)
+   - Deep Bronze Amber (#7E5A0B) for accents on light backgrounds
+   - Crisp Pure White (#FFFFFF) on dark buttons, badges, and pills
    ======================================================== */
 h1, h2, h3, h4, h5, h6,
-p, li, dd, dt,
+p:not(.text-on-dark):not([class*="bg-[#121316]"] *):not([class*="bg-black"] *):not([class*="bg-slate-900"] *):not([class*="bg-emerald-"] *):not([class*="bg-rose-"] *):not([class*="bg-blue-"] *),
+li:not(.text-on-dark):not([class*="bg-[#121316]"] *):not([class*="bg-black"] *):not([class*="bg-slate-900"] *),
+dd, dt,
 label, .label,
 th, td,
-strong, b,
-small,
+strong:not(.text-on-dark):not([class*="bg-[#121316]"] *):not([class*="bg-black"] *):not([class*="bg-slate-900"] *),
+b:not(.text-on-dark):not([class*="bg-[#121316]"] *):not([class*="bg-black"] *):not([class*="bg-slate-900"] *),
+small:not(.text-on-dark):not([class*="bg-[#121316]"] *):not([class*="bg-black"] *):not([class*="bg-slate-900"] *),
 input, textarea, select,
-.font-bold, .font-semibold, .candidate-name, .candidate-role,
-[class*="text-white"]:not(.text-on-dark),
-[class*="text-slate-100"],
-[class*="text-slate-200"],
-[class*="text-slate-300"],
-[class*="text-slate-400"],
-[class*="text-gray-100"],
-[class*="text-gray-200"],
-[class*="text-gray-300"],
-[class*="text-gray-400"],
+.font-bold:not(.text-on-dark):not([class*="bg-[#121316]"] *):not([class*="bg-black"] *):not([class*="bg-slate-900"] *),
+.font-semibold:not(.text-on-dark):not([class*="bg-[#121316]"] *):not([class*="bg-black"] *):not([class*="bg-slate-900"] *),
+.candidate-name, .candidate-role,
 [class*="text-[#E0E0E0]"],
 [class*="text-[#202124]"] {
   color: #121316 !important;
 }
 
-/* Secondary & Muted Typography */
+/* Secondary, Helper & Muted Typography — Upgraded to #383B42 for deep, sharp contrast */
 .text-muted,
 .sublabel,
 .candidate-meta,
-[class*="text-[#5F6368]"],
-[class*="text-[#70757A]"],
-[class*="text-[#8C9199]"],
-[class*="text-slate-500"],
-[class*="text-gray-500"] {
-  color: #6F727A !important;
+[class*="text-[#5F6368]"]:not(.text-on-dark),
+[class*="text-[#70757A]"]:not(.text-on-dark),
+[class*="text-[#8C9199]"]:not(.text-on-dark),
+[class*="text-[#6F727A]"]:not(.text-on-dark),
+[class*="text-[#AEB7C4]"]:not(.text-on-dark),
+[class*="text-[#BDBDBD]"]:not(.text-on-dark),
+[class*="text-slate-400"]:not(.text-on-dark),
+[class*="text-slate-500"]:not(.text-on-dark),
+[class*="text-gray-400"]:not(.text-on-dark),
+[class*="text-gray-500"]:not(.text-on-dark),
+[class*="text-zinc-400"]:not(.text-on-dark) {
+  color: #383B42 !important;
 }
+
+/* High-contrast amber/gold text on light backgrounds */
+[class*="text-amber-300"]:not([class*="bg-"]):not(.text-on-dark),
+[class*="text-amber-400"]:not([class*="bg-"]):not(.text-on-dark),
+[class*="text-amber-500"]:not([class*="bg-"]):not(.text-on-dark),
+[class*="text-[#9E8243]"]:not(.text-on-dark),
+[class*="text-[#D8BF85]"]:not(.text-on-dark),
+[class*="text-[#E5D2A0]"]:not(.text-on-dark) {
+  color: #7E5A0B !important;
+}
+
+/* Crisp White text on dark buttons, active tabs, and dark indicator badges */
+.text-on-dark,
+button.btn-route-kimmi,
+button.btn-route-kimmi *,
+button[class*="bg-[#121316]"],
+button[class*="bg-[#121316]"] *,
+button[class*="bg-slate-900"],
+button[class*="bg-slate-900"] *,
+button[class*="bg-slate-800"],
+button[class*="bg-slate-800"] *,
+button[class*="bg-black"],
+button[class*="bg-black"] *,
+[class*="bg-slate-950"] .text-white,
+[class*="bg-emerald-600"],
+[class*="bg-emerald-600"] *,
+[class*="bg-rose-600"],
+[class*="bg-rose-600"] *,
+[class*="bg-blue-600"],
+[class*="bg-blue-600"] *,
+.wcr-filter-tab.is-active,
+.wcr-filter-tab.is-active *,
+.wcr-filter-tab.active,
+.wcr-filter-tab.active *,
+.card-pill.is-active,
+.card-pill.is-active *,
+.card-pill.active,
+.card-pill.active * {
+  color: #FFFFFF !important;
+}
+
 
 /* Candidate avatar box: crisp warm white with delicate border */
 .candidate-avatar,
@@ -622,7 +680,7 @@ table {
 
 th {
   background: #FAF8F5 !important;
-  color: #6F727A !important;
+  color: #383B42 !important;
   font-weight: 700 !important;
   border-bottom: 1px solid #E5DFD4 !important;
   font-size: 0.72rem;
@@ -656,8 +714,8 @@ tr:hover td {
 .animate-in,
 .modal-animate-enter {
   animation: modal-enter 240ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  will-change: transform, opacity;
 }
+
 
 /* Button & Interactive Element Micro-Feedback */
 button:active:not(:disabled),
