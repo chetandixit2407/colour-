@@ -1867,6 +1867,10 @@ class EventWorkflowEngine {
       if (!room) throw new Error('Room not found');
 
       room.status = 'AVAILABLE';
+      room.currentCandidateId = undefined;
+      room.currentCandidateName = undefined;
+      room.currentInterviewId = undefined;
+      room.assignedInterviewerName = undefined;
       room.lastCleanedAt = timestamp;
       room.lastCleanedBy = stewardName;
       room.updatedAt = timestamp;

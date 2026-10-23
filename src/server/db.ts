@@ -317,6 +317,19 @@ const defaultUsers: User[] = [
 
 const defaultRooms: Room[] = [
   {
+    id: 'room-conf-a',
+    roomId: 'room-conf-a',
+    name: 'Conference Room A',
+    roomName: 'Conference Room A',
+    type: 'MEETING_ROOM',
+    roomType: 'MEETING_ROOM',
+    status: 'AVAILABLE',
+    isActive: true,
+    preferredFor: 'Executive & Technical Interview Panels',
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+  },
+  {
     id: 'room-lalit-cabin',
     roomId: 'room-lalit-cabin',
     name: 'Lalit Sir Cabin',
@@ -669,6 +682,9 @@ class DatabaseService {
             const { floor: _f, capacity: _c, seatingCapacity: _sc, ...cleanRoom } = r;
             return cleanRoom;
           });
+          if (!parsed.rooms.find((r: Room) => r.id === 'room-conf-a')) {
+            parsed.rooms.unshift(defaultRooms[0]);
+          }
         }
 
         const validRoomMap = new Map<string, Room>(parsed.rooms.map((r: Room) => [r.id, r]));

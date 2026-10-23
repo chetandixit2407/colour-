@@ -66,6 +66,7 @@ async function request(
 }
 
 export async function runAllTests() {
+  results.length = 0;
   console.log('====================================================');
   console.log('STARTING WCR/VAKU COMPREHENSIVE END-TO-END QA AUDIT');
   console.log('====================================================');

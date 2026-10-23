@@ -67,12 +67,12 @@
     "feature": "QR Pass Generation",
     "testPerformed": "POST /api/qr/generate with purpose CANDIDATE_INTAKE",
     "status": "PASS",
-    "evidence": "Status 200, token: WCR-APPT-924, dataUrl generated"
+    "evidence": "Status 200, token: WCR-APPT-429, dataUrl generated"
   },
   {
     "category": "Registration & QR",
     "feature": "QR Pass Lookup",
-    "testPerformed": "GET /api/qr/WCR-APPT-924",
+    "testPerformed": "GET /api/qr/WCR-APPT-429",
     "status": "PASS",
     "evidence": "Status 200, token validated, valid: undefined"
   },
@@ -95,26 +95,26 @@
     "feature": "Candidate Self-Registration (/api/register/submit)",
     "testPerformed": "POST /api/register/submit with candidate details",
     "status": "PASS",
-    "evidence": "Status 200, candidate created with ID: cand-1792748735971-3qyp, status: ARRIVED"
+    "evidence": "Status 200, candidate created with ID: cand-1792750818180-n43r, status: ARRIVED"
   },
   {
     "category": "Validation Engine",
     "feature": "Duplicate Phone / Submission Detection",
-    "testPerformed": "POST /api/register/submit with existing phone 9810040701",
+    "testPerformed": "POST /api/register/submit with existing phone 9810054801",
     "status": "PASS",
     "evidence": "Handled duplicate submission (status: 400, flag detected: true)"
   },
   {
     "category": "Intake Documents",
     "feature": "Reception Photo Capture",
-    "testPerformed": "POST /api/candidates/cand-1792748735971-3qyp/reception-photo",
+    "testPerformed": "POST /api/candidates/cand-1792750818180-n43r/reception-photo",
     "status": "PASS",
     "evidence": "Status 200, photo saved and attached to candidate"
   },
   {
     "category": "Intake Documents",
     "feature": "Candidate Photo Retrieval",
-    "testPerformed": "GET /api/candidates/cand-1792748735971-3qyp/photo",
+    "testPerformed": "GET /api/candidates/cand-1792750818180-n43r/photo",
     "status": "PASS",
     "evidence": "Status 200, content-type: image/jpeg"
   },
@@ -123,19 +123,19 @@
     "feature": "Walk-in Visitor Registration",
     "testPerformed": "POST /api/walkin/register with vendor data",
     "status": "PASS",
-    "evidence": "Status 200, registered visitor with ID: vis-1792748736216"
+    "evidence": "Status 200, registered visitor with ID: vis-1792750818410"
   },
   {
     "category": "Visitor Management",
     "feature": "Visitor Checkout",
-    "testPerformed": "POST /api/visitors/checkout for ID vis-1792748736216",
+    "testPerformed": "POST /api/visitors/checkout for ID vis-1792750818410",
     "status": "PASS",
     "evidence": "Status 200, visitor checked out successfully"
   },
   {
     "category": "Interview Lifecycle",
     "feature": "Room Assignment & Interview Scheduling",
-    "testPerformed": "POST /api/rooms/assign candidate cand-1792748735971-3qyp to room room-regency",
+    "testPerformed": "POST /api/rooms/assign candidate cand-1792750818180-n43r to room room-conf-a",
     "status": "PASS",
     "evidence": "Status 200, room assigned, interview created ID: undefined, room status updated"
   },
@@ -144,19 +144,19 @@
     "feature": "List Pantry Tasks",
     "testPerformed": "GET /api/pantry/tasks",
     "status": "PASS",
-    "evidence": "Status 200, fetched 21 tasks"
+    "evidence": "Status 200, fetched 51 tasks"
   },
   {
     "category": "Pantry Operations",
     "feature": "Create Pantry Task",
     "testPerformed": "POST /api/pantry/tasks",
     "status": "PASS",
-    "evidence": "Status 200, created task ID: pantry-task-1792748736649"
+    "evidence": "Status 200, created task ID: pantry-task-1792750818830"
   },
   {
     "category": "Pantry Operations",
     "feature": "Complete Pantry Task",
-    "testPerformed": "POST /api/pantry/tasks/pantry-task-1792748736649/complete",
+    "testPerformed": "POST /api/pantry/tasks/pantry-task-1792750818830/complete",
     "status": "PASS",
     "evidence": "Status 200, task status updated to COMPLETED"
   },
@@ -165,26 +165,26 @@
     "feature": "Send Chat Message",
     "testPerformed": "POST /api/chat/messages",
     "status": "PASS",
-    "evidence": "Status 200, sent message ID: msg-1792748736903-tnt3y"
+    "evidence": "Status 200, sent message ID: msg-1792750819149-re52f"
   },
   {
     "category": "RBAC & Privacy",
     "feature": "HR Candidate Full Access",
-    "testPerformed": "GET /api/candidates/cand-1792748735971-3qyp?role=HR",
+    "testPerformed": "GET /api/candidates/cand-1792750818180-n43r?role=HR",
     "status": "PASS",
     "evidence": "Status 200, expectedSalary: 65000, hrNotes accessible to HR"
   },
   {
     "category": "RBAC & Privacy",
     "feature": "Pantry Field Redaction (Zero Confidential Leakage)",
-    "testPerformed": "GET /api/candidates/cand-1792748735971-3qyp?role=PANTRY",
+    "testPerformed": "GET /api/candidates/cand-1792750818180-n43r?role=PANTRY",
     "status": "PASS",
     "evidence": "Status 200, strictly sanitized; confidential fields are completely omitted"
   },
   {
     "category": "RBAC & Privacy",
     "feature": "Reception Confidential Redaction",
-    "testPerformed": "GET /api/candidates/cand-1792748735971-3qyp?role=RECEPTION",
+    "testPerformed": "GET /api/candidates/cand-1792750818180-n43r?role=RECEPTION",
     "status": "PASS",
     "evidence": "Status 200, salary and internal HR notes stripped for Reception"
   },
@@ -233,7 +233,7 @@
   {
     "category": "Voice & Speech Audio",
     "feature": "Spoken Alert Idempotency (Anti-Repetition)",
-    "testPerformed": "hasAlertBeenSpoken for alert ID qa-voice-1792748737423",
+    "testPerformed": "hasAlertBeenSpoken for alert ID qa-voice-1792750819390",
     "status": "PASS",
     "evidence": "Duplicate alert ID recognized and audio repetition prevented"
   },
@@ -256,6 +256,6 @@
     "feature": "Missed Event Resynchronization (/api/events/resync)",
     "testPerformed": "GET /api/events/resync after connection drop",
     "status": "PASS",
-    "evidence": "Status 200, successfully resynced 9 domain events"
+    "evidence": "Status 200, successfully resynced 27 domain events"
   }
 ]

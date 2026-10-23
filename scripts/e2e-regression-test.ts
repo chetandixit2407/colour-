@@ -64,6 +64,7 @@ async function request(
 }
 
 export async function runComprehensiveE2ETest() {
+  testRecords.length = 0;
   console.log('================================================================');
   console.log('STARTING WCR COMPREHENSIVE END-TO-END AUTOMATION & REGRESSION TEST');
   console.log('================================================================\n');
@@ -466,6 +467,11 @@ export async function runComprehensiveE2ETest() {
   }
 
   // 5.2 Room Assignment
+  // Ensure room-conf-a is clean and available to prevent previous test runs or seed artifacts from blocking allocation
+  await request('POST', '/api/rooms/clean', { roomId: 'room-conf-a', stewardName: 'Pantry QA Runner' }, {
+    Authorization: `Bearer ${tokens['PANTRY'] || tokens['ADMIN']}`,
+  });
+
   const roomAssignRes = await request('POST', '/api/rooms/assign', {
     candidateId: createdCandId,
     roomId: 'room-conf-a',

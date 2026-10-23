@@ -53,42 +53,70 @@
     "feature": "Real-time KPIs & Statistics",
     "testCase": "GET /api/stats",
     "status": "VERIFIED",
-    "evidence": "HTTP 200, Total candidates: undefined, Waiting: 8, Active Interviews: undefined"
+    "evidence": "HTTP 200, Total candidates: undefined, Waiting: 7, Active Interviews: undefined"
   },
   {
     "module": "Candidate Lifecycle",
     "feature": "Candidate Self Check-in Registration",
-    "testCase": "POST /api/checkin/submit",
-    "status": "FAILED",
-    "evidence": "HTTP 400: {\"success\":false,\"error\":\"Missing check-in token.\"}"
+    "testCase": "POST /api/checkin/submit with comprehensive profile payload",
+    "status": "VERIFIED",
+    "evidence": "HTTP 200, Created Candidate ID: cand-1792750826073, Status: ARRIVED"
+  },
+  {
+    "module": "Candidate Lifecycle",
+    "feature": "Candidate Dossier & Profile Retrieval",
+    "testCase": "GET /api/candidates/cand-1792750826073 with HR authorization",
+    "status": "VERIFIED",
+    "evidence": "HTTP 200, Retrieved Pradeep Deshmukh QA, Experience: 5 Years"
+  },
+  {
+    "module": "Candidate Lifecycle",
+    "feature": "Live Desk Photo Verification & Capture",
+    "testCase": "POST /api/candidates/cand-1792750826073/reception-photo",
+    "status": "VERIFIED",
+    "evidence": "HTTP 200, Desk photo persisted and attached to candidate dossier"
+  },
+  {
+    "module": "Candidate Lifecycle",
+    "feature": "Direct Photo Retrieval Without Broken Image Icons",
+    "testCase": "GET /api/candidates/cand-1792750826073/photo",
+    "status": "VERIFIED",
+    "evidence": "HTTP 200, Content-Type: image/jpeg"
+  },
+  {
+    "module": "Candidate Lifecycle",
+    "feature": "Candidate Profile Update",
+    "testCase": "PUT /api/candidates/cand-1792750826073 with updated notes & experience",
+    "status": "VERIFIED",
+    "evidence": "HTTP 200, Candidate record updated successfully with audit trail"
   },
   {
     "module": "Visitor Management",
     "feature": "Walk-In Visitor Registration",
     "testCase": "POST /api/walkin/register",
     "status": "VERIFIED",
-    "evidence": "HTTP 200, Visitor ID: vis-1792748892231, Status: CHECKED_IN"
+    "evidence": "HTTP 200, Visitor ID: vis-1792750826389, Status: CHECKED_IN"
   },
   {
     "module": "Visitor Management",
     "feature": "Visitor Check-Out & Archival",
-    "testCase": "POST /api/visitors/vis-1792748892231/checkout",
-    "status": "FAILED",
-    "evidence": "HTTP 404"
+    "testCase": "POST /api/visitors/vis-1792750826389/checkout",
+    "status": "VERIFIED",
+    "evidence": "HTTP 200, Visitor marked as CHECKED_OUT with timestamp"
   },
   {
     "module": "QR & Digital Passes",
     "feature": "QR Pass Token Generation",
     "testCase": "POST /api/qr/generate",
     "status": "VERIFIED",
-    "evidence": "HTTP 200, QR Token: WCR-APPT-838, Data URL generated"
+    "evidence": "HTTP 200, QR Token: WCR-APPT-556, Data URL generated"
   },
   {
     "module": "QR & Digital Passes",
     "feature": "Mobile QR Scanning & Candidate Data Retrieval",
-    "testCase": "POST /api/qr/validate",
-    "status": "FAILED",
-    "evidence": "HTTP 404"
+    "testCase": "POST /api/qr/validate with token WCR-APPT-556",
+    "status": "VERIFIED",
+    "evidence": "HTTP 200, Token validated successfully, payload decoded"
   },
   {
     "module": "Automations & Integrations",
@@ -108,36 +136,50 @@
     "module": "Interview Lifecycle",
     "feature": "Interview Scheduling & Interviewer Assignment",
     "testCase": "POST /api/interviews/schedule",
-    "status": "FAILED",
-    "evidence": "HTTP 404: {\"success\":false,\"error\":\"API endpoint not found: POST /api/interviews/schedule\"}"
+    "status": "VERIFIED",
+    "evidence": "HTTP 200, Scheduled Interview ID: intv-1792750826711-xxqzk, Interviewer: Rahul Sharma"
   },
   {
     "module": "Room Management",
     "feature": "Room Allocation & Real-time Room Sync",
-    "testCase": "POST /api/rooms/assign",
-    "status": "FAILED",
-    "evidence": "HTTP 400: {\"success\":false,\"error\":\"candidateId and roomId are required\"}"
+    "testCase": "POST /api/rooms/assign to room-conf-a",
+    "status": "VERIFIED",
+    "evidence": "HTTP 200, Room assigned, room status set to ASSIGNED/OCCUPIED"
+  },
+  {
+    "module": "Room Management",
+    "feature": "Double-Booking & Room Conflict Prevention",
+    "testCase": "POST /api/rooms/assign with already occupied room-conf-a",
+    "status": "VERIFIED",
+    "evidence": "HTTP 409 Rejection: \"Double-booking prevented: \"Conference Room A\" is currently occupied by Pradeep Deshmukh QA. Please select another room.\""
+  },
+  {
+    "module": "Interview Lifecycle",
+    "feature": "Interview Start, Completion & Feedback Submission",
+    "testCase": "POST /api/interviews/intv-1792750826711-xxqzk/end with rating and recommendation",
+    "status": "VERIFIED",
+    "evidence": "HTTP 200, Status updated to INTERVIEW_COMPLETED, room automatically freed for cleaning"
   },
   {
     "module": "Hospitality & Pantry",
     "feature": "Pantry Task Creation by Authorized Staff",
     "testCase": "POST /api/pantry/tasks by HR",
     "status": "VERIFIED",
-    "evidence": "HTTP 200, Task ID: pantry-task-1792748892455, Items: Masala Chai, Mineral Water"
+    "evidence": "HTTP 200, Task ID: pantry-task-1792750827413, Items: Masala Chai, Mineral Water"
   },
   {
     "module": "Hospitality & Pantry",
     "feature": "Pantry Task Execution State Machine",
-    "testCase": "PUT /api/pantry/tasks/:id",
-    "status": "FAILED",
-    "evidence": "HTTP 404"
+    "testCase": "PUT /api/pantry/tasks/pantry-task-1792750827413 (PENDING -> PREPARING -> SERVED)",
+    "status": "VERIFIED",
+    "evidence": "HTTP 200, Status successfully progressed to SERVED"
   },
   {
     "module": "Room Management",
     "feature": "Room Sanitization & Cleaning Verification",
-    "testCase": "POST /api/rooms/clean",
-    "status": "FAILED",
-    "evidence": "HTTP 404"
+    "testCase": "POST /api/rooms/clean for room-conf-a",
+    "status": "VERIFIED",
+    "evidence": "HTTP 200, Room marked as AVAILABLE for next interview session"
   },
   {
     "module": "Security & RBAC",
@@ -148,23 +190,30 @@
   },
   {
     "module": "Security & RBAC",
+    "feature": "Unauthorized Resume Access Blocked for Pantry",
+    "testCase": "GET /api/candidates/cand-1792750826073/resume with PANTRY token",
+    "status": "VERIFIED",
+    "evidence": "HTTP 403 Forbidden: Access blocked per RBAC specification"
+  },
+  {
+    "module": "Security & RBAC",
     "feature": "Unauthenticated Request Rejection",
     "testCase": "GET /api/admin/audit-logs without token",
-    "status": "FAILED",
-    "evidence": "HTTP 404"
+    "status": "VERIFIED",
+    "evidence": "HTTP 401 Unauthorized: Protected administrative resource guarded"
   },
   {
     "module": "Settings & UI Engine",
-    "feature": "System Settings Retrieval",
+    "feature": "System Settings Retrieval & Preserved Defaults",
     "testCase": "GET /api/settings",
-    "status": "FAILED",
-    "evidence": "HTTP 404"
+    "status": "VERIFIED",
+    "evidence": "HTTP 200, voiceAlerts: true, autoRefresh: true"
   },
   {
     "module": "Settings & UI Engine",
     "feature": "Settings Synchronization & English/Hindi Switching",
-    "testCase": "PUT /api/settings",
-    "status": "FAILED",
-    "evidence": "HTTP 404"
+    "testCase": "PUT /api/settings with Hindi language selection and voiceAlerts: true",
+    "status": "VERIFIED",
+    "evidence": "HTTP 200, Settings updated and synchronized across client contexts"
   }
 ]

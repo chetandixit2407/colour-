@@ -12,7 +12,7 @@
  */
 
 export const VERIFIED_PUBLIC_FALLBACK_ORIGIN =
-  'https://ais-dev-h6vhp3o7l73hhpmpjtjpol-912480930497.asia-southeast1.run.app';
+  'https://ais-dev-6mdinrfffnl6s6f3cdj7hb-86309533096.asia-southeast1.run.app';
 
 export const INTENDED_PRODUCTION_DOMAIN = 'https://ops.whitecollarrealty.com';
 

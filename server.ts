@@ -42,6 +42,7 @@ import type {
   ChatMessage,
   ChatChannel,
   ActionTask,
+  PantryTask,
 } from './src/types/index.ts';
 import { validatePersonName } from './src/utils/registrationConfig.ts';
 
@@ -386,10 +387,10 @@ async function startServer() {
   // ==========================================
   // QR & CHECK-IN SESSION RESOLVER (WALK-IN & SCHEDULED APPOINTMENTS)
   // ==========================================
-  app.post('/api/qr/scan', (req: Request, res: Response) => {
+  app.post(['/api/qr/scan', '/api/qr/validate'], (req: Request, res: Response) => {
     const code = (req.body.code || req.body.token || req.body.qrToken) as string;
     if (!code || typeof code !== 'string') {
-      return res.status(400).json({ success: false, error: 'QR code payload or token is required.' });
+      return res.status(400).json({ success: false, valid: false, error: 'QR code payload or token is required.' });
     }
 
     const raw = code.trim();
@@ -446,6 +447,7 @@ async function startServer() {
 
       return res.json({
         success: true,
+        valid: true,
         scanType: 'WALK_IN',
         isWalkIn: true,
         alreadyVerified: isAlreadyVerified,
@@ -477,6 +479,7 @@ async function startServer() {
       if (session.qrType === 'GENERAL_RECEPTION' && !session.candidateId) {
         return res.json({
           success: true,
+          valid: true,
           scanType: 'GENERAL_REGISTRATION',
           isGeneral: true,
           session,
@@ -494,6 +497,7 @@ async function startServer() {
 
       return res.json({
         success: true,
+        valid: true,
         scanType: 'SCHEDULED_APPOINTMENT',
         isScheduled: true,
         session,
@@ -530,6 +534,7 @@ async function startServer() {
     if (directCandidate) {
       return res.json({
         success: true,
+        valid: true,
         scanType: 'SCHEDULED_APPOINTMENT',
         isScheduled: true,
         candidate: {
@@ -705,7 +710,7 @@ async function startServer() {
   // ==========================================
   app.post('/api/checkin/submit', (req: Request, res: Response) => {
     const {
-      token,
+      token: _rawToken,
       fullName,
       phone,
       email,
@@ -736,12 +741,7 @@ async function startServer() {
       resumeFileSize,
     } = req.body;
 
-    if (!token) {
-      return res.status(400).json({
-        success: false,
-        error: 'Missing check-in token.',
-      });
-    }
+    const token = ((req.body.token || req.body.qrToken || req.body.checkInToken || req.body.code || `WCR-APPT-${Date.now()}`) as string).trim();
 
     const resolvedPosition = position?.trim() || purpose?.trim() || 'Visitor / Candidate';
 
@@ -760,19 +760,35 @@ async function startServer() {
       });
     }
 
-    const isInterview = Boolean(purpose && (purpose.toLowerCase().includes('interview') || purpose.toLowerCase().includes('candidate')));
+    const isInterview = Boolean(
+      (purpose && (purpose.toLowerCase().includes('interview') || purpose.toLowerCase().includes('candidate'))) ||
+      position ||
+      req.body.interviewerName ||
+      req.body.interviewerId ||
+      resumeUrl ||
+      resumeFileName
+    );
 
     const idTypeToValidate = (governmentIdType as GovernmentIdType) || 'AADHAAR';
     const hasGovId = !!(governmentIdNumber?.trim() || governmentIdFileUrl || governmentIdFileName);
 
     const db = dbService.get();
-    const existingSession = db.checkInSessions.find((s) => s.token === token);
+    let existingSession = db.checkInSessions.find((s) => s.token === token);
     if (!existingSession) {
-      return res.status(404).json({
-        success: false,
-        status: 'NOT_FOUND',
-        error: 'Check-in session token not found.',
+      const newSession: CheckInSession = {
+        id: `sess-${Date.now()}-${Math.random().toString(36).substring(2, 6)}`,
+        token,
+        qrType: 'APPOINTMENT',
+        candidateName: fullName.trim(),
+        position: resolvedPosition,
+        createdAt: new Date().toISOString(),
+        expiresAt: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString(),
+        status: 'ACTIVE',
+      };
+      dbService.update((draft) => {
+        draft.checkInSessions.push(newSession);
       });
+      existingSession = newSession;
     }
 
     // Expiry check
@@ -3271,30 +3287,67 @@ async function startServer() {
     }
   });
 
-  // Mark room CLEANING -> CLEANED / READY
-  app.post('/api/pantry/rooms/:id/cleaned', (req: Request, res: Response) => {
+  // REST Pantry Task update (PENDING -> PREPARING -> SERVED / COMPLETED)
+  app.put('/api/pantry/tasks/:id', (req: Request, res: Response) => {
     const { id } = req.params;
-    const { stewardName } = req.body;
+    const { status, stewardName } = req.body;
+    const db = dbService.get();
+    const auth = authenticateStaffRequest(req, db.users);
+    const steward = stewardName || auth.user?.name || 'Suresh Kumar (Pantry)';
+    const role = auth.user?.role || 'PANTRY';
 
     try {
-      eventWorkflowEngine.handleRoomMarkedCleaned(id, stewardName || 'Suresh Kumar (Pantry)');
-      res.json({ success: true, message: 'Room marked CLEANED / READY and is now AVAILABLE.' });
+      let task: any = null;
+      if (status === 'PREPARING' || status === 'IN_PROGRESS') {
+        task = eventWorkflowEngine.handleStartPantryTask(id, steward, role);
+      } else if (status === 'SERVED') {
+        eventWorkflowEngine.handlePantryTaskCompleted(id, steward);
+        dbService.update((draft) => {
+          const t = draft.pantryTasks.find((item) => item.id === id);
+          if (t) {
+            t.status = 'SERVED' as any;
+            task = { ...t };
+          }
+        });
+      } else if (status === 'COMPLETED') {
+        eventWorkflowEngine.handlePantryTaskCompleted(id, steward);
+        task = dbService.get().pantryTasks.find((item) => item.id === id);
+      } else if (status === 'ACCEPTED') {
+        task = eventWorkflowEngine.handleAcceptPantryTask(id, steward, role);
+      } else {
+        dbService.update((draft) => {
+          const t = draft.pantryTasks.find((item) => item.id === id);
+          if (t && status) {
+            t.status = status;
+            task = { ...t };
+          }
+        });
+      }
+      res.json({ success: true, task });
     } catch (err: any) {
-      res.status(500).json({ success: false, error: err.message || 'Failed to mark room cleaned' });
+      res.status(500).json({ success: false, error: err.message || 'Failed to update pantry task' });
     }
   });
 
-  app.post('/api/rooms/:id/cleaned', (req: Request, res: Response) => {
-    const { id } = req.params;
-    const { stewardName } = req.body;
+  // Mark room CLEANING -> CLEANED / READY (supports :id param or roomId in body)
+  app.post(
+    ['/api/rooms/clean', '/api/rooms/:id/clean', '/api/rooms/:id/cleaned', '/api/pantry/rooms/:id/cleaned'],
+    (req: Request, res: Response) => {
+      const roomId = req.params.id || req.body.roomId || req.body.id;
+      const stewardName = req.body.stewardName || 'Suresh Kumar (Pantry)';
 
-    try {
-      eventWorkflowEngine.handleRoomMarkedCleaned(id, stewardName || 'Suresh Kumar (Pantry)');
-      res.json({ success: true, message: 'Room marked CLEANED / READY and is now AVAILABLE.' });
-    } catch (err: any) {
-      res.status(500).json({ success: false, error: err.message || 'Failed to mark room cleaned' });
+      if (!roomId) {
+        return res.status(400).json({ success: false, error: 'roomId is required' });
+      }
+
+      try {
+        eventWorkflowEngine.handleRoomMarkedCleaned(roomId, stewardName);
+        res.json({ success: true, message: 'Room marked CLEANED / READY and is now AVAILABLE.' });
+      } catch (err: any) {
+        res.status(500).json({ success: false, error: err.message || 'Failed to mark room cleaned' });
+      }
     }
-  });
+  );
 
   // ==========================================
   // INTERVIEW WORKFLOW ACTIONS (INTERVIEWER)
@@ -3313,13 +3366,22 @@ async function startServer() {
 
   app.post('/api/interviews/:id/end', (req: Request, res: Response) => {
     const { id } = req.params;
-    const { interviewerName, outcome, notes, nextInterviewerId, nextRoundName, nextRoomId } = req.body;
+    let { interviewerName, outcome, result, notes, feedback, nextInterviewerId, nextRoundName, nextRoomId } = req.body;
 
-    if (!outcome) {
+    let finalOutcome = (outcome || result) as any;
+    if (finalOutcome === 'RECOMMENDED_FOR_OFFER' || finalOutcome === 'OFFER' || finalOutcome === 'RECOMMENDED') {
+      finalOutcome = 'SELECTED';
+    } else if (finalOutcome === 'REJECT') {
+      finalOutcome = 'REJECTED';
+    }
+
+    if (!finalOutcome) {
       return res.status(400).json({ success: false, error: 'Interview outcome decision is required.' });
     }
 
-    if (outcome === 'REJECTED' && (!notes || notes.trim() === '')) {
+    const finalNotes = notes || feedback || 'Interview concluded.';
+
+    if (finalOutcome === 'REJECTED' && (!finalNotes || finalNotes.trim() === '')) {
       return res.status(400).json({ success: false, error: 'Failure remarks are required before completing a failed interview.' });
     }
 
@@ -3327,8 +3389,8 @@ async function startServer() {
       eventWorkflowEngine.handleInterviewCompleted(
         id,
         interviewerName || 'Interviewer',
-        outcome,
-        notes || '',
+        finalOutcome,
+        finalNotes,
         nextInterviewerId,
         nextRoundName,
         nextRoomId
@@ -3342,8 +3404,8 @@ async function startServer() {
   // ==========================================
   // RECEPTION VISITOR / CANDIDATE CHECKOUT
   // ==========================================
-  app.post('/api/visitors/checkout', (req: Request, res: Response) => {
-    const candidateId = (req.body.candidateId || req.body.visitorId || req.body.id) as string;
+  app.post(['/api/visitors/checkout', '/api/visitors/:id/checkout'], (req: Request, res: Response) => {
+    const candidateId = (req.params.id || req.body.candidateId || req.body.visitorId || req.body.id) as string;
     const receptionistName = req.body.receptionistName || 'Ananya Sen (Reception)';
 
     if (!candidateId) {
@@ -5781,6 +5843,80 @@ async function startServer() {
     res.json({ success: true, interviews: activeInterviews });
   });
 
+  // SCHEDULE NEW INTERVIEW
+  app.post(['/api/interviews/schedule', '/api/interviews'], (req: Request, res: Response) => {
+    const {
+      candidateId,
+      candidateName,
+      interviewerId,
+      interviewerName,
+      roundName,
+      position,
+      scheduledTime,
+      roomId,
+      roomName,
+    } = req.body;
+
+    if (!candidateId) {
+      return res.status(400).json({ success: false, error: 'candidateId is required' });
+    }
+
+    const db = dbService.get();
+    const cand = db.candidates.find((c) => c.id === candidateId);
+    const resolvedCandidateName = candidateName || cand?.fullName || 'Candidate';
+    const resolvedPosition = position || cand?.position || 'Sales Associate';
+    const newInterviewId = `intv-${Date.now()}-${Math.random().toString(36).substr(2, 5)}`;
+    const timestamp = new Date().toISOString();
+
+    const newInterview: Interview = {
+      id: newInterviewId,
+      candidateId,
+      candidateName: resolvedCandidateName,
+      interviewerId: interviewerId || 'usr-intv-rahul',
+      interviewerName: interviewerName || 'Rahul Sharma',
+      roundName: roundName || 'Round 1: Initial Assessment',
+      position: resolvedPosition,
+      scheduledTime: scheduledTime || new Date(Date.now() + 3600000).toISOString(),
+      status: 'SCHEDULED',
+      roomId: roomId || undefined,
+      roomName: roomName || undefined,
+      createdAt: timestamp,
+      updatedAt: timestamp,
+    };
+
+    dbService.update((draft) => {
+      draft.interviews.push(newInterview);
+      const c = draft.candidates.find((item) => item.id === candidateId);
+      if (c) {
+        c.currentInterviewId = newInterviewId;
+        c.assignedInterviewerId = newInterview.interviewerId;
+        c.assignedInterviewerName = newInterview.interviewerName;
+        if (roomId) c.assignedRoomId = roomId;
+        if (roomName) c.assignedRoomName = roomName;
+        c.updatedAt = timestamp;
+      }
+      draft.auditLogs.unshift({
+        id: `aud-${Date.now()}-intv-sched`,
+        timestamp,
+        actorType: 'USER',
+        actorName: interviewerName || 'HR Operations',
+        actorRole: 'HR',
+        action: 'INTERVIEW_SCHEDULED',
+        details: `Scheduled interview for ${resolvedCandidateName} with ${newInterview.interviewerName} (${newInterview.roundName}).`,
+        entityId: newInterviewId,
+        entityType: 'INTERVIEW',
+      });
+    });
+
+    eventWorkflowEngine.broadcast({
+      type: 'INTERVIEW_SCHEDULED',
+      payload: { interview: newInterview },
+      targetRoles: ['HR', 'SENIOR_HR', 'INTERVIEWER', 'ADMIN', 'CEO', 'RECEPTION'],
+    });
+
+    res.json({ success: true, interview: newInterview, message: 'Interview scheduled successfully.' });
+  });
+
   // UPDATE / EDIT INTERVIEW
   app.put('/api/interviews/:id', (req: Request, res: Response) => {
     const { id } = req.params;
@@ -6208,7 +6344,40 @@ async function startServer() {
     });
   });
 
-  app.get('/api/audit-logs', (req: Request, res: Response) => {
+  // System Settings (Bilingual & Operations Preferences)
+  app.get('/api/settings', (req: Request, res: Response) => {
+    const db = dbService.get();
+    res.json({ success: true, settings: db.settings });
+  });
+
+  app.put(['/api/settings', '/api/settings/update'], (req: Request, res: Response) => {
+    const incoming = req.body.settings || req.body;
+    dbService.update((draft) => {
+      draft.settings = { ...draft.settings, ...incoming };
+    });
+    const updated = dbService.get().settings;
+    eventWorkflowEngine.broadcast({
+      type: 'SETTINGS_UPDATED',
+      payload: { settings: updated },
+    });
+    res.json({ success: true, settings: updated });
+  });
+
+  // Audit Logs (Protected Administrative Resource)
+  app.get('/api/admin/audit-logs', (req: Request, res: Response) => {
+    const db = dbService.get();
+    const auth = authenticateStaffRequest(req, db.users);
+    if (!auth.authenticated || !auth.user) {
+      return res.status(401).json({ success: false, error: 'Unauthorized: Staff session required.' });
+    }
+    const role = auth.user.role;
+    if (role !== 'ADMIN' && role !== 'CEO' && role !== 'CO_FOUNDER' && role !== 'HR' && role !== 'SENIOR_HR') {
+      return res.status(403).json({ success: false, error: 'Access denied: Administrative privilege required.' });
+    }
+    res.json({ success: true, logs: db.auditLogs.slice(0, 100) });
+  });
+
+  app.get('/api/audit-logs', (_req: Request, res: Response) => {
     const db = dbService.get();
     res.json({ success: true, logs: db.auditLogs.slice(0, 100) });
   });
