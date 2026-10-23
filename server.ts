@@ -6353,6 +6353,7 @@ async function startServer() {
       server: {
         middlewareMode: true,
         hmr: false,
+        allowedHosts: true,
         watch: isHmrDisabled ? null : {},
       },
       appType: 'spa',

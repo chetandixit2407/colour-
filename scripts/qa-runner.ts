@@ -461,7 +461,15 @@ export async function runAllTests() {
   const roomsRes = await request('GET', '/api/rooms');
   let testRoomId = '';
   if (roomsRes.status === 200 && Array.isArray(roomsRes.data?.rooms)) {
-    const room = roomsRes.data.rooms.find((r: any) => r.status === 'AVAILABLE' || r.status === 'VACANT') || roomsRes.data.rooms[0];
+    let room = roomsRes.data.rooms.find((r: any) => r.status === 'AVAILABLE' || r.status === 'VACANT');
+    if (!room && roomsRes.data.rooms.length > 0) {
+      // Free up a room if all rooms were left occupied from previous runs
+      const targetRoom = roomsRes.data.rooms.find((r: any) => !r.id.includes('cabin')) || roomsRes.data.rooms[0];
+      await request('POST', `/api/rooms/${targetRoom.id}/cleaned`, {
+        stewardName: 'Pantry Steward',
+      });
+      room = targetRoom;
+    }
     testRoomId = room?.id;
   }
 
