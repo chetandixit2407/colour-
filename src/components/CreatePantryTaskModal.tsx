@@ -167,38 +167,38 @@ export const CreatePantryTaskModal: React.FC<CreatePantryTaskModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-2.5 sm:p-4 bg-[#FAF9F6]/75 backdrop-blur-[16px] overflow-y-auto">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-2.5 sm:p-4 bg-[#121316]/40 backdrop-blur-md overflow-y-auto">
       <motion.div
         initial={{ opacity: 0, scale: 0.98, y: 8 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.98, y: 6 }}
         transition={{ duration: 0.3, ease: smoothEase }}
-        className="glass-panel-elevated rounded-2xl sm:rounded-3xl p-4 sm:p-6 max-w-xl w-full shadow-2xl border border-white/80 bg-white/60 backdrop-blur-[16px] text-[#111111] max-h-[92vh] overflow-y-auto space-y-4 sm:space-y-5"
+        className="rounded-2xl sm:rounded-3xl p-4 sm:p-6 max-w-xl w-full shadow-2xl border border-[#E5DFD4] bg-white text-[#121316] max-h-[92vh] overflow-y-auto space-y-4 sm:space-y-5"
       >
         {/* Header */}
-        <div className="flex items-center justify-between pb-3 border-b border-[#E5D2A0]/40 shrink-0">
+        <div className="flex items-center justify-between pb-3 border-b border-[#E5DFD4] shrink-0">
           <div className="flex items-center gap-3 min-w-0 pr-2">
-            <div className="w-10 h-10 rounded-2xl bg-white/80 border border-[#E5D2A0]/50 flex items-center justify-center text-[#9E8243] shadow-xs shrink-0">
+            <div className="w-10 h-10 rounded-2xl bg-[#FAF7F0] border border-[#E5DFD4] flex items-center justify-center text-[#121316] shadow-xs shrink-0">
               <Coffee className="w-5 h-5" />
             </div>
             <div className="min-w-0">
-              <h2 className="text-base sm:text-lg font-bold text-[#111111] tracking-tight truncate">Create Pantry & Hospitality Task</h2>
-              <p className="text-[11px] text-[#3C4043] truncate">
+              <h2 className="text-base sm:text-lg font-bold text-[#121316] tracking-tight truncate">Create Pantry & Hospitality Task</h2>
+              <p className="text-[11px] text-[#6F727A] truncate">
                 Authorized dispatch &bull; Instant staff alert &bull; Real-time tracking
               </p>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="w-8 h-8 rounded-full bg-white/80 hover:bg-white text-[#3C4043] hover:text-[#111111] border border-[#E5D2A0]/40 flex items-center justify-center transition cursor-pointer shrink-0 shadow-xs"
+            className="w-8 h-8 rounded-full bg-[#FAF7F0] hover:bg-white text-[#6F727A] hover:text-[#121316] border border-[#E5DFD4] flex items-center justify-center transition cursor-pointer shrink-0 shadow-xs"
           >
             <X className="w-4 h-4" />
           </button>
         </div>
 
         {error && (
-          <div className="p-3 bg-rose-500/15 border border-rose-500/30 rounded-xl text-xs text-rose-300 flex items-start gap-2">
-            <AlertCircle className="w-4 h-4 shrink-0 text-rose-400 mt-0.5" />
+          <div className="p-3 bg-rose-50 border border-rose-200 rounded-xl text-xs text-rose-800 flex items-start gap-2">
+            <AlertCircle className="w-4 h-4 shrink-0 text-rose-600 mt-0.5" />
             <span>{error}</span>
           </div>
         )}
@@ -206,15 +206,15 @@ export const CreatePantryTaskModal: React.FC<CreatePantryTaskModalProps> = ({
         <form onSubmit={handleSubmit} className="space-y-4 text-xs">
           {/* Task Category Toggle */}
           <div>
-            <label className="block text-slate-300 font-semibold mb-1.5">Task Type</label>
+            <label className="block text-[#121316] font-semibold mb-1.5">Task Type</label>
             <div className="grid grid-cols-2 gap-2">
               <button
                 type="button"
                 onClick={() => setCategory('HOSPITALITY')}
                 className={`py-2 px-3 rounded-xl border text-center font-bold transition cursor-pointer ${
                   category === 'HOSPITALITY'
-                    ? 'bg-amber-500 text-slate-950 border-amber-400 shadow'
-                    : 'glass-input text-slate-300 hover:bg-white/5 border-white/10'
+                    ? 'bg-[#F5EB78] text-[#121316] border-[#121316]/20 shadow-xs'
+                    : 'bg-[#FAF7F0] text-[#6F727A] hover:bg-white border-[#E5DFD4]'
                 }`}
               >
                 Hospitality & Beverages
@@ -224,8 +224,8 @@ export const CreatePantryTaskModal: React.FC<CreatePantryTaskModalProps> = ({
                 onClick={() => setCategory('PANTRY')}
                 className={`py-2 px-3 rounded-xl border text-center font-bold transition cursor-pointer ${
                   category === 'PANTRY'
-                    ? 'bg-amber-500 text-slate-950 border-amber-400 shadow'
-                    : 'glass-input text-slate-300 hover:bg-white/5 border-white/10'
+                    ? 'bg-[#F5EB78] text-[#121316] border-[#121316]/20 shadow-xs'
+                    : 'bg-[#FAF7F0] text-[#6F727A] hover:bg-white border-[#E5DFD4]'
                 }`}
               >
                 Pantry & Room Prep
@@ -236,8 +236,8 @@ export const CreatePantryTaskModal: React.FC<CreatePantryTaskModalProps> = ({
           {/* Candidate / Visitor Name */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div>
-              <label className="block text-slate-300 font-semibold mb-1">
-                Candidate / Visitor Name <span className="text-slate-500 font-normal">(Optional)</span>
+              <label className="block text-[#121316] font-semibold mb-1">
+                Candidate / Visitor Name <span className="text-[#6F727A] font-normal">(Optional)</span>
               </label>
               <input
                 type="text"
@@ -245,7 +245,7 @@ export const CreatePantryTaskModal: React.FC<CreatePantryTaskModalProps> = ({
                 onChange={(e) => setCandidateName(e.target.value)}
                 placeholder="e.g. Harsh Vardhan"
                 list="candidate-names-list"
-                className="w-full p-2.5 glass-input rounded-xl text-white text-xs"
+                className="w-full p-2.5 bg-white border border-[#E5DFD4] rounded-xl text-[#121316] text-xs focus:border-[#121316]"
               />
               <datalist id="candidate-names-list">
                 {candidates.map((c) => (
@@ -256,18 +256,18 @@ export const CreatePantryTaskModal: React.FC<CreatePantryTaskModalProps> = ({
 
             {/* Room / Cabin Selection */}
             <div>
-              <label className="block text-slate-300 font-semibold mb-1">Room or Cabin</label>
+              <label className="block text-[#121316] font-semibold mb-1">Room or Cabin</label>
               <select
                 value={selectedRoomId}
                 onChange={(e) => handleRoomChange(e.target.value)}
-                className="w-full p-2.5 glass-input rounded-xl text-white text-xs"
+                className="w-full p-2.5 bg-white border border-[#E5DFD4] rounded-xl text-[#121316] text-xs focus:border-[#121316]"
               >
                 {activeRooms.map((r) => (
-                  <option key={r.id} value={r.id} className="bg-slate-900 text-white">
+                  <option key={r.id} value={r.id}>
                     {r.name} ({r.status})
                   </option>
                 ))}
-                <option value="custom" className="bg-slate-900 text-white">
+                <option value="custom">
                   Other / Custom Location
                 </option>
               </select>
@@ -276,17 +276,17 @@ export const CreatePantryTaskModal: React.FC<CreatePantryTaskModalProps> = ({
 
           {/* Exact Destination / Location */}
           <div>
-            <label className="block text-slate-300 font-semibold mb-1">
-              Exact Destination / Location <span className="text-amber-400">*</span>
+            <label className="block text-[#121316] font-semibold mb-1">
+              Exact Destination / Location <span className="text-rose-500">*</span>
             </label>
             <div className="relative">
-              <MapPin className="w-3.5 h-3.5 text-amber-400 absolute left-3 top-3" />
+              <MapPin className="w-3.5 h-3.5 text-[#121316] absolute left-3 top-3" />
               <input
                 type="text"
                 value={customLocation}
                 onChange={(e) => setCustomLocation(e.target.value)}
                 placeholder="e.g. Boardroom Alpha, 2nd Floor Executive Wing"
-                className="w-full pl-8 pr-3 py-2.5 glass-input rounded-xl text-white text-xs"
+                className="w-full pl-8 pr-3 py-2.5 bg-white border border-[#E5DFD4] rounded-xl text-[#121316] text-xs focus:border-[#121316]"
                 required
               />
             </div>
@@ -294,34 +294,34 @@ export const CreatePantryTaskModal: React.FC<CreatePantryTaskModalProps> = ({
 
           {/* Task Instructions */}
           <div>
-            <label className="block text-slate-300 font-semibold mb-1">
-              Task Instructions <span className="text-amber-400">*</span>
+            <label className="block text-[#121316] font-semibold mb-1">
+              Task Instructions <span className="text-rose-500">*</span>
             </label>
             <textarea
               rows={2}
               value={instructions}
               onChange={(e) => setInstructions(e.target.value)}
               placeholder="e.g. Prepare the room and provide two bottles of mineral water before guest arrival."
-              className="w-full p-2.5 glass-input rounded-xl text-white text-xs resize-none"
+              className="w-full p-2.5 bg-white border border-[#E5DFD4] rounded-xl text-[#121316] text-xs resize-none focus:border-[#121316]"
               required
             />
           </div>
 
           {/* Required Items & Quantities */}
           <div className="space-y-2">
-            <label className="block text-slate-300 font-semibold">
-              Required Items & Quantities <span className="text-amber-400">*</span>
+            <label className="block text-[#121316] font-semibold">
+              Required Items & Quantities <span className="text-rose-500">*</span>
             </label>
 
             {/* Preset Checklist */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5 p-3 rounded-xl bg-white/[0.03] border border-white/8 max-h-36 overflow-y-auto">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5 p-3 rounded-xl bg-[#FAF7F0] border border-[#E5DFD4] max-h-36 overflow-y-auto">
               {PRESET_ITEMS.map((item) => (
-                <label key={item} className="flex items-center gap-2 text-slate-300 hover:text-white cursor-pointer select-none">
+                <label key={item} className="flex items-center gap-2 text-[#121316] cursor-pointer select-none">
                   <input
                     type="checkbox"
                     checked={selectedItems.includes(item)}
                     onChange={() => togglePresetItem(item)}
-                    className="rounded border-slate-700 text-amber-500 focus:ring-amber-400"
+                    className="rounded border-[#E5DFD4] text-[#121316] focus:ring-[#F5EB78]"
                   />
                   <span className="truncate">{item}</span>
                 </label>
@@ -335,14 +335,14 @@ export const CreatePantryTaskModal: React.FC<CreatePantryTaskModalProps> = ({
                 value={customItemQuantity}
                 onChange={(e) => setCustomItemQuantity(e.target.value)}
                 placeholder="Qty"
-                className="w-16 p-2 glass-input rounded-xl text-white text-xs text-center"
+                className="w-16 p-2 bg-white border border-[#E5DFD4] rounded-xl text-[#121316] text-xs text-center focus:border-[#121316]"
               />
               <input
                 type="text"
                 value={customItemName}
                 onChange={(e) => setCustomItemName(e.target.value)}
                 placeholder="Add custom item (e.g. Sparkling water, Cookies)"
-                className="flex-1 p-2 glass-input rounded-xl text-white text-xs"
+                className="flex-1 p-2 bg-white border border-[#E5DFD4] rounded-xl text-[#121316] text-xs focus:border-[#121316]"
                 onKeyDown={(e) => {
                   if (e.key === 'Enter') {
                     e.preventDefault();
@@ -353,7 +353,7 @@ export const CreatePantryTaskModal: React.FC<CreatePantryTaskModalProps> = ({
               <button
                 type="button"
                 onClick={addCustomItem}
-                className="px-3 py-2 bg-white/10 hover:bg-white/15 text-slate-200 rounded-xl font-bold flex items-center gap-1 cursor-pointer"
+                className="px-3 py-2 bg-[#FAF7F0] hover:bg-white text-[#121316] rounded-xl font-bold flex items-center gap-1 cursor-pointer border border-[#E5DFD4]"
               >
                 <Plus className="w-3.5 h-3.5" />
                 <span>Add</span>
@@ -366,13 +366,13 @@ export const CreatePantryTaskModal: React.FC<CreatePantryTaskModalProps> = ({
                 {selectedItems.map((item) => (
                   <span
                     key={item}
-                    className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-amber-500/15 border border-amber-500/30 text-amber-300 text-[11px]"
+                    className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#F5EB78] border border-[#121316]/10 text-[#121316] text-[11px] font-medium"
                   >
                     <span>{item}</span>
                     <button
                       type="button"
                       onClick={() => removeSelectedItem(item)}
-                      className="hover:text-rose-400 cursor-pointer"
+                      className="hover:text-rose-600 cursor-pointer"
                     >
                       <X className="w-3 h-3" />
                     </button>
@@ -385,38 +385,38 @@ export const CreatePantryTaskModal: React.FC<CreatePantryTaskModalProps> = ({
           {/* Priority & Due Time & Assignment */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
             <div>
-              <label className="block text-slate-300 font-semibold mb-1">Priority</label>
+              <label className="block text-[#121316] font-semibold mb-1">Priority</label>
               <select
                 value={priority}
                 onChange={(e) => setPriority(e.target.value as NotificationPriority)}
-                className="w-full p-2.5 glass-input rounded-xl text-white text-xs"
+                className="w-full p-2.5 bg-white border border-[#E5DFD4] rounded-xl text-[#121316] text-xs focus:border-[#121316]"
               >
-                <option value="NORMAL" className="bg-slate-900 text-white">Normal</option>
-                <option value="HIGH" className="bg-slate-900 text-white">High</option>
-                <option value="CRITICAL" className="bg-slate-900 text-white">Urgent</option>
+                <option value="NORMAL">Normal</option>
+                <option value="HIGH">High</option>
+                <option value="CRITICAL">Urgent</option>
               </select>
             </div>
 
             <div>
-              <label className="block text-slate-300 font-semibold mb-1">Due Time</label>
+              <label className="block text-[#121316] font-semibold mb-1">Due Time</label>
               <input
                 type="text"
                 value={dueTime}
                 onChange={(e) => setDueTime(e.target.value)}
                 placeholder="e.g. Within 15 mins, 11:30 AM"
-                className="w-full p-2.5 glass-input rounded-xl text-white text-xs"
+                className="w-full p-2.5 bg-white border border-[#E5DFD4] rounded-xl text-[#121316] text-xs focus:border-[#121316]"
               />
             </div>
 
             <div>
-              <label className="block text-slate-300 font-semibold mb-1">Assigned Staff / Team</label>
+              <label className="block text-[#121316] font-semibold mb-1">Assigned Staff / Team</label>
               <select
                 value={selectedSteward}
                 onChange={(e) => setSelectedSteward(e.target.value)}
-                className="w-full p-2.5 glass-input rounded-xl text-white text-xs"
+                className="w-full p-2.5 bg-white border border-[#E5DFD4] rounded-xl text-[#121316] text-xs focus:border-[#121316]"
               >
                 {STEWARD_TEAMS.map((s) => (
-                  <option key={s.id} value={s.name} className="bg-slate-900 text-white">
+                  <option key={s.id} value={s.name}>
                     {s.name}
                   </option>
                 ))}
@@ -425,27 +425,27 @@ export const CreatePantryTaskModal: React.FC<CreatePantryTaskModalProps> = ({
           </div>
 
           {/* Creator Footer Info */}
-          <div className="p-3 bg-white/[0.02] border border-white/6 rounded-xl flex items-center justify-between text-[11px] text-slate-400 font-mono">
+          <div className="p-3 bg-[#FAF7F0] border border-[#E5DFD4] rounded-xl flex items-center justify-between text-[11px] text-[#6F727A] font-mono">
             <span className="flex items-center gap-1.5">
-              <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
-              <span>Assigned by: <strong className="text-white">{currentUserName}</strong> ({currentUserRole})</span>
+              <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
+              <span>Assigned by: <strong className="text-[#121316]">{currentUserName}</strong> ({currentUserRole})</span>
             </span>
             <span>{new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
           </div>
 
           {/* Action Buttons */}
-          <div className="flex items-center justify-end gap-2.5 pt-2 border-t border-white/8">
+          <div className="flex items-center justify-end gap-2.5 pt-2 border-t border-[#E5DFD4]">
             <button
               type="button"
               onClick={onClose}
-              className="px-4 py-2 bg-white/6 hover:bg-white/10 text-slate-300 rounded-xl transition cursor-pointer"
+              className="px-4 py-2 bg-white hover:bg-[#FAF7F0] text-[#121316] rounded-xl border border-[#E5DFD4] transition cursor-pointer text-xs font-semibold"
             >
               Cancel
             </button>
             <button
               type="submit"
               disabled={submitting}
-              className="px-6 py-2 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-black rounded-xl shadow-lg transition cursor-pointer disabled:opacity-50 flex items-center gap-1.5"
+              className="px-5 py-2.5 bg-[#F5EB78] hover:bg-[#ebd545] text-[#121316] font-bold rounded-xl shadow-sm transition cursor-pointer disabled:opacity-50 flex items-center gap-1.5 text-xs"
             >
               <Coffee className="w-4 h-4" />
               <span>{submitting ? 'Dispatching...' : 'Dispatch Task Now'}</span>

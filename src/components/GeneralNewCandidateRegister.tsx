@@ -2253,16 +2253,16 @@ export const GeneralNewCandidateRegister: React.FC<GeneralNewCandidateRegisterPr
             <button
               type="submit"
               disabled={submitting}
-              className="w-full py-3.5 px-6 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-sm tracking-wide shadow-lg hover:shadow-xl active:scale-[0.99] transition duration-150 flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full py-3.5 px-6 rounded-xl bg-[#F5EB78] hover:bg-[#ebd545] text-[#121316] font-extrabold text-sm tracking-wide shadow-sm hover:shadow active:scale-[0.99] transition duration-150 flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {submitting ? (
                 <>
-                  <RefreshCw className="w-4 h-4 animate-spin text-amber-400" />
+                  <RefreshCw className="w-4 h-4 animate-spin text-[#121316]" />
                   <span>Processing Check-In...</span>
                 </>
               ) : (
                 <>
-                  <CheckCircle2 className="w-4 h-4 text-amber-400" />
+                  <CheckCircle2 className="w-4 h-4 text-[#121316]" />
                   <span>Check In</span>
                 </>
               )}

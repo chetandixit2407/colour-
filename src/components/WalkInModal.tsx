@@ -70,18 +70,18 @@ export const WalkInModal: React.FC<WalkInModalProps> = ({ onClose, onSuccess }) 
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#FAF9F6]/75 backdrop-blur-[16px] p-2.5 sm:p-4 overflow-y-auto">
-      <div className="glass-panel-elevated bg-white/60 backdrop-blur-[16px] border border-white/80 rounded-2xl sm:rounded-3xl max-w-lg w-full max-h-[92vh] flex flex-col shadow-2xl text-[#111111] overflow-hidden animate-in fade-in zoom-in-95 duration-200">
-        <div className="p-4 sm:p-6 border-b border-[#E5D2A0]/40 flex items-center justify-between bg-white/40 shrink-0">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#121316]/40 backdrop-blur-md p-2.5 sm:p-4 overflow-y-auto">
+      <div className="bg-white border border-[#E5DFD4] rounded-2xl sm:rounded-3xl max-w-lg w-full max-h-[92vh] flex flex-col shadow-2xl text-[#121316] overflow-hidden animate-in fade-in zoom-in-95 duration-200">
+        <div className="p-4 sm:p-6 border-b border-[#E5DFD4] flex items-center justify-between bg-[#FAF7F0] shrink-0">
           <div className="min-w-0 pr-2">
-            <span className="text-[10px] font-bold uppercase tracking-wider text-[#9E8243] block truncate font-mono">
+            <span className="text-[10px] font-bold uppercase tracking-wider text-[#6F727A] block truncate font-mono">
               Front Desk Quick Intake
             </span>
-            <h2 className="text-base sm:text-lg font-bold text-[#111111] mt-0.5 truncate">Register Walk-in Visitor / Client</h2>
+            <h2 className="text-base sm:text-lg font-bold text-[#121316] mt-0.5 truncate">Register Walk-in Visitor / Client</h2>
           </div>
           <button
             onClick={onClose}
-            className="p-2 rounded-xl text-[#3C4043] hover:text-[#111111] hover:bg-white/80 border border-[#E5D2A0]/40 transition shrink-0 cursor-pointer shadow-xs"
+            className="p-2 rounded-xl text-[#6F727A] hover:text-[#121316] hover:bg-[#ECE6DC] border border-[#E5DFD4] transition shrink-0 cursor-pointer shadow-xs"
           >
             <X className="w-5 h-5" />
           </button>
@@ -89,35 +89,35 @@ export const WalkInModal: React.FC<WalkInModalProps> = ({ onClose, onSuccess }) 
 
         <form onSubmit={handleSubmit} className="p-4 sm:p-6 space-y-4 text-xs overflow-y-auto flex-1">
           {error && (
-            <div className="p-3 bg-rose-500/15 border border-rose-500/40 rounded-xl text-rose-800 font-medium">
+            <div className="p-3 bg-rose-50 border border-rose-200 rounded-xl text-rose-700 font-medium">
               {error}
             </div>
           )}
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div>
-              <label className="block font-semibold text-[#111111] mb-1">
-                Visitor Name <span className="text-[#9E8243]">*</span>
+              <label className="block font-semibold text-[#121316] mb-1">
+                Visitor Name <span className="text-rose-500">*</span>
               </label>
               <input
                 type="text"
                 value={fullName}
                 onChange={(e) => setFullName(e.target.value)}
                 placeholder="e.g. Ramesh Patel"
-                className="w-full px-3 py-2 bg-white border border-[#E5D2A0]/60 rounded-xl text-[#111111] text-xs focus:outline-hidden focus:border-[#E5D2A0] shadow-xs"
+                className="w-full px-3 py-2 bg-[#FAF7F0] border border-[#E5DFD4] rounded-xl text-[#121316] text-xs focus:outline-hidden focus:border-[#F5EB78] shadow-xs"
                 required
               />
             </div>
             <div>
-              <label className="block font-semibold text-[#111111] mb-1">
-                Mobile Number <span className="text-[#9E8243]">*</span>
+              <label className="block font-semibold text-[#121316] mb-1">
+                Mobile Number <span className="text-rose-500">*</span>
               </label>
               <input
                 type="tel"
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
                 placeholder="9876543210"
-                className="w-full px-3 py-2 bg-white border border-[#E5D2A0]/60 rounded-xl text-[#111111] text-xs focus:outline-hidden focus:border-[#E5D2A0] shadow-xs"
+                className="w-full px-3 py-2 bg-[#FAF7F0] border border-[#E5DFD4] rounded-xl text-[#121316] text-xs focus:outline-hidden focus:border-[#F5EB78] shadow-xs"
                 required
               />
             </div>
@@ -125,21 +125,21 @@ export const WalkInModal: React.FC<WalkInModalProps> = ({ onClose, onSuccess }) 
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div>
-              <label className="block font-semibold text-[#111111] mb-1">Company / Organization</label>
+              <label className="block font-semibold text-[#121316] mb-1">Company / Organization</label>
               <input
                 type="text"
                 value={company}
                 onChange={(e) => setCompany(e.target.value)}
                 placeholder="e.g. Apex Investments"
-                className="w-full px-3 py-2 bg-white border border-[#E5D2A0]/60 rounded-xl text-[#111111] text-xs focus:outline-hidden focus:border-[#E5D2A0] shadow-xs"
+                className="w-full px-3 py-2 bg-[#FAF7F0] border border-[#E5DFD4] rounded-xl text-[#121316] text-xs focus:outline-hidden focus:border-[#F5EB78] shadow-xs"
               />
             </div>
             <div>
-              <label className="block font-semibold text-[#111111] mb-1">Visitor Category</label>
+              <label className="block font-semibold text-[#121316] mb-1">Visitor Category</label>
               <select
                 value={visitorType}
                 onChange={(e) => setVisitorType(e.target.value as VisitorType)}
-                className="w-full px-3 py-2 bg-white border border-[#E5D2A0]/60 rounded-xl text-[#111111] text-xs focus:outline-hidden focus:border-[#E5D2A0] shadow-xs"
+                className="w-full px-3 py-2 bg-[#FAF7F0] border border-[#E5DFD4] rounded-xl text-[#121316] text-xs focus:outline-hidden focus:border-[#F5EB78] shadow-xs"
               >
                 <option value="CLIENT">Client / High-Net-Worth Investor</option>
                 <option value="VENDOR">Vendor / Partner</option>
@@ -150,13 +150,13 @@ export const WalkInModal: React.FC<WalkInModalProps> = ({ onClose, onSuccess }) 
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div>
-              <label className="block font-semibold text-[#111111] mb-1">
-                Meeting Host (WCR Staff) <span className="text-[#9E8243]">*</span>
+              <label className="block font-semibold text-[#121316] mb-1">
+                Meeting Host (WCR Staff) <span className="text-rose-500">*</span>
               </label>
               <select
                 value={selectedHostId}
                 onChange={(e) => setSelectedHostId(e.target.value)}
-                className="w-full px-3 py-2 bg-white border border-[#E5D2A0]/60 rounded-xl text-[#111111] text-xs focus:outline-hidden focus:border-[#E5D2A0] shadow-xs"
+                className="w-full px-3 py-2 bg-[#FAF7F0] border border-[#E5DFD4] rounded-xl text-[#121316] text-xs focus:outline-hidden focus:border-[#F5EB78] shadow-xs"
               >
                 {STAFF_HOST_OPTIONS.map((host) => (
                   <option key={host.id} value={host.id}>
@@ -166,29 +166,29 @@ export const WalkInModal: React.FC<WalkInModalProps> = ({ onClose, onSuccess }) 
               </select>
             </div>
             <div>
-              <label className="block font-semibold text-[#111111] mb-1">Purpose of Visit</label>
+              <label className="block font-semibold text-[#121316] mb-1">Purpose of Visit</label>
               <input
                 type="text"
                 value={purpose}
                 onChange={(e) => setPurpose(e.target.value)}
                 placeholder="e.g. Contract Signing"
-                className="w-full px-3 py-2 bg-white border border-[#E5D2A0]/60 rounded-xl text-[#111111] text-xs focus:outline-hidden focus:border-[#E5D2A0] shadow-xs"
+                className="w-full px-3 py-2 bg-[#FAF7F0] border border-[#E5DFD4] rounded-xl text-[#121316] text-xs focus:outline-hidden focus:border-[#F5EB78] shadow-xs"
               />
             </div>
           </div>
 
-          <div className="pt-3 border-t border-[#E5D2A0]/40 flex flex-wrap justify-end gap-2.5 shrink-0">
+          <div className="pt-3 border-t border-[#E5DFD4] flex flex-wrap justify-end gap-2.5 shrink-0">
             <button
               type="button"
               onClick={onClose}
-              className="px-4 py-2 bg-white/80 hover:bg-white text-[#111111] rounded-xl border border-[#E5D2A0]/50 font-semibold cursor-pointer shadow-xs"
+              className="px-4 py-2 bg-[#FAF7F0] hover:bg-[#ECE6DC] text-[#121316] rounded-xl border border-[#E5DFD4] font-semibold cursor-pointer shadow-xs"
             >
               Cancel
             </button>
             <button
               type="submit"
               disabled={submitting}
-              className="px-4 sm:px-5 py-2.5 bg-gradient-to-r from-white via-[#FAF6ED] to-[#E5D2A0] hover:to-[#D8BF85] text-[#111111] font-bold rounded-xl border border-[#E5D2A0] shadow-md flex items-center gap-1.5 cursor-pointer"
+              className="px-4 sm:px-5 py-2.5 bg-[#F5EB78] hover:bg-[#ebd545] text-[#121316] font-extrabold rounded-xl border border-[#E5DFD4] shadow-sm flex items-center gap-1.5 cursor-pointer"
             >
               {submitting ? (
                 <>

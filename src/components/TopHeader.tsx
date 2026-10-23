@@ -75,14 +75,14 @@ export const TopHeader: React.FC<TopHeaderProps> = ({
   const effectiveStatus = connectionStatus || (isRealtimeConnected ? 'connected' : 'reconnecting');
 
   return (
-    <header className="sticky top-0 z-20 px-4 sm:px-6 lg:px-8 py-3.5 sm:py-4 border-b border-[#E5D2A0]/40 bg-white/72 backdrop-blur-[16px] transition-all shadow-xs text-[#111111]">
+    <header className="sticky top-0 z-20 px-4 sm:px-6 lg:px-8 py-3.5 sm:py-4 border-b border-[#E5DFD4] bg-[#FAF7F0]/90 backdrop-blur-md transition-all shadow-xs text-[#121316]">
       <div className="max-w-7xl mx-auto flex items-center justify-between gap-4 sm:gap-6">
         {/* Left: Mobile trigger & Page Context */}
         <div className="flex items-center gap-3 sm:gap-4 min-w-0">
           {onToggleMobileMenu && (
             <button
               onClick={onToggleMobileMenu}
-              className="lg:hidden p-2 rounded-xl bg-white/80 border border-[#E5D2A0]/50 text-[#111111] hover:bg-[#FAF6ED] transition cursor-pointer shadow-xs shrink-0"
+              className="lg:hidden p-2.5 rounded-xl bg-white border border-[#E5DFD4] text-[#121316] hover:bg-[#FAF8F5] transition cursor-pointer shadow-xs shrink-0"
               title="Open Navigation Menu"
             >
               <Menu className="w-5 h-5" />
@@ -90,11 +90,11 @@ export const TopHeader: React.FC<TopHeaderProps> = ({
           )}
 
           <div className="space-y-0.5 min-w-0">
-            <h1 className="text-base sm:text-lg md:text-xl font-extrabold text-[#111111] tracking-tight leading-snug truncate">
+            <h1 className="text-base sm:text-lg md:text-xl font-extrabold text-[#121316] tracking-tight leading-snug truncate">
               {pageTitle}
             </h1>
-            <p className="text-xs text-[#111111]/75 hidden md:block truncate">
-              White Collar Realty Operations &middot; Role: <strong className="text-[#111111] font-bold">{currentRole}</strong>
+            <p className="text-xs text-[#6F727A] hidden md:block truncate">
+              White Collar Realty Operations &middot; Workspace: <strong className="text-[#121316] font-bold">{currentRole}</strong>
             </p>
           </div>
         </div>
@@ -110,7 +110,7 @@ export const TopHeader: React.FC<TopHeaderProps> = ({
               effectiveStatus === 'connected'
                 ? 'bg-emerald-50 text-emerald-800 border-emerald-200 cursor-default'
                 : effectiveStatus === 'reconnecting' || effectiveStatus === 'connecting'
-                ? 'bg-[#F0E5CC] text-[#9E8243] border-[#E5D2A0] cursor-wait'
+                ? 'bg-[#FDFBC9] text-[#121316] border-[#EADB5F] cursor-wait'
                 : 'bg-rose-50 text-rose-700 border-rose-200 hover:bg-rose-100 cursor-pointer'
             }`}
             title={
@@ -124,9 +124,9 @@ export const TopHeader: React.FC<TopHeaderProps> = ({
             <span
               className={`w-2 h-2 rounded-full ${
                 effectiveStatus === 'connected'
-                  ? 'bg-emerald-500 animate-pulse'
+                  ? 'bg-emerald-500'
                   : effectiveStatus === 'reconnecting' || effectiveStatus === 'connecting'
-                  ? 'bg-[#E5D2A0] animate-ping'
+                  ? 'bg-[#EADB5F] animate-ping'
                   : 'bg-rose-500'
               }`}
             />
@@ -139,7 +139,7 @@ export const TopHeader: React.FC<TopHeaderProps> = ({
             </span>
           </button>
 
-          {/* Explicit Voice Alerts Control (Spoken arrivals for intended host only) */}
+          {/* Explicit Voice Alerts Control */}
           <button
             type="button"
             onClick={() => {
@@ -151,8 +151,8 @@ export const TopHeader: React.FC<TopHeaderProps> = ({
             }}
             className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold border transition cursor-pointer select-none ${
               settings.voiceAlerts
-                ? 'bg-[#F0E5CC] text-[#202124] border-[#E5D2A0] hover:bg-[#F0E5CC]/80 shadow-xs'
-                : 'bg-white/60 text-[#70757A] border-[#E5D2A0]/30 hover:bg-white hover:text-[#202124]'
+                ? 'bg-[#F5EB78] text-[#121316] border-[#E8DC5F] hover:bg-[#EFE463] shadow-xs'
+                : 'bg-white text-[#6F727A] border-[#E5DFD4] hover:bg-[#FAF8F5] hover:text-[#121316]'
             }`}
             title={
               settings.voiceAlerts
@@ -162,79 +162,79 @@ export const TopHeader: React.FC<TopHeaderProps> = ({
           >
             {settings.voiceAlerts ? (
               <>
-                <Volume2 className="w-3.5 h-3.5 text-[#9E8243] animate-pulse" />
-                <span className="hidden sm:inline font-medium">Voice: On</span>
-                <span className="sm:hidden font-medium">Voice</span>
+                <Volume2 className="w-3.5 h-3.5 text-[#121316]" />
+                <span className="hidden sm:inline font-bold">Voice: On</span>
+                <span className="sm:hidden font-bold">Voice</span>
               </>
             ) : (
               <>
-                <VolumeX className="w-3.5 h-3.5 text-[#70757A]" />
+                <VolumeX className="w-3.5 h-3.5 text-[#6F727A]" />
                 <span className="hidden sm:inline font-medium">Voice: Muted</span>
                 <span className="sm:hidden font-medium">Muted</span>
               </>
             )}
           </button>
 
-          {/* Quick Intake Button (Hidden for Pantry) */}
+          {/* Quick Intake Button */}
           {currentRole !== 'PANTRY' && (
             <button
               onClick={onOpenCheckIn}
-              className="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white/70 hover:bg-[#F0E5CC]/60 border border-[#E5D2A0]/35 text-[#202124] font-semibold text-xs sm:text-[13px] transition cursor-pointer shadow-xs"
+              className="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white hover:bg-[#FAF8F5] border border-[#E5DFD4] text-[#121316] font-semibold text-xs sm:text-[13px] transition cursor-pointer shadow-xs"
               title="Candidate Self Check-In Form"
             >
-              <Smartphone className="w-4 h-4 text-[#9E8243]" />
+              <Smartphone className="w-4 h-4 text-[#121316]" />
               <span>Check-In</span>
             </button>
           )}
 
-          {/* QR Station (Hidden for Pantry) */}
+          {/* QR Station */}
           {currentRole !== 'PANTRY' && (
             <button
               onClick={onOpenQRPasses}
-              className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white/70 hover:bg-[#F0E5CC]/60 border border-[#E5D2A0]/35 text-[#202124] font-medium text-xs sm:text-[13px] transition cursor-pointer shadow-xs"
+              className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white hover:bg-[#FAF8F5] border border-[#E5DFD4] text-[#121316] font-medium text-xs sm:text-[13px] transition cursor-pointer shadow-xs"
               title="WCR QR Codes & Passes"
             >
-              <QrCode className="w-4 h-4 text-[#9E8243]" />
+              <QrCode className="w-4 h-4 text-[#121316]" />
               <span>QR Station</span>
             </button>
           )}
 
-          {/* Create Pantry Task for All Authorised Users */}
+          {/* Create Pantry Task */}
           {onOpenCreatePantryTask && currentRole !== 'PANTRY' && (
             <button
               onClick={onOpenCreatePantryTask}
-              className="hidden lg:flex items-center gap-2 px-3 py-1.5 rounded-xl bg-[#F0E5CC]/60 hover:bg-[#F0E5CC]/90 border border-[#E5D2A0]/40 text-[#202124] font-semibold text-xs sm:text-[13px] transition cursor-pointer shadow-xs"
+              className="hidden lg:flex items-center gap-2 px-3 py-1.5 rounded-xl bg-[#F5EB78] hover:bg-[#EFE463] border border-[#E8DC5F] text-[#121316] font-bold text-xs sm:text-[13px] transition cursor-pointer shadow-xs"
               title="Create Pantry or Hospitality Task"
             >
-              <Coffee className="w-4 h-4 text-[#9E8243]" />
+              <Coffee className="w-4 h-4 text-[#121316]" />
               <span>+ Pantry Task</span>
             </button>
           )}
 
-          {/* Pantry Realtime Monitor for Supervisors */}
+          {/* Pantry Realtime Monitor */}
           {onOpenPantryMonitor && (currentRole === 'ADMIN' || currentRole === 'CEO' || currentRole === 'HR' || currentRole === 'SENIOR_HR') && (
             <button
               onClick={onOpenPantryMonitor}
-              className="hidden xl:flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white/70 hover:bg-[#F0E5CC]/60 border border-[#E5D2A0]/35 text-[#202124] font-medium text-xs sm:text-[13px] transition cursor-pointer shadow-xs"
+              className="hidden xl:flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white hover:bg-[#FAF8F5] border border-[#E5DFD4] text-[#121316] font-medium text-xs sm:text-[13px] transition cursor-pointer shadow-xs"
               title="Pantry Live Progress Monitor"
             >
-              <Clock className="w-4 h-4 text-[#9E8243]" />
+              <Clock className="w-4 h-4 text-[#121316]" />
               <span>Pantry Monitor</span>
             </button>
           )}
 
-          {/* More Navigation Button for Laptop, Desktop & Tablet (Hidden for Pantry) */}
+          {/* More Navigation Button */}
           {onOpenMore && currentRole !== 'PANTRY' && (
             <button
               onClick={onOpenMore}
               className={`flex items-center gap-2 px-3 py-1.5 rounded-xl border text-xs sm:text-[13px] font-semibold transition cursor-pointer shadow-xs ${
                 isMoreActive
-                  ? 'bg-[#E5D2A0] text-[#202124] border-[#C9AB68] font-bold shadow-xs'
-                  : 'bg-white/70 hover:bg-[#F0E5CC]/60 border-[#E5D2A0]/35 text-[#202124]'
+                  ? 'bg-[#121316] text-white border-[#121316] font-bold shadow-xs'
+                  : 'bg-white hover:bg-[#FAF8F5] border-[#E5DFD4] text-[#121316]'
               }`}
-              title="Secondary Dashboard Sections (Lounge, Active Meetings, Physical Check-Out)"
+              title="Secondary Dashboard Sections"
             >
-              <MoreHorizontal className="w-4 h-4 text-[#9E8243]" />
+              <MoreHorizontal className="w-4 h-4" />
               <span>More</span>
             </button>
           )}
@@ -242,13 +242,13 @@ export const TopHeader: React.FC<TopHeaderProps> = ({
           {/* Office Internal Chat */}
           <button
             onClick={onOpenChat}
-            className="relative p-2 rounded-xl bg-white/70 hover:bg-[#F0E5CC]/60 border border-[#E5D2A0]/35 text-[#202124] transition cursor-pointer flex items-center gap-2 shadow-xs"
+            className="relative p-2 rounded-xl bg-white hover:bg-[#FAF8F5] border border-[#E5DFD4] text-[#121316] transition cursor-pointer flex items-center gap-2 shadow-xs"
             title="Internal Office Chat"
           >
-            <MessageSquare className="w-4.5 h-4.5 text-[#9E8243]" />
-            <span className="hidden xl:inline text-xs sm:text-[13px] font-semibold">Office Chat</span>
+            <MessageSquare className="w-4.5 h-4.5 text-[#121316]" />
+            <span className="hidden xl:inline text-xs sm:text-[13px] font-semibold">Chat</span>
             {unreadChatCount > 0 && (
-              <span className="absolute -top-1 -right-1 w-4.5 h-4.5 rounded-full bg-[#E5D2A0] text-[#202124] text-[10px] font-black flex items-center justify-center shadow-xs">
+              <span className="absolute -top-1 -right-1 w-4.5 h-4.5 rounded-full bg-[#121316] text-white text-[10px] font-black flex items-center justify-center shadow-xs">
                 {unreadChatCount > 9 ? '9+' : unreadChatCount}
               </span>
             )}
@@ -257,12 +257,12 @@ export const TopHeader: React.FC<TopHeaderProps> = ({
           {/* Notifications Bell */}
           <button
             onClick={onOpenNotifications}
-            className="relative p-2 rounded-xl bg-white/70 hover:bg-[#F0E5CC]/60 border border-[#E5D2A0]/35 text-[#202124] transition cursor-pointer shadow-xs"
+            className="relative p-2 rounded-xl bg-white hover:bg-[#FAF8F5] border border-[#E5DFD4] text-[#121316] transition cursor-pointer shadow-xs"
             title="Alert Feed"
           >
-            <Bell className="w-4.5 h-4.5 text-[#70757A]" />
+            <Bell className="w-4.5 h-4.5 text-[#121316]" />
             {unreadCount > 0 && (
-              <span className="absolute -top-1 -right-1 w-4.5 h-4.5 rounded-full bg-[#E5D2A0] text-[#202124] text-[10px] font-black flex items-center justify-center shadow-xs">
+              <span className="absolute -top-1 -right-1 w-4.5 h-4.5 rounded-full bg-[#F5EB78] text-[#121316] text-[10px] font-black flex items-center justify-center border border-[#121316] shadow-xs">
                 {unreadCount > 9 ? '9+' : unreadCount}
               </span>
             )}

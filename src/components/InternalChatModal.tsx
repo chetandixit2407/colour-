@@ -416,7 +416,7 @@ export const InternalChatModal: React.FC<InternalChatModalProps> = ({
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="fixed inset-0 bg-[#FAF9F6]/75 backdrop-blur-[16px]"
+            className="fixed inset-0 bg-[#121316]/40 backdrop-blur-md"
           />
 
           <motion.div
@@ -424,33 +424,33 @@ export const InternalChatModal: React.FC<InternalChatModalProps> = ({
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.98, y: 6 }}
             transition={{ duration: 0.32, ease: smoothEase }}
-            className="glass-panel-elevated border border-[#E5D2A0]/50 rounded-3xl max-w-5xl w-full h-[90vh] sm:h-[84vh] shadow-2xl overflow-hidden flex flex-col relative z-10 text-[#111111]"
+            className="bg-white border border-[#E5DFD4] rounded-3xl max-w-5xl w-full h-[90vh] sm:h-[84vh] shadow-2xl overflow-hidden flex flex-col relative z-10 text-[#121316]"
           >
             {/* Top Header Bar */}
-            <div className="px-5 py-3.5 border-b border-[#E5D2A0]/35 bg-white/40 flex items-center justify-between">
+            <div className="px-5 py-3.5 border-b border-[#E5DFD4] bg-[#FAF7F0] flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <div className="w-9 h-9 rounded-xl bg-[#E5D2A0]/30 text-[#111111] border border-[#E5D2A0]/50 flex items-center justify-center font-black shadow-xs">
-                  <MessageSquare className="w-5 h-5 text-[#9E8243]" />
+                <div className="w-9 h-9 rounded-xl bg-[#F5EB78] text-[#121316] border border-[#E5DFD4] flex items-center justify-center font-black shadow-xs">
+                  <MessageSquare className="w-5 h-5 text-[#121316]" />
                 </div>
                 <div>
                   <div className="flex items-center gap-2">
-                    <h2 className="text-sm sm:text-base font-bold text-[#111111] tracking-tight">
+                    <h2 className="text-sm sm:text-base font-bold text-[#121316] tracking-tight">
                       WCR Internal Office Chat
                     </h2>
-                    <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/15 text-emerald-900 border border-emerald-500/30 flex items-center gap-1 font-mono">
+                    <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-50 text-emerald-800 border border-emerald-300 flex items-center gap-1 font-mono">
                       <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 animate-pulse" />
                       Live Real-Time
                     </span>
                   </div>
-                  <p className="text-[11px] text-[#111111]/75">
-                    Logged in as: <strong className="text-[#111111]">{currentUser?.name || 'Staff'}</strong> ({currentUser?.role || currentRole})
+                  <p className="text-[11px] text-[#6F727A]">
+                    Logged in as: <strong className="text-[#121316]">{currentUser?.name || 'Staff'}</strong> ({currentUser?.role || currentRole})
                   </p>
                 </div>
               </div>
 
               <button
                 onClick={onClose}
-                className="p-2 rounded-xl text-[#202124]/60 hover:text-[#202124] hover:bg-[#F0E5CC]/60 transition cursor-pointer"
+                className="p-2 rounded-xl text-[#6F727A] hover:text-[#121316] hover:bg-[#ECE6DC] transition cursor-pointer"
                 title="Close Internal Chat"
               >
                 <X className="w-5 h-5" />
@@ -460,17 +460,17 @@ export const InternalChatModal: React.FC<InternalChatModalProps> = ({
             {/* Main Split Layout */}
             <div className="flex-1 flex flex-col md:flex-row overflow-hidden min-h-0">
           {/* Left Sidebar: Channels & Staff List */}
-          <div className="w-full md:w-72 lg:w-80 bg-[#FAF9F6]/80 border-r border-[#E5D2A0]/25 flex flex-col shrink-0 max-h-48 md:max-h-none">
+          <div className="w-full md:w-72 lg:w-80 bg-[#FAF7F0] border-r border-[#E5DFD4] flex flex-col shrink-0 max-h-48 md:max-h-none">
             {/* Search */}
-            <div className="p-3 border-b border-[#E5D2A0]/25">
+            <div className="p-3 border-b border-[#E5DFD4]">
               <div className="relative">
-                <Search className="w-3.5 h-3.5 text-[#202124]/40 absolute left-3 top-1/2 -translate-y-1/2" />
+                <Search className="w-3.5 h-3.5 text-[#6F727A] absolute left-3 top-1/2 -translate-y-1/2" />
                 <input
                   type="text"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   placeholder="Search channels or staff..."
-                  className="w-full pl-8 pr-3 py-1.5 bg-white/70 border border-[#E5D2A0]/35 rounded-xl text-xs text-[#202124] placeholder:text-[#202124]/40 focus:outline-hidden focus:border-[#E5D2A0]"
+                  className="w-full pl-8 pr-3 py-1.5 bg-white border border-[#E5DFD4] rounded-xl text-xs text-[#121316] placeholder:text-[#6F727A] focus:outline-hidden focus:border-[#F5EB78]"
                 />
               </div>
             </div>
@@ -479,9 +479,9 @@ export const InternalChatModal: React.FC<InternalChatModalProps> = ({
             <div className="flex-1 overflow-y-auto p-2 space-y-4">
               {/* Channels Section */}
               <div>
-                <div className="px-2 py-1 text-[10px] font-bold uppercase tracking-wider text-[#202124]/60 flex items-center justify-between">
+                <div className="px-2 py-1 text-[10px] font-bold uppercase tracking-wider text-[#6F727A] flex items-center justify-between">
                   <span>Office Channels</span>
-                  <span className="text-[10px] text-[#202124]/50 font-mono">#{channels.length}</span>
+                  <span className="text-[10px] text-[#6F727A] font-mono">#{channels.length}</span>
                 </div>
                 <div className="space-y-1 mt-1">
                   {filteredChannels.map((c) => {
@@ -497,16 +497,16 @@ export const InternalChatModal: React.FC<InternalChatModalProps> = ({
                         }}
                         className={`w-full px-3 py-2 rounded-xl text-left text-xs transition flex items-center justify-between cursor-pointer ${
                           isActive
-                            ? 'bg-[#F0E5CC]/70 border border-[#E5D2A0]/60 text-[#202124] font-bold shadow-xs'
-                            : 'text-[#202124]/75 hover:bg-[#F0E5CC]/35 hover:text-[#202124]'
+                            ? 'bg-[#F5EB78] border border-[#E5DFD4] text-[#121316] font-bold shadow-xs'
+                            : 'text-[#121316] hover:bg-[#ECE6DC] hover:text-[#121316]'
                         }`}
                       >
                         <div className="flex items-center gap-2 truncate">
-                          <Hash className={`w-3.5 h-3.5 shrink-0 ${isActive ? 'text-[#9E8243]' : 'text-[#202124]/40'}`} />
+                          <Hash className={`w-3.5 h-3.5 shrink-0 ${isActive ? 'text-[#121316]' : 'text-[#6F727A]'}`} />
                           <span className="truncate">{c.name}</span>
                         </div>
                         {unread > 0 && (
-                          <span className="px-1.5 py-0.2 rounded-full bg-[#E5D2A0] text-[#202124] text-[10px] font-black shrink-0">
+                          <span className="px-1.5 py-0.2 rounded-full bg-[#121316] text-[#F5EB78] text-[10px] font-black shrink-0">
                             {unread}
                           </span>
                         )}
@@ -518,9 +518,9 @@ export const InternalChatModal: React.FC<InternalChatModalProps> = ({
 
               {/* Direct Messages Section */}
               <div>
-                <div className="px-2 py-1 text-[10px] font-bold uppercase tracking-wider text-[#202124]/60 flex items-center justify-between">
+                <div className="px-2 py-1 text-[10px] font-bold uppercase tracking-wider text-[#6F727A] flex items-center justify-between">
                   <span>Direct Messages</span>
-                  <span className="text-[10px] text-[#202124]/50 font-mono">{filteredStaff.length}</span>
+                  <span className="text-[10px] text-[#6F727A] font-mono">{filteredStaff.length}</span>
                 </div>
                 <div className="space-y-1 mt-1">
                   {filteredStaff.map((u) => {
@@ -536,23 +536,23 @@ export const InternalChatModal: React.FC<InternalChatModalProps> = ({
                         }}
                         className={`w-full px-3 py-2 rounded-xl text-left text-xs transition flex items-center justify-between cursor-pointer ${
                           isActive
-                            ? 'bg-[#F0E5CC]/70 border border-[#E5D2A0]/60 text-[#202124] font-bold shadow-xs'
-                            : 'text-[#202124]/75 hover:bg-[#F0E5CC]/35 hover:text-[#202124]'
+                            ? 'bg-[#F5EB78] border border-[#E5DFD4] text-[#121316] font-bold shadow-xs'
+                            : 'text-[#121316] hover:bg-[#ECE6DC] hover:text-[#121316]'
                         }`}
                       >
                         <div className="flex items-center gap-2.5 truncate">
-                          <div className="w-6 h-6 rounded-lg bg-[#F0E5CC]/60 border border-[#E5D2A0]/40 flex items-center justify-center text-[10px] font-bold text-[#202124] shrink-0">
+                          <div className="w-6 h-6 rounded-lg bg-white border border-[#E5DFD4] flex items-center justify-center text-[10px] font-bold text-[#121316] shrink-0">
                             {u.name.substring(0, 2).toUpperCase()}
                           </div>
                           <div className="truncate">
-                            <span className="block truncate font-medium text-[#202124]">{u.name}</span>
-                            <span className="text-[10px] text-[#202124]/50 block truncate">
+                            <span className="block truncate font-medium text-[#121316]">{u.name}</span>
+                            <span className="text-[10px] text-[#6F727A] block truncate">
                               {u.role} • {u.department || 'Operations'}
                             </span>
                           </div>
                         </div>
                         {unread > 0 && (
-                          <span className="px-1.5 py-0.2 rounded-full bg-[#E5D2A0] text-[#202124] text-[10px] font-black shrink-0">
+                          <span className="px-1.5 py-0.2 rounded-full bg-[#121316] text-[#F5EB78] text-[10px] font-black shrink-0">
                             {unread}
                           </span>
                         )}
@@ -565,39 +565,39 @@ export const InternalChatModal: React.FC<InternalChatModalProps> = ({
           </div>
 
           {/* Right Main Chat Pane */}
-          <div className="flex-1 flex flex-col bg-white/40 overflow-hidden">
+          <div className="flex-1 flex flex-col bg-white overflow-hidden">
             {/* Conversation Header */}
-            <div className="px-5 py-3 border-b border-[#E5D2A0]/25 bg-[#FAF9F6]/60 flex items-center justify-between">
+            <div className="px-5 py-3 border-b border-[#E5DFD4] bg-[#FAF7F0] flex items-center justify-between">
               <div className="flex items-center gap-3">
                 {activeChatType === 'channel' ? (
                   <>
-                    <div className="w-8 h-8 rounded-xl bg-[#E5D2A0]/20 border border-[#E5D2A0]/35 flex items-center justify-center text-[#9E8243] font-bold">
+                    <div className="w-8 h-8 rounded-xl bg-[#F5EB78] border border-[#E5DFD4] flex items-center justify-center text-[#121316] font-bold">
                       <Hash className="w-4 h-4" />
                     </div>
                     <div>
-                      <h3 className="text-sm font-bold text-[#202124] flex items-center gap-2">
+                      <h3 className="text-sm font-bold text-[#121316] flex items-center gap-2">
                         #{activeChannel?.name || activeChannelId}
                       </h3>
-                      <p className="text-[11px] text-[#202124]/60">
+                      <p className="text-[11px] text-[#6F727A]">
                         {activeChannel?.description || 'Office coordination channel'}
                       </p>
                     </div>
                   </>
                 ) : (
                   <>
-                    <div className="w-8 h-8 rounded-xl bg-[#E5D2A0]/20 border border-[#E5D2A0]/35 flex items-center justify-center text-[#9E8243] font-bold text-xs">
+                    <div className="w-8 h-8 rounded-xl bg-[#F5EB78] border border-[#E5DFD4] flex items-center justify-center text-[#121316] font-bold text-xs">
                       {activeRecipient?.name.substring(0, 2).toUpperCase() || 'DM'}
                     </div>
                     <div>
                       <div className="flex items-center gap-2">
-                        <h3 className="text-sm font-bold text-[#202124]">
+                        <h3 className="text-sm font-bold text-[#121316]">
                           {activeRecipient?.name || 'Staff Member'}
                         </h3>
-                        <span className="px-2 py-0.2 rounded-full text-[9px] font-bold bg-[#E5D2A0]/20 text-[#9E8243] border border-[#E5D2A0]/30">
+                        <span className="px-2 py-0.2 rounded-full text-[9px] font-bold bg-[#FAF7F0] text-[#121316] border border-[#E5DFD4]">
                           {activeRecipient?.role || 'Staff'}
                         </span>
                       </div>
-                      <p className="text-[11px] text-[#202124]/60">
+                      <p className="text-[11px] text-[#6F727A]">
                         {activeRecipient?.designation || activeRecipient?.department || 'WCR Team Member'} {activeRecipient?.phone ? `• ${activeRecipient.phone}` : ''}
                       </p>
                     </div>
@@ -607,7 +607,7 @@ export const InternalChatModal: React.FC<InternalChatModalProps> = ({
 
               <button
                 onClick={fetchConversationMessages}
-                className="p-1.5 rounded-lg text-[#202124]/60 hover:text-[#202124] hover:bg-[#F0E5CC]/60 transition cursor-pointer"
+                className="p-1.5 rounded-lg text-[#6F727A] hover:text-[#121316] hover:bg-[#ECE6DC] transition cursor-pointer"
                 title="Refresh messages"
               >
                 <RefreshCw className="w-3.5 h-3.5" />
@@ -615,17 +615,17 @@ export const InternalChatModal: React.FC<InternalChatModalProps> = ({
             </div>
 
             {/* Messages Scroll Area */}
-            <div className="flex-1 overflow-y-auto p-4 space-y-3.5">
+            <div className="flex-1 overflow-y-auto p-4 space-y-3.5 bg-[#FAF7F0]/40">
               {loadingMessages ? (
-                <div className="flex items-center justify-center h-full text-xs text-[#202124]/60">
-                  <RefreshCw className="w-4 h-4 animate-spin mr-2 text-[#9E8243]" />
+                <div className="flex items-center justify-center h-full text-xs text-[#6F727A]">
+                  <RefreshCw className="w-4 h-4 animate-spin mr-2 text-[#121316]" />
                   Loading message stream...
                 </div>
               ) : messages.length === 0 ? (
-                <div className="flex flex-col items-center justify-center h-full text-center p-6 text-[#202124]/60 space-y-2">
-                  <MessageSquare className="w-8 h-8 text-[#E5D2A0]" />
-                  <p className="text-xs font-semibold text-[#202124]">No messages yet in this conversation.</p>
-                  <p className="text-[11px] text-[#202124]/60 max-w-xs">
+                <div className="flex flex-col items-center justify-center h-full text-center p-6 text-[#6F727A] space-y-2">
+                  <MessageSquare className="w-8 h-8 text-[#E5DFD4]" />
+                  <p className="text-xs font-semibold text-[#121316]">No messages yet in this conversation.</p>
+                  <p className="text-[11px] text-[#6F727A] max-w-xs">
                     Start communication with your colleagues. All staff receive updates in real time.
                   </p>
                 </div>
@@ -638,10 +638,10 @@ export const InternalChatModal: React.FC<InternalChatModalProps> = ({
                       key={msg.id}
                       className={`flex flex-col ${isMine ? 'items-end' : 'items-start'} space-y-1`}
                     >
-                      <div className="flex items-center gap-2 text-[10px] text-[#202124]/60 px-1">
-                        <span className="font-bold text-[#202124]">{isMine ? 'You' : msg.senderName}</span>
+                      <div className="flex items-center gap-2 text-[10px] text-[#6F727A] px-1">
+                        <span className="font-bold text-[#121316]">{isMine ? 'You' : msg.senderName}</span>
                         {!isMine && (
-                          <span className="px-1.5 py-0.2 rounded-sm bg-[#F0E5CC]/60 text-[9px] font-semibold text-[#9E8243] border border-[#E5D2A0]/40">
+                          <span className="px-1.5 py-0.2 rounded-sm bg-[#FAF7F0] text-[9px] font-semibold text-[#121316] border border-[#E5DFD4]">
                             {msg.senderRole}
                           </span>
                         )}
@@ -662,10 +662,10 @@ export const InternalChatModal: React.FC<InternalChatModalProps> = ({
                       <div
                         className={`max-w-md sm:max-w-lg p-3 rounded-2xl text-xs space-y-2 ${
                           isMine
-                            ? 'bg-[#E5D2A0] text-[#202124] font-medium rounded-tr-xs shadow-md shadow-[#E5D2A0]/15'
+                            ? 'bg-[#F5EB78] text-[#121316] font-medium rounded-tr-xs border border-[#E5DFD4] shadow-xs'
                             : msg.isPriority
-                            ? 'bg-rose-50/90 border border-rose-300 text-rose-950 rounded-tl-xs shadow-xs'
-                            : 'bg-white/85 border border-[#E5D2A0]/35 text-[#202124] rounded-tl-xs shadow-xs'
+                            ? 'bg-rose-50 border border-rose-300 text-rose-950 rounded-tl-xs shadow-xs'
+                            : 'bg-white border border-[#E5DFD4] text-[#121316] rounded-tl-xs shadow-xs'
                         }`}
                       >
                         {/* Context Pills (Candidate / Room) */}
@@ -760,15 +760,15 @@ export const InternalChatModal: React.FC<InternalChatModalProps> = ({
             </div>
 
             {/* Quick Context Templates Bar */}
-            <div className="px-4 py-2 border-t border-[#E5D2A0]/25 bg-[#F0E5CC]/30 flex items-center gap-2 overflow-x-auto text-[11px]">
-              <span className="text-[#202124]/70 text-[10px] font-bold shrink-0 flex items-center gap-1">
-                <Sparkles className="w-3 h-3 text-[#9E8243]" />
+            <div className="px-4 py-2 border-t border-[#E5DFD4] bg-[#FAF7F0] flex items-center gap-2 overflow-x-auto text-[11px]">
+              <span className="text-[#6F727A] text-[10px] font-bold shrink-0 flex items-center gap-1">
+                <Sparkles className="w-3 h-3 text-[#121316]" />
                 Quick Actions:
               </span>
               <button
                 type="button"
                 onClick={() => applyQuickTemplate('bring')}
-                className="px-2.5 py-1 rounded-lg bg-white/75 hover:bg-[#F0E5CC] text-[#202124] border border-[#E5D2A0]/35 hover:border-[#E5D2A0] text-[10px] font-medium whitespace-nowrap transition cursor-pointer flex items-center gap-1 shadow-2xs"
+                className="px-2.5 py-1 rounded-lg bg-white hover:bg-[#FAF7F0] text-[#121316] border border-[#E5DFD4] hover:border-[#D5CEBF] text-[10px] font-medium whitespace-nowrap transition cursor-pointer flex items-center gap-1 shadow-2xs"
                 title="Send escort request to Reception Dashboard"
               >
                 <span>🚶 “Bring [Candidate] to [Room]”</span>
@@ -776,7 +776,7 @@ export const InternalChatModal: React.FC<InternalChatModalProps> = ({
               <button
                 type="button"
                 onClick={() => applyQuickTemplate('send')}
-                className="px-2.5 py-1 rounded-lg bg-white/75 hover:bg-[#F0E5CC] text-[#202124] border border-[#E5D2A0]/35 hover:border-[#E5D2A0] text-[10px] font-medium whitespace-nowrap transition cursor-pointer shadow-2xs"
+                className="px-2.5 py-1 rounded-lg bg-white hover:bg-[#FAF7F0] text-[#121316] border border-[#E5DFD4] hover:border-[#D5CEBF] text-[10px] font-medium whitespace-nowrap transition cursor-pointer shadow-2xs"
                 title="Send candidate escort instruction"
               >
                 <span>🚀 “Send [Candidate] to [Room]”</span>
@@ -784,7 +784,7 @@ export const InternalChatModal: React.FC<InternalChatModalProps> = ({
               <button
                 type="button"
                 onClick={() => applyQuickTemplate('ready')}
-                className="px-2.5 py-1 rounded-lg bg-white/75 hover:bg-[#F0E5CC] text-[#202124] border border-[#E5D2A0]/35 hover:border-[#E5D2A0] text-[10px] font-medium whitespace-nowrap transition cursor-pointer shadow-2xs"
+                className="px-2.5 py-1 rounded-lg bg-white hover:bg-[#FAF7F0] text-[#121316] border border-[#E5DFD4] hover:border-[#D5CEBF] text-[10px] font-medium whitespace-nowrap transition cursor-pointer shadow-2xs"
                 title="Candidate is ready alert"
               >
                 <span>🛎️ “Candidate is ready”</span>
@@ -792,7 +792,7 @@ export const InternalChatModal: React.FC<InternalChatModalProps> = ({
               <button
                 type="button"
                 onClick={() => applyQuickTemplate('prepare')}
-                className="px-2.5 py-1 rounded-lg bg-white/75 hover:bg-[#F0E5CC] text-[#202124] border border-[#E5D2A0]/35 hover:border-[#E5D2A0] text-[10px] font-medium whitespace-nowrap transition cursor-pointer shadow-2xs"
+                className="px-2.5 py-1 rounded-lg bg-white hover:bg-[#FAF7F0] text-[#121316] border border-[#E5DFD4] hover:border-[#D5CEBF] text-[10px] font-medium whitespace-nowrap transition cursor-pointer shadow-2xs"
                 title="Pantry room prep alert"
               >
                 <span>🚪 “Prepare [Room]”</span>
@@ -800,7 +800,7 @@ export const InternalChatModal: React.FC<InternalChatModalProps> = ({
               <button
                 type="button"
                 onClick={() => applyQuickTemplate('clean')}
-                className="px-2.5 py-1 rounded-lg bg-white/75 hover:bg-[#F0E5CC] text-[#202124] border border-[#E5D2A0]/35 hover:border-[#E5D2A0] text-[10px] font-medium whitespace-nowrap transition cursor-pointer shadow-2xs"
+                className="px-2.5 py-1 rounded-lg bg-white hover:bg-[#FAF7F0] text-[#121316] border border-[#E5DFD4] hover:border-[#D5CEBF] text-[10px] font-medium whitespace-nowrap transition cursor-pointer shadow-2xs"
                 title="Pantry clean & reset request"
               >
                 <span>🧹 Clean Room</span>
@@ -808,24 +808,24 @@ export const InternalChatModal: React.FC<InternalChatModalProps> = ({
               <button
                 type="button"
                 onClick={() => applyQuickTemplate('water')}
-                className="px-2.5 py-1 rounded-lg bg-white/75 hover:bg-[#F0E5CC] text-[#202124] border border-[#E5D2A0]/35 hover:border-[#E5D2A0] text-[10px] font-medium whitespace-nowrap transition cursor-pointer shadow-2xs"
+                className="px-2.5 py-1 rounded-lg bg-white hover:bg-[#FAF7F0] text-[#121316] border border-[#E5DFD4] hover:border-[#D5CEBF] text-[10px] font-medium whitespace-nowrap transition cursor-pointer shadow-2xs"
               >
                 <span>☕ Serve Refreshments</span>
               </button>
             </div>
 
             {/* Input & Form Area */}
-            <form onSubmit={handleSendMessage} className="p-3 sm:p-4 border-t border-[#E5D2A0]/25 bg-[#FAF9F6]/85 space-y-2">
+            <form onSubmit={handleSendMessage} className="p-3 sm:p-4 border-t border-[#E5DFD4] bg-[#FAF7F0] space-y-2">
               <div className="flex flex-wrap items-center justify-between gap-2 text-xs">
                 {/* Candidate & Room Tags Selector Row */}
                 <div className="flex flex-wrap items-center gap-2">
                   {/* Candidate Tag Option */}
                   <div className="flex items-center gap-1.5">
-                    <Tag className="w-3.5 h-3.5 text-[#9E8243] shrink-0" />
+                    <Tag className="w-3.5 h-3.5 text-[#121316] shrink-0" />
                     <select
                       value={selectedCandidateId}
                       onChange={(e) => setSelectedCandidateId(e.target.value)}
-                      className="px-2 py-1 bg-white/80 border border-[#E5D2A0]/35 rounded-lg text-[11px] text-[#202124] focus:outline-hidden focus:border-[#E5D2A0] max-w-[130px] sm:max-w-[170px] truncate"
+                      className="px-2 py-1 bg-white border border-[#E5DFD4] rounded-lg text-[11px] text-[#121316] focus:outline-hidden focus:border-[#F5EB78] max-w-[130px] sm:max-w-[170px] truncate shadow-xs"
                     >
                       <option value="">Attach candidate (optional)</option>
                       {candidates.map((c) => (
@@ -838,11 +838,11 @@ export const InternalChatModal: React.FC<InternalChatModalProps> = ({
 
                   {/* Room Tag Option */}
                   <div className="flex items-center gap-1.5">
-                    <DoorOpen className="w-3.5 h-3.5 text-[#9E8243] shrink-0" />
+                    <DoorOpen className="w-3.5 h-3.5 text-[#121316] shrink-0" />
                     <select
                       value={selectedRoomId}
                       onChange={(e) => setSelectedRoomId(e.target.value)}
-                      className="px-2 py-1 bg-white/80 border border-[#E5D2A0]/35 rounded-lg text-[11px] text-[#202124] focus:outline-hidden focus:border-[#E5D2A0] max-w-[130px] sm:max-w-[170px] truncate"
+                      className="px-2 py-1 bg-white border border-[#E5DFD4] rounded-lg text-[11px] text-[#121316] focus:outline-hidden focus:border-[#F5EB78] max-w-[130px] sm:max-w-[170px] truncate shadow-xs"
                     >
                       <option value="">Attach room (optional)</option>
                       {rooms.map((r) => (
@@ -861,7 +861,7 @@ export const InternalChatModal: React.FC<InternalChatModalProps> = ({
                   className={`px-2.5 py-1 rounded-lg text-[11px] font-bold transition cursor-pointer flex items-center gap-1 ${
                     isPriority
                       ? 'bg-rose-500 text-white shadow-xs'
-                      : 'bg-white/80 border border-[#E5D2A0]/35 text-[#202124]/70 hover:text-[#202124]'
+                      : 'bg-white border border-[#E5DFD4] text-[#6F727A] hover:text-[#121316]'
                   }`}
                 >
                   <AlertCircle className="w-3 h-3" />
@@ -878,13 +878,13 @@ export const InternalChatModal: React.FC<InternalChatModalProps> = ({
                   onChange={(e) => setMessageInput(e.target.value)}
                   onKeyDown={handleKeyDown}
                   placeholder={`Message ${activeChatType === 'channel' ? `#${activeChannel?.name || activeChannelId}` : activeRecipient?.name || 'staff member'}... (Enter = send, Shift+Enter = new line)`}
-                  className="flex-1 px-3.5 py-2.5 bg-white/85 border border-[#E5D2A0]/35 rounded-2xl text-xs text-[#202124] placeholder:text-[#202124]/40 focus:outline-hidden focus:border-[#E5D2A0] resize-none"
+                  className="flex-1 px-3.5 py-2.5 bg-white border border-[#E5DFD4] rounded-2xl text-xs text-[#121316] placeholder:text-[#6F727A] focus:outline-hidden focus:border-[#F5EB78] resize-none shadow-xs"
                 />
 
                 <button
                   type="submit"
                   disabled={!messageInput.trim() || sending}
-                  className="px-4 py-3 rounded-2xl bg-gradient-to-r from-[#E5D2A0] to-[#c7ab6e] hover:from-[#c7ab6e] hover:to-[#b89856] disabled:opacity-40 text-[#202124] font-bold transition shadow-md shadow-[#E5D2A0]/15 cursor-pointer shrink-0 flex items-center justify-center"
+                  className="px-4 py-3 rounded-2xl bg-[#F5EB78] hover:bg-[#ebd545] disabled:opacity-40 text-[#121316] font-bold transition shadow-sm border border-[#E5DFD4] cursor-pointer shrink-0 flex items-center justify-center"
                   title="Send message"
                 >
                   {sending ? (

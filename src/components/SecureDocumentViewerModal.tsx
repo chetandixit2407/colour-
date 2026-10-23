@@ -264,20 +264,20 @@ export const SecureDocumentViewerModal: React.FC<SecureDocumentViewerModalProps>
   }, [textContent, lowerFileName]);
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#FAF9F6]/75 backdrop-blur-xl p-2 sm:p-4 overflow-hidden">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#121316]/40 backdrop-blur-md p-2 sm:p-4 overflow-hidden">
       <div
         ref={containerRef}
-        className={`glass-panel-elevated bg-white/75 border border-white/80 rounded-3xl w-full flex flex-col shadow-[0_24px_60px_rgba(0,0,0,0.08)] overflow-hidden text-[#111111] transition-all ${
+        className={`bg-white border border-[#E5DFD4] rounded-3xl w-full flex flex-col shadow-2xl overflow-hidden text-[#121316] transition-all ${
           isFullscreen ? 'h-screen w-screen max-w-none rounded-none' : 'max-w-5xl h-[94vh]'
         }`}
       >
         {/* Top Control Bar */}
-        <div className="p-3 sm:p-4 border-b border-[#E5D2A0]/40 bg-white/65 backdrop-blur-md flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 shrink-0">
+        <div className="p-3 sm:p-4 border-b border-[#E5DFD4] bg-[#FAF7F0] flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 shrink-0">
           {/* Document Title & Back */}
           <div className="flex items-center gap-3 min-w-0">
             <button
               onClick={onClose}
-              className="p-2 rounded-xl bg-white/70 hover:bg-white/90 text-[#111111] border border-black/10 shadow-xs transition flex items-center gap-1.5 cursor-pointer text-xs font-semibold shrink-0"
+              className="p-2 rounded-xl bg-white hover:bg-[#ECE6DC] text-[#121316] border border-[#E5DFD4] shadow-xs transition flex items-center gap-1.5 cursor-pointer text-xs font-semibold shrink-0"
               title="Return to Candidate Profile"
             >
               <ArrowLeft className="w-4 h-4" />
@@ -373,7 +373,7 @@ export const SecureDocumentViewerModal: React.FC<SecureDocumentViewerModalProps>
             {/* Download Button */}
             <button
               onClick={handleDownload}
-              className="px-3 py-1.5 sm:px-4 sm:py-2 bg-gradient-to-r from-[#D8BF85] to-[#BFA15F] hover:from-[#E5D2A0] hover:to-[#CDB06E] text-[#111111] text-xs font-bold rounded-xl shadow-xs transition flex items-center gap-1.5 cursor-pointer shrink-0"
+              className="px-3 py-1.5 sm:px-4 sm:py-2 bg-[#F5EB78] hover:bg-[#ebd545] text-[#121316] text-xs font-extrabold rounded-xl shadow-xs border border-[#E5DFD4] transition flex items-center gap-1.5 cursor-pointer shrink-0"
               title="Download original file"
             >
               <Download className="w-4 h-4" />
@@ -383,7 +383,7 @@ export const SecureDocumentViewerModal: React.FC<SecureDocumentViewerModalProps>
             {/* Close Cross */}
             <button
               onClick={onClose}
-              className="p-2 rounded-xl text-[#5F6368] hover:text-[#111111] hover:bg-black/5 transition cursor-pointer"
+              className="p-2 rounded-xl text-[#6F727A] hover:text-[#121316] hover:bg-black/5 transition cursor-pointer"
               title="Close Viewer"
             >
               <X className="w-5 h-5" />
@@ -392,7 +392,7 @@ export const SecureDocumentViewerModal: React.FC<SecureDocumentViewerModalProps>
         </div>
 
         {/* Security & Metadata Sub-header */}
-        <div className="px-4 py-2 bg-white/50 border-b border-[#E5D2A0]/30 text-xs flex flex-wrap items-center justify-between gap-3 text-[#5F6368] shrink-0">
+        <div className="px-4 py-2 bg-[#FAF7F0] border-b border-[#E5DFD4] text-xs flex flex-wrap items-center justify-between gap-3 text-[#6F727A] shrink-0">
           <div className="flex items-center gap-4 flex-wrap text-[11px]">
             <span className="flex items-center gap-1.5">
               <Calendar className="w-3.5 h-3.5 text-[#9E8243]" />

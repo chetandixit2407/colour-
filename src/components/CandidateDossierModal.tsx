@@ -329,16 +329,16 @@ export const CandidateDossierModal: React.FC<CandidateDossierModalProps> = ({
   ];
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#FAF9F6]/75 backdrop-blur-xl p-3 sm:p-4 overflow-y-auto">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#121316]/40 backdrop-blur-md p-3 sm:p-4 overflow-y-auto">
       <motion.div
         initial={{ opacity: 0, scale: 0.98, y: 8 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.98, y: 6 }}
         transition={{ duration: 0.32, ease: smoothEase }}
-        className="glass-panel-elevated bg-white/75 rounded-3xl max-w-4xl w-full max-h-[92vh] flex flex-col shadow-[0_24px_60px_rgba(0,0,0,0.08)] border border-white/80 text-[#111111] overflow-hidden"
+        className="bg-white rounded-3xl max-w-4xl w-full max-h-[92vh] flex flex-col shadow-2xl border border-[#E5DFD4] text-[#121316] overflow-hidden"
       >
         {/* Top Header Bar */}
-        <div className="p-3.5 sm:p-5 border-b border-[#E5D2A0]/30 flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-white/60 backdrop-blur-md shrink-0">
+        <div className="p-3.5 sm:p-5 border-b border-[#E5DFD4] flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-[#FAF7F0] shrink-0">
           <div className="flex items-center gap-3 sm:gap-3.5 min-w-0 flex-1">
             {/* Live photo or fallback avatar */}
             <div className="flex flex-col items-center shrink-0">
@@ -347,10 +347,10 @@ export const CandidateDossierModal: React.FC<CandidateDossierModalProps> = ({
                   <img
                     src={candidate.receptionPhotoUrl || candidate.photoUrl || candidate.livePhoto || candidate.arrivalPhoto}
                     alt={candidate?.fullName}
-                    className="w-12 h-12 sm:w-16 sm:h-16 rounded-2xl object-cover border-2 border-amber-500 shadow-sm shrink-0"
+                    className="w-12 h-12 sm:w-16 sm:h-16 rounded-2xl object-cover border-2 border-[#121316] shadow-sm shrink-0"
                   />
                 ) : (
-                  <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-2xl bg-amber-500/15 text-amber-700 border border-amber-300 flex items-center justify-center font-bold text-base sm:text-lg shrink-0">
+                  <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-2xl bg-[#F5EB78] text-[#121316] border border-[#121316]/20 flex items-center justify-center font-bold text-base sm:text-lg shrink-0">
                     {(candidate?.fullName || 'WCR').slice(0, 2).toUpperCase()}
                   </div>
                 )}
@@ -366,7 +366,7 @@ export const CandidateDossierModal: React.FC<CandidateDossierModalProps> = ({
               {/* Capture Timestamp directly below the photo */}
               {(candidate?.receptionPhotoCapturedAt || candidate?.arrivalPhotoCapturedAt || candidate?.livePhotoCapturedAt) && (
                 <span
-                  className="text-[9px] sm:text-[10px] text-amber-700 font-mono tracking-tight mt-1 truncate max-w-[95px] sm:max-w-[130px] text-center"
+                  className="text-[9px] sm:text-[10px] text-[#6F727A] font-mono tracking-tight mt-1 truncate max-w-[95px] sm:max-w-[130px] text-center"
                   title={`Captured: ${formatPhotoTimestamp(candidate.receptionPhotoCapturedAt || candidate.arrivalPhotoCapturedAt || candidate.livePhotoCapturedAt)}`}
                 >
                   {formatPhotoTimestamp(candidate.receptionPhotoCapturedAt || candidate.arrivalPhotoCapturedAt || candidate.livePhotoCapturedAt)}
@@ -376,22 +376,22 @@ export const CandidateDossierModal: React.FC<CandidateDossierModalProps> = ({
 
             <div className="min-w-0 flex-1">
               <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap">
-                <h2 className="text-base sm:text-lg font-bold text-slate-900 truncate max-w-full">
+                <h2 className="text-base sm:text-lg font-bold text-[#121316] truncate max-w-full">
                   {candidate?.fullName || 'Candidate Profile'}
                 </h2>
-                <span className="px-2 py-0.5 rounded-full bg-amber-500/15 border border-amber-300 text-[10px] font-bold text-amber-800 font-mono shrink-0">
+                <span className="px-2 py-0.5 rounded-full bg-[#FAF7F0] border border-[#E5DFD4] text-[10px] font-bold text-[#121316] font-mono shrink-0">
                   {candidate?.token || candidate?.id}
                 </span>
-                <span className="px-2 py-0.5 rounded-full bg-slate-100 text-slate-700 border border-slate-200 text-[10px] font-semibold shrink-0">
+                <span className="px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200 text-[10px] font-semibold shrink-0">
                   {candidate?.status || 'Active'}
                 </span>
               </div>
-              <p className="text-xs text-slate-600 truncate mt-0.5">
-                <strong className="text-slate-900 font-semibold">{candidate?.position}</strong> &bull; {candidate?.department || 'Operations'}
+              <p className="text-xs text-[#6F727A] truncate mt-0.5">
+                <strong className="text-[#121316] font-semibold">{candidate?.position}</strong> &bull; {candidate?.department || 'Operations'}
               </p>
-              <div className="flex items-center gap-2 sm:gap-3 text-[11px] text-slate-500 mt-1 flex-wrap">
-                <span>Arrival: <strong className="text-slate-700 font-mono">{candidate?.arrivalTime || (candidate?.checkedInAt ? new Date(candidate.checkedInAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : 'Today')}</strong></span>
-                <span>Location: <strong className="text-slate-700">{formatCandidateLocation(candidate?.assignedRoomName || candidate?.currentLocation)}</strong></span>
+              <div className="flex items-center gap-2 sm:gap-3 text-[11px] text-[#6F727A] mt-1 flex-wrap">
+                <span>Arrival: <strong className="text-[#121316] font-mono">{candidate?.arrivalTime || (candidate?.checkedInAt ? new Date(candidate.checkedInAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : 'Today')}</strong></span>
+                <span>Location: <strong className="text-[#121316]">{formatCandidateLocation(candidate?.assignedRoomName || candidate?.currentLocation)}</strong></span>
               </div>
             </div>
           </div>
@@ -403,8 +403,8 @@ export const CandidateDossierModal: React.FC<CandidateDossierModalProps> = ({
                 onClick={() => setIsEditing(!isEditing)}
                 className={`p-2 rounded-xl border text-xs font-semibold transition cursor-pointer flex items-center gap-1.5 ${
                   isEditing
-                    ? 'bg-amber-500 text-white border-amber-600'
-                    : 'bg-white/80 hover:bg-white text-slate-700 border-slate-200 shadow-xs'
+                    ? 'bg-[#F5EB78] text-[#121316] border-[#121316]'
+                    : 'bg-white hover:bg-[#FAF7F0] text-[#121316] border-[#E5DFD4] shadow-xs'
                 }`}
                 title={isEditing ? 'Cancel Edit' : 'Edit Candidate'}
               >
@@ -416,7 +416,7 @@ export const CandidateDossierModal: React.FC<CandidateDossierModalProps> = ({
             {currentRole === 'ADMIN' && (
               <button
                 onClick={() => setShowDeleteConfirm(true)}
-                className="p-2 rounded-xl bg-white/80 hover:bg-rose-50 text-slate-600 hover:text-rose-600 border border-slate-200 transition cursor-pointer shadow-xs"
+                className="p-2 rounded-xl bg-white hover:bg-rose-50 text-[#6F727A] hover:text-rose-600 border border-[#E5DFD4] transition cursor-pointer shadow-xs"
                 title="Archive / Delete candidate"
               >
                 <Trash2 className="w-3.5 h-3.5" />
@@ -425,7 +425,7 @@ export const CandidateDossierModal: React.FC<CandidateDossierModalProps> = ({
 
             <button
               onClick={onClose}
-              className="p-2 rounded-xl text-slate-500 hover:text-slate-900 hover:bg-slate-100 transition cursor-pointer"
+              className="p-2 rounded-xl text-[#6F727A] hover:text-[#121316] hover:bg-[#FAF7F0] transition cursor-pointer"
             >
               <X className="w-5 h-5" />
             </button>
@@ -433,7 +433,7 @@ export const CandidateDossierModal: React.FC<CandidateDossierModalProps> = ({
         </div>
 
         {/* 7 Section Navigation Tabs */}
-        <div className="px-4 py-2 border-b border-slate-200/70 bg-white/30 flex gap-1 overflow-x-auto shrink-0">
+        <div className="px-4 py-2 border-b border-[#E5DFD4] bg-[#FAF7F0] flex gap-1.5 overflow-x-auto shrink-0">
           {sections.map((sec) => {
             const Icon = sec.icon;
             const isActive = activeSection === sec.id;
@@ -441,43 +441,37 @@ export const CandidateDossierModal: React.FC<CandidateDossierModalProps> = ({
               <button
                 key={sec.id}
                 onClick={() => setActiveSection(sec.id)}
-                className={`relative px-3 py-1.5 rounded-xl text-xs font-semibold transition-all shrink-0 flex items-center gap-1.5 cursor-pointer ${
+                className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all shrink-0 flex items-center gap-1.5 cursor-pointer ${
                   isActive
-                    ? 'text-slate-900 bg-white/95 border border-slate-200/90 shadow-xs font-bold'
-                    : 'text-slate-500 hover:text-slate-800 hover:bg-white/60'
+                    ? 'text-[#121316] bg-[#F5EB78] shadow-xs font-bold border border-[#121316]/10'
+                    : 'text-[#6F727A] hover:text-[#121316] hover:bg-white'
                 }`}
               >
-                <Icon className={`w-3.5 h-3.5 ${isActive ? 'text-amber-600' : 'text-slate-400'}`} />
+                <Icon className={`w-3.5 h-3.5 ${isActive ? 'text-[#121316]' : 'text-[#6F727A]'}`} />
                 <span>{sec.label}</span>
-                {isActive && (
-                  <motion.div
-                    layoutId="dossier-tab-highlight"
-                    className="absolute bottom-0 left-2 right-2 h-0.5 bg-amber-400 rounded-full"
-                  />
-                )}
               </button>
             );
           })}
         </div>
 
         {/* Modal Body / Tab Content */}
-        <div className="p-5 sm:p-6 overflow-y-auto flex-1 space-y-5">
+        <div className="p-5 sm:p-6 overflow-y-auto flex-1 space-y-5 bg-white">
           {/* Action notice / errors */}
           {actionError && (
-            <div className="p-3 bg-rose-950/40 border border-rose-500/40 rounded-xl text-rose-200 text-xs flex items-center gap-2">
-              <AlertCircle className="w-4 h-4 shrink-0 text-rose-400" />
+            <div className="p-3 bg-rose-50 border border-rose-200 rounded-xl text-rose-800 text-xs flex items-center gap-2">
+              <AlertCircle className="w-4 h-4 shrink-0 text-rose-600" />
               <span>{actionError}</span>
             </div>
           )}
 
           {/* Delete Confirmation Box */}
           {showDeleteConfirm && (
-            <div className="p-4 bg-rose-950/40 border border-rose-500/40 rounded-2xl space-y-3">
+            <div className="p-4 bg-rose-50 border border-rose-200 rounded-2xl space-y-3">
               <div className="flex items-start gap-2">
-                <AlertTriangle className="w-4 h-4 text-rose-400 mt-0.5" />
+                <AlertTriangle className="w-4 h-4 text-rose-600 mt-0.5" />
                 <div>
-                  <h4 className="text-xs font-bold text-rose-100">Confirm Candidate Record Archive</h4>
-                  <p className="text-[11px] text-rose-300/80">
+                  <h4 className="text-xs font-bold text-rose-900">Confirm Candidate Record Archive</h4>
+                  <p className="text-[11px] text-rose-700">
                     This will permanently delete/archive candidate files under White Collar Realty retention policy.
                   </p>
                 </div>
@@ -485,7 +479,7 @@ export const CandidateDossierModal: React.FC<CandidateDossierModalProps> = ({
               <div className="flex gap-2 justify-end pt-1">
                 <button
                   onClick={() => setShowDeleteConfirm(false)}
-                  className="px-3 py-1.5 bg-white/6 hover:bg-white/10 text-slate-300 text-xs font-medium rounded-xl"
+                  className="px-3 py-1.5 bg-white hover:bg-slate-50 text-[#121316] text-xs font-medium rounded-xl border border-[#E5DFD4]"
                 >
                   Cancel
                 </button>
@@ -504,101 +498,101 @@ export const CandidateDossierModal: React.FC<CandidateDossierModalProps> = ({
           {activeSection === 'Identity' && (
             <div className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="p-4 glass-panel rounded-2xl space-y-3 border border-white/8">
-                  <span className="text-xs font-bold text-amber-400 uppercase tracking-wider flex items-center gap-1.5 font-mono">
-                    <User className="w-3.5 h-3.5" />
+                <div className="p-4 sm:p-5 bg-[#FAF7F0] rounded-2xl space-y-3 border border-[#E5DFD4]">
+                  <span className="text-xs font-bold text-[#121316] uppercase tracking-wider flex items-center gap-1.5 font-mono">
+                    <User className="w-3.5 h-3.5 text-[#121316]" />
                     Personal Information
                   </span>
-                  <div className="space-y-2 text-xs">
-                    <div>
-                      <span className="text-slate-400 text-[10px] block">Full Name</span>
+                  <div className="space-y-2.5 text-xs">
+                    <div className="p-3 bg-white rounded-xl border border-[#E5DFD4]">
+                      <span className="text-[#6F727A] text-[10px] uppercase font-mono block">Full Name</span>
                       {isEditing ? (
                         <input
                           type="text"
                           value={editForm.fullName}
                           onChange={(e) => setEditForm({ ...editForm, fullName: e.target.value })}
-                          className="w-full px-2.5 py-1.5 glass-input rounded-xl text-white text-xs mt-1"
+                          className="w-full px-2.5 py-1.5 bg-white border border-[#E5DFD4] rounded-xl text-[#121316] text-xs mt-1 focus:border-[#121316]"
                         />
                       ) : (
-                        <strong className="text-white text-sm">{candidate?.fullName}</strong>
+                        <strong className="text-[#121316] text-sm block mt-0.5">{candidate?.fullName}</strong>
                       )}
                     </div>
-                    <div>
-                      <span className="text-slate-400 text-[10px] block">Phone Number</span>
+                    <div className="p-3 bg-white rounded-xl border border-[#E5DFD4]">
+                      <span className="text-[#6F727A] text-[10px] uppercase font-mono block">Phone Number</span>
                       {isEditing ? (
                         <input
                           type="text"
                           value={editForm.phone}
                           onChange={(e) => setEditForm({ ...editForm, phone: e.target.value })}
-                          className="w-full px-2.5 py-1.5 glass-input rounded-xl text-white text-xs mt-1"
+                          className="w-full px-2.5 py-1.5 bg-white border border-[#E5DFD4] rounded-xl text-[#121316] text-xs mt-1 focus:border-[#121316]"
                         />
                       ) : (
-                        <span className="text-slate-200 font-mono">{candidate?.phone}</span>
+                        <span className="text-[#121316] font-mono font-medium block mt-0.5">{candidate?.phone}</span>
                       )}
                     </div>
-                    <div>
-                      <span className="text-slate-400 text-[10px] block">Email Address</span>
+                    <div className="p-3 bg-white rounded-xl border border-[#E5DFD4]">
+                      <span className="text-[#6F727A] text-[10px] uppercase font-mono block">Email Address</span>
                       {isEditing ? (
                         <input
                           type="email"
                           value={editForm.email}
                           onChange={(e) => setEditForm({ ...editForm, email: e.target.value })}
-                          className="w-full px-2.5 py-1.5 glass-input rounded-xl text-white text-xs mt-1"
+                          className="w-full px-2.5 py-1.5 bg-white border border-[#E5DFD4] rounded-xl text-[#121316] text-xs mt-1 focus:border-[#121316]"
                         />
                       ) : (
-                        <span className="text-slate-200">{candidate?.email || 'Not provided'}</span>
+                        <span className="text-[#121316] block mt-0.5">{candidate?.email || 'Not provided'}</span>
                       )}
                     </div>
                   </div>
                 </div>
 
-                <div className="p-4 glass-panel rounded-2xl space-y-3 border border-white/8">
-                  <span className="text-xs font-bold text-amber-400 uppercase tracking-wider flex items-center gap-1.5 font-mono">
-                    <MapPin className="w-3.5 h-3.5" />
+                <div className="p-4 sm:p-5 bg-[#FAF7F0] rounded-2xl space-y-3 border border-[#E5DFD4]">
+                  <span className="text-xs font-bold text-[#121316] uppercase tracking-wider flex items-center gap-1.5 font-mono">
+                    <MapPin className="w-3.5 h-3.5 text-[#121316]" />
                     Location & Residence
                   </span>
-                  <div className="space-y-2 text-xs">
-                    <div>
-                      <span className="text-slate-400 text-[10px] block">Current Address</span>
+                  <div className="space-y-2.5 text-xs">
+                    <div className="p-3 bg-white rounded-xl border border-[#E5DFD4]">
+                      <span className="text-[#6F727A] text-[10px] uppercase font-mono block">Current Address</span>
                       {isEditing ? (
                         <input
                           type="text"
                           value={editForm.address}
                           onChange={(e) => setEditForm({ ...editForm, address: e.target.value })}
                           placeholder="Address Not Provided"
-                          className="w-full px-2.5 py-1.5 glass-input rounded-xl text-white text-xs mt-1"
+                          className="w-full px-2.5 py-1.5 bg-white border border-[#E5DFD4] rounded-xl text-[#121316] text-xs mt-1 focus:border-[#121316]"
                         />
                       ) : (
-                        <span className="text-slate-200">{formatCandidateAddress(candidate?.address)}</span>
+                        <span className="text-[#121316] block mt-0.5">{formatCandidateAddress(candidate?.address)}</span>
                       )}
                     </div>
                     <div className="grid grid-cols-2 gap-2">
-                      <div>
-                        <span className="text-slate-400 text-[10px] block">City</span>
+                      <div className="p-3 bg-white rounded-xl border border-[#E5DFD4]">
+                        <span className="text-[#6F727A] text-[10px] uppercase font-mono block">City</span>
                         {isEditing ? (
                           <input
                             type="text"
                             value={editForm.city}
                             onChange={(e) => setEditForm({ ...editForm, city: e.target.value })}
                             placeholder="Location Not Provided"
-                            className="w-full px-2.5 py-1.5 glass-input rounded-xl text-white text-xs mt-1"
+                            className="w-full px-2.5 py-1.5 bg-white border border-[#E5DFD4] rounded-xl text-[#121316] text-xs mt-1 focus:border-[#121316]"
                           />
                         ) : (
-                          <span className="text-slate-200">{formatCandidateLocation(candidate?.city)}</span>
+                          <span className="text-[#121316] font-medium block mt-0.5">{formatCandidateLocation(candidate?.city)}</span>
                         )}
                       </div>
-                      <div>
-                        <span className="text-slate-400 text-[10px] block">State</span>
+                      <div className="p-3 bg-white rounded-xl border border-[#E5DFD4]">
+                        <span className="text-[#6F727A] text-[10px] uppercase font-mono block">State</span>
                         {isEditing ? (
                           <input
                             type="text"
                             value={editForm.state}
                             onChange={(e) => setEditForm({ ...editForm, state: e.target.value })}
                             placeholder="Location Not Provided"
-                            className="w-full px-2.5 py-1.5 glass-input rounded-xl text-white text-xs mt-1"
+                            className="w-full px-2.5 py-1.5 bg-white border border-[#E5DFD4] rounded-xl text-[#121316] text-xs mt-1 focus:border-[#121316]"
                           />
                         ) : (
-                          <span className="text-slate-200">{formatCandidateLocation(candidate?.state)}</span>
+                          <span className="text-[#121316] font-medium block mt-0.5">{formatCandidateLocation(candidate?.state)}</span>
                         )}
                       </div>
                     </div>
@@ -607,7 +601,7 @@ export const CandidateDossierModal: React.FC<CandidateDossierModalProps> = ({
               </div>
 
               {/* Desk Photo Verification Block */}
-              <div className="p-4 glass-panel rounded-2xl border border-white/8 space-y-4">
+              <div className="p-4 sm:p-5 bg-[#FAF7F0] rounded-2xl border border-[#E5DFD4] space-y-4">
                 <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                   <div className="flex items-center gap-4">
                     {candidate?.receptionPhotoUrl || candidate?.photoUrl || candidate?.livePhoto || candidate?.arrivalPhoto ? (
@@ -615,50 +609,50 @@ export const CandidateDossierModal: React.FC<CandidateDossierModalProps> = ({
                         <img
                           src={candidate.receptionPhotoUrl || candidate.photoUrl || candidate.livePhoto || candidate.arrivalPhoto}
                           alt={`${candidate?.fullName} Desk Photo`}
-                          className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl object-cover border-2 border-amber-500/70 shadow-2xl"
+                          className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl object-cover border-2 border-[#121316] shadow-md"
                         />
-                        <span className="absolute -bottom-1.5 -right-1.5 bg-emerald-500 text-slate-950 p-1 rounded-full ring-2 ring-[#0B0E14] shadow">
+                        <span className="absolute -bottom-1.5 -right-1.5 bg-emerald-500 text-white p-1 rounded-full ring-2 ring-white shadow-xs">
                           <Check className="w-3 h-3 stroke-[3]" />
                         </span>
                       </div>
                     ) : (
-                      <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-amber-500/15 border border-amber-500/30 text-amber-400 flex flex-col items-center justify-center gap-1 shrink-0">
-                        <Camera className="w-7 h-7" />
+                      <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-[#F5EB78]/40 border border-[#E5DFD4] text-[#121316] flex flex-col items-center justify-center gap-1 shrink-0">
+                        <Camera className="w-7 h-7 text-[#121316]" />
                         <span className="text-[10px] font-bold">No Photo</span>
                       </div>
                     )}
 
                     <div className="space-y-1">
                       <div className="flex items-center gap-2 flex-wrap">
-                        <h4 className="text-xs sm:text-sm font-bold text-white">Desk Live Photo Verification</h4>
+                        <h4 className="text-xs sm:text-sm font-bold text-[#121316]">Desk Live Photo Verification</h4>
                         {candidate?.receptionPhotoUrl || candidate?.arrivalPhoto ? (
-                          <span className="px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 text-[10px] font-bold flex items-center gap-1">
-                            <CheckCircle2 className="w-3 h-3 text-emerald-400" />
+                          <span className="px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200 text-[10px] font-bold flex items-center gap-1">
+                            <CheckCircle2 className="w-3 h-3 text-emerald-600" />
                             Verified Record
                           </span>
                         ) : (
-                          <span className="px-2 py-0.5 rounded-full bg-amber-500/15 text-amber-300 border border-amber-500/30 text-[10px] font-bold">
+                          <span className="px-2 py-0.5 rounded-full bg-[#F5EB78] text-[#121316] border border-[#121316]/10 text-[10px] font-bold">
                             Pending Verification
                           </span>
                         )}
                       </div>
 
-                      <p className="text-xs text-amber-300 font-mono">
+                      <p className="text-xs text-[#121316] font-mono">
                         {candidate?.receptionPhotoCapturedAt || candidate?.arrivalPhotoCapturedAt || candidate?.livePhotoCapturedAt
                           ? `Captured: ${formatPhotoTimestamp(candidate.receptionPhotoCapturedAt || candidate.arrivalPhotoCapturedAt || candidate.livePhotoCapturedAt)}`
                           : 'No desk verification photo captured yet'}
                       </p>
 
-                      <p className="text-[11px] text-slate-400">
+                      <p className="text-[11px] text-[#6F727A]">
                         Verified By:{' '}
-                        <strong className="text-slate-200">
+                        <strong className="text-[#121316]">
                           {candidate?.arrivalPhotoCapturedByName || candidate?.livePhotoCapturedBy || 'Front Desk Operations Staff'}
                         </strong>
                       </p>
 
-                      <p className="text-[11px] text-slate-400">
+                      <p className="text-[11px] text-[#6F727A]">
                         Database Storage:{' '}
-                        <span className="text-emerald-400 font-semibold font-mono">
+                        <span className="text-emerald-700 font-semibold font-mono">
                           {candidate?.photoUploadStatus === 'SUCCESS' || candidate?.receptionPhotoUrl ? 'PERSISTED (wcr_database)' : 'PENDING'}
                         </span>
                       </p>
@@ -667,7 +661,7 @@ export const CandidateDossierModal: React.FC<CandidateDossierModalProps> = ({
 
                   <button
                     onClick={() => setShowPhotoModal(true)}
-                    className="px-4 py-2.5 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-bold text-xs rounded-xl transition cursor-pointer flex items-center gap-2 shadow-lg shadow-amber-500/20 shrink-0"
+                    className="px-4 py-2.5 bg-[#F5EB78] hover:bg-[#ebd545] text-[#121316] font-bold text-xs rounded-xl transition cursor-pointer flex items-center gap-2 shadow-xs shrink-0"
                   >
                     <Camera className="w-4 h-4" />
                     <span>{candidate?.receptionPhotoUrl || candidate?.arrivalPhoto ? 'Retake Desk Photo' : 'Capture Desk Photo'}</span>
@@ -679,94 +673,94 @@ export const CandidateDossierModal: React.FC<CandidateDossierModalProps> = ({
 
           {/* SECTION 2: APPLICATION */}
           {activeSection === 'Application' && (
-            <div className="p-4 glass-panel rounded-2xl space-y-4 border border-white/8">
-              <span className="text-xs font-bold text-amber-400 uppercase tracking-wider flex items-center gap-1.5 font-mono">
-                <Briefcase className="w-3.5 h-3.5" />
+            <div className="p-4 sm:p-5 bg-[#FAF7F0] rounded-2xl space-y-4 border border-[#E5DFD4]">
+              <span className="text-xs font-bold text-[#121316] uppercase tracking-wider flex items-center gap-1.5 font-mono">
+                <Briefcase className="w-3.5 h-3.5 text-[#121316]" />
                 Job Application & Terms
               </span>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 text-xs">
-                <div className="p-3 bg-white/4 rounded-xl border border-white/6">
-                  <span className="text-slate-400 text-[10px] block">Target Role</span>
+                <div className="p-3 bg-white rounded-xl border border-[#E5DFD4]">
+                  <span className="text-[#6F727A] text-[10px] uppercase font-mono block">Target Role</span>
                   {isEditing ? (
                     <input
                       type="text"
                       value={editForm.position}
                       onChange={(e) => setEditForm({ ...editForm, position: e.target.value })}
-                      className="w-full px-2 py-1 glass-input rounded-lg text-white text-xs mt-1"
+                      className="w-full px-2 py-1 bg-white border border-[#E5DFD4] rounded-lg text-[#121316] text-xs mt-1"
                     />
                   ) : (
-                    <strong className="text-white text-xs">{candidate?.position}</strong>
+                    <strong className="text-[#121316] text-xs block mt-0.5">{candidate?.position}</strong>
                   )}
                 </div>
 
-                <div className="p-3 bg-white/4 rounded-xl border border-white/6">
-                  <span className="text-slate-400 text-[10px] block">Department</span>
+                <div className="p-3 bg-white rounded-xl border border-[#E5DFD4]">
+                  <span className="text-[#6F727A] text-[10px] uppercase font-mono block">Department</span>
                   {isEditing ? (
                     <input
                       type="text"
                       value={editForm.department}
                       onChange={(e) => setEditForm({ ...editForm, department: e.target.value })}
-                      className="w-full px-2 py-1 glass-input rounded-lg text-white text-xs mt-1"
+                      className="w-full px-2 py-1 bg-white border border-[#E5DFD4] rounded-lg text-[#121316] text-xs mt-1"
                     />
                   ) : (
-                    <span className="text-slate-200">{candidate?.department || 'Operations'}</span>
+                    <span className="text-[#121316] font-medium block mt-0.5">{candidate?.department || 'Operations'}</span>
                   )}
                 </div>
 
-                <div className="p-3 bg-white/4 rounded-xl border border-white/6">
-                  <span className="text-slate-400 text-[10px] block">Expected CTC / Salary</span>
+                <div className="p-3 bg-white rounded-xl border border-[#E5DFD4]">
+                  <span className="text-[#6F727A] text-[10px] uppercase font-mono block">Expected CTC / Salary</span>
                   {isEditing ? (
                     <input
                       type="text"
                       value={editForm.expectedSalary}
                       onChange={(e) => setEditForm({ ...editForm, expectedSalary: e.target.value })}
-                      className="w-full px-2 py-1 glass-input rounded-lg text-white text-xs mt-1"
+                      className="w-full px-2 py-1 bg-white border border-[#E5DFD4] rounded-lg text-[#121316] text-xs mt-1"
                     />
                   ) : (
-                    <span className="text-amber-300 font-mono font-bold">{candidate?.expectedSalary || 'Negotiable'}</span>
+                    <span className="text-[#121316] font-mono font-bold block mt-0.5">{candidate?.expectedSalary || 'Negotiable'}</span>
                   )}
                 </div>
 
-                <div className="p-3 bg-white/4 rounded-xl border border-white/6">
-                  <span className="text-slate-400 text-[10px] block">Notice Period</span>
+                <div className="p-3 bg-white rounded-xl border border-[#E5DFD4]">
+                  <span className="text-[#6F727A] text-[10px] uppercase font-mono block">Notice Period</span>
                   {isEditing ? (
                     <input
                       type="text"
                       value={editForm.noticePeriod}
                       onChange={(e) => setEditForm({ ...editForm, noticePeriod: e.target.value })}
-                      className="w-full px-2 py-1 glass-input rounded-lg text-white text-xs mt-1"
+                      className="w-full px-2 py-1 bg-white border border-[#E5DFD4] rounded-lg text-[#121316] text-xs mt-1"
                     />
                   ) : (
-                    <span className="text-slate-200">{candidate?.noticePeriod || 'Immediate'}</span>
+                    <span className="text-[#121316] font-medium block mt-0.5">{candidate?.noticePeriod || 'Immediate'}</span>
                   )}
                 </div>
 
-                <div className="p-3 bg-white/4 rounded-xl border border-white/6">
-                  <span className="text-slate-400 text-[10px] block">Highest Qualification</span>
+                <div className="p-3 bg-white rounded-xl border border-[#E5DFD4]">
+                  <span className="text-[#6F727A] text-[10px] uppercase font-mono block">Highest Qualification</span>
                   {isEditing ? (
                     <input
                       type="text"
                       value={editForm.qualification}
                       onChange={(e) => setEditForm({ ...editForm, qualification: e.target.value })}
-                      className="w-full px-2 py-1 glass-input rounded-lg text-white text-xs mt-1"
+                      className="w-full px-2 py-1 bg-white border border-[#E5DFD4] rounded-lg text-[#121316] text-xs mt-1"
                     />
                   ) : (
-                    <span className="text-slate-200">{candidate?.qualification || 'Graduate'}</span>
+                    <span className="text-[#121316] font-medium block mt-0.5">{candidate?.qualification || 'Graduate'}</span>
                   )}
                 </div>
 
-                <div className="p-3 bg-white/4 rounded-xl border border-white/6">
-                  <span className="text-slate-400 text-[10px] block">Host / Person to Meet</span>
+                <div className="p-3 bg-white rounded-xl border border-[#E5DFD4]">
+                  <span className="text-[#6F727A] text-[10px] uppercase font-mono block">Host / Person to Meet</span>
                   {isEditing ? (
                     <input
                       type="text"
                       value={editForm.personToMeet}
                       onChange={(e) => setEditForm({ ...editForm, personToMeet: e.target.value })}
-                      className="w-full px-2 py-1 glass-input rounded-lg text-white text-xs mt-1"
+                      className="w-full px-2 py-1 bg-white border border-[#E5DFD4] rounded-lg text-[#121316] text-xs mt-1"
                     />
                   ) : (
-                    <span className="text-slate-200">{candidate?.personToMeet || 'HR Coordinator'}</span>
+                    <span className="text-[#121316] font-medium block mt-0.5">{candidate?.personToMeet || 'HR Coordinator'}</span>
                   )}
                 </div>
               </div>
@@ -775,35 +769,35 @@ export const CandidateDossierModal: React.FC<CandidateDossierModalProps> = ({
 
           {/* SECTION 3: EXPERIENCE */}
           {activeSection === 'Experience' && (
-            <div className="p-4 glass-panel rounded-2xl space-y-4 border border-white/8">
-              <span className="text-xs font-bold text-amber-400 uppercase tracking-wider flex items-center gap-1.5 font-mono">
-                <Layers className="w-3.5 h-3.5" />
+            <div className="p-4 sm:p-5 bg-[#FAF7F0] rounded-2xl space-y-4 border border-[#E5DFD4]">
+              <span className="text-xs font-bold text-[#121316] uppercase tracking-wider flex items-center gap-1.5 font-mono">
+                <Layers className="w-3.5 h-3.5 text-[#121316]" />
                 Work History & Skillset
               </span>
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
-                <div className="p-3 bg-white/4 rounded-xl border border-white/6">
-                  <span className="text-slate-400 text-[10px] block">Current / Last Company</span>
+                <div className="p-3 bg-white rounded-xl border border-[#E5DFD4]">
+                  <span className="text-[#6F727A] text-[10px] uppercase font-mono block">Current / Last Company</span>
                   {isEditing ? (
                     <input
                       type="text"
                       value={editForm.currentCompany || ''}
                       onChange={(e) => setEditForm({ ...editForm, currentCompany: e.target.value })}
                       placeholder="e.g. DLF / Godrej"
-                      className="w-full px-2.5 py-1.5 glass-input rounded-xl text-white text-xs mt-1"
+                      className="w-full px-2.5 py-1.5 bg-white border border-[#E5DFD4] rounded-xl text-[#121316] text-xs mt-1"
                     />
                   ) : (
-                    <strong className="text-white text-xs">{candidate?.currentCompany || 'Not disclosed'}</strong>
+                    <strong className="text-[#121316] text-xs block mt-0.5">{candidate?.currentCompany || 'Not disclosed'}</strong>
                   )}
                 </div>
 
-                <div className="p-3 bg-white/4 rounded-xl border border-white/6">
-                  <span className="text-slate-400 text-[10px] block">Years of Experience</span>
+                <div className="p-3 bg-white rounded-xl border border-[#E5DFD4]">
+                  <span className="text-[#6F727A] text-[10px] uppercase font-mono block">Years of Experience</span>
                   {isEditing ? (
                     <select
                       value={editForm.totalExperience || ''}
                       onChange={(e) => setEditForm({ ...editForm, totalExperience: e.target.value })}
-                      className="w-full px-2.5 py-1.5 glass-input rounded-xl text-white text-xs mt-1 bg-slate-900"
+                      className="w-full px-2.5 py-1.5 bg-white border border-[#E5DFD4] rounded-xl text-[#121316] text-xs mt-1"
                     >
                       <option value="">-- Select experience level --</option>
                       <option value="Fresher">Fresher (0 years of experience)</option>
@@ -817,29 +811,29 @@ export const CandidateDossierModal: React.FC<CandidateDossierModalProps> = ({
                       )}
                     </select>
                   ) : (
-                    <span className="text-amber-300 font-mono font-bold">{formatCandidateExperience(candidate?.totalExperience)}</span>
+                    <span className="text-[#121316] font-mono font-bold block mt-0.5">{formatCandidateExperience(candidate?.totalExperience)}</span>
                   )}
                 </div>
 
-                <div className="p-3 bg-white/4 rounded-xl border border-white/6">
-                  <span className="text-slate-400 text-[10px] block">Relevant Experience</span>
+                <div className="p-3 bg-white rounded-xl border border-[#E5DFD4]">
+                  <span className="text-[#6F727A] text-[10px] uppercase font-mono block">Relevant Experience</span>
                   {isEditing ? (
                     <input
                       type="text"
                       value={editForm.relevantExperience || ''}
                       onChange={(e) => setEditForm({ ...editForm, relevantExperience: e.target.value })}
                       placeholder="e.g. 2 Years in Sales"
-                      className="w-full px-2.5 py-1.5 glass-input rounded-xl text-white text-xs mt-1"
+                      className="w-full px-2.5 py-1.5 bg-white border border-[#E5DFD4] rounded-xl text-[#121316] text-xs mt-1"
                     />
                   ) : (
-                    <span className="text-amber-300 font-mono font-bold">{formatCandidateExperience(candidate?.relevantExperience)}</span>
+                    <span className="text-[#121316] font-mono font-bold block mt-0.5">{formatCandidateExperience(candidate?.relevantExperience)}</span>
                   )}
                 </div>
               </div>
 
               <div>
-                <span className="text-slate-400 text-[10px] block mb-1">Key Professional Skills</span>
-                <div className="p-3 bg-white/4 rounded-xl border border-white/6 text-xs text-slate-200">
+                <span className="text-[#6F727A] text-[10px] uppercase font-mono block mb-1">Key Professional Skills</span>
+                <div className="p-3 bg-white rounded-xl border border-[#E5DFD4] text-xs text-[#121316]">
                   {candidate?.skills || 'Real Estate Sales, Negotiation, CRM Operations, Client Relations'}
                 </div>
               </div>
@@ -849,16 +843,16 @@ export const CandidateDossierModal: React.FC<CandidateDossierModalProps> = ({
           {/* SECTION 4: INTERVIEW */}
           {activeSection === 'Interview' && (
             <div className="space-y-4">
-              <div className="p-4 glass-panel rounded-2xl space-y-3 border border-white/8">
+              <div className="p-4 sm:p-5 bg-[#FAF7F0] rounded-2xl space-y-3 border border-[#E5DFD4]">
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-bold text-amber-400 uppercase tracking-wider flex items-center gap-1.5 font-mono">
-                    <Calendar className="w-3.5 h-3.5" />
+                  <span className="text-xs font-bold text-[#121316] uppercase tracking-wider flex items-center gap-1.5 font-mono">
+                    <Calendar className="w-3.5 h-3.5 text-[#121316]" />
                     Interview Allocation & Cabin
                   </span>
                   {onAssignRoom && (
                     <button
                       onClick={() => onAssignRoom(candidateId)}
-                      className="px-3 py-1.5 bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs rounded-xl transition cursor-pointer flex items-center gap-1.5"
+                      className="px-3.5 py-2 bg-[#F5EB78] hover:bg-[#ebd545] text-[#121316] font-bold text-xs rounded-xl transition cursor-pointer flex items-center gap-1.5 shadow-xs"
                     >
                       <DoorOpen className="w-3.5 h-3.5" />
                       <span>Allocate / Change Room</span>
@@ -867,46 +861,46 @@ export const CandidateDossierModal: React.FC<CandidateDossierModalProps> = ({
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs pt-1">
-                  <div className="p-3 bg-white/4 rounded-xl border border-white/6">
-                    <span className="text-slate-400 text-[10px] block">Assigned Cabin / Room</span>
-                    <strong className="text-emerald-400 text-xs">
+                  <div className="p-3 bg-white rounded-xl border border-[#E5DFD4]">
+                    <span className="text-[#6F727A] text-[10px] uppercase font-mono block">Assigned Cabin / Room</span>
+                    <strong className="text-emerald-700 text-xs block mt-0.5">
                       {candidate?.assignedRoomName || 'Not Assigned (Lobby)'}
                     </strong>
                   </div>
 
-                  <div className="p-3 bg-white/4 rounded-xl border border-white/6">
-                    <span className="text-slate-400 text-[10px] block">Assigned Interviewer</span>
-                    <strong className="text-white text-xs">
+                  <div className="p-3 bg-white rounded-xl border border-[#E5DFD4]">
+                    <span className="text-[#6F727A] text-[10px] uppercase font-mono block">Assigned Interviewer</span>
+                    <strong className="text-[#121316] text-xs block mt-0.5">
                       {candidate?.assignedInterviewerName || 'Pending Allocation'}
                     </strong>
                   </div>
 
-                  <div className="p-3 bg-white/4 rounded-xl border border-white/6">
-                    <span className="text-slate-400 text-[10px] block">Current Stage</span>
-                    <span className="text-amber-400 font-semibold">{candidate?.status}</span>
+                  <div className="p-3 bg-white rounded-xl border border-[#E5DFD4]">
+                    <span className="text-[#6F727A] text-[10px] uppercase font-mono block">Current Stage</span>
+                    <span className="text-[#121316] font-semibold block mt-0.5">{candidate?.status}</span>
                   </div>
                 </div>
               </div>
 
               {/* Rounds List */}
               {interviews.length > 0 && (
-                <div className="p-4 glass-panel rounded-2xl space-y-3 border border-white/8">
-                  <span className="text-xs font-bold text-slate-300 uppercase tracking-wider">
+                <div className="p-4 sm:p-5 bg-[#FAF7F0] rounded-2xl space-y-3 border border-[#E5DFD4]">
+                  <span className="text-xs font-bold text-[#121316] uppercase tracking-wider">
                     Scheduled Interview Rounds ({interviews.length})
                   </span>
                   <div className="space-y-2">
                     {interviews.map((intv) => (
                       <div
                         key={intv.id}
-                        className="p-3 bg-white/4 rounded-xl border border-white/6 flex items-center justify-between text-xs"
+                        className="p-3 bg-white rounded-xl border border-[#E5DFD4] flex items-center justify-between text-xs"
                       >
                         <div>
-                          <strong className="text-white block">{intv.roundName}</strong>
-                          <span className="text-[11px] text-slate-400">
+                          <strong className="text-[#121316] block">{intv.roundName}</strong>
+                          <span className="text-[11px] text-[#6F727A]">
                             Interviewer: {intv.interviewerName} &bull; Room: {intv.roomName || 'TBD'}
                           </span>
                         </div>
-                        <span className="px-2 py-0.5 rounded-full bg-amber-500/15 text-amber-300 font-mono text-[10px]">
+                        <span className="px-2 py-0.5 rounded-full bg-[#F5EB78] text-[#121316] font-mono text-[10px] font-bold">
                           {intv.status}
                         </span>
                       </div>
@@ -922,13 +916,13 @@ export const CandidateDossierModal: React.FC<CandidateDossierModalProps> = ({
             <div className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {/* Resume Card */}
-                <div className="p-5 glass-panel rounded-2xl border border-white/8 space-y-3 flex flex-col justify-between">
+                <div className="p-5 bg-[#FAF7F0] rounded-2xl border border-[#E5DFD4] space-y-3 flex flex-col justify-between">
                   <div className="space-y-1.5">
-                    <div className="w-9 h-9 rounded-xl bg-blue-500/20 text-blue-400 border border-blue-500/30 flex items-center justify-center">
+                    <div className="w-9 h-9 rounded-xl bg-blue-100 text-blue-800 border border-blue-200 flex items-center justify-center">
                       <FileText className="w-5 h-5" />
                     </div>
-                    <h4 className="text-sm font-bold text-white">Curriculum Vitae / Resume</h4>
-                    <p className="text-[11px] text-slate-400">
+                    <h4 className="text-sm font-bold text-[#121316]">Curriculum Vitae / Resume</h4>
+                    <p className="text-[11px] text-[#6F727A]">
                       {candidate?.resumeUrl || candidate?.resumeFileName
                         ? `File: ${candidate.resumeFileName || 'Resume.pdf'}`
                         : 'No resume file uploaded yet'}
@@ -937,9 +931,9 @@ export const CandidateDossierModal: React.FC<CandidateDossierModalProps> = ({
 
                   <button
                     onClick={() => setShowResumeModal(true)}
-                    className="w-full py-2.5 px-3 bg-white/6 hover:bg-white/10 text-white font-semibold text-xs rounded-xl border border-white/10 transition cursor-pointer flex items-center justify-center gap-1.5"
+                    className="w-full py-2.5 px-3 bg-white hover:bg-[#FAF7F0] text-[#121316] font-semibold text-xs rounded-xl border border-[#E5DFD4] transition cursor-pointer flex items-center justify-center gap-1.5 shadow-xs"
                   >
-                    <Eye className="w-3.5 h-3.5 text-blue-400" />
+                    <Eye className="w-3.5 h-3.5 text-[#121316]" />
                     <span>View Resume in Secure Viewer</span>
                   </button>
                 </div>
@@ -954,8 +948,8 @@ export const CandidateDossierModal: React.FC<CandidateDossierModalProps> = ({
               {candidate && <VisitorArrivalTimeline candidate={candidate} />}
 
               {/* Event Timeline History */}
-              <div className="p-4 glass-panel rounded-2xl space-y-3 border border-white/8">
-                <span className="text-xs font-bold text-slate-300 uppercase tracking-wider block">
+              <div className="p-4 sm:p-5 bg-[#FAF7F0] rounded-2xl space-y-3 border border-[#E5DFD4]">
+                <span className="text-xs font-bold text-[#121316] uppercase tracking-wider block font-mono">
                   Authoritative Audit Log & Event Trail ({timeline.length})
                 </span>
 
@@ -964,20 +958,20 @@ export const CandidateDossierModal: React.FC<CandidateDossierModalProps> = ({
                     {timeline.map((evt) => (
                       <div
                         key={evt.id}
-                        className="p-2.5 bg-white/4 rounded-xl border border-white/6 text-xs flex items-center justify-between"
+                        className="p-2.5 bg-white rounded-xl border border-[#E5DFD4] text-xs flex items-center justify-between"
                       >
                         <div className="space-y-0.5">
-                          <strong className="text-white block">{evt.action}</strong>
-                          <p className="text-[11px] text-slate-400">{evt.details}</p>
+                          <strong className="text-[#121316] block">{evt.action}</strong>
+                          <p className="text-[11px] text-[#6F727A]">{evt.details}</p>
                         </div>
-                        <span className="text-[10px] text-slate-500 font-mono shrink-0 ml-2">
+                        <span className="text-[10px] text-[#6F727A] font-mono shrink-0 ml-2">
                           {formatDateTime(evt.timestamp).full}
                         </span>
                       </div>
                     ))}
                   </div>
                 ) : (
-                  <p className="text-xs text-slate-500">No events logged yet.</p>
+                  <p className="text-xs text-[#6F727A]">No events logged yet.</p>
                 )}
               </div>
             </div>
@@ -986,12 +980,12 @@ export const CandidateDossierModal: React.FC<CandidateDossierModalProps> = ({
           {/* SECTION 7: NOTES */}
           {activeSection === 'Notes' && (
             <div className="space-y-4">
-              <div className="p-4 glass-panel rounded-2xl space-y-3 border border-white/8">
-                <span className="text-xs font-bold text-amber-400 uppercase tracking-wider flex items-center gap-1.5 font-mono">
-                  <Lock className="w-3.5 h-3.5" />
+              <div className="p-4 sm:p-5 bg-[#FAF7F0] rounded-2xl space-y-3 border border-[#E5DFD4]">
+                <span className="text-xs font-bold text-[#121316] uppercase tracking-wider flex items-center gap-1.5 font-mono">
+                  <Lock className="w-3.5 h-3.5 text-[#121316]" />
                   Private HR & Interviewer Notes
                 </span>
-                <p className="text-[11px] text-slate-400">
+                <p className="text-[11px] text-[#6F727A]">
                   Visible only to HR, Senior HR, Admin, and CEO suites. Not exposed to candidates.
                 </p>
 
@@ -1000,11 +994,11 @@ export const CandidateDossierModal: React.FC<CandidateDossierModalProps> = ({
                     rows={4}
                     value={editForm.hrPrivateNotes}
                     onChange={(e) => setEditForm({ ...editForm, hrPrivateNotes: e.target.value })}
-                    className="w-full p-3 glass-input rounded-xl text-white text-xs"
+                    className="w-full p-3 bg-white border border-[#E5DFD4] rounded-xl text-[#121316] text-xs focus:border-[#121316]"
                     placeholder="Enter confidential interview notes, salary feedback, or observations..."
                   />
                 ) : (
-                  <div className="p-3 bg-white/4 rounded-xl border border-white/6 text-xs text-slate-200 whitespace-pre-wrap min-h-[80px]">
+                  <div className="p-3 bg-white rounded-xl border border-[#E5DFD4] text-xs text-[#121316] whitespace-pre-wrap min-h-[80px]">
                     {candidate?.hrPrivateNotes || 'No private HR notes recorded yet.'}
                   </div>
                 )}
@@ -1012,12 +1006,12 @@ export const CandidateDossierModal: React.FC<CandidateDossierModalProps> = ({
 
               {/* Validation Engine Results if available */}
               {candidate?.validationResult && (
-                <div className="p-4 glass-panel rounded-2xl space-y-2 border border-white/8 text-xs">
-                  <span className="text-xs font-bold text-slate-300 uppercase tracking-wider flex items-center gap-1.5">
-                    <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
+                <div className="p-4 sm:p-5 bg-[#FAF7F0] rounded-2xl space-y-2 border border-[#E5DFD4] text-xs">
+                  <span className="text-xs font-bold text-[#121316] uppercase tracking-wider flex items-center gap-1.5 font-mono">
+                    <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
                     Automated Validation Engine Checks
                   </span>
-                  <div className="p-3 bg-white/4 rounded-xl border border-white/6 font-mono text-[11px] text-slate-300">
+                  <div className="p-3 bg-white rounded-xl border border-[#E5DFD4] font-mono text-[11px] text-[#121316]">
                     Confidence: {candidate.validationResult.confidenceScore || 100}% &bull; Passed
                   </div>
                 </div>
@@ -1027,19 +1021,19 @@ export const CandidateDossierModal: React.FC<CandidateDossierModalProps> = ({
 
           {/* Save Edit Toolbar (when in editing mode) */}
           {isEditing && (
-            <div className="p-3 glass-panel-elevated rounded-2xl flex items-center justify-between gap-3 border border-amber-500/40">
-              <span className="text-xs font-bold text-amber-300">Unsaved changes in profile</span>
+            <div className="p-3 bg-[#FAF7F0] rounded-2xl flex items-center justify-between gap-3 border border-[#E5DFD4]">
+              <span className="text-xs font-bold text-[#121316]">Unsaved changes in profile</span>
               <div className="flex gap-2">
                 <button
                   onClick={() => setIsEditing(false)}
-                  className="px-3 py-1.5 bg-white/6 hover:bg-white/10 text-slate-300 text-xs font-medium rounded-xl"
+                  className="px-3 py-1.5 bg-white hover:bg-slate-50 text-[#121316] text-xs font-medium rounded-xl border border-[#E5DFD4]"
                 >
                   Discard
                 </button>
                 <button
                   onClick={handleSaveEdit}
                   disabled={savingEdit}
-                  className="px-4 py-1.5 bg-amber-500 hover:bg-amber-400 text-slate-950 text-xs font-bold rounded-xl flex items-center gap-1.5 shadow"
+                  className="px-4 py-1.5 bg-[#F5EB78] hover:bg-[#ebd545] text-[#121316] text-xs font-bold rounded-xl flex items-center gap-1.5 shadow-xs"
                 >
                   <Save className="w-3.5 h-3.5" />
                   <span>{savingEdit ? 'Saving...' : 'Save Changes'}</span>
@@ -1050,13 +1044,13 @@ export const CandidateDossierModal: React.FC<CandidateDossierModalProps> = ({
         </div>
 
         {/* Modal Footer */}
-        <div className="p-4 border-t border-white/8 bg-black/30 flex items-center justify-between text-xs shrink-0">
-          <span className="text-slate-400 text-[11px]">
+        <div className="p-4 border-t border-[#E5DFD4] bg-[#FAF7F0] flex items-center justify-between text-xs shrink-0">
+          <span className="text-[#6F727A] text-[11px]">
             WCR Protected Record &bull; Encrypted
           </span>
           <button
             onClick={onClose}
-            className="px-4 py-2 bg-white/6 hover:bg-white/10 text-slate-200 text-xs font-semibold rounded-xl border border-white/8 transition cursor-pointer"
+            className="px-4 py-2 bg-white hover:bg-[#FAF7F0] text-[#121316] text-xs font-semibold rounded-xl border border-[#E5DFD4] transition cursor-pointer shadow-xs"
           >
             Close Dossier
           </button>

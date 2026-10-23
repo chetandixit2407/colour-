@@ -42,7 +42,7 @@ const AnimatedNumber: React.FC<{ value: number }> = ({ value }) => {
       return;
     }
 
-    const duration = 280; // Fast and fluid
+    const duration = 280;
     const stepTime = 20;
     const steps = Math.max(1, Math.ceil(duration / stepTime));
     const delta = (toVal - fromVal) / steps;
@@ -117,18 +117,14 @@ export const OperationsCommandHeader: React.FC<OperationsCommandHeaderProps> = (
     (t) => t.status === 'PENDING' || t.status === 'IN_PROGRESS'
   ).length;
 
-  const activeVisitorsCount = visitors.filter((v) => v.status !== 'CHECKED_OUT').length;
-
   const kpis = [
     {
       id: 'lobby',
       label: 'Waiting in Lobby',
       value: waitingCandidates,
-      sublabel: 'Candidates awaiting escort',
+      sublabel: 'Awaiting escort & intake',
       icon: Users,
-      glow: 'from-amber-500/15 via-transparent to-transparent',
-      accentColor: 'text-amber-400',
-      dotColor: 'bg-amber-400',
+      isFeatured: true, // Signature Crextio Pale Yellow Bento card
     },
     {
       id: 'interviews',
@@ -136,9 +132,7 @@ export const OperationsCommandHeader: React.FC<OperationsCommandHeaderProps> = (
       value: interviews.length > 0 ? interviews.length : inInterviewCandidates,
       sublabel: 'Active candidate rounds',
       icon: UserCheck,
-      glow: 'from-blue-500/15 via-transparent to-transparent',
-      accentColor: 'text-blue-400',
-      dotColor: 'bg-blue-400',
+      isFeatured: false,
     },
     {
       id: 'rooms',
@@ -146,9 +140,7 @@ export const OperationsCommandHeader: React.FC<OperationsCommandHeaderProps> = (
       value: availableRoomsCount,
       sublabel: `Out of ${operationalRooms.length} operational`,
       icon: DoorOpen,
-      glow: 'from-emerald-500/15 via-transparent to-transparent',
-      accentColor: 'text-emerald-400',
-      dotColor: 'bg-emerald-400',
+      isFeatured: false,
     },
     {
       id: 'pantry',
@@ -156,53 +148,51 @@ export const OperationsCommandHeader: React.FC<OperationsCommandHeaderProps> = (
       value: pendingPantryCount,
       sublabel: 'Beverages & room prep',
       icon: Coffee,
-      glow: 'from-purple-500/15 via-transparent to-transparent',
-      accentColor: 'text-purple-400',
-      dotColor: 'bg-purple-400',
+      isFeatured: false,
     },
   ];
 
   return (
     <div className="space-y-4">
-      {/* Editorial Heading Lockup with Soft Entrance */}
+      {/* Editorial Heading Lockup */}
       <motion.div
-        initial={{ opacity: 0, y: 10 }}
+        initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.36, ease: smoothEase }}
+        transition={{ duration: 0.32, ease: smoothEase }}
         className="flex flex-col md:flex-row md:items-end justify-between gap-3 pb-1"
       >
         <div>
           <div className="flex items-center gap-2 mb-1">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#D8BF85] animate-pulse" />
-            <span className="text-[11px] font-bold tracking-wider uppercase text-[#111111]/70 font-mono">
+            <span className="w-2 h-2 rounded-full bg-[#121316]" />
+            <span className="text-[11px] font-bold tracking-wider uppercase text-[#6F727A] font-mono">
               Live Operations Deck
             </span>
           </div>
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-[#111111] tracking-tight">
-            {greeting === 'Good Morning' ? t('greet_morning') : greeting === 'Good Afternoon' ? t('greet_afternoon') : t('greet_evening')}, <span className="text-[#111111]">{userName.split(' ')[0]}</span>
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-[#121316] tracking-tight">
+            {greeting === 'Good Morning' ? t('greet_morning') : greeting === 'Good Afternoon' ? t('greet_afternoon') : t('greet_evening')}, <span className="text-[#121316]">{userName.split(' ')[0]}</span>
           </h2>
-          <p className="text-xs sm:text-sm text-[#111111]/75 font-medium mt-0.5">
-            White Collar Realty &mdash; Office Operations
+          <p className="text-xs sm:text-sm text-[#6F727A] font-medium mt-0.5">
+            White Collar Realty &mdash; Operations & HR Command
           </p>
         </div>
 
-        {/* Live Clock */}
+        {/* Live Clock Pill */}
         <div className="flex items-center gap-3">
-          <div className="bg-white/50 backdrop-blur-md text-[#111111] px-3.5 py-1.5 rounded-xl border border-[#D8BF85]/35 shadow-xs flex items-center gap-2.5">
-            <Clock className="w-3.5 h-3.5 text-[#9E8243]" />
-            <span className="text-xs font-mono font-medium text-[#111111] tabular-nums">
+          <div className="bg-white text-[#121316] px-3.5 py-1.5 rounded-full border border-[#E5DFD4] shadow-xs flex items-center gap-2.5">
+            <Clock className="w-3.5 h-3.5 text-[#121316]" />
+            <span className="text-xs font-mono font-bold text-[#121316] tabular-nums">
               {timeString || '--:--:--'}
             </span>
           </div>
         </div>
       </motion.div>
 
-      {/* Staggered Animated KPI Row with 3D Elevation & Dribbble Momentum */}
+      {/* Crextio Bento Grid KPI Row */}
       <motion.div
         variants={staggerContainer}
         initial="initial"
         animate="animate"
-        className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4"
+        className="grid grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-4"
       >
         {kpis.map((kpi) => {
           const Icon = kpi.icon;
@@ -220,35 +210,44 @@ export const OperationsCommandHeader: React.FC<OperationsCommandHeaderProps> = (
                   if (onSelectKpi) onSelectKpi(kpi.id);
                 }
               }}
-              className="card-dark relative group rounded-xl sm:rounded-2xl p-3 sm:p-4 shadow-xs overflow-hidden cursor-pointer select-none min-w-0"
+              className={`relative group rounded-2xl p-4 sm:p-5 shadow-xs overflow-hidden cursor-pointer select-none transition-all duration-200 min-w-0 ${
+                kpi.isFeatured
+                  ? 'bg-[#F5EB78] border border-[#E8DC5F] text-[#121316] hover:bg-[#EFE463] shadow-[0_4px_20px_-2px_rgba(245,235,120,0.35)]'
+                  : 'bg-white border border-[#E5DFD4] text-[#121316] hover:bg-[#FAF8F5] hover:border-[#D5CEBF]'
+              }`}
               title={`Click to view ${kpi.label} details`}
             >
-              {/* Subtle Ambient Hover Glow */}
-              <div
-                className={`absolute inset-0 bg-gradient-to-br ${kpi.glow} opacity-0 group-hover:opacity-100 transition-opacity duration-240 ease-out pointer-events-none`}
-              />
-
               <div className="relative z-10 flex items-center justify-between text-xs">
-                <span className="font-semibold tracking-tight text-[#111111]">
+                <span className={`font-bold tracking-tight text-[#121316]`}>
                   {kpi.label}
                 </span>
-                <div className="w-7 h-7 rounded-lg flex items-center justify-center transition-transform duration-240 ease-out group-hover:scale-110 bg-white/60 border border-[#D8BF85]/40 shadow-xs">
-                  <Icon className={`w-3.5 h-3.5 ${kpi.accentColor}`} />
+                <div
+                  className={`w-8 h-8 rounded-xl flex items-center justify-center transition-transform duration-200 group-hover:scale-110 ${
+                    kpi.isFeatured
+                      ? 'bg-[#121316] text-[#F5EB78]'
+                      : 'bg-[#F8F6F0] text-[#121316] border border-[#EAE5DB]'
+                  }`}
+                >
+                  <Icon className="w-4 h-4" />
                 </div>
               </div>
 
-              <div className="relative z-10 mt-3 flex items-baseline gap-2">
-                <span className="text-3xl font-extrabold tracking-tight text-[#111111]">
+              <div className="relative z-10 mt-3 sm:mt-4 flex items-baseline gap-2">
+                <span className="text-3xl sm:text-4xl font-extrabold tracking-tight text-[#121316] tabular-nums">
                   <AnimatedNumber value={kpi.value} />
                 </span>
-                <span className={`w-2 h-2 rounded-full ${kpi.dotColor} shadow-xs`} />
+                <span
+                  className={`w-2 h-2 rounded-full ${
+                    kpi.isFeatured ? 'bg-[#121316]' : 'bg-emerald-500'
+                  }`}
+                />
               </div>
 
-              <div className="relative z-10 flex items-center justify-between text-[11px] mt-1">
-                <p className="truncate text-[#111111]/75">
+              <div className="relative z-10 flex items-center justify-between text-[11px] mt-1.5">
+                <p className="truncate text-[#6F727A] font-medium">
                   {kpi.sublabel}
                 </p>
-                <span className="text-[10px] font-semibold text-[#9E8243] opacity-0 group-hover:opacity-100 transition-opacity duration-240 ease-out flex items-center gap-0.5 shrink-0 ml-1">
+                <span className="text-[10px] font-bold text-[#121316] opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center gap-0.5 shrink-0 ml-1">
                   View &rarr;
                 </span>
               </div>

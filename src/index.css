@@ -1,52 +1,58 @@
 @import "tailwindcss";
 
 @theme {
-  --color-gold-50: #FDFBF7;
-  --color-gold-100: #FAF6ED;
-  --color-gold-200: #F5ECD8;
-  --color-gold-300: #EEDFA9;
-  --color-gold-400: #E5D2A0; /* Subtle light champagne gold */
-  --color-gold-500: #D8BF85;
-  --color-gold-600: #C9AB68;
-  --color-gold-700: #B89957;
-  --color-gold-800: #9E8243;
-  --color-gold-900: #7E6532;
+  /* ========================================================
+     NIXTIO CREXTIO DESIGN SYSTEM TOKENS
+     Colors: Warm Cream, Pale Yellow, Charcoal Black, Muted Grey
+     ======================================================== */
+  --color-cream-50: #FAF8F5;
+  --color-cream-100: #F7F4EE;
+  --color-cream-200: #F4F0E8; /* Primary canvas background */
+  --color-cream-300: #ECE6DC;
+  --color-cream-400: #E2DDD2;
+  --color-cream-500: #D5CEBF;
 
-  --color-beige-50: #FDFBF7;
-  --color-beige-100: #FAF6ED;
-  --color-beige-200: #F5ECD8;
-  --color-beige-300: #F0E5CC;
-  --color-beige-400: #E6D5B3;
-  --color-beige-500: #D3BF99;
+  --color-yellow-50: #FEFEEB;
+  --color-yellow-100: #FCFBD4;
+  --color-yellow-200: #FAF6AA;
+  --color-yellow-300: #F7F180;
+  --color-yellow-400: #F5EB78; /* Crextio signature Pale Yellow */
+  --color-yellow-500: #EADB5F;
+  --color-yellow-600: #CCA92E;
 
-  --color-charcoal-50: #F8F9FA;
-  --color-charcoal-100: #F1F3F4;
-  --color-charcoal-200: #E8EAED;
-  --color-charcoal-300: #DADCE0;
-  --color-charcoal-400: #9AA0A6;
-  --color-charcoal-500: #70757A;
-  --color-charcoal-600: #5F6368;
-  --color-charcoal-700: #3C4043;
-  --color-charcoal-800: #2D3033;
-  --color-charcoal-900: #111111;
+  --color-charcoal-50: #F6F7F9;
+  --color-charcoal-100: #EBECEF;
+  --color-charcoal-200: #D2D6DC;
+  --color-charcoal-300: #A8ACB4;
+  --color-charcoal-400: #6F727A; /* Muted Grey */
+  --color-charcoal-500: #555964;
+  --color-charcoal-600: #383B44;
+  --color-charcoal-700: #25272D;
+  --color-charcoal-800: #1B1C21; /* Dark Bento Card */
+  --color-charcoal-900: #121316; /* Deep Charcoal Black */
 
-  --color-warm-white: #FAF9F6;
-  --color-champagne-gold: #E5D2A0;
-  --color-soft-beige: #F0E5CC;
-  --color-dark-charcoal: #111111;
-  --color-black-text: #111111;
+  /* Aliasing legacy gold & amber tokens to Crextio Yellow & Charcoal scales for 100% component safety */
+  --color-gold-50: #FAF8F5;
+  --color-gold-100: #F7F4EE;
+  --color-gold-200: #FCFBD4;
+  --color-gold-300: #FAF6AA;
+  --color-gold-400: #F5EB78;
+  --color-gold-500: #EADB5F;
+  --color-gold-600: #CCA92E;
+  --color-gold-700: #A8871F;
+  --color-gold-800: #7E6518;
+  --color-gold-900: #121316;
 
-  /* Aliasing amber to light champagne gold scale for seamless app compatibility */
-  --color-amber-50: #FDFBF7;
-  --color-amber-100: #FAF6ED;
-  --color-amber-200: #F5ECD8;
-  --color-amber-300: #EEDFA9;
-  --color-amber-400: #E5D2A0;
-  --color-amber-500: #D8BF85;
-  --color-amber-600: #C9AB68;
-  --color-amber-700: #B89957;
-  --color-amber-800: #9E8243;
-  --color-amber-900: #7E6532;
+  --color-amber-50: #FAF8F5;
+  --color-amber-100: #F7F4EE;
+  --color-amber-200: #FCFBD4;
+  --color-amber-300: #FAF6AA;
+  --color-amber-400: #F5EB78;
+  --color-amber-500: #EADB5F;
+  --color-amber-600: #CCA92E;
+  --color-amber-700: #A8871F;
+  --color-amber-800: #7E6518;
+  --color-amber-900: #121316;
 }
 
 @layer base {
@@ -64,66 +70,53 @@
     --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 
-    /* Theme: Pure white #FFFFFF, Warm white #FAF9F6, Light champagne gold #E5D2A0, Dark black text #111111 */
-    --bg-deep: #FAF9F6;
-    --bg-surface: rgba(255, 255, 255, 0.58);
-    --bg-elevated: rgba(255, 255, 255, 0.65);
-
-    --glass-1: rgba(255, 255, 255, 0.52);
-    --glass-2: rgba(255, 255, 255, 0.58);
-    --glass-3: rgba(255, 255, 255, 0.65);
-
-    --border-warm-subtle: rgba(255, 255, 255, 0.70);
-    --border-warm-gold: rgba(229, 210, 160, 0.35);
-    --border-highlight: rgba(255, 255, 255, 0.90);
-
-    --text-primary: #111111;
-    --text-secondary: #111111;
-    --text-muted: #111111;
-
-    --accent-gold: #E5D2A0;
-    --accent-gold-hover: #D8BF85;
-    --accent-beige: #FAF6ED;
-    --accent-glow: rgba(229, 210, 160, 0.20);
+    /* Crextio Palette CSS Variables */
+    --crextio-bg-canvas: #F4F0E8;
+    --crextio-card-bg: #FFFFFF;
+    --crextio-card-border: #E5DFD4;
+    --crextio-card-border-hover: #D5CEBF;
+    --crextio-yellow: #F5EB78;
+    --crextio-yellow-hover: #EFE463;
+    --crextio-charcoal: #121316;
+    --crextio-charcoal-card: #141518;
+    --crextio-muted: #6F727A;
+    --crextio-inner-bg: #F8F6F0;
   }
 
   body {
     font-family: var(--font-sans);
-    background-color: var(--bg-deep);
-    color: var(--text-primary);
+    background-color: var(--crextio-bg-canvas);
+    color: var(--crextio-charcoal);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 }
 
-/* Custom Scrollbar in Champagne & Warm Neutral */
+/* Custom Scrollbar in Warm Cream & Muted Charcoal */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: rgba(245, 236, 216, 0.40);
+  background: #F4F0E8;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(229, 210, 160, 0.70);
+  background: #D8D2C5;
   border-radius: 9999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #D8BF85;
+  background: #B8B0A0;
 }
 
 /* ========================================================
-   WCR / VAKU TRANSLUCENT WHITE FROSTED-GLASS SYSTEM
-   - Pure white #FFFFFF & Warm off-white #FAF9F6
-   - Translucent white frosted glass: rgba(255, 255, 255, 0.45-0.65)
-   - Backdrop filter: blur(16px) saturate(150%)
-   - Soft shadows & delicate white/champagne borders
-   - Soft visibility of underlying backdrops and watermark
-   - Dark black #111111 text everywhere for maximum contrast
-   - Translucent hover states with subtle lift & soft shadow
+   NIXTIO CREXTIO CARD ARCHITECTURE
+   - Crisp warm white cards (#FFFFFF) on warm cream canvas (#F4F0E8)
+   - Fine hairline borders (#E5DFD4)
+   - Bold, organic rounded corners (rounded-2xl to rounded-3xl: 20px-24px)
+   - Diffused micro-shadows & smooth hover transitions
    ======================================================== */
 
 .card-dark,
@@ -159,28 +152,23 @@ header,
 [class*="bg-neutral-950"],
 [role="menu"],
 .dropdown-menu {
-  background: rgba(255, 255, 255, 0.58) !important;
-  backdrop-filter: blur(16px) saturate(150%) !important;
-  -webkit-backdrop-filter: blur(16px) saturate(150%) !important;
-  color: #111111 !important;
-  border: 1px solid rgba(255, 255, 255, 0.75) !important;
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.04),
-              inset 0 1px 1px 0 rgba(255, 255, 255, 0.95),
-              0 2px 6px -1px rgba(229, 210, 160, 0.12) !important;
-  border-radius: 1rem;
+  background: #FFFFFF !important;
+  color: #121316 !important;
+  border: 1px solid #E5DFD4 !important;
+  box-shadow: 0 4px 20px -2px rgba(18, 19, 22, 0.04),
+              0 1px 3px 0 rgba(18, 19, 22, 0.02) !important;
+  border-radius: 1.25rem !important; /* 20px smooth corners */
   position: relative;
   max-width: 100%;
   min-width: 0;
   box-sizing: border-box;
-  transition: transform 200ms cubic-bezier(0.16, 1, 0.3, 1),
-              box-shadow 200ms cubic-bezier(0.16, 1, 0.3, 1),
-              border-color 200ms cubic-bezier(0.16, 1, 0.3, 1),
-              background 200ms cubic-bezier(0.16, 1, 0.3, 1) !important;
-  transition-delay: 0ms !important;
+  transition: transform 220ms cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 220ms cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 220ms cubic-bezier(0.16, 1, 0.3, 1) !important;
   will-change: transform, box-shadow;
 }
 
-/* Subtle translucent hover highlights and gentle elevation only (remains translucent, NO black-to-white) */
+/* Crextio Smooth Lift & Hover Glow */
 @media (hover: hover) and (pointer: fine) {
   .card-dark:hover,
   .dashboard-card:hover,
@@ -194,18 +182,18 @@ header,
   .glass-panel-subtle:hover,
   [title*="Click to view"]:hover {
     transform: translateY(-2px) !important;
-    background: rgba(255, 255, 255, 0.68) !important;
-    border-color: rgba(229, 210, 160, 0.60) !important;
-    box-shadow: 0 12px 36px 0 rgba(0, 0, 0, 0.06),
-                inset 0 1px 1px 0 rgba(255, 255, 255, 1),
-                0 4px 14px rgba(229, 210, 160, 0.20) !important;
-    transition-delay: 0ms !important;
+    background: #FFFFFF !important;
+    border-color: #D5CEBF !important;
+    box-shadow: 0 12px 32px -4px rgba(18, 19, 22, 0.07),
+                0 4px 10px -2px rgba(18, 19, 22, 0.03) !important;
   }
 }
 
 /* ========================================================
-   UNIVERSAL DARK BLACK (#111111) TEXT EVERYWHERE
-   Clear, sharp, legible contrast across all components
+   CREXTIO TYPOGRAPHY & TEXT SYSTEM
+   - Bold Charcoal Black (#121316) for primary headings & text
+   - Warm Muted Grey (#6F727A) for secondary labels & metadata
+   - High contrast, sharp legibility
    ======================================================== */
 h1, h2, h3, h4, h5, h6,
 p, li, dd, dt,
@@ -214,8 +202,8 @@ th, td,
 strong, b,
 small,
 input, textarea, select,
-.font-bold, .font-semibold, .candidate-name, .candidate-role, .candidate-meta,
-[class*="text-white"],
+.font-bold, .font-semibold, .candidate-name, .candidate-role,
+[class*="text-white"]:not(.text-on-dark),
 [class*="text-slate-100"],
 [class*="text-slate-200"],
 [class*="text-slate-300"],
@@ -226,17 +214,30 @@ input, textarea, select,
 [class*="text-gray-400"],
 [class*="text-[#E0E0E0]"],
 [class*="text-[#202124]"] {
-  color: #111111 !important;
+  color: #121316 !important;
 }
 
-/* Candidate avatar box: clean white with subtle champagne gold border */
+/* Secondary & Muted Typography */
+.text-muted,
+.sublabel,
+.candidate-meta,
+[class*="text-[#5F6368]"],
+[class*="text-[#70757A]"],
+[class*="text-[#8C9199]"],
+[class*="text-slate-500"],
+[class*="text-gray-500"] {
+  color: #6F727A !important;
+}
+
+/* Candidate avatar box: crisp warm white with delicate border */
 .candidate-avatar,
 .card-dark .candidate-avatar,
 .dashboard-card .candidate-avatar,
 .candidate-card .candidate-avatar {
-  background-color: #FFFFFF !important;
-  color: #111111 !important;
-  border: 1px solid rgba(229, 210, 160, 0.60) !important;
+  background-color: #FAF8F5 !important;
+  color: #121316 !important;
+  border: 1px solid #E5DFD4 !important;
+  border-radius: 0.875rem !important;
 }
 
 /* Dossier links */
@@ -244,32 +245,40 @@ input, textarea, select,
 .card-dark .candidate-dossier-link,
 .dashboard-card .candidate-dossier-link,
 .candidate-card .candidate-dossier-link {
-  color: #9E8243 !important;
+  color: #121316 !important;
   text-decoration: underline !important;
+  text-underline-offset: 3px !important;
   font-weight: 700 !important;
 }
 .candidate-dossier-link:hover {
-  color: #7E6532 !important;
+  color: #6F727A !important;
 }
 
 /* ========================================================
-   BUTTONS: WHITE / LIGHT-GOLD BACKGROUNDS WITH DARK TEXT
-   Subtle light champagne gold #E5D2A0 borders & accents
+   CREXTIO BUTTON SYSTEM
+   - Primary Accent: Pale Yellow #F5EB78 with bold charcoal text
+   - Dark Action: Charcoal Black #121316 with white text
+   - Secondary / Ghost: Clean white #FFFFFF with #E5DFD4 border
    ======================================================== */
 
-/* Primary Action Buttons (Assign Room, Save, Submit, Register) */
+/* Primary Action Buttons (Assign Room, Save, Submit, Register) -> Crextio Pale Yellow */
 .btn-assign-room,
 button.btn-primary,
 button[type="submit"]:not(.wcr-filter-tab):not(.card-pill),
 button[class*="from-amber-"],
 button[class*="bg-amber-500"]:not(.wcr-filter-tab):not(.card-pill):not([class*="bg-amber-500/"]),
 button[class*="bg-gradient-to-r"][class*="from-amber"],
-button[class*="bg-gradient-to-r"][class*="from-gold"] {
-  background: linear-gradient(135deg, #FFFFFF 0%, #FAF6ED 50%, #E5D2A0 100%) !important;
-  color: #111111 !important;
+button[class*="bg-gradient-to-r"][class*="from-gold"],
+button[class*="from-[#D8BF85]"],
+button[class*="from-[#E5D2A0]"],
+button[class*="bg-[#E5D2A0]"],
+button[class*="bg-[#F0E5CC]"]:not(.wcr-filter-tab) {
+  background: #F5EB78 !important;
+  color: #121316 !important;
   font-weight: 700 !important;
-  border: 1px solid #E5D2A0 !important;
-  box-shadow: 0 2px 8px rgba(229, 210, 160, 0.25) !important;
+  border: 1px solid #E8DC5F !important;
+  border-radius: 0.75rem !important;
+  box-shadow: 0 2px 8px rgba(245, 235, 120, 0.32) !important;
   transition: all 200ms cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
@@ -277,20 +286,24 @@ button[class*="bg-gradient-to-r"][class*="from-gold"] {
 button.btn-primary:hover,
 button[type="submit"]:not(.wcr-filter-tab):not(.card-pill):hover,
 button[class*="from-amber-"]:hover,
-button[class*="bg-amber-500"]:not(.wcr-filter-tab):not(.card-pill):not([class*="bg-amber-500/"]):hover {
-  background: linear-gradient(135deg, #FFFFFF 0%, #F5ECD8 60%, #D8BF85 100%) !important;
-  border-color: #D8BF85 !important;
-  box-shadow: 0 4px 14px rgba(229, 210, 160, 0.40) !important;
+button[class*="bg-amber-500"]:not(.wcr-filter-tab):not(.card-pill):not([class*="bg-amber-500/"]):hover,
+button[class*="from-[#D8BF85]"]:hover,
+button[class*="from-[#E5D2A0]"]:hover,
+button[class*="bg-[#E5D2A0]"]:hover,
+button[class*="bg-[#F0E5CC]"]:not(.wcr-filter-tab):hover {
+  background: #EFE463 !important;
+  border-color: #DFCE46 !important;
+  box-shadow: 0 4px 14px rgba(245, 235, 120, 0.45) !important;
   transform: translateY(-1px) !important;
 }
 
 .btn-assign-room svg,
 button.btn-primary svg,
 button[type="submit"] svg {
-  color: #111111 !important;
+  color: #121316 !important;
 }
 
-/* Secondary & Neutral Action Buttons (Route, Cancel, Quick actions) */
+/* Secondary & Dark Action Buttons (Quick actions, Route, Cancel) */
 .btn-route-kimmi,
 button.btn-route-kimmi,
 button[class*="bg-[#1F2937]"],
@@ -301,14 +314,23 @@ button[class*="bg-slate-950"],
 button[class*="bg-gray-800"],
 button[class*="bg-gray-900"],
 button[class*="bg-zinc-800"] {
-  background-color: #FFFFFF !important;
-  backdrop-filter: blur(12px) !important;
-  -webkit-backdrop-filter: blur(12px) !important;
-  color: #111111 !important;
-  border: 1px solid rgba(229, 210, 160, 0.50) !important;
+  background-color: #121316 !important;
+  color: #FFFFFF !important;
+  border: 1px solid #121316 !important;
   font-weight: 600 !important;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03) !important;
+  border-radius: 0.75rem !important;
+  box-shadow: 0 2px 6px rgba(18, 19, 22, 0.12) !important;
   transition: all 200ms ease !important;
+}
+
+.btn-route-kimmi *,
+button.btn-route-kimmi *,
+button[class*="bg-[#1F2937]"] *,
+button[class*="bg-[#141820]"] *,
+button[class*="bg-slate-800"] *,
+button[class*="bg-slate-900"] *,
+button[class*="bg-slate-950"] * {
+  color: #FFFFFF !important;
 }
 
 .btn-route-kimmi:hover,
@@ -318,15 +340,35 @@ button[class*="bg-[#141820]"]:hover,
 button[class*="bg-slate-800"]:hover,
 button[class*="bg-slate-900"]:hover,
 button[class*="bg-slate-950"]:hover {
-  background-color: #FAF9F6 !important;
-  border-color: #E5D2A0 !important;
-  color: #111111 !important;
+  background-color: #25272D !important;
+  border-color: #25272D !important;
+  color: #FFFFFF !important;
   transform: translateY(-1px) !important;
-  box-shadow: 0 3px 10px rgba(229, 210, 160, 0.20) !important;
+  box-shadow: 0 4px 12px rgba(18, 19, 22, 0.18) !important;
+}
+
+/* Outline / Ghost Buttons */
+button.btn-secondary,
+button[class*="border"][class*="bg-transparent"],
+button[class*="border"][class*="bg-white/"] {
+  background-color: #FFFFFF !important;
+  border: 1px solid #E5DFD4 !important;
+  color: #121316 !important;
+  border-radius: 0.75rem !important;
+  transition: all 200ms ease !important;
+}
+
+button.btn-secondary:hover,
+button[class*="border"][class*="bg-transparent"]:hover,
+button[class*="border"][class*="bg-white/"]:hover {
+  background-color: #FAF8F5 !important;
+  border-color: #121316 !important;
+  transform: translateY(-1px) !important;
 }
 
 /* ========================================================
-   NESTED CARDS, INNER BOXES & CHIPS: CLEAN WHITE / OFF-WHITE
+   CREXTIO INNER CONTAINERS & CHIPS
+   Soft Sand Cream (#F8F6F0) with hairline border (#EAE5DB)
    ======================================================== */
 .card-inner,
 .inner-box,
@@ -341,73 +383,82 @@ button[class*="bg-slate-950"]:hover {
 .card-dark div.bg-black\/30,
 .card-dark div.bg-black\/40,
 .card-dark div.bg-white\/5 {
-  background: rgba(255, 255, 255, 0.48) !important;
-  backdrop-filter: blur(14px) saturate(150%) !important;
-  -webkit-backdrop-filter: blur(14px) saturate(150%) !important;
-  border: 1px solid rgba(255, 255, 255, 0.70) !important;
-  color: #111111 !important;
-  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.02) !important;
+  background: #F8F6F0 !important;
+  border: 1px solid #EAE5DB !important;
+  color: #121316 !important;
+  border-radius: 0.875rem !important;
+  box-shadow: 0 1px 3px 0 rgba(18, 19, 22, 0.02) !important;
   transition: background-color 200ms ease, border-color 200ms ease, color 200ms ease;
 }
 
 /* ========================================================
-   NAVIGATION FILTER TABS & BADGES
-   Light champagne gold #E5D2A0 accents
+   CREXTIO NAVIGATION FILTER TABS & SEGMENTED CONTROLS
+   - Inactive: Clean white with #E5DFD4 border
+   - Active: Bold Charcoal Black #121316 with White text OR Pale Yellow
    ======================================================== */
 .wcr-filter-tab,
 .card-pill {
-  background: rgba(255, 255, 255, 0.85) !important;
-  backdrop-filter: blur(14px) !important;
-  -webkit-backdrop-filter: blur(14px) !important;
-  color: #111111 !important;
-  border: 1px solid rgba(229, 210, 160, 0.50) !important;
-  border-radius: 9999px !important;
+  background: #FFFFFF !important;
+  color: #121316 !important;
+  border: 1px solid #E5DFD4 !important;
+  border-radius: 9999px !important; /* Full pill geometry */
   transition: all 200ms cubic-bezier(0.22, 1, 0.36, 1) !important;
   cursor: pointer !important;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03) !important;
+  box-shadow: 0 1px 2px rgba(18, 19, 22, 0.02) !important;
+  font-weight: 600 !important;
 }
 
 .wcr-filter-tab *,
 .card-pill * {
-  color: #111111 !important;
+  color: #121316 !important;
 }
 
 .wcr-filter-tab:hover:not(.is-active):not(.active),
 .card-pill:hover:not(.is-active):not(.active) {
-  background: #FFFFFF !important;
-  color: #111111 !important;
-  border-color: #E5D2A0 !important;
-  box-shadow: 0 4px 12px rgba(229, 210, 160, 0.25) !important;
+  background: #FAF8F5 !important;
+  color: #121316 !important;
+  border-color: #121316 !important;
   transform: translateY(-1px) !important;
+  box-shadow: 0 3px 8px rgba(18, 19, 22, 0.06) !important;
 }
 
 .wcr-filter-tab.is-active,
 .wcr-filter-tab.active,
 .card-pill.is-active,
 .card-pill.active {
-  background: #E5D2A0 !important;
-  color: #111111 !important;
-  border-color: #D8BF85 !important;
-  box-shadow: 0 0 0 2px rgba(229, 210, 160, 0.40), 0 4px 12px rgba(229, 210, 160, 0.25) !important;
+  background: #121316 !important;
+  color: #FFFFFF !important;
+  border-color: #121316 !important;
+  box-shadow: 0 2px 8px rgba(18, 19, 22, 0.20) !important;
   font-weight: 700 !important;
+}
+
+.wcr-filter-tab.is-active *,
+.wcr-filter-tab.active *,
+.card-pill.is-active *,
+.card-pill.active * {
+  color: #FFFFFF !important;
 }
 
 .wcr-filter-tab:focus-visible,
 .card-pill:focus-visible {
-  outline: 2px solid #E5D2A0 !important;
+  outline: 2px solid #121316 !important;
   outline-offset: 2px !important;
 }
 
-/* Badges with light champagne gold */
+/* Badges with Crextio Pale Yellow */
 .badge-gold,
-.badge-champagne {
-  background: rgba(229, 210, 160, 0.35) !important;
-  border: 1px solid #E5D2A0 !important;
-  color: #111111 !important;
+.badge-champagne,
+.badge-yellow {
+  background: #FDFBC9 !important;
+  border: 1px solid #EADB5F !important;
+  color: #121316 !important;
+  border-radius: 9999px !important;
+  font-weight: 700 !important;
 }
 
 /* ========================================================
-   INPUTS: PURE WHITE #FFFFFF WITH SUBTLE GOLD BORDER
+   CREXTIO INPUTS: CRISP WHITE WITH WARM CHARCOAL FOCUS
    ======================================================== */
 .wcr-search-input,
 .glass-input,
@@ -422,9 +473,9 @@ input[type="time"],
 select,
 textarea {
   background: #FFFFFF !important;
-  border: 1px solid rgba(229, 210, 160, 0.50) !important;
-  color: #111111 !important;
-  border-radius: 0.75rem !important;
+  border: 1px solid #DCD5C7 !important;
+  color: #121316 !important;
+  border-radius: 0.75rem !important; /* 12px corners */
   transition: all 200ms cubic-bezier(0.22, 1, 0.36, 1) !important;
 }
 
@@ -432,8 +483,8 @@ textarea {
 input::placeholder,
 textarea::placeholder,
 select::placeholder {
-  color: #111111 !important;
-  opacity: 0.60 !important;
+  color: #6F727A !important;
+  opacity: 0.75 !important;
 }
 
 .wcr-search-input:focus,
@@ -442,14 +493,14 @@ input:focus,
 textarea:focus,
 select:focus {
   background: #FFFFFF !important;
-  border-color: #E5D2A0 !important;
-  box-shadow: 0 0 0 2px rgba(229, 210, 160, 0.35) !important;
+  border-color: #121316 !important;
+  box-shadow: 0 0 0 2px rgba(18, 19, 22, 0.12) !important;
   outline: none !important;
-  color: #111111 !important;
+  color: #121316 !important;
 }
 
 /* ========================================================
-   VISITOR & CANDIDATE INTAKE FLOW
+   VISITOR & CANDIDATE INTAKE FLOW (Bento Timeline)
    ======================================================== */
 .intake-flow-container,
 .intake-flow-container:hover,
@@ -457,13 +508,12 @@ select:focus {
 .intake-flow-container:focus-within,
 .dashboard-card:hover .intake-flow-container,
 .card-dark:hover .intake-flow-container {
-  background: rgba(255, 255, 255, 0.72) !important;
-  backdrop-filter: blur(16px) !important;
-  -webkit-backdrop-filter: blur(16px) !important;
-  border: 1px solid rgba(229, 210, 160, 0.50) !important;
-  color: #111111 !important;
+  background: #FFFFFF !important;
+  border: 1px solid #E5DFD4 !important;
+  color: #121316 !important;
   transform: none !important;
-  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.03) !important;
+  border-radius: 1.25rem !important;
+  box-shadow: 0 4px 16px -2px rgba(18, 19, 22, 0.03) !important;
 }
 
 .intake-stage-card,
@@ -471,48 +521,46 @@ select:focus {
 .intake-flow-container:hover .intake-stage-card:not(:hover):not(.is-selected),
 .dashboard-card:hover .intake-stage-card:not(:hover):not(.is-selected),
 .card-dark:hover .intake-stage-card:not(:hover):not(.is-selected) {
-  background: rgba(255, 255, 255, 0.85) !important;
-  backdrop-filter: blur(14px) !important;
-  -webkit-backdrop-filter: blur(14px) !important;
-  border: 1px solid rgba(229, 210, 160, 0.45) !important;
-  color: #111111 !important;
+  background: #FAF8F5 !important;
+  border: 1px solid #EAE5DB !important;
+  color: #121316 !important;
+  border-radius: 1rem !important;
   transition: transform 180ms ease, border-color 180ms ease, background 180ms ease, box-shadow 180ms ease !important;
 }
 
 .intake-stage-card:hover:not(.is-selected),
 .intake-flow-container .intake-stage-card:hover:not(.is-selected) {
   background: #FFFFFF !important;
-  border-color: #E5D2A0 !important;
-  color: #111111 !important;
+  border-color: #121316 !important;
+  color: #121316 !important;
   transform: translateY(-2px) !important;
-  box-shadow: 0 8px 20px -4px rgba(0, 0, 0, 0.05), 0 2px 6px -1px rgba(229, 210, 160, 0.20) !important;
+  box-shadow: 0 8px 20px -4px rgba(18, 19, 22, 0.06) !important;
 }
 
 .intake-stage-card.is-selected,
 .intake-stage-card.is-selected:focus,
 .intake-flow-container .intake-stage-card.is-selected,
 .intake-flow-container:hover .intake-stage-card.is-selected {
-  background: rgba(229, 210, 160, 0.35) !important;
-  border-color: #E5D2A0 !important;
-  color: #111111 !important;
-  box-shadow: 0 0 0 1px #E5D2A0, 0 8px 20px -4px rgba(229, 210, 160, 0.30) !important;
+  background: #FDFBC9 !important;
+  border-color: #EADB5F !important;
+  color: #121316 !important;
+  box-shadow: 0 0 0 1px #EADB5F, 0 8px 20px -4px rgba(245, 235, 120, 0.35) !important;
 }
 
 .intake-stage-card .intake-icon-badge,
 .intake-flow-container .intake-stage-card .intake-icon-badge {
   background-color: #FFFFFF !important;
-  border: 1px solid rgba(229, 210, 160, 0.50) !important;
+  border: 1px solid #E5DFD4 !important;
+  border-radius: 0.75rem !important;
 }
 
 /* ========================================================
-   MODALS, OPENED DETAIL VIEWS, DRAWERS & POPUPS
-   - Translucent white frosted glass: rgba(255, 255, 255, 0.45-0.65)
-   - Backdrop filter: blur(16px) saturate(150%)
-   - Delicate white & light champagne borders
-   - NO dark overlays: Light warm translucent backdrops!
+   MODALS, DETAIL VIEWS, DRAWERS & POPUPS
+   Crextio Style: Crisp white container with 28px rounded corners,
+   charcoal borders, and warm blurred overlay
    ======================================================== */
 
-/* Modal Backdrop Overlays: Clean warm off-white translucent, no harsh dark overlays */
+/* Modal Backdrop Overlays */
 div.fixed.inset-0.bg-black\/80,
 div.fixed.inset-0.bg-black\/85,
 div.fixed.inset-0.bg-black\/90,
@@ -525,9 +573,9 @@ div.fixed.inset-0[class*="bg-slate-900"],
 div.fixed.inset-0[class*="bg-[#202124]"],
 div[class*="fixed inset-0"][class*="bg-black"],
 div[class*="fixed inset-0"][class*="bg-[#202124]"] {
-  background-color: rgba(250, 249, 246, 0.65) !important;
-  backdrop-filter: blur(16px) saturate(150%) !important;
-  -webkit-backdrop-filter: blur(16px) saturate(150%) !important;
+  background-color: rgba(18, 19, 22, 0.40) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
 }
 
 /* Modal and Dialog Containers */
@@ -536,14 +584,12 @@ div[class*="fixed inset-0"] div[class*="rounded-3xl"]:not([class*="w-9"]):not([c
 div[class*="fixed inset-0"] div[class*="rounded-2xl"][class*="shadow-"],
 [role="dialog"] > div,
 [role="dialog"] {
-  background: rgba(255, 255, 255, 0.62) !important;
-  backdrop-filter: blur(16px) saturate(150%) !important;
-  -webkit-backdrop-filter: blur(16px) saturate(150%) !important;
-  border: 1px solid rgba(255, 255, 255, 0.85) !important;
-  box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.08),
-              inset 0 1px 1px 0 rgba(255, 255, 255, 1),
-              0 2px 8px rgba(229, 210, 160, 0.15) !important;
-  color: #111111 !important;
+  background: #FFFFFF !important;
+  border: 1px solid #E5DFD4 !important;
+  box-shadow: 0 25px 60px -15px rgba(18, 19, 22, 0.16),
+              0 4px 12px -2px rgba(18, 19, 22, 0.04) !important;
+  border-radius: 1.75rem !important; /* 28px Crextio style */
+  color: #121316 !important;
 }
 
 /* Header & footer bars inside modals and drawers */
@@ -558,13 +604,15 @@ div[class*="fixed inset-0"] div[class*="bg-white/30"],
 .glass-panel-elevated > div.border-b,
 .modal-header,
 .modal-footer {
-  background: rgba(255, 255, 255, 0.48) !important;
-  border-color: rgba(229, 210, 160, 0.35) !important;
-  color: #111111 !important;
+  background: #FAF8F5 !important;
+  border-color: #EAE5DB !important;
+  color: #121316 !important;
 }
 
 /* ========================================================
    TABLES & DATA GRIDS
+   Crextio Data Tables: Crisp rows, warm cream header,
+   and subtle hover feedback
    ======================================================== */
 table {
   border-collapse: separate;
@@ -573,29 +621,31 @@ table {
 }
 
 th {
-  background: rgba(255, 255, 255, 0.85) !important;
-  color: #111111 !important;
+  background: #FAF8F5 !important;
+  color: #6F727A !important;
   font-weight: 700 !important;
-  border-bottom: 1px solid rgba(229, 210, 160, 0.50) !important;
-  font-size: 0.75rem;
-  letter-spacing: 0.05em;
+  border-bottom: 1px solid #E5DFD4 !important;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
+  padding: 0.75rem 1rem !important;
 }
 
 td {
-  border-bottom: 1px solid rgba(229, 210, 160, 0.30) !important;
-  color: #111111 !important;
+  border-bottom: 1px solid #EFEAE0 !important;
+  color: #121316 !important;
+  padding: 0.875rem 1rem !important;
 }
 
 tr:hover td {
-  background: rgba(255, 255, 255, 0.85) !important;
+  background: #FAF8F5 !important;
 }
 
 /* Modal animations */
 @keyframes modal-enter {
   from {
     opacity: 0;
-    transform: scale(0.97) translateY(6px);
+    transform: scale(0.97) translateY(8px);
   }
   to {
     opacity: 1;
@@ -612,17 +662,17 @@ tr:hover td {
 /* Button & Interactive Element Micro-Feedback */
 button:active:not(:disabled),
 a[role="button"]:active {
-  transform: scale(0.985) translateY(1px);
+  transform: scale(0.982) translateY(1px);
   transition: transform 120ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Accessible focus visible outlines in Champagne Gold */
+/* Accessible focus visible outlines in Charcoal */
 button:focus-visible,
 a:focus-visible,
 input:focus-visible,
 select:focus-visible,
 textarea:focus-visible {
-  outline: 2px solid #E5D2A0 !important;
+  outline: 2px solid #121316 !important;
   outline-offset: 2px !important;
 }
 

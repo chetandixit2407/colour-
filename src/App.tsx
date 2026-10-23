@@ -1195,7 +1195,7 @@ export default function App() {
   // STAFF & OPERATIONS CONSOLE (HR, ADMIN, CEO, INTERVIEWER, RECEPTION, PANTRY)
   // ==========================================
   return (
-    <div className="h-[100dvh] max-h-[100dvh] bg-[#FAF9F6] text-[#111111] flex font-sans selection:bg-[#D8BF85] selection:text-[#111111] relative overflow-hidden">
+    <div className="h-[100dvh] max-h-[100dvh] bg-[#F4F0E8] text-[#121316] flex font-sans selection:bg-[#F5EB78] selection:text-[#121316] relative overflow-hidden">
       <CinematicBackground />
       {/* Desktop Glass Sidebar Navigation */}
       <SidebarNav

@@ -243,16 +243,16 @@ export const CameraCapture: React.FC<CameraCaptureProps> = ({
   };
 
   return (
-    <div className="w-full max-w-md mx-auto glass-panel-elevated bg-white/75 rounded-3xl overflow-hidden border border-white/80 shadow-[0_24px_60px_rgba(0,0,0,0.08)] text-[#111111]">
+    <div className="w-full max-w-md mx-auto bg-white rounded-3xl overflow-hidden border border-[#E5DFD4] shadow-xl text-[#121316]">
       {/* Header */}
-      <div className="p-4 sm:p-5 border-b border-[#E5D2A0]/30 flex items-center justify-between bg-white/60 backdrop-blur-md">
+      <div className="p-4 sm:p-5 border-b border-[#E5DFD4] flex items-center justify-between bg-[#FAF7F0]">
         <div className="flex items-center gap-2.5">
-          <div className="w-8 h-8 rounded-xl bg-[#D8BF85]/20 text-[#9E8243] border border-[#D8BF85]/40 flex items-center justify-center shadow-xs">
+          <div className="w-8 h-8 rounded-xl bg-[#F5EB78] text-[#121316] border border-[#E5DFD4] flex items-center justify-center shadow-xs">
             <Camera className="w-4 h-4" />
           </div>
           <div>
-            <h3 className="text-sm font-bold text-[#111111] tracking-tight">{title}</h3>
-            <p className="text-[11px] text-[#5F6368]">{subtitle}</p>
+            <h3 className="text-sm font-bold text-[#121316] tracking-tight">{title}</h3>
+            <p className="text-[11px] text-[#6F727A]">{subtitle}</p>
           </div>
         </div>
         {onCancel && (
@@ -262,7 +262,7 @@ export const CameraCapture: React.FC<CameraCaptureProps> = ({
               stopAllMediaTracks();
               onCancel();
             }}
-            className="p-1.5 rounded-xl text-[#5F6368] hover:text-[#111111] hover:bg-black/5 transition cursor-pointer"
+            className="p-1.5 rounded-xl text-[#6F727A] hover:text-[#121316] hover:bg-black/5 transition cursor-pointer"
           >
             <X className="w-5 h-5" />
           </button>
@@ -403,7 +403,7 @@ export const CameraCapture: React.FC<CameraCaptureProps> = ({
               <button
                 type="button"
                 onClick={handleRetake}
-                className="flex-1 py-2.5 px-4 bg-white/6 hover:bg-white/10 text-slate-200 hover:text-white font-semibold text-xs rounded-xl border border-white/10 transition flex items-center justify-center gap-2 cursor-pointer"
+                className="flex-1 py-2.5 px-4 bg-[#FAF7F0] hover:bg-[#ECE6DC] text-[#121316] font-semibold text-xs rounded-2xl border border-[#E5DFD4] transition flex items-center justify-center gap-2 cursor-pointer shadow-xs"
               >
                 <RotateCcw className="w-4 h-4" />
                 Retake Photo
@@ -412,7 +412,7 @@ export const CameraCapture: React.FC<CameraCaptureProps> = ({
               <button
                 type="button"
                 onClick={handleConfirmPhoto}
-                className="flex-1 py-2.5 px-4 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-bold text-xs rounded-xl shadow-lg shadow-amber-500/20 transition flex items-center justify-center gap-2 cursor-pointer"
+                className="flex-1 py-2.5 px-4 bg-[#F5EB78] hover:bg-[#ebd545] text-[#121316] font-extrabold text-xs rounded-2xl shadow-sm border border-[#E5DFD4] transition flex items-center justify-center gap-2 cursor-pointer"
               >
                 <Check className="w-4 h-4 stroke-[3]" />
                 Confirm & Save Photo
@@ -427,15 +427,15 @@ export const CameraCapture: React.FC<CameraCaptureProps> = ({
                 whileTap={{ scale: 0.94 }}
                 disabled={cameraState !== 'STREAMING'}
                 onClick={handleSnapPhoto}
-                className="relative w-16 h-16 rounded-full bg-gradient-to-tr from-amber-500 to-amber-400 text-slate-950 flex items-center justify-center shadow-2xl shadow-amber-500/30 ring-4 ring-white/10 disabled:opacity-40 disabled:pointer-events-none cursor-pointer group"
+                className="relative w-16 h-16 rounded-full bg-[#F5EB78] hover:bg-[#ebd545] text-[#121316] flex items-center justify-center shadow-lg ring-4 ring-[#121316]/10 disabled:opacity-40 disabled:pointer-events-none cursor-pointer group"
                 title="Capture Desk Photo"
               >
-                <div className="w-12 h-12 rounded-full border-2 border-slate-950/60 flex items-center justify-center group-hover:scale-95 transition-transform">
-                  <Camera className="w-6 h-6 text-slate-950" />
+                <div className="w-12 h-12 rounded-full border-2 border-[#121316]/60 flex items-center justify-center group-hover:scale-95 transition-transform">
+                  <Camera className="w-6 h-6 text-[#121316]" />
                 </div>
               </motion.button>
 
-              <p className="text-[11px] text-slate-400 font-medium">
+              <p className="text-[11px] text-[#6F727A] font-medium">
                 Tap button to take live desk photograph
               </p>
             </div>

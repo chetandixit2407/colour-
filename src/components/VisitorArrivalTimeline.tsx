@@ -158,10 +158,10 @@ export const VisitorArrivalTimeline: React.FC<VisitorArrivalTimelineProps> = ({
                   }}
                   className={`w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 ${
                     isCurrent
-                      ? 'bg-[#D8BF85] text-[#111111] font-bold ring-4 ring-[#D8BF85]/30 shadow-sm'
+                      ? 'bg-[#F5EB78] text-[#121316] font-bold ring-4 ring-[#F5EB78]/40 shadow-xs'
                       : isPassed
-                      ? 'bg-emerald-500/15 text-emerald-700 border border-emerald-500/30'
-                      : 'bg-black/5 text-[#8C9199] border border-black/10'
+                      ? 'bg-emerald-50 text-emerald-800 border border-emerald-200'
+                      : 'bg-[#F8F6F0] text-[#6F727A] border border-[#EAE5DB]'
                   }`}
                 >
                   {isPassed ? (
@@ -175,10 +175,10 @@ export const VisitorArrivalTimeline: React.FC<VisitorArrivalTimelineProps> = ({
                 <span
                   className={`text-xs font-semibold tracking-tight text-center whitespace-nowrap ${
                     isCurrent
-                      ? 'text-[#9E8243] font-bold'
+                      ? 'text-[#121316] font-bold'
                       : isPassed
-                      ? 'text-[#111111]'
-                      : 'text-[#8C9199]'
+                      ? 'text-[#121316]'
+                      : 'text-[#6F727A]'
                   }`}
                 >
                   {stg.label}
@@ -188,13 +188,13 @@ export const VisitorArrivalTimeline: React.FC<VisitorArrivalTimelineProps> = ({
               {/* Connecting hairline */}
               {i < stages.length - 1 && (
                 <div className="flex-1 max-w-[40px] h-[1px] relative self-center -mt-4">
-                  <div className="absolute inset-0 bg-white/10" />
+                  <div className="absolute inset-0 bg-[#E5DFD4]" />
                   {isPassed && (
                     <motion.div
                       initial={{ width: 0 }}
                       animate={{ width: '100%' }}
                       transition={{ duration: 0.3 }}
-                      className="absolute inset-0 bg-emerald-400/60"
+                      className="absolute inset-0 bg-emerald-500"
                     />
                   )}
                 </div>
@@ -360,33 +360,33 @@ export const VisitorJourneyOverview: React.FC<{
   const selectedStageMeta = stages.find((s) => s.id === selectedStage) || stages[0];
 
   return (
-    <div className="intake-flow-container rounded-2xl p-5 sm:p-6 border border-white/80 space-y-5 shadow-xs relative">
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-2 border-b border-slate-200/60">
+    <div className="intake-flow-container rounded-2xl p-5 sm:p-6 border border-[#E5DFD4] space-y-5 shadow-xs relative bg-white">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-2 border-b border-[#EAE5DB]">
         <div className="flex items-center gap-2.5">
-          <span className="w-2.5 h-2.5 rounded-full bg-amber-500 animate-pulse" />
-          <h3 className="text-sm sm:text-base font-extrabold text-slate-900 uppercase tracking-wider font-mono">
+          <span className="w-2.5 h-2.5 rounded-full bg-[#121316]" />
+          <h3 className="text-sm sm:text-base font-extrabold text-[#121316] uppercase tracking-wider font-mono">
             Visitor & Candidate Intake Flow
           </h3>
-          <span className="text-xs text-slate-500 hidden md:inline">
+          <span className="text-xs text-[#6F727A] hidden md:inline">
             (Click any stage card to view records & filter queue)
           </span>
         </div>
         {selectedStage ? (
           <div className="flex items-center gap-2.5">
-            <span className="text-xs sm:text-sm text-amber-700 font-mono font-semibold">
+            <span className="text-xs sm:text-sm text-[#121316] font-mono font-semibold">
               Stage: <strong>{selectedStageMeta?.label}</strong> ({matchingRecords.length} records)
             </span>
             <button
               type="button"
               onClick={handleManualClear}
-              className="px-3 py-1.5 bg-amber-500/15 hover:bg-amber-500/25 text-amber-800 border border-amber-300 rounded-xl text-xs font-bold transition flex items-center gap-1.5 cursor-pointer shadow-xs"
+              className="px-3 py-1.5 bg-[#121316] hover:bg-[#25272D] text-white border border-[#121316] rounded-xl text-xs font-bold transition flex items-center gap-1.5 cursor-pointer shadow-xs"
             >
               <RotateCcw className="w-3.5 h-3.5" />
               <span>Reset / Clear Filter</span>
             </button>
           </div>
         ) : (
-          <span className="text-xs sm:text-[13px] text-slate-500 font-mono">
+          <span className="text-xs sm:text-[13px] text-[#6F727A] font-mono">
             Showing all ({allUnifiedRecords.length}) records
           </span>
         )}
@@ -411,16 +411,16 @@ export const VisitorJourneyOverview: React.FC<{
               type="button"
               aria-pressed={isSelected}
               onClick={() => handleTileClick(stg.id)}
-              className={`intake-stage-card p-5 sm:p-6 rounded-2xl border text-left cursor-pointer relative overflow-hidden group select-none min-h-[148px] flex flex-col justify-between focus-visible:outline-2 focus-visible:outline-amber-500 focus-visible:outline-offset-2 ${
+              className={`intake-stage-card p-5 sm:p-6 rounded-2xl border text-left cursor-pointer relative overflow-hidden group select-none min-h-[148px] flex flex-col justify-between focus-visible:outline-2 focus-visible:outline-[#121316] focus-visible:outline-offset-2 transition-all duration-200 ${
                 isSelected
-                  ? 'is-selected bg-amber-500/10 border-amber-500 text-slate-900 shadow-sm ring-2 ring-amber-400'
-                  : 'bg-white/50 border-slate-200/80 text-slate-800 shadow-xs hover:bg-white/80 hover:border-slate-300'
+                  ? 'is-selected bg-[#FDFBC9] border-[#EADB5F] text-[#121316] shadow-sm ring-2 ring-[#EADB5F]'
+                  : 'bg-white border-[#E5DFD4] text-[#121316] shadow-xs hover:bg-[#FAF8F5] hover:border-[#D5CEBF]'
               }`}
               title={`Click to filter ${stg.label} records (${count})`}
             >
               {isSelected && (
                 <div className="absolute top-2.5 right-2.5">
-                  <span className="px-2 py-0.5 rounded-md text-[10px] font-mono font-black bg-amber-500 text-white uppercase tracking-wide">
+                  <span className="px-2 py-0.5 rounded-full text-[10px] font-mono font-bold bg-[#121316] text-white uppercase tracking-wide">
                     Active
                   </span>
                 </div>
@@ -428,19 +428,19 @@ export const VisitorJourneyOverview: React.FC<{
               <div>
                 <div className="flex items-center justify-between gap-2 mb-3 pointer-events-none">
                   <div
-                    className={`intake-icon-badge w-10 h-10 rounded-xl flex items-center justify-center transition-transform duration-240 group-hover:scale-110 shadow-xs ${
+                    className={`intake-icon-badge w-10 h-10 rounded-xl flex items-center justify-center transition-transform duration-200 group-hover:scale-110 shadow-xs ${
                       isSelected
-                        ? 'bg-amber-500 text-white shadow-sm'
-                        : 'bg-white/80 border border-slate-200/70'
+                        ? 'bg-[#121316] text-[#F5EB78]'
+                        : 'bg-[#F8F6F0] border border-[#EAE5DB] text-[#121316]'
                     }`}
                   >
-                    <Icon className={`w-5 h-5 ${isSelected ? 'text-white' : stg.accent}`} />
+                    <Icon className="w-5 h-5" />
                   </div>
-                  <span className="text-2xl sm:text-3xl font-mono font-black tabular-nums text-slate-900 intake-stage-count pr-1">
+                  <span className="text-2xl sm:text-3xl font-mono font-extrabold tabular-nums text-[#121316] intake-stage-count pr-1">
                     {count}
                   </span>
                 </div>
-                <p className="text-base sm:text-lg font-bold tracking-tight text-slate-900 intake-stage-label pointer-events-none">
+                <p className="text-base sm:text-lg font-bold tracking-tight text-[#121316] intake-stage-label pointer-events-none">
                   {stg.label}
                 </p>
                 <p className="text-xs text-slate-500 leading-relaxed line-clamp-2 mt-1 pointer-events-none">

@@ -75,7 +75,7 @@ export const ReceptionPhotoModal: React.FC<ReceptionPhotoModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#FAF9F6]/75 backdrop-blur-xl p-4 overflow-y-auto">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#121316]/40 backdrop-blur-md p-4 overflow-y-auto">
       <div className="w-full max-w-md space-y-3">
         {uploadError && (
           <div className="p-3 bg-rose-50 border border-rose-200 rounded-2xl text-rose-700 text-xs flex items-center gap-2 shadow-xs">
@@ -85,11 +85,11 @@ export const ReceptionPhotoModal: React.FC<ReceptionPhotoModalProps> = ({
         )}
 
         {uploading ? (
-          <div className="glass-panel-elevated bg-white/75 border border-white/80 rounded-3xl p-8 text-center space-y-4 shadow-[0_24px_60px_rgba(0,0,0,0.08)] text-[#111111]">
-            <RefreshCw className="w-8 h-8 text-[#9E8243] animate-spin mx-auto" />
+          <div className="bg-white border border-[#E5DFD4] rounded-3xl p-8 text-center space-y-4 shadow-xl text-[#121316]">
+            <RefreshCw className="w-8 h-8 text-[#121316] animate-spin mx-auto" />
             <div className="space-y-1">
-              <h3 className="text-base font-bold text-[#111111]">Saving Verified Photo to Database...</h3>
-              <p className="text-xs text-[#5F6368]">Recording authoritative server timestamp & reception audit trail</p>
+              <h3 className="text-base font-bold text-[#121316]">Saving Verified Photo to Database...</h3>
+              <p className="text-xs text-[#6F727A]">Recording authoritative server timestamp & reception audit trail</p>
             </div>
           </div>
         ) : (

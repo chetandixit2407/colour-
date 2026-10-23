@@ -76,11 +76,11 @@ export const ForgotPasswordModal: React.FC<ForgotPasswordModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#FAF9F6]/75 backdrop-blur-xl p-3 sm:p-5 overflow-y-auto">
-      <div className="glass-panel-elevated bg-white/75 border border-white/80 rounded-3xl max-w-lg w-full p-6 sm:p-8 text-[#111111] shadow-[0_24px_60px_rgba(0,0,0,0.08)] relative animate-in fade-in zoom-in-95 duration-200">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#121316]/40 backdrop-blur-md p-3 sm:p-5 overflow-y-auto">
+      <div className="bg-white border border-[#E5DFD4] rounded-3xl max-w-lg w-full p-6 sm:p-8 text-[#121316] shadow-2xl relative animate-in fade-in zoom-in-95 duration-200">
         <button
           onClick={onClose}
-          className="absolute top-5 right-5 p-2 rounded-xl bg-white/70 hover:bg-white text-[#5F6368] hover:text-[#111111] border border-black/10 shadow-xs transition"
+          className="absolute top-5 right-5 p-2 rounded-xl bg-[#FAF7F0] hover:bg-[#ECE6DC] text-[#6F727A] hover:text-[#121316] border border-[#E5DFD4] shadow-xs transition cursor-pointer"
           aria-label="Close"
         >
           <X className="w-5 h-5" />
@@ -90,21 +90,21 @@ export const ForgotPasswordModal: React.FC<ForgotPasswordModalProps> = ({
           <div>
             {/* Header */}
             <div className="flex items-center gap-3 mb-4">
-              <div className="w-12 h-12 rounded-2xl bg-[#D8BF85]/20 border border-[#D8BF85]/40 flex items-center justify-center text-[#9E8243] shadow-xs">
+              <div className="w-12 h-12 rounded-2xl bg-[#F5EB78] border border-[#E5DFD4] flex items-center justify-center text-[#121316] shadow-xs">
                 <KeyRound className="w-6 h-6" />
               </div>
               <div>
-                <h2 className="text-lg font-bold text-[#111111] tracking-tight">
+                <h2 className="text-lg font-bold text-[#121316] tracking-tight">
                   Staff Password Recovery
                 </h2>
-                <p className="text-xs text-[#5F6368]">
+                <p className="text-xs text-[#6F727A]">
                   White Collar Realty Security & Identity Portal
                 </p>
               </div>
             </div>
 
-            <p className="text-xs text-[#2D3033] mb-5 leading-relaxed">
-              Enter your registered staff email address or username (e.g. <span className="font-mono text-[#9E8243] font-semibold">nisha@whitecollarrealty.com</span>, <span className="font-mono text-[#9E8243] font-semibold">sameer.admin</span>, or <span className="font-mono text-[#9E8243] font-semibold">lalit.sir</span>). A secure, time-limited verification token will be generated and routed for Admin approval.
+            <p className="text-xs text-[#6F727A] mb-5 leading-relaxed">
+              Enter your registered staff email address or username (e.g. <span className="font-mono text-[#121316] font-bold">nisha@whitecollarrealty.com</span>, <span className="font-mono text-[#121316] font-bold">sameer.admin</span>, or <span className="font-mono text-[#121316] font-bold">lalit.sir</span>). A secure, time-limited verification token will be generated and routed for Admin approval.
             </p>
 
             {error && (
@@ -116,26 +116,26 @@ export const ForgotPasswordModal: React.FC<ForgotPasswordModalProps> = ({
 
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
-                <label className="block text-xs font-semibold text-[#111111] mb-1.5">
+                <label className="block text-xs font-semibold text-[#121316] mb-1.5">
                   Staff Email or Username
                 </label>
                 <div className="relative">
-                  <Mail className="w-4 h-4 text-[#80868B] absolute left-3.5 top-1/2 -translate-y-1/2" />
+                  <Mail className="w-4 h-4 text-[#6F727A] absolute left-3.5 top-1/2 -translate-y-1/2" />
                   <input
                     type="text"
                     required
                     value={identifier}
                     onChange={(e) => setIdentifier(e.target.value)}
                     placeholder="e.g. nisha@whitecollarrealty.com or sameer.admin"
-                    className="w-full pl-10 pr-4 py-2.5 bg-white/70 border border-black/15 rounded-xl text-xs text-[#111111] placeholder-[#80868B] focus:outline-hidden focus:border-[#9E8243] transition shadow-xs"
+                    className="w-full pl-10 pr-4 py-2.5 bg-[#FAF7F0] border border-[#E5DFD4] rounded-xl text-xs text-[#121316] placeholder-[#6F727A] focus:outline-hidden focus:border-[#F5EB78] transition shadow-xs"
                   />
                 </div>
               </div>
 
               {/* Security Policy Notice */}
-              <div className="p-3 bg-white/50 border border-[#E5D2A0]/40 rounded-2xl space-y-1 text-[11px] text-[#5F6368]">
-                <div className="flex items-center gap-1.5 font-bold text-[#111111]">
-                  <ShieldCheck className="w-3.5 h-3.5 text-cyan-600" />
+              <div className="p-3 bg-[#FAF7F0] border border-[#E5DFD4] rounded-2xl space-y-1 text-[11px] text-[#6F727A]">
+                <div className="flex items-center gap-1.5 font-bold text-[#121316]">
+                  <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
                   <span>Dual Verification & Admin Override Policy</span>
                 </div>
                 <p>
@@ -147,17 +147,17 @@ export const ForgotPasswordModal: React.FC<ForgotPasswordModalProps> = ({
                 <button
                   type="button"
                   onClick={onClose}
-                  className="flex-1 py-2.5 bg-white/80 hover:bg-white text-[#111111] font-semibold text-xs rounded-xl border border-black/10 shadow-xs transition"
+                  className="flex-1 py-2.5 bg-[#FAF7F0] hover:bg-[#ECE6DC] text-[#121316] font-semibold text-xs rounded-xl border border-[#E5DFD4] shadow-xs transition cursor-pointer"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
                   disabled={loading}
-                  className="flex-1 py-2.5 bg-gradient-to-r from-[#D8BF85] to-[#BFA15F] hover:from-[#E5D2A0] hover:to-[#CDB06E] text-[#111111] font-bold text-xs rounded-xl shadow-xs transition cursor-pointer flex items-center justify-center gap-1.5 disabled:opacity-50"
+                  className="flex-1 py-2.5 bg-[#F5EB78] hover:bg-[#ebd545] text-[#121316] font-extrabold text-xs rounded-xl shadow-sm border border-[#E5DFD4] transition cursor-pointer flex items-center justify-center gap-1.5 disabled:opacity-50"
                 >
                   {loading ? (
-                    <div className="w-4 h-4 border-2 border-[#111111] border-t-transparent rounded-full animate-spin" />
+                    <div className="w-4 h-4 border-2 border-[#121316] border-t-transparent rounded-full animate-spin" />
                   ) : (
                     <>
                       <span>Request Reset Link</span>
@@ -188,27 +188,27 @@ export const ForgotPasswordModal: React.FC<ForgotPasswordModalProps> = ({
             </p>
 
             {/* Token & Expiry Details Card */}
-            <div className="p-4 bg-white/60 border border-[#E5D2A0]/40 rounded-2xl space-y-2.5 text-xs shadow-xs">
+            <div className="p-4 bg-[#FAF7F0] border border-[#E5DFD4] rounded-2xl space-y-2.5 text-xs shadow-xs">
               <div className="flex items-center justify-between">
-                <span className="text-[#5F6368]">Target Account:</span>
-                <strong className="text-[#111111] font-mono">{successData.request.userEmail}</strong>
+                <span className="text-[#6F727A]">Target Account:</span>
+                <strong className="text-[#121316] font-mono">{successData.request.userEmail}</strong>
               </div>
               <div className="flex items-center justify-between">
-                <span className="text-[#5F6368]">Status:</span>
-                <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-[#D8BF85]/20 text-[#9E8243] border border-[#D8BF85]/40">
+                <span className="text-[#6F727A]">Status:</span>
+                <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-[#F5EB78] text-[#121316] border border-[#E5DFD4]">
                   {successData.request.status}
                 </span>
               </div>
               <div className="flex items-center justify-between">
-                <span className="text-[#5F6368] flex items-center gap-1">
-                  <Clock className="w-3.5 h-3.5 text-[#80868B]" />
+                <span className="text-[#6F727A] flex items-center gap-1">
+                  <Clock className="w-3.5 h-3.5 text-[#6F727A]" />
                   Token Validity:
                 </span>
-                <strong className="text-[#111111]">30 Minutes</strong>
+                <strong className="text-[#121316]">30 Minutes</strong>
               </div>
-              <div className="pt-2 border-t border-black/5">
-                <span className="text-[11px] text-[#5F6368] block mb-1">Verification Token:</span>
-                <div className="p-2 bg-white/80 border border-[#D8BF85]/50 rounded-xl font-mono text-[11px] text-[#9E8243] select-all break-all shadow-xs">
+              <div className="pt-2 border-t border-[#E5DFD4]">
+                <span className="text-[11px] text-[#6F727A] block mb-1">Verification Token:</span>
+                <div className="p-2 bg-white border border-[#E5DFD4] rounded-xl font-mono text-[11px] text-[#121316] select-all break-all shadow-xs">
                   {successData.request.token}
                 </div>
               </div>
@@ -216,15 +216,15 @@ export const ForgotPasswordModal: React.FC<ForgotPasswordModalProps> = ({
 
             {/* Simulated Email Card */}
             {successData.simulatedEmailDelivery && (
-              <div className="p-3.5 bg-white/50 border border-black/10 rounded-2xl space-y-1.5 text-[11px]">
-                <div className="flex items-center justify-between text-[#5F6368]">
-                  <span className="font-semibold text-[#111111] flex items-center gap-1">
-                    <Mail className="w-3.5 h-3.5 text-[#9E8243]" />
+              <div className="p-3.5 bg-[#FAF7F0] border border-[#E5DFD4] rounded-2xl space-y-1.5 text-[11px]">
+                <div className="flex items-center justify-between text-[#6F727A]">
+                  <span className="font-semibold text-[#121316] flex items-center gap-1">
+                    <Mail className="w-3.5 h-3.5 text-[#121316]" />
                     Simulated Email Dispatch:
                   </span>
                   <span className="text-[10px] text-emerald-700 font-mono font-bold">Delivered</span>
                 </div>
-                <div className="p-2 bg-white/80 rounded-lg text-[#2D3033] font-mono text-[10px] whitespace-pre-wrap border border-black/5">
+                <div className="p-2 bg-white rounded-lg text-[#121316] font-mono text-[10px] whitespace-pre-wrap border border-[#E5DFD4]">
                   {successData.simulatedEmailDelivery.body}
                 </div>
               </div>
@@ -234,9 +234,9 @@ export const ForgotPasswordModal: React.FC<ForgotPasswordModalProps> = ({
             <div className="flex flex-col sm:flex-row items-center gap-2 pt-2">
               <button
                 onClick={copyResetUrl}
-                className="w-full sm:flex-1 py-2.5 bg-white/80 hover:bg-white text-[#111111] font-semibold text-xs rounded-xl border border-black/10 shadow-xs transition cursor-pointer flex items-center justify-center gap-1.5"
+                className="w-full sm:flex-1 py-2.5 bg-[#FAF7F0] hover:bg-[#ECE6DC] text-[#121316] font-semibold text-xs rounded-xl border border-[#E5DFD4] shadow-xs transition cursor-pointer flex items-center justify-center gap-1.5"
               >
-                <Copy className="w-3.5 h-3.5 text-[#9E8243]" />
+                <Copy className="w-3.5 h-3.5 text-[#121316]" />
                 <span>{copiedLink ? 'Link Copied!' : 'Copy Reset Link'}</span>
               </button>
 
@@ -248,7 +248,7 @@ export const ForgotPasswordModal: React.FC<ForgotPasswordModalProps> = ({
                     window.location.href = successData.request.resetLink || `/reset-password?token=${successData.request.token}`;
                   }
                 }}
-                className="w-full sm:flex-1 py-2.5 bg-gradient-to-r from-[#D8BF85] to-[#BFA15F] hover:from-[#E5D2A0] hover:to-[#CDB06E] text-[#111111] font-bold text-xs rounded-xl shadow-xs transition cursor-pointer flex items-center justify-center gap-1.5"
+                className="w-full sm:flex-1 py-2.5 bg-[#F5EB78] hover:bg-[#ebd545] text-[#121316] font-extrabold text-xs rounded-xl shadow-sm border border-[#E5DFD4] transition cursor-pointer flex items-center justify-center gap-1.5"
               >
                 <ExternalLink className="w-3.5 h-3.5" />
                 <span>Open Reset Screen</span>

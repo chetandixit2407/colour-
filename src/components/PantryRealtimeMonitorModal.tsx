@@ -151,28 +151,28 @@ export const PantryRealtimeMonitorModal: React.FC<PantryRealtimeMonitorModalProp
     currentUserRole === 'SENIOR_HR';
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#FAF9F6]/75 backdrop-blur-[16px]">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#121316]/40 backdrop-blur-md">
       <motion.div
         initial={{ opacity: 0, scale: 0.98, y: 8 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.98, y: 6 }}
         transition={{ duration: 0.3, ease: smoothEase }}
-        className="glass-panel-elevated rounded-3xl max-w-4xl w-full shadow-2xl border border-white/80 bg-white/60 backdrop-blur-[16px] text-[#111111] max-h-[92vh] flex flex-col overflow-hidden"
+        className="rounded-3xl max-w-4xl w-full shadow-2xl border border-[#E5DFD4] bg-white text-[#121316] max-h-[92vh] flex flex-col overflow-hidden"
       >
         {/* Header */}
-        <div className="p-5 sm:p-6 border-b border-[#E5D2A0]/40 flex items-center justify-between bg-white/30">
+        <div className="p-5 sm:p-6 border-b border-[#E5DFD4] flex items-center justify-between bg-[#FAF7F0]">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-2xl bg-white/80 border border-[#E5D2A0]/50 text-[#9E8243] flex items-center justify-center shadow-xs">
+            <div className="w-10 h-10 rounded-2xl bg-[#F5EB78] border border-[#E5DFD4] text-[#121316] flex items-center justify-center shadow-xs">
               <Coffee className="w-5 h-5" />
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <h2 className="text-lg font-bold text-[#111111] tracking-tight">
+                <h2 className="text-lg font-bold text-[#121316] tracking-tight">
                   Pantry & Hospitality Real-Time Progress Monitor
                 </h2>
                 <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" title="Live SSE sync active" />
               </div>
-              <p className="text-[11px] text-[#3C4043]">
+              <p className="text-[11px] text-[#6F727A]">
                 Authoritative multi-stage tracking &bull; Zero-refresh live stream &bull; Completion verification
               </p>
             </div>
@@ -180,21 +180,21 @@ export const PantryRealtimeMonitorModal: React.FC<PantryRealtimeMonitorModalProp
           <div className="flex items-center gap-2">
             <button
               onClick={onOpenCreateTask}
-              className="px-3 py-1.5 bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs rounded-xl transition flex items-center gap-1 cursor-pointer shadow"
+              className="px-3 py-1.5 bg-[#F5EB78] hover:bg-[#ebd545] text-[#121316] font-extrabold text-xs rounded-xl transition flex items-center gap-1 cursor-pointer border border-[#E5DFD4] shadow-xs"
             >
               <Plus className="w-3.5 h-3.5" />
               <span>Create Task</span>
             </button>
             <button
               onClick={onRefresh}
-              className="p-2 rounded-xl bg-white/6 hover:bg-white/10 text-slate-300 transition cursor-pointer"
+              className="p-2 rounded-xl bg-[#FAF7F0] hover:bg-[#ECE6DC] text-[#121316] border border-[#E5DFD4] transition cursor-pointer"
               title="Sync latest"
             >
               <RefreshCw className="w-4 h-4" />
             </button>
             <button
               onClick={onClose}
-              className="p-2 rounded-xl bg-white/6 hover:bg-white/10 text-slate-400 hover:text-white transition cursor-pointer"
+              className="p-2 rounded-xl bg-[#FAF7F0] hover:bg-[#ECE6DC] text-[#6F727A] hover:text-[#121316] border border-[#E5DFD4] transition cursor-pointer"
             >
               <X className="w-4 h-4" />
             </button>
@@ -202,34 +202,34 @@ export const PantryRealtimeMonitorModal: React.FC<PantryRealtimeMonitorModalProp
         </div>
 
         {/* Filter Bar */}
-        <div className="px-6 py-2.5 bg-black/30 border-b border-white/6 flex items-center justify-between gap-2 overflow-x-auto">
+        <div className="px-6 py-2.5 bg-[#FAF7F0] border-b border-[#E5DFD4] flex items-center justify-between gap-2 overflow-x-auto">
           <div className="flex items-center gap-1.5 text-xs">
             {['ALL', 'ACTIVE', 'COMPLETED', 'ISSUE', 'CANCELLED'].map((st) => (
               <button
                 key={st}
                 onClick={() => setFilterStatus(st)}
-                className={`px-3 py-1 rounded-lg font-bold text-[11px] transition cursor-pointer ${
+                className={`px-3 py-1 rounded-xl font-bold text-[11px] transition cursor-pointer ${
                   filterStatus === st
-                    ? 'bg-amber-500 text-slate-950'
-                    : 'text-slate-400 hover:text-white hover:bg-white/5'
+                    ? 'bg-[#F5EB78] text-[#121316] border border-[#E5DFD4] shadow-xs'
+                    : 'text-[#6F727A] hover:text-[#121316] hover:bg-white'
                 }`}
               >
                 {st}
               </button>
             ))}
           </div>
-          <span className="text-[11px] font-mono text-slate-400">
+          <span className="text-[11px] font-mono text-[#6F727A]">
             Total Tracked: {filteredTasks.length}
           </span>
         </div>
 
         {/* Task Cards List */}
-        <div className="p-6 overflow-y-auto space-y-3.5 flex-1">
+        <div className="p-6 overflow-y-auto space-y-3.5 flex-1 bg-white">
           {filteredTasks.length === 0 ? (
-            <div className="p-12 text-center rounded-2xl bg-white/[0.02] border border-white/6 space-y-2">
-              <CheckCircle2 className="w-8 h-8 text-emerald-400 mx-auto" />
-              <h3 className="text-sm font-bold text-white">No tasks matching filter</h3>
-              <p className="text-xs text-slate-400">Create a new Pantry or Hospitality task anytime.</p>
+            <div className="p-12 text-center rounded-2xl bg-[#FAF7F0] border border-[#E5DFD4] space-y-2">
+              <CheckCircle2 className="w-8 h-8 text-emerald-600 mx-auto" />
+              <h3 className="text-sm font-bold text-[#121316]">No tasks matching filter</h3>
+              <p className="text-xs text-[#6F727A]">Create a new Pantry or Hospitality task anytime.</p>
             </div>
           ) : (
             filteredTasks.map((task) => {
@@ -242,44 +242,44 @@ export const PantryRealtimeMonitorModal: React.FC<PantryRealtimeMonitorModalProp
               return (
                 <div
                   key={task.id}
-                  className="p-4 sm:p-5 rounded-2xl bg-[#0B0B0D] border border-white/10 shadow-lg space-y-3 transition hover:border-white/20"
+                  className="p-4 sm:p-5 rounded-2xl bg-[#FAF7F0] border border-[#E5DFD4] shadow-xs space-y-3 transition hover:border-[#D5CEBF]"
                 >
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                     <div className="flex items-center gap-2.5">
-                      <div className="w-8 h-8 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-400 flex items-center justify-center font-bold text-xs">
+                      <div className="w-8 h-8 rounded-xl bg-[#F5EB78] border border-[#E5DFD4] text-[#121316] flex items-center justify-center font-bold text-xs">
                         {task.category === 'PANTRY' ? 'P' : 'H'}
                       </div>
                       <div>
                         <div className="flex items-center gap-2">
-                          <h4 className="text-sm font-bold text-white">{task.roomName}</h4>
-                          <span className="text-xs text-amber-400 font-mono">({task.location || task.roomName})</span>
+                          <h4 className="text-sm font-bold text-[#121316]">{task.roomName}</h4>
+                          <span className="text-xs text-[#6F727A] font-mono">({task.location || task.roomName})</span>
                         </div>
-                        <p className="text-[11px] text-slate-300">
-                          Guest/Candidate: <strong className="text-white">{task.candidateName || 'Not specified'}</strong>
+                        <p className="text-[11px] text-[#6F727A]">
+                          Guest/Candidate: <strong className="text-[#121316]">{task.candidateName || 'Not specified'}</strong>
                         </p>
                       </div>
                     </div>
                     <div className="flex items-center gap-2">
                       {getStatusBadge(task)}
-                      <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-white/5 border border-white/10 text-slate-300 font-mono">
+                      <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-white border border-[#E5DFD4] text-[#121316] font-mono">
                         Due: {task.dueTime || 'Normal'}
                       </span>
                     </div>
                   </div>
 
                   {/* Task Instructions */}
-                  <p className="text-xs text-slate-200 leading-relaxed bg-white/[0.02] p-2.5 rounded-xl border border-white/6">
+                  <p className="text-xs text-[#121316] leading-relaxed bg-white p-2.5 rounded-xl border border-[#E5DFD4]">
                     {task.instructions || task.description}
                   </p>
 
                   {/* Required Items */}
                   {task.requiredItems && task.requiredItems.length > 0 && (
                     <div className="flex flex-wrap gap-1.5 items-center">
-                      <span className="text-[10px] font-bold font-mono text-slate-400 uppercase">Items:</span>
+                      <span className="text-[10px] font-bold font-mono text-[#6F727A] uppercase">Items:</span>
                       {task.requiredItems.map((it, idx) => (
                         <span
                           key={idx}
-                          className="px-2 py-0.5 rounded-md bg-white/5 border border-white/10 text-[11px] text-slate-300"
+                          className="px-2 py-0.5 rounded-md bg-white border border-[#E5DFD4] text-[11px] text-[#121316]"
                         >
                           {it}
                         </span>
@@ -288,30 +288,30 @@ export const PantryRealtimeMonitorModal: React.FC<PantryRealtimeMonitorModalProp
                   )}
 
                   {/* Timeline Timestamps Grid */}
-                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-2 border-t border-white/6 text-[10px] font-mono text-slate-400">
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-2 border-t border-[#E5DFD4] text-[10px] font-mono text-[#6F727A]">
                     <div>
-                      <span className="block text-slate-500">Created:</span>
-                      <strong className="text-slate-300">
+                      <span className="block text-[#6F727A]">Created:</span>
+                      <strong className="text-[#121316]">
                         {new Date(task.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                       </strong>
                     </div>
                     <div>
-                      <span className="block text-slate-500">Assigned To:</span>
-                      <strong className="text-amber-300 truncate block">
+                      <span className="block text-[#6F727A]">Assigned To:</span>
+                      <strong className="text-[#121316] truncate block">
                         {task.assignedSteward || 'Pantry Team'}
                       </strong>
                     </div>
                     <div>
-                      <span className="block text-slate-500">Started:</span>
-                      <strong className="text-slate-300">
+                      <span className="block text-[#6F727A]">Started:</span>
+                      <strong className="text-[#121316]">
                         {task.startedAt
                           ? new Date(task.startedAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
                           : 'Pending'}
                       </strong>
                     </div>
                     <div>
-                      <span className="block text-slate-500">Completed:</span>
-                      <strong className="text-emerald-300">
+                      <span className="block text-[#6F727A]">Completed:</span>
+                      <strong className="text-emerald-700">
                         {task.completedAt
                           ? `${new Date(task.completedAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} (${task.timeTakenFormatted || 'Done'})`
                           : 'In queue'}
@@ -321,24 +321,24 @@ export const PantryRealtimeMonitorModal: React.FC<PantryRealtimeMonitorModalProp
 
                   {/* Issue Reason Banner if reported */}
                   {task.status === 'ISSUE_REPORTED' && task.issueReason && (
-                    <div className="p-2.5 rounded-xl bg-rose-950/40 border border-rose-500/40 text-xs text-rose-300 flex items-center gap-2">
-                      <AlertTriangle className="w-4 h-4 text-rose-400 shrink-0" />
+                    <div className="p-2.5 rounded-xl bg-rose-50 border border-rose-300 text-xs text-rose-800 flex items-center gap-2">
+                      <AlertTriangle className="w-4 h-4 text-rose-600 shrink-0" />
                       <span><strong>Issue Reported:</strong> {task.issueReason}</span>
                     </div>
                   )}
 
                   {/* Footer Action Bar */}
-                  <div className="pt-2 flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-t border-white/6">
-                    <span className="text-[11px] text-slate-400 flex items-center gap-1">
-                      <User className="w-3 h-3 text-slate-500" />
-                      Created by <strong className="text-slate-200">{task.createdByName}</strong> ({task.createdByRole})
+                  <div className="pt-2 flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-t border-[#E5DFD4]">
+                    <span className="text-[11px] text-[#6F727A] flex items-center gap-1">
+                      <User className="w-3 h-3 text-[#6F727A]" />
+                      Created by <strong className="text-[#121316]">{task.createdByName}</strong> ({task.createdByRole})
                     </span>
 
                     <div className="flex items-center gap-2">
                       {/* Expand Audit Trail */}
                       <button
                         onClick={() => setExpandedTaskId(isExpanded ? null : task.id)}
-                        className="px-2.5 py-1 text-[11px] text-slate-400 hover:text-white rounded-lg hover:bg-white/5 transition flex items-center gap-1 cursor-pointer"
+                        className="px-2.5 py-1 text-[11px] text-[#6F727A] hover:text-[#121316] rounded-lg hover:bg-white transition flex items-center gap-1 cursor-pointer"
                       >
                         <span>Audit Log</span>
                         {isExpanded ? <ChevronUp className="w-3 h-3" /> : <ChevronDown className="w-3 h-3" />}
@@ -349,7 +349,7 @@ export const PantryRealtimeMonitorModal: React.FC<PantryRealtimeMonitorModalProp
                         <button
                           onClick={() => handleVerify(task.id)}
                           disabled={actionLoadingId === task.id}
-                          className="px-3 py-1 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs rounded-xl transition flex items-center gap-1 cursor-pointer disabled:opacity-50"
+                          className="px-3 py-1 bg-[#F5EB78] hover:bg-[#ebd545] text-[#121316] font-bold text-xs rounded-xl border border-[#E5DFD4] transition flex items-center gap-1 cursor-pointer disabled:opacity-50 shadow-xs"
                         >
                           <CheckCircle2 className="w-3.5 h-3.5" />
                           <span>Verify Completion</span>
@@ -360,7 +360,7 @@ export const PantryRealtimeMonitorModal: React.FC<PantryRealtimeMonitorModalProp
                       {task.status !== 'COMPLETED' && task.status !== 'CANCELLED' && isCreatorOrAdmin && (
                         <button
                           onClick={() => setCancelModalTask(task)}
-                          className="px-2.5 py-1 text-xs text-rose-400 hover:text-rose-300 hover:bg-rose-500/10 rounded-xl transition flex items-center gap-1 cursor-pointer"
+                          className="px-2.5 py-1 text-xs text-rose-600 hover:text-rose-700 hover:bg-rose-50 rounded-xl transition flex items-center gap-1 cursor-pointer border border-rose-200"
                         >
                           <Ban className="w-3 h-3" />
                           <span>Cancel</span>
@@ -376,26 +376,26 @@ export const PantryRealtimeMonitorModal: React.FC<PantryRealtimeMonitorModalProp
                         initial={{ opacity: 0, height: 0 }}
                         animate={{ opacity: 1, height: 'auto' }}
                         exit={{ opacity: 0, height: 0 }}
-                        className="pt-2 border-t border-white/6 space-y-1.5 text-[11px] overflow-hidden"
+                        className="pt-2 border-t border-[#E5DFD4] space-y-1.5 text-[11px] overflow-hidden"
                       >
-                        <h5 className="font-bold text-xs text-slate-300 font-mono">Status Audit Trail</h5>
+                        <h5 className="font-bold text-xs text-[#121316] font-mono">Status Audit Trail</h5>
                         {task.auditTrail && task.auditTrail.length > 0 ? (
-                          <div className="space-y-1 pl-2 border-l border-white/10">
+                          <div className="space-y-1 pl-2 border-l border-[#E5DFD4]">
                             {task.auditTrail.map((entry, aIdx) => (
-                              <div key={aIdx} className="text-slate-400 flex items-start gap-2">
-                                <span className="font-mono text-[10px] text-slate-500">
+                              <div key={aIdx} className="text-[#6F727A] flex items-start gap-2">
+                                <span className="font-mono text-[10px] text-[#6F727A]">
                                   {new Date(entry.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                                 </span>
                                 <div>
-                                  <strong className="text-white">{entry.status}:</strong>{' '}
-                                  <span className="text-slate-300">{entry.note || 'Status updated'}</span>{' '}
-                                  <span className="text-slate-500">by {entry.actorName} ({entry.actorRole})</span>
+                                  <strong className="text-[#121316]">{entry.status}:</strong>{' '}
+                                  <span className="text-[#121316]">{entry.note || 'Status updated'}</span>{' '}
+                                  <span className="text-[#6F727A]">by {entry.actorName} ({entry.actorRole})</span>
                                 </div>
                               </div>
                             ))}
                           </div>
                         ) : (
-                          <p className="text-slate-500 text-[10px]">No historical entries recorded.</p>
+                          <p className="text-[#6F727A] text-[10px]">No historical entries recorded.</p>
                         )}
                       </motion.div>
                     )}
@@ -408,35 +408,35 @@ export const PantryRealtimeMonitorModal: React.FC<PantryRealtimeMonitorModalProp
 
         {/* Cancellation Submodal */}
         {cancelModalTask && (
-          <div className="fixed inset-0 z-60 flex items-center justify-center p-4 bg-black/80 backdrop-blur-xs">
-            <div className="bg-slate-900 border border-slate-700 rounded-2xl p-6 max-w-sm w-full space-y-4 shadow-2xl text-slate-100">
-              <h3 className="text-sm font-bold text-white flex items-center gap-1.5">
-                <Ban className="w-4 h-4 text-rose-400" />
+          <div className="fixed inset-0 z-60 flex items-center justify-center p-4 bg-[#121316]/40 backdrop-blur-md">
+            <div className="bg-white border border-[#E5DFD4] rounded-3xl p-6 max-w-sm w-full space-y-4 shadow-2xl text-[#121316]">
+              <h3 className="text-sm font-bold text-[#121316] flex items-center gap-1.5">
+                <Ban className="w-4 h-4 text-rose-600" />
                 <span>Cancel Task: {cancelModalTask.roomName}</span>
               </h3>
-              <p className="text-xs text-slate-300">
+              <p className="text-xs text-[#6F727A]">
                 Are you sure you want to cancel this hospitality task?
               </p>
               <div>
-                <label className="block text-[11px] text-slate-400 mb-1">Reason for Cancellation</label>
+                <label className="block text-[11px] text-[#6F727A] mb-1">Reason for Cancellation</label>
                 <input
                   type="text"
                   value={cancelReason}
                   onChange={(e) => setCancelReason(e.target.value)}
                   placeholder="e.g. Candidate rescheduled, meeting cancelled"
-                  className="w-full p-2 glass-input rounded-xl text-white text-xs"
+                  className="w-full p-2 bg-[#FAF7F0] border border-[#E5DFD4] rounded-xl text-[#121316] text-xs focus:border-[#F5EB78]"
                 />
               </div>
               <div className="flex justify-end gap-2 pt-2">
                 <button
                   onClick={() => setCancelModalTask(null)}
-                  className="px-3 py-1.5 bg-white/6 hover:bg-white/10 text-slate-300 rounded-xl text-xs"
+                  className="px-3 py-1.5 bg-[#FAF7F0] hover:bg-[#ECE6DC] text-[#121316] border border-[#E5DFD4] rounded-xl text-xs font-semibold"
                 >
                   Keep Task
                 </button>
                 <button
                   onClick={handleConfirmCancel}
-                  className="px-4 py-1.5 bg-rose-600 hover:bg-rose-500 text-white font-bold rounded-xl text-xs"
+                  className="px-4 py-1.5 bg-rose-600 hover:bg-rose-500 text-white font-bold rounded-xl text-xs shadow-xs"
                 >
                   Confirm Cancel
                 </button>
