@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { createPortal } from 'react-dom';
 import {
   Camera,
   X,
@@ -74,8 +75,12 @@ export const ReceptionPhotoModal: React.FC<ReceptionPhotoModalProps> = ({
     }
   };
 
-  return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#121316]/40 backdrop-blur-md p-4 overflow-y-auto">
+  const modalContent = (
+    <div
+      role="dialog"
+      aria-modal="true"
+      className="fixed inset-0 z-[9999] flex items-center justify-center bg-[#121316]/50 backdrop-blur-md p-4 overflow-y-auto"
+    >
       <div className="w-full max-w-md space-y-3">
         {uploadError && (
           <div className="p-3 bg-rose-50 border border-rose-200 rounded-2xl text-rose-700 text-xs flex items-center gap-2 shadow-xs">
@@ -104,4 +109,6 @@ export const ReceptionPhotoModal: React.FC<ReceptionPhotoModalProps> = ({
       </div>
     </div>
   );
+
+  return typeof document !== 'undefined' ? createPortal(modalContent, document.body) : modalContent;
 };

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import { smoothEase } from '../utils/motion.ts';
 import {
@@ -340,16 +341,20 @@ export const DashboardCardDetailsModal: React.FC<DashboardCardDetailsModalProps>
 
   const IconComponent = icon;
 
-  return (
+  const modalContent = (
     <AnimatePresence>
-      <div className="fixed inset-0 z-50 flex items-center justify-center p-2.5 sm:p-5 overflow-y-auto">
+      <div
+        role="dialog"
+        aria-modal="true"
+        className="fixed inset-0 z-[9999] flex items-center justify-center p-2.5 sm:p-5 overflow-y-auto"
+      >
         {/* Subtle Backdrop with click to close */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           onClick={onClose}
-          className="fixed inset-0 bg-[#121316]/40 backdrop-blur-md"
+          className="fixed inset-0 bg-[#121316]/50 backdrop-blur-md"
         />
 
         {/* Modal Window Container — Crextio Crisp White Surface */}
@@ -799,4 +804,6 @@ export const DashboardCardDetailsModal: React.FC<DashboardCardDetailsModalProps>
       </div>
     </AnimatePresence>
   );
+
+  return typeof document !== 'undefined' ? createPortal(modalContent, document.body) : modalContent;
 };

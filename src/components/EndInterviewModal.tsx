@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import {
   X,
   CheckCircle2,
@@ -117,9 +118,13 @@ export const EndInterviewModal: React.FC<EndInterviewModalProps> = ({
     }
   };
 
-  return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#121316]/40 backdrop-blur-md p-2.5 sm:p-4 overflow-y-auto">
-      <div className="bg-white border border-[#E5DFD4] rounded-3xl max-w-lg w-full max-h-[92vh] flex flex-col shadow-2xl text-[#121316] overflow-hidden animate-in fade-in zoom-in-95 duration-200">
+  const modalContent = (
+    <div
+      role="dialog"
+      aria-modal="true"
+      className="fixed inset-0 z-[9999] flex items-center justify-center bg-[#121316]/50 backdrop-blur-md p-2.5 sm:p-4 overflow-y-auto"
+    >
+      <div className="bg-white border border-[#E5DFD4] rounded-3xl max-w-lg w-full max-h-[92vh] flex flex-col shadow-2xl text-[#121316] overflow-hidden animate-in fade-in zoom-in-95 duration-200 my-auto">
         {/* Header */}
         <div className="p-4 sm:p-5 border-b border-[#E5DFD4] flex items-center justify-between bg-[#FAF7F0] shrink-0">
           <div className="min-w-0 pr-2">
@@ -362,4 +367,6 @@ export const EndInterviewModal: React.FC<EndInterviewModalProps> = ({
       </div>
     </div>
   );
+
+  return typeof document !== 'undefined' ? createPortal(modalContent, document.body) : modalContent;
 };

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import {
   AlertTriangle,
@@ -111,6 +112,11 @@ export const DeleteConfirmModal: React.FC<DeleteConfirmModalProps> = ({
         throw new Error(data.error || 'Failed to delete record. Please check dependencies.');
       }
 
+      window.dispatchEvent(
+        new CustomEvent('wcr:record-deleted', {
+          detail: { id: recordId, type: recordType },
+        })
+      );
       onSuccess(recordId, recordType);
       onClose();
     } catch (err: any) {
@@ -140,8 +146,12 @@ export const DeleteConfirmModal: React.FC<DeleteConfirmModalProps> = ({
     }
   };
 
-  return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-xs select-none">
+  const modalContent = (
+    <div
+      role="dialog"
+      aria-modal="true"
+      className="fixed inset-0 z-[9999] flex items-center justify-center p-3 sm:p-4 bg-black/80 backdrop-blur-sm select-none"
+    >
       <motion.div
         initial={{ opacity: 0, scale: 0.95, y: 10 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -234,4 +244,6 @@ export const DeleteConfirmModal: React.FC<DeleteConfirmModalProps> = ({
       </motion.div>
     </div>
   );
+
+  return typeof document !== 'undefined' ? createPortal(modalContent, document.body) : modalContent;
 };

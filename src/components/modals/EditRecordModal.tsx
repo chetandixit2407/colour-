@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import {
   Edit3,
@@ -193,13 +194,17 @@ export const EditRecordModal: React.FC<EditRecordModalProps> = ({
     }
   };
 
-  return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-xs overflow-y-auto">
+  const modalContent = (
+    <div
+      role="dialog"
+      aria-modal="true"
+      className="fixed inset-0 z-[9999] flex items-center justify-center p-3 sm:p-4 bg-black/80 backdrop-blur-sm overflow-y-auto"
+    >
       <motion.div
         initial={{ opacity: 0, scale: 0.95, y: 10 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.95, y: 10 }}
-        className="w-full max-w-lg bg-[#0F141C] border border-white/12 rounded-3xl p-6 shadow-2xl text-slate-100 space-y-4 my-8"
+        className="w-full max-w-lg bg-[#0F141C] border border-white/12 rounded-3xl p-4 sm:p-6 shadow-2xl text-slate-100 space-y-4 my-auto max-h-[90vh] overflow-y-auto"
       >
         {/* Header */}
         <div className="flex items-center justify-between pb-3 border-b border-white/8">
@@ -773,4 +778,6 @@ export const EditRecordModal: React.FC<EditRecordModalProps> = ({
       </motion.div>
     </div>
   );
+
+  return typeof document !== 'undefined' ? createPortal(modalContent, document.body) : modalContent;
 };

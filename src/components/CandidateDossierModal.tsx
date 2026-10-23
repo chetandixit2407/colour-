@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import { smoothEase } from '../utils/motion.ts';
 import {
@@ -330,8 +331,12 @@ export const CandidateDossierModal: React.FC<CandidateDossierModalProps> = ({
     { id: 'Notes', label: 'Notes', icon: FileText },
   ];
 
-  return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#121316]/40 backdrop-blur-md p-3 sm:p-4 overflow-y-auto">
+  const modalContent = (
+    <div
+      role="dialog"
+      aria-modal="true"
+      className="fixed inset-0 z-[9999] flex items-center justify-center bg-[#121316]/50 backdrop-blur-md p-3 sm:p-4 overflow-y-auto"
+    >
       <motion.div
         initial={{ opacity: 0, scale: 0.98, y: 8 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -1088,4 +1093,6 @@ export const CandidateDossierModal: React.FC<CandidateDossierModalProps> = ({
       )}
     </div>
   );
+
+  return typeof document !== 'undefined' ? createPortal(modalContent, document.body) : modalContent;
 };

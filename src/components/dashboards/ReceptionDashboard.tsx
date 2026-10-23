@@ -463,8 +463,8 @@ export const ReceptionDashboard: React.FC<ReceptionDashboardProps> = ({
       )}
 
       {/* Filter & Search Bar */}
-      <div className="flex flex-col sm:flex-row items-center justify-between gap-3 p-4 bg-[#0B0B0D] dashboard-card card-dark rounded-3xl border border-white/10 shadow-xl">
-        <div className="flex items-center gap-2.5 overflow-x-auto w-full sm:w-auto pb-1 sm:pb-0">
+      <div className="flex flex-col sm:flex-row items-center justify-between gap-3 p-4 bg-[#0B0B0D] dashboard-card card-dark rounded-3xl border border-white/10 shadow-xl relative z-20 overflow-visible">
+        <div className="flex items-center gap-2.5 flex-wrap w-full sm:w-auto pb-1 sm:pb-0 overflow-visible">
           <button
             onClick={() => setActiveFilter('ALL')}
             className={`wcr-filter-tab px-4 py-2 rounded-full text-xs font-bold transition cursor-pointer shrink-0 border ${
@@ -550,9 +550,9 @@ export const ReceptionDashboard: React.FC<ReceptionDashboardProps> = ({
             {isMoreMenuOpen && (
               <div
                 role="menu"
-                className="absolute left-0 sm:left-auto sm:right-0 top-full mt-2 w-60 bg-[#0B0B0D] border border-white/20 rounded-2xl shadow-2xl p-1.5 z-50 space-y-1 animate-in fade-in zoom-in-95 duration-150"
+                className="absolute left-0 sm:left-auto sm:right-0 top-full mt-2 w-64 bg-white border border-[#E5DFD4] rounded-2xl shadow-2xl p-2 z-[1000] space-y-1 animate-in fade-in zoom-in-95 duration-150 text-[#121316]"
               >
-                <div className="text-[10px] font-bold text-white/50 px-2.5 py-1 uppercase tracking-wider">
+                <div className="text-[10px] font-bold text-[#6F727A] px-2.5 py-1 uppercase tracking-wider">
                   Additional Reception Filters
                 </div>
 

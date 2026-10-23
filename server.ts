@@ -1052,27 +1052,33 @@ async function startServer() {
           savedCandidate = newCand;
         }
 
-        // Attach / find interview
+        // Attach / find interview - reuse existing active or scheduled round 1 interview
         if (savedCandidate.currentInterviewId) {
-          relatedInterview = draft.interviews.find((i) => i.id === savedCandidate!.currentInterviewId);
+          relatedInterview = draft.interviews.find((i) => i.id === savedCandidate!.currentInterviewId && !(i as any).isDeleted);
         }
 
         if (!relatedInterview) {
           relatedInterview = draft.interviews.find(
-            (i) => i.candidateId === savedCandidate!.id && i.status === 'SCHEDULED'
+            (i) => i.candidateId === savedCandidate!.id && !(i as any).isDeleted && (i.status === 'SCHEDULED' || i.status === 'CANDIDATE_ARRIVED' || i.status === 'ROOM_ASSIGNED')
+          );
+        }
+
+        if (!relatedInterview) {
+          relatedInterview = draft.interviews.find(
+            (i) => i.candidateId === savedCandidate!.id && !(i as any).isDeleted && i.roundName === 'Round 1 - Technical Assessment'
           );
         }
 
         if (!relatedInterview) {
           const defaultInterviewer = draft.users.find((u) => u.role === 'INTERVIEWER') || draft.users[3];
           const newIntv: Interview = {
-            id: `intv-${Date.now()}`,
+            id: `intv-${Date.now()}-${Math.random().toString(36).substring(2, 6)}`,
             candidateId: savedCandidate.id,
             candidateName: savedCandidate.fullName,
             position: savedCandidate.position,
             roundName: 'Round 1 - Technical Assessment',
-            interviewerId: defaultInterviewer?.id || 'usr-int-1',
-            interviewerName: defaultInterviewer?.name || 'Nisha Verma',
+            interviewerId: defaultInterviewer?.id || 'usr-intv-rahul',
+            interviewerName: defaultInterviewer?.name || 'Rahul Sharma',
             scheduledTime: 'Immediate / Walk-in',
             status: 'CANDIDATE_ARRIVED',
             createdAt: timestamp,
@@ -1083,6 +1089,9 @@ async function startServer() {
           savedCandidate.currentInterviewId = newIntv.id;
         } else {
           relatedInterview.status = 'CANDIDATE_ARRIVED';
+          relatedInterview.candidateName = savedCandidate.fullName;
+          relatedInterview.position = savedCandidate.position;
+          relatedInterview.updatedAt = timestamp;
           savedCandidate.currentInterviewId = relatedInterview.id;
         }
 
@@ -1735,24 +1744,43 @@ async function startServer() {
           savedCandidate = newCand;
         }
 
-        // Create Round 1 Interview evaluation round
+        // Attach / find existing Round 1 interview or create only if not present
         const defaultInterviewer = draft.users.find((u) => u.role === 'INTERVIEWER') || draft.users[3];
-        const newIntv: Interview = {
-          id: `intv-${Date.now()}-${Math.random().toString(36).substring(2, 6)}`,
-          candidateId: savedCandidate.id,
-          candidateName: savedCandidate.fullName,
-          position: savedCandidate.position,
-          roundName: 'Round 1 - Technical Assessment',
-          interviewerId: defaultInterviewer?.id || 'usr-int-1',
-          interviewerName: defaultInterviewer?.name || 'Nisha Verma (Senior Director)',
-          scheduledTime: 'Walk-in / Immediate',
-          status: 'CANDIDATE_ARRIVED',
-          createdAt: timestamp,
-          updatedAt: timestamp,
-        };
-        draft.interviews.unshift(newIntv);
-        relatedInterview = newIntv;
-        savedCandidate.currentInterviewId = newIntv.id;
+        let existingIntv: Interview | undefined;
+        if (savedCandidate.currentInterviewId) {
+          existingIntv = draft.interviews.find((i) => i.id === savedCandidate!.currentInterviewId && !(i as any).isDeleted);
+        }
+        if (!existingIntv) {
+          existingIntv = draft.interviews.find(
+            (i) => i.candidateId === savedCandidate!.id && !(i as any).isDeleted && (i.roundName === 'Round 1 - Technical Assessment' || i.status === 'SCHEDULED' || i.status === 'CANDIDATE_ARRIVED' || i.status === 'ROOM_ASSIGNED')
+          );
+        }
+
+        if (existingIntv) {
+          existingIntv.status = 'CANDIDATE_ARRIVED';
+          existingIntv.candidateName = savedCandidate.fullName;
+          existingIntv.position = savedCandidate.position;
+          existingIntv.updatedAt = timestamp;
+          relatedInterview = existingIntv;
+          savedCandidate.currentInterviewId = existingIntv.id;
+        } else {
+          const newIntv: Interview = {
+            id: `intv-${Date.now()}-${Math.random().toString(36).substring(2, 6)}`,
+            candidateId: savedCandidate.id,
+            candidateName: savedCandidate.fullName,
+            position: savedCandidate.position,
+            roundName: 'Round 1 - Technical Assessment',
+            interviewerId: defaultInterviewer?.id || 'usr-intv-rahul',
+            interviewerName: defaultInterviewer?.name || 'Rahul Sharma',
+            scheduledTime: 'Walk-in / Immediate',
+            status: 'CANDIDATE_ARRIVED',
+            createdAt: timestamp,
+            updatedAt: timestamp,
+          };
+          draft.interviews.unshift(newIntv);
+          relatedInterview = newIntv;
+          savedCandidate.currentInterviewId = newIntv.id;
+        }
 
         // Immediately mark session as COMPLETED (One-Time Use)
         if (s) {
@@ -5082,8 +5110,8 @@ async function startServer() {
     const role = (auth.user?.role || req.query.role || req.headers['x-user-role']) as UserRole;
     const reason = req.body?.reason || 'Administrative Archive';
 
-    if (role !== 'HR' && role !== 'ADMIN' && role !== 'SENIOR_HR') {
-      return res.status(403).json({ success: false, error: 'Unauthorized: Only HR or Admin can delete candidate records.' });
+    if (role !== 'HR' && role !== 'ADMIN' && role !== 'SENIOR_HR' && role !== 'RECEPTION' && role !== 'CEO') {
+      return res.status(403).json({ success: false, error: 'Unauthorized: Insufficient permissions to delete candidate records.' });
     }
 
     const timestamp = new Date().toISOString();
@@ -5116,46 +5144,40 @@ async function startServer() {
     try {
       let deletedName = '';
       dbService.update((draft) => {
-        const cand = draft.candidates.find((c) => c.id === id);
-        if (!cand) return;
+        const candIdx = draft.candidates.findIndex((c) => c.id === id);
+        if (candIdx === -1) return;
 
+        const cand = draft.candidates[candIdx];
         deletedName = cand.fullName;
-        (cand as any).isDeleted = true;
-        (cand as any).deletedAt = timestamp;
-        (cand as any).deletedBy = role;
-        (cand as any).deletionReason = reason;
-        cand.status = 'REJECTED';
-        cand.updatedAt = timestamp;
+
+        // Permanently remove candidate from active candidates list
+        draft.candidates.splice(candIdx, 1);
 
         // Clean up linked interviews
         if (draft.interviews) {
-          draft.interviews.forEach((i) => {
-            if (i.candidateId === id) {
-              (i as any).isDeleted = true;
-              i.status = 'CANCELLED';
-            }
-          });
+          draft.interviews = draft.interviews.filter((i) => i.candidateId !== id);
         }
 
         // Release any room allocated to this candidate
-        if (draft.rooms && (cand.assignedRoomId || cand.assignedRoomName)) {
-          const rm = draft.rooms.find(
-            (r) => r.id === cand.assignedRoomId || r.roomId === cand.assignedRoomId || r.name === cand.assignedRoomName
-          );
-          if (rm) {
-            rm.status = 'AVAILABLE';
-            delete (rm as any).currentCandidateId;
-            delete (rm as any).currentCandidateName;
-          }
-        }
-
-        // Expire any pending check-in sessions
-        if (draft.checkInSessions) {
-          draft.checkInSessions.forEach((s) => {
-            if (s.candidateId === id) {
-              s.status = 'EXPIRED';
+        if (draft.rooms) {
+          draft.rooms.forEach((rm) => {
+            if (rm.currentCandidateId === id) {
+              rm.status = 'AVAILABLE';
+              delete (rm as any).currentCandidateId;
+              delete (rm as any).currentCandidateName;
+              delete (rm as any).currentInterviewId;
             }
           });
+        }
+
+        // Expire and remove any pending check-in sessions
+        if (draft.checkInSessions) {
+          draft.checkInSessions = draft.checkInSessions.filter((s) => s.candidateId !== id);
+        }
+
+        // Clean up any pending action tasks for this candidate
+        if (draft.actionTasks) {
+          draft.actionTasks = draft.actionTasks.filter((t) => t.candidateId !== id);
         }
 
         draft.timelineEvents.unshift({
@@ -6042,7 +6064,34 @@ async function startServer() {
         }
 
         deletedCandidateName = intv.candidateName;
+        const candidateId = intv.candidateId;
+        const roomId = intv.roomId;
         draft.interviews.splice(idx, 1);
+
+        // Update candidate currentInterviewId if it pointed to this interview
+        if (candidateId && draft.candidates) {
+          const cand = draft.candidates.find((c) => c.id === candidateId);
+          if (cand && cand.currentInterviewId === id) {
+            const remaining = draft.interviews.find((i) => i.candidateId === candidateId && !(i as any).isDeleted);
+            cand.currentInterviewId = remaining ? remaining.id : undefined;
+            if (!remaining && (cand.status === 'ROOM_ASSIGNED' || cand.status === 'SCHEDULED')) {
+              cand.status = 'ARRIVED';
+              cand.currentLocation = 'Reception / Waiting Lounge';
+              cand.assignedRoomId = undefined;
+            }
+          }
+        }
+
+        // Free room if this interview was holding it
+        if (roomId && draft.rooms) {
+          const rm = draft.rooms.find((r) => r.id === roomId || r.roomId === roomId);
+          if (rm && rm.currentInterviewId === id) {
+            rm.status = 'AVAILABLE';
+            delete (rm as any).currentInterviewId;
+            delete (rm as any).currentCandidateId;
+            delete (rm as any).currentCandidateName;
+          }
+        }
 
         draft.auditLogs.unshift({
           id: `aud-${Date.now()}-intv-del`,

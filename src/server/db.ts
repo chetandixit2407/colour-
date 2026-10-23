@@ -750,6 +750,56 @@ class DatabaseService {
             }
             return intv;
           });
+
+          // 1.75 Deduplicate interviews using candidate ID, interview ID, and scheduled round (preserving legitimate separate interview rounds)
+          const candMap = new Map<string, any>((parsed.candidates || []).map((c: any) => [c.id, c]));
+          const uniqueInterviews: Interview[] = [];
+          const seenRounds = new Map<string, number>();
+
+          parsed.interviews.forEach((intv: any) => {
+            const normRound = (intv.roundName || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+            const key = `${intv.candidateId}::${normRound}`;
+
+            if (!seenRounds.has(key)) {
+              seenRounds.set(key, uniqueInterviews.length);
+              uniqueInterviews.push({ ...intv });
+            } else {
+              const existingIdx = seenRounds.get(key)!;
+              const existing = uniqueInterviews[existingIdx];
+              const cand = candMap.get(intv.candidateId);
+
+              const isCandPointingToThis = cand && cand.currentInterviewId === intv.id;
+              const isCandPointingToExisting = cand && cand.currentInterviewId === existing.id;
+              const thisHasRoom = !!intv.roomId || intv.status === 'ROOM_ASSIGNED';
+              const existingHasRoom = !!existing.roomId || existing.status === 'ROOM_ASSIGNED';
+
+              let keepThis = false;
+              if (isCandPointingToThis && !isCandPointingToExisting) {
+                keepThis = true;
+              } else if (thisHasRoom && !existingHasRoom) {
+                keepThis = true;
+              } else if (intv.status === 'INTERVIEW_STARTED' || intv.status === 'INTERVIEW_COMPLETED') {
+                keepThis = true;
+              }
+
+              if (keepThis) {
+                uniqueInterviews[existingIdx] = { ...existing, ...intv };
+                if (cand && cand.currentInterviewId === existing.id) {
+                  cand.currentInterviewId = intv.id;
+                }
+              } else {
+                if (!existing.roomId && intv.roomId) {
+                  existing.roomId = intv.roomId;
+                  existing.roomName = intv.roomName;
+                }
+                if (cand && cand.currentInterviewId === intv.id) {
+                  cand.currentInterviewId = existing.id;
+                }
+              }
+            }
+          });
+
+          parsed.interviews = uniqueInterviews;
         }
 
         // 1.8 Sanitize past notifications, timeline events, and audit logs

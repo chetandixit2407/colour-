@@ -343,6 +343,9 @@ export default function App() {
         setVisitors((prev) => prev.filter((v) => v.id !== id && !(v as any).isDeleted));
       } else if (type === 'INTERVIEW') {
         setInterviews((prev) => prev.filter((i) => i.id !== id && !(i as any).isDeleted));
+        setCandidates((prev) =>
+          prev.map((c) => (c.currentInterviewId === id ? { ...c, currentInterviewId: undefined } : c))
+        );
       } else if (type === 'ROOM') {
         setRooms((prev) => prev.filter((r) => r.id !== id && !(r as any).isDeleted));
       } else if (type === 'ACTION_TASK') {
@@ -416,20 +419,42 @@ export default function App() {
       ]);
 
       if (cData.success && Array.isArray(cData.candidates)) {
-        setCandidates(
-          cData.candidates.filter(
-            (c: Candidate) => !deletedCandidateIdsRef.current.has(c.id) && !(c as any).isDeleted
-          )
+        const seenCandIds = new Set<string>();
+        const uniqueCands = cData.candidates.filter(
+          (c: Candidate) => {
+            if (!c?.id || seenCandIds.has(c.id) || deletedCandidateIdsRef.current.has(c.id) || (c as any).isDeleted) {
+              return false;
+            }
+            seenCandIds.add(c.id);
+            return true;
+          }
         );
+        setCandidates(uniqueCands);
       }
       if (iData.success && Array.isArray(iData.interviews)) {
-        setInterviews(
-          iData.interviews.filter(
-            (i: any) =>
-              !i.isDeleted &&
-              !deletedCandidateIdsRef.current.has(i.candidateId)
-          )
+        const activeList = iData.interviews.filter(
+          (i: any) =>
+            !i.isDeleted &&
+            !deletedCandidateIdsRef.current.has(i.candidateId)
         );
+        const seenRounds = new Map<string, any>();
+        activeList.forEach((intv: any) => {
+          const normRound = (intv.roundName || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+          const key = `${intv.candidateId}::${normRound}`;
+          if (!seenRounds.has(key)) {
+            seenRounds.set(key, intv);
+          } else {
+            const existing = seenRounds.get(key);
+            const preferNew =
+              (!existing.roomId && intv.roomId) ||
+              (existing.status === 'CANDIDATE_ARRIVED' && (intv.status === 'ROOM_ASSIGNED' || intv.status === 'INTERVIEW_STARTED')) ||
+              new Date(intv.updatedAt || intv.createdAt).getTime() > new Date(existing.updatedAt || existing.createdAt).getTime();
+            if (preferNew) {
+              seenRounds.set(key, { ...existing, ...intv });
+            }
+          }
+        });
+        setInterviews(Array.from(seenRounds.values()));
       }
       if (rData.success && Array.isArray(rData.rooms)) setRooms(rData.rooms);
       if (nData.success && Array.isArray(nData.notifications)) setNotifications(nData.notifications);
@@ -505,6 +530,16 @@ export default function App() {
         if (deletedVisId) {
           handleRecordDeleted(deletedVisId, 'VISITOR');
         }
+      } else if (event.type === 'INTERVIEW_DELETED') {
+        const deletedIntvId = event.payload?.interviewId || event.payload?.id;
+        if (deletedIntvId) {
+          handleRecordDeleted(deletedIntvId, 'INTERVIEW');
+        }
+      } else if (event.type === 'ROOM_DELETED') {
+        const deletedRoomId = event.payload?.roomId || event.payload?.id;
+        if (deletedRoomId) {
+          handleRecordDeleted(deletedRoomId, 'ROOM');
+        }
       }
 
       // Instant in-memory synchronization of incoming candidate record (safeguarded against restoring deleted records)
@@ -568,6 +603,17 @@ export default function App() {
           if (idx !== -1) {
             const next = [...prev];
             next[idx] = { ...next[idx], ...incomingIntv };
+            return next;
+          }
+          const normIncoming = (incomingIntv.roundName || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+          const dupIdx = prev.findIndex(
+            (i) =>
+              i.candidateId === incomingIntv.candidateId &&
+              (i.roundName || '').toLowerCase().replace(/[^a-z0-9]/g, '') === normIncoming
+          );
+          if (dupIdx !== -1) {
+            const next = [...prev];
+            next[dupIdx] = { ...next[dupIdx], ...incomingIntv };
             return next;
           }
           return [incomingIntv, ...prev];
@@ -1236,7 +1282,7 @@ export default function App() {
       />
 
       {/* Main Content Area */}
-      <div className="flex-1 min-w-0 flex flex-col h-[100dvh] overflow-y-auto lg:ml-64 relative z-10">
+      <div className="flex-1 min-w-0 flex flex-col h-[100dvh] overflow-y-auto lg:ml-64 relative">
         {/* White Collar Realty Large Background Watermark */}
         <DashboardWatermark />
 
@@ -1340,7 +1386,7 @@ export default function App() {
         />
 
         {/* Main Dashboard Container */}
-        <main className="flex-1 max-w-7xl w-full mx-auto px-3.5 py-4 sm:p-6 lg:p-8 pb-24 sm:pb-28 lg:pb-8 space-y-6 relative z-10 min-w-0 overflow-x-hidden">
+        <main className="flex-1 max-w-7xl w-full mx-auto px-3.5 py-4 sm:p-6 lg:p-8 pb-24 sm:pb-28 lg:pb-8 space-y-6 relative min-w-0 overflow-x-hidden">
           {activeSection === 'settings' ? (
             <ApplicationSettingsView onBackToDashboard={() => setActiveSection('dashboard')} />
           ) : activeSection === 'more' ? (
